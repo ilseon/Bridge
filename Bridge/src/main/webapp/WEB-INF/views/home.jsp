@@ -9,7 +9,7 @@
 <body>
 
 <h1>
-	Hello world!  
+	It is Main
 </h1>
 
 <input type="button" class="btn" value="button"/>
