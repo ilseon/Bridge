@@ -9,7 +9,7 @@
 <body>
 
 <h1>
-	It is Main(test)
+	It is Main
 </h1>
 
 <input type="button" class="btn" value="button"/>
