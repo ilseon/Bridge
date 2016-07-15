@@ -4,19 +4,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-  <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-    <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
+<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+
+
 </head>
 <body>
+<script>
+	// 체크박스 전체 선택/해제를 위한 jquery
+	$(function(){
+		$("#allCheck").click(function(){
+			if($(this).is(":checked")){ // 전체체크
+				$("input[id^=check").prop("checked", true);
+			}else{
+				$("input[id^=check").prop("checked", false);
+			}
+		});
+	});	
+</script>
+
 	<h2>Why - The 2nd Mini Album (앨범 제목)</h2>
 	<hr>
-	<div class="row"> <!-- 첫 번째 블럭(사진, 앨범 소개) start -->
+	<div class="container"> <!-- 첫 번째 블럭(사진, 앨범 소개) start -->
 		<div class="col-md-5">
-			<img src="/resources/image/album.PNG">
+			<img src="/resources/image/album.PNG" width="60%">
 		</div>
-		<div class="col-md-7">
-			<table class="table">
+		<div class="col-md-7" style="vertical-align: middle;">
+			<table class="table" style="vertical-align: middle;">
 				<tr>
 					<td>아티스트</td>
 					<td>태연</td>
@@ -39,33 +54,34 @@
 	<br><br>
 	<!-- ----------------------------------  -->
 	
-	<div><!-- 두 번째 블럭(수록곡) start -->
+	<div class="container"><!-- 두 번째 블럭(수록곡) start -->
 		<h3>수록곡(3)</h3>
 		<div><!-- 버튼들 -->
-			<input type="checkbox">
+			<input type="checkbox" id="allCheck">
 			<button class="btn">듣기</button>
 			<button class="btn">재생목록에 추가</button>
 			<button class="btn">내 앨범에 담기</button>
 			<button class="btn">다운로드</button>
 			<button class="btn">전체듣기</button>
 		</div>
+		<br>
 		<table class="table">
 			<tr>
-				<th></th><!-- 체크박스열 -->
-				<th>번호</th>
-				<th>곡</th>
-				<th>아티스트명</th>
-				<th>듣기</th>
-				<th>재생목록</th>
-				<th>내앨범</th>
-				<th>다운</th>
-				<th>뮤비</th>
-				<th>좋아</th>				
+				<th width="3%"></th><!-- 체크박스열 -->
+				<th width="4%">번호</th>
+				<th width="30%">곡</th>
+				<th width="20%">아티스트명</th>
+				<th width="7%">듣기</th>
+				<th width="8%">재생목록</th>
+				<th width="7%">내앨범</th>
+				<th width="7%">다운</th>
+				<th width="7%">뮤비</th>
+				<th width="7%">좋아</th>						
 			</tr>
 			
 			<c:forEach begin="1" end="7" var="j">
 				<tr>
-					<td><input type="checkbox"></td>
+					<td><input type="checkbox" id="check${j}"></td>
 					<td>${j}</td>
 					<td>Why</td>
 					<td>태연</td>
@@ -82,7 +98,7 @@
 	</div><!-- 두 번째 블럭(수록곡) end -->
 	<br><br>
 	<!-- ----------------------------------  -->
-	<div><!-- 세 번째 블럭(앨범소개) start -->
+	<div class="container"><!-- 세 번째 블럭(앨범소개) start -->
 		<h3>앨범 소개</h3>
 		<div class="col-md-offset-2 col-md-10">			
 			믿고 듣는 음원퀸 태연, 솔로 컴백!<br>
@@ -102,7 +118,7 @@
 	
 	<!-- ----------------------------------  -->
 	<br><br>
-	<div><!-- 네 번째 블럭(뮤직비디오) start -->
+	<div class="container"><!-- 네 번째 블럭(뮤직비디오) start -->
 		
 		<h3>이 앨범의 뮤직비디오</h3>
 		<div>
@@ -112,7 +128,7 @@
 	
 	<!-- ----------------------------------  -->
 	<br><br>
-	<div><!-- 다섯 번째 블럭(한마디) start -->
+	<div class="container"><!-- 다섯 번째 블럭(한마디) start -->
 		<h3>한마디(12)</h3>
 		<div class="row"><!-- 텍스트박스와 입력 버튼-->
 			<div class="col-md-11">

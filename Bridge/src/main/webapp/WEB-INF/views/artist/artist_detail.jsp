@@ -9,6 +9,18 @@
     <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+<script>
+	// 체크박스 전체 선택/해제를 위한 jquery
+	$(function(){
+		$("#allCheck").click(function(){
+			if($(this).is(":checked")){ // 전체체크
+				$("input[id^=check").prop("checked", true);
+			}else{
+				$("input[id^=check").prop("checked", false);
+			}
+		});
+	});	
+</script>
 	<h2>태연</h2>
 	<hr>
 	<div class="container"> <!-- 첫 번째 블럭(사진, 가수 소개) start -->
@@ -34,30 +46,31 @@
 	<div class="container"><!-- 두 번째 블럭(곡) start -->
 		<h3>수록곡(3)</h3>
 		<div><!-- 버튼들 -->
-			<input type="checkbox">
+			<input type="checkbox" id="allCheck">
 			<button class="btn">듣기</button>
 			<button class="btn">재생목록에 추가</button>
 			<button class="btn">내 앨범에 담기</button>
 			<button class="btn">다운로드</button>
 			<button class="btn">전체듣기</button>
 		</div>
+		<br>
 		<table class="table">
 			<tr>
-				<th></th><!-- 체크박스열 -->
-				<th>번호</th>
-				<th>곡</th>
-				<th>아티스트명</th>
-				<th>듣기</th>
-				<th>재생목록</th>
-				<th>내앨범</th>
-				<th>다운</th>
-				<th>뮤비</th>
-				<th>좋아</th>				
+				<th width="3%"></th><!-- 체크박스열 -->
+				<th width="4%">번호</th>
+				<th width="30%">곡</th>
+				<th width="20%">아티스트명</th>
+				<th width="7%">듣기</th>
+				<th width="8%">재생목록</th>
+				<th width="7%">내앨범</th>
+				<th width="7%">다운</th>
+				<th width="7%">뮤비</th>
+				<th width="7%">좋아</th>				
 			</tr>
 			
 			<c:forEach begin="1" end="7" var="j">
 				<tr>
-					<td><input type="checkbox"></td>
+					<td><input type="checkbox" id="check${j}"></td>
 					<td>${j}</td>
 					<td>Why</td>
 					<td>태연</td>
