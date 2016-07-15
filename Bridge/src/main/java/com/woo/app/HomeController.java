@@ -36,4 +36,14 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="test")
+	public String albumDetail(){
+		return "/album/album_detail";
+	}
+	
+	@RequestMapping(value="test2")
+	public String artistDetail(){
+		return "/artist/artist_detail";
+	}
+	
 }
