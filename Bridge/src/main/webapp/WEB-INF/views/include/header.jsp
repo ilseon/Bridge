@@ -1,4 +1,4 @@
-<%@ page  contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -6,6 +6,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div>
+header
+</div>
 </body>
 </html>
