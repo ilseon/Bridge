@@ -22,5 +22,11 @@ public class HomeController {
 		logger.info("It is Main");
 		return "home";
 	}
+	
+	@RequestMapping(value = "/chart", method = RequestMethod.GET)
+	public String chart(){
+		logger.info("chart");
+		return "/chart/chart_main";
+	}
 		
 }
