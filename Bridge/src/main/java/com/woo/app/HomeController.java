@@ -24,12 +24,12 @@ public class HomeController {
 	}
 	
 
+
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
 	public String chart(){
 		logger.info("chart");
 		return "/chart/chart_main";
 	}
-		
 
 	@RequestMapping(value="test")
 	public String albumDetail(){
@@ -39,6 +39,10 @@ public class HomeController {
 	@RequestMapping(value="test2")
 	public String artistDetail(){
 		return "/artist/artist_detail";
+
 	}
+		
+
+
 	
 }
