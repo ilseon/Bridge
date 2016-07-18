@@ -53,71 +53,81 @@
 			});
 </script>
 <body>
-	<!-- 상단 tab start -->
-	<div class="container">
-		<br /> <br />
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="like_song">좋아하는 곡</a></li>
-			<li><a href="myalbum">내 앨범</a></li>
-			<li><a href="download">다운로드함</a></li>
-		</ul>
-	</div>
+	<!-- header, sideber start -->
+	<%@include file="/WEB-INF/views/include/header.jsp"%>
+	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
 	<!-- end -->
-	<br />
-	<br />
-	<!-- 좋아하는 곡 or 앨범인지 표시 start -->
-	<div class="container">
+
+	<!-- 상단 tab start -->
+	<div class="container" style="margin-bottom: 150px">
+		<br /> <br />
+		<div class="col-md-12">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="like_song">좋아하는 곡</a></li>
+				<li><a href="myalbum">내 앨범</a></li>
+				<li><a href="download">다운로드함</a></li>
+			</ul>
+		</div>
+		<!-- end -->
+
+		<!-- 좋아하는 곡 or 앨범인지 표시 start -->
 		<div class="col-xs-2">
+			<br />
+			<br />
 			<ul class="breadcrumb">
 				<li class="active">곡</li>
 				<li><a href="like_album">앨범</a></li>
 			</ul>
 		</div>
-	</div>
-	<!-- end -->
-	<br>
-	<!-- 곡에 대한 정보 -->
-	<div class="container">
-		<input type="checkbox" id="allCheck">
-		<button class="btn">듣기</button>
-		<button class="btn" id="add">재생목록에 추가</button>
-		<button class="btn" id="put">내 앨범에 담기</button>
-		<button class="btn" id="down">다운로드</button>
-		<button class="btn" id="del">삭제</button>
-		&nbsp;
-		<button class="btn">전체듣기</button>
-		<br> <br>
-		<table class="table">
-			<tr>
-				<th width="3%"></th>
-				<th width="4%">번호</th>
-				<th width="18%"></th>
-				<th width="20%">곡</th>
-				<th width="20%">아티스트</th>
-				<th width="7%">듣기</th>
-				<th width="8%">재생목록</th>
-				<th width="7%">내앨범</th>
-				<th width="7%">다운</th>
-				<th width="7%">뮤비</th>
-			</tr>
-
-			<c:forEach begin="1" end="2" var="j">
+		<!-- end -->
+		<!-- 곡에 대한 정보 -->
+		<div class="col-md-12"><br>
+			<input type="checkbox" id="allCheck">
+			<button class="btn">듣기</button>
+			<button class="btn" id="add">재생목록에 추가</button>
+			<button class="btn" id="put">내 앨범에 담기</button>
+			<button class="btn" id="down">다운로드</button>
+			<button class="btn" id="del">삭제</button>
+			&nbsp;
+			<button class="btn">전체듣기</button>
+			<br> <br>
+			<table class="table">
 				<tr>
-					<td><input type="checkbox" name="check" id="check${j}"></td>
-					<td>${j}</td>
-					<td><a href="test"><img src="resources/image/like/like_album.jpg"
-						width="70px" /></a></td>
-					<td>Why</td>
-					<td><a href="test2">태연</a></td>
-					<td>듣기</td>
-					<td>재생목록</td>
-					<td>내앨범</td>
-					<td>다운</td>
-					<td>뮤비</td>
+					<th width="3%"></th>
+					<th width="4%">번호</th>
+					<th width="18%"></th>
+					<th width="20%">곡</th>
+					<th width="20%">아티스트</th>
+					<th width="7%">듣기</th>
+					<th width="8%">재생목록</th>
+					<th width="7%">내앨범</th>
+					<th width="7%">다운</th>
+					<th width="7%">뮤비</th>
 				</tr>
-			</c:forEach>
-		</table>
+
+				<c:forEach begin="1" end="2" var="j">
+					<tr>
+						<td><input type="checkbox" name="check" id="check${j}"></td>
+						<td>${j}</td>
+						<td><a href="test"><img
+								src="resources/image/like/like_album.jpg" width="70px" /></a></td>
+						<td>Why</td>
+						<td><a href="test2">태연</a></td>
+						<td>듣기</td>
+						<td>재생목록</td>
+						<td>내앨범</td>
+						<td>다운</td>
+						<td>뮤비</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
 	</div>
 	<!-- end -->
+	<br />
+	<br />
+	<!--  footer start -->
+	<%@include file="/WEB-INF/views/include/footer.jsp"%>
+	<!--  end -->
 </body>
 </html>

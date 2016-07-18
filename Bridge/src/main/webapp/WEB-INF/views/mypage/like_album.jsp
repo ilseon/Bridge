@@ -33,75 +33,78 @@
 	});
 </script>
 <body>
-	<!-- 상단 tab start -->
-	<div class="container">
-		<br /> <br />
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="like_song">좋아하는 곡</a></li>
-			<li><a href="myalbum">내 앨범</a></li>
-			<li><a href="download">다운로드함</a></li>
-		</ul>
-	</div>
+	<!-- header, sideber start -->
+	<%@include file="/WEB-INF/views/include/header.jsp"%>
+	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
 	<!-- end -->
-	<br>
-	<br>
-	<!-- 좋아하는 곡 or 앨범인지 표시 start -->
-	<div class="container">
-		<div class="col-xs-2">
-			<ul class="breadcrumb">
-				<li><a href="like_song">곡</a></li>
-				<li class="active"><a href="like_album">앨범</a></li>
+
+	<!-- 상단 tab start -->
+	<div class="container" style="margin-bottom: 150px">
+		<br /> <br />
+		<div class="col-md-12">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="like_song">좋아하는 곡</a></li>
+				<li><a href="myalbum">내 앨범</a></li>
+				<li><a href="download">다운로드함</a></li>
 			</ul>
 		</div>
-		<div class="col-sm-12" align="right">
+		<!-- end -->
+		<!-- 좋아하는 곡 or 앨범인지 표시 start -->
+		<div class="col-xs-2">
+			<br /> <br />
+			<ul class="breadcrumb">
+				<li><a href="like_song">곡</a></li>
+				<li class="active">앨범</li>
+			</ul>
+		</div>
+		<div class="col-md-12" style="margin-top: -40px" align="right">
 			<button class="btn" id="del">삭제</button>
 			<hr />
+			<br />
 		</div>
-	</div>
-	<!-- end -->
-	<br />
-	<!-- 앨범 정보 start -->
-
-	<div class="container">
-		<c:forEach begin="1" end="4" step="1">
-			<div class="col-sm-3">
-				<div class="form-group">
-					<c:forEach begin="1" end="1" var="j">
-						<input type="checkbox" name="check" id="check${j}" />&nbsp;&nbsp;
-					&nbsp;&nbsp;<a href="test2"><img src="resources/image/like/like_album.jpg"
-							width="65%"></a>
-					</c:forEach>
-				</div>
-			</div>
-			<form class="form-horizontal">
+		<!-- end -->
+		<br />
+		<!-- 앨범 정보 start -->
+			<c:forEach begin="1" end="4" step="1">
 				<div class="col-sm-3">
 					<div class="form-group">
-						<br />
-						<table class="table">
-							<tr>
-								<td>아티스트</td>
-								<td>태연</td>
-							</tr>
-							<tr>
-								<td>앨범 종류</td>
-								<td>미니</td>
-							</tr>
-							<tr>
-								<td>발매일</td>
-								<td>2016.06.27</td>
-							</tr>
-							<tr>
-								<td>장르</td>
-								<td>발라드</td>
-							</tr>
-						</table>
+						<c:forEach begin="1" end="1" var="j">
+							<input type="checkbox" name="check" id="check${j}" />&nbsp;&nbsp;
+					&nbsp;&nbsp;<a href="test2"><img
+								src="resources/image/like/like_album.jpg" width="65%"></a>
+						</c:forEach>
 					</div>
 				</div>
-			</form>
-			
-		</c:forEach>
-	</div>
-
+				<form class="form-horizontal">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<br />
+							<table class="table">
+								<tr>
+									<td>아티스트</td>
+									<td>태연</td>
+								</tr>
+								<tr>
+									<td>앨범 종류</td>
+									<td>미니</td>
+								</tr>
+								<tr>
+									<td>발매일</td>
+									<td>2016.06.27</td>
+								</tr>
+								<tr>
+									<td>장르</td>
+									<td>발라드</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+			</c:forEach>
+		</div>
 	<!-- end -->
+	<!--  footer start -->
+	<%@include file="/WEB-INF/views/include/footer.jsp"%>
+	<!--  end -->
 </body>
 </html>

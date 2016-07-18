@@ -10,32 +10,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
+	type="text/css" />
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 </head>
 <body>
+	<!-- header, sideber start -->
+	<%@include file="/WEB-INF/views/include/header.jsp"%>
+	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
+	<!-- end -->
+
 	<!-- 상단 tab start -->
 	<div class="container">
 		<br /> <br />
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="payment">결제내역</a></li>
-		</ul>
-	</div>
-	<!-- end -->
-	<br /><br /><br />
-	
-	<!-- 결제한 곡에 대한 정보 start -->
-	<div class="container">
+		<div class="col-md-12">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="payment">결제내역</a></li>
+			</ul>
+		</div>
+		<!-- end -->
+		<!-- 결제한 곡에 대한 정보 start -->
+
 		<div class="col-md-6 col-md-offset-3" align="center">
-			<table class="table" >
-				<tr>
-					<th>날짜</th>
-					<th>곡</th>
-					<th>아티스트</th>
-					<th>금액</th>
-				</tr>
+			<br />
+			<br />
+			<table class="table">
+				<thead class="thead-inverse">
+					<tr>
+						<th>날짜</th>
+						<th>곡</th>
+						<th>아티스트</th>
+						<th>금액</th>
+					</tr>
+				</thead>
 				<tr>
 					<td>2016-07-17</td>
 					<td><a href="download">Why</a></td>
@@ -49,8 +58,14 @@
 					<td>$2</td>
 				</tr>
 			</table>
-			</div>
 		</div>
+	</div>
 	<!-- end -->
+	<br />
+	<br />
+	<!--  footer start -->
+	<%@include file="/WEB-INF/views/include/footer.jsp"%>
+	<!--  end -->
+
 </body>
 </html>

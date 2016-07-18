@@ -10,7 +10,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
+	type="text/css" />
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
@@ -21,30 +22,34 @@
 		$(".btn-danger").on("click", function() {
 			alert("탈퇴되었습니다.");
 			window.close();
-		});		
+		});
 	});
 </script>
 <body>
-	<br /><br /><br />
+	<br />
+	<br />
+	<br />
 	<div class="container">
-		<fieldset>
-			<!-- 회원탈퇴 동의 -->
-			<h4 align="center">
-				<strong>정말로 탈퇴하시겠습니까?</strong>
-			</h4>
-		</fieldset>
-	</div>
-
-	<!-- end -->
-	<hr />
-	<!-- 버튼 start -->
-	<div align="center" style="margin-top: 50px">
-		<div class="form-group">
-			<button type="submit" class="btn btn-danger" >확인</button>
-			<button type="reset" class="btn btn-default"
-				onclick="window.close();">취소</button>
+		<div class="col-md-4">
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					<h4 class="text-center">회원 탈퇴</h4>
+				</div>
+				<div class="panel-body text-center">
+					<p class="leave">
+					<br />
+						<strong>정말로 탈퇴하시겠습니까?</strong>
+					</p>
+				</div>
+			</div>
+			<div class="form-group" align="center" style="margin-top: 40px">
+				<button type="submit" class="btn btn-danger">확인</button>
+				<button type="reset" class="btn btn-default"
+					onclick="window.close();">취소</button>
+			</div>
 		</div>
 	</div>
+
 	<!-- end -->
 </body>
 </html>

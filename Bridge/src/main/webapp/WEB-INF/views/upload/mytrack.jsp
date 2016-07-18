@@ -33,53 +33,62 @@
 	});
 </script>
 <body>
+	<!-- header, sideber start -->
+	<%@include file="/WEB-INF/views/include/header.jsp"%>
+	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
+	<!-- end -->
 	<!-- 상단 tab start -->
 	<div class="container">
 		<br /> <br />
-		<ul class="nav nav-tabs">
-			<li><a href="upload">업로드하기</a></li>
-			<li class="active"><a href="mytrack">내 트랙</a></li>
-		</ul>
-	</div>
-	<!-- end -->
-	<br>
-	<br>
-	<!-- 앨범 정보 start -->
-	<div class="container">
-		<div class="col-sm-3">
-			<div class="form-group">
-				<c:forEach begin="1" end="1" var="j">
-					<a href="mytrack_detail"><img src="resources/image/upload/album/album_art.jpg"
-						width="65%"></a>
-				</c:forEach>
-			</div>
-		</div>
-		<form class="form-horizontal">
-			<div class="col-sm-3">
-				<div class="form-group">
-					<br />
-					<table class="table">
-						<tr>
-							<td>아티스트</td>
-							<td>원더걸스</td>
-						</tr>
-						<tr>
-							<td>앨범 종류</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>발매일</td>
-							<td>2016.06.27</td>
-						</tr>
-						<tr>
-							<td>장르</td>
-							<td>발라드</td>
-						</tr>
-					</table>
+		<div class="col-md-12">
+			<ul class="nav nav-tabs">
+				<li><a href="upload">업로드하기</a></li>
+				<li class="active"><a href="mytrack">내 트랙</a></li>
+			</ul>
+			<!-- end -->
+			<br> <br>
+			<!-- 앨범 정보 start -->
+			<c:forEach begin="1" end="4" step="1">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<c:forEach begin="1" end="1" var="j">
+							<a href="mytrack_detail"><img
+								src="resources/image/upload/album/album_art.jpg" width="65%"></a>
+						</c:forEach>
+					</div>
 				</div>
-			</div>
-		</form>
+				<form class="form-horizontal">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<table class="table">
+								<tr>
+									<th>아티스트</th>
+									<td>원더걸스</td>
+								</tr>
+								<tr>
+									<th>앨범 종류</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>발매일</th>
+									<td>2016.06.27</td>
+								</tr>
+								<tr>
+									<th>장르</th>
+									<td>발라드</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+			</c:forEach>
+		</div>
 	</div>
 	<!-- end -->
+	<br />
+	<br />
+	<!--  footer start -->
+	<%@include file="/WEB-INF/views/include/footer.jsp"%>
+	<!--  end -->
 </body>
 </html>

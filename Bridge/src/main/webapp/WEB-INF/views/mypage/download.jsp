@@ -11,12 +11,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
+	type="text/css" />
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 <script>
-	$(document).ready(function() {
+	$(document).ready(
+			function() {
 				// 체크박스 전체 선택/해제를 위한 jquery
 				$("#allCheck").click(
 						function() {
@@ -45,58 +47,64 @@
 </script>
 </head>
 <body>
+	<!-- header, sideber start -->
+	<%@include file="/WEB-INF/views/include/header.jsp"%>
+	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
+	<!-- end -->
+
 	<!-- 상단 tab start-->
 	<div class="container">
 		<br /> <br />
-		<ul class="nav nav-tabs">
-			<li><a href="like_song">좋아하는 곡</a></li>
-			<li><a href="myalbum" >내 앨범</a></li>
-			<li class="active"><a href="download">다운로드함</a></li>
-		</ul>
-	</div>
-	<!-- end -->
-	<br>
-	<br>
-	<br/>
-	<!-- 다운로드함에 추가된 음원 정보 start -->
-	<div class="container">
-		<!-- 버튼들 -->
-		<input type="checkbox" id="allCheck">
-		<button class="btn">듣기</button>
-		<button class="btn" id="add">재생목록에 추가</button>
-		<button class="btn" id="del">삭제</button>
-		&nbsp;
-		<button class="btn">전체듣기</button>
+		<div class="col-md-12">
+			<ul class="nav nav-tabs">
+				<li><a href="like_song">좋아하는 곡</a></li>
+				<li><a href="myalbum">내 앨범</a></li>
+				<li class="active"><a href="download">다운로드함</a></li>
+			</ul>		
+		<!-- end -->
 		<br> <br>
-		<table class="table">
-			<tr>
-				<th width="3%"></th>
-				<th width="6%">번호</th>
-				<th width="18%"></th>
-				<th width="18%">곡</th>
-				<th width="18%">아티스트</th>
-				<th width="17%">앨범</th>
-				<th width="7%">듣기</th>
-				<th width="8%">재생목록</th>
-				<th width="7%">뮤비</th>
-			</tr>
-
-			<c:forEach begin="1" end="1" var="j">
+		<!-- 다운로드함에 추가된 음원 정보 start -->
+			<input type="checkbox" id="allCheck">
+			<button class="btn">듣기</button>
+			<button class="btn" id="add">재생목록에 추가</button>
+			<button class="btn" id="del">삭제</button>
+			&nbsp;
+			<button class="btn">전체듣기</button>
+			<br> <br>
+			<table class="table">
 				<tr>
-					<td><input type="checkbox" name="check" id="check${j}"></td>
-					<td>${j}</td>
-					<td><a href="test"><img src="resources/image/like/like_album.jpg"
-						width="70px" /></a></td>
-					<td>Why</td>
-					<td><a href="test">태연</a></td>
-					<td><a href="test2">Why</a></td>
-					<td>듣기</td>
-					<td>재생목록</td>
-					<td>뮤비</td>
+					<th width="3%"></th>
+					<th width="6%">번호</th>
+					<th width="18%"></th>
+					<th width="18%">곡</th>
+					<th width="18%">아티스트</th>
+					<th width="17%">앨범</th>
+					<th width="7%">듣기</th>
+					<th width="8%">재생목록</th>
+					<th width="7%">뮤비</th>
 				</tr>
-			</c:forEach>
-		</table>
-	</div>
-	<!-- end -->	
+				<c:forEach begin="1" end="1" var="j">
+					<tr>
+						<td><input type="checkbox" name="check" id="check${j}"></td>
+						<td>${j}</td>
+						<td><a href="test"><img
+								src="resources/image/like/like_album.jpg" width="70px" /></a></td>
+						<td>Why</td>
+						<td><a href="test">태연</a></td>
+						<td><a href="test2">Why</a></td>
+						<td>듣기</td>
+						<td>재생목록</td>
+						<td>뮤비</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+		</div>
+		<!-- end -->
+		<br /> <br />
+
+		<!--  footer start -->
+		<%@include file="/WEB-INF/views/include/footer.jsp"%>
+		<!--  end -->
 </body>
 </html>

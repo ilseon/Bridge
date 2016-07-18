@@ -11,7 +11,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
+	type="text/css" />
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
@@ -44,20 +45,25 @@
 </script>
 </head>
 <body>
+	<!-- header, sideber start -->
+	<%@include file="/WEB-INF/views/include/header.jsp"%>
+	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
+	<!-- end -->
+
 	<!-- 상단 tab start-->
 	<div class="container">
 		<br /> <br />
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="modify">개인정보변경</a></li>
-			<li><a href="withdrawal">회원탈퇴</a></li>
-		</ul>
-	</div>
-	<!-- end -->
-	<br />
-	<br />
-	<!-- 첫 번째 블럭(개인정보수정) start -->
-	<div class="container">
+		<div class="col-md-12">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="modify">개인정보변경</a></li>
+				<li><a href="withdrawal">회원탈퇴</a></li>
+			</ul>
+		</div>
+		<!-- end -->
+
+		<!-- 첫 번째 블럭(개인정보수정) start -->
 		<div class="col-md-10 col-md-offset-1">
+		<br /> <br />
 			<h5>
 				<strong>가입시 등록한 정보입니다.</strong>
 			</h5>
@@ -100,18 +106,24 @@
 				</div>
 			</form>
 		</div>
-	</div>
-	<!-- end -->
-	
-	<!-- 버튼 start -->
-	<div class="container">
-		<div align="center" style="margin-top: 80px">
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">확인</button>
-				<button type="reset" class="btn btn-default">취소</button>
+		<!-- end -->
+		<!-- 버튼 start -->
+		<div class="col-md-12">
+			<div align="center" style="margin-top: 80px">
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">확인</button>
+					<button type="reset" class="btn btn-default">취소</button>
+				</div>
 			</div>
 		</div>
+		<!-- end -->
 	</div>
 	<!-- end -->
+	<br />
+	<br />
+	<!--  footer start -->
+	<%@include file="/WEB-INF/views/include/footer.jsp"%>
+	<!--  end -->
+
 </body>
 </html>
