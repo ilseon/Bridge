@@ -22,5 +22,15 @@ public class HomeController {
 		logger.info("It is Main");
 		return "home";
 	}
+	
+	@RequestMapping(value="test")
+	public String albumDetail(){
+		return "/album/album_detail";
+	}
+	
+	@RequestMapping(value="test2")
+	public String artistDetail(){
+		return "/artist/artist_detail";
+	}
 		
 }
