@@ -23,10 +23,22 @@ public class HomeController {
 		return "home";
 	}
 	
+
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
 	public String chart(){
 		logger.info("chart");
 		return "/chart/chart_main";
 	}
 		
+
+	@RequestMapping(value="test")
+	public String albumDetail(){
+		return "/album/album_detail";
+	}
+	
+	@RequestMapping(value="test2")
+	public String artistDetail(){
+		return "/artist/artist_detail";
+	}
+	
 }
