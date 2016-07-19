@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -9,6 +8,8 @@
   <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
     <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
+<%@include file="../include/header.jsp" %>
+<%@include file="../include/sidebar.jsp" %>
 <body>
 <script>
 	// 체크박스 전체 선택/해제를 위한 jquery
@@ -123,10 +124,10 @@
 		<h3>한마디(12)</h3>
 		<div><!-- 텍스트박스와 입력 버튼-->
 			<div class="col-md-11">
-				<textarea rows="5" cols="100%" style="resize: none;"></textarea>
+				<textarea rows="5" style="width: 100%; height: 100%; resize: none;"></textarea>
 			</div>
-			<div class="col-md-1">
-				<button class="btn-lg">등록</button>
+			<div class="col-md-1" style="height: 100px; padding: 0px">
+				<button class="btn btn-default btn-lg form-control" style="height: 100%">등록</button>
 			</div>
 		</div><!-- 텍스트박스와 입력 버튼 end-->
 		
@@ -134,11 +135,21 @@
 			<table class="table">
 				<c:forEach begin="1" end="12" var="i">
 					<tr>
-						<th rowspan="2">test${i}</th>
+						<th rowspan="2" width="20%">test${i}</th>
 						<td>굳!</td>
 					</tr>
 					<tr>
-						<td>2016.07.06 15:12</td>
+						<td>2016.07.06 15:12 | <a data-toggle="collapse" href="#reply${i}">답글쓰기 V</a>
+						
+						<div id="reply${i}" class="panel-collapse collapse">    					    
+							<div class="col-md-11">
+									<textarea rows="3" style="width: 100%; height: 100%; resize: none;"></textarea>
+								</div>
+								<div class="col-md-1" style="height: 70px; padding: 0px">
+									<button class="btn btn-default form-control" style="height: 100%">등록</button>
+							</div>
+						</div>	
+						</td>	
 					</tr>
 				</c:forEach>
 			</table>

@@ -10,6 +10,8 @@
 
 
 </head>
+<%@include file="../include/header.jsp" %>
+<%@include file="../include/sidebar.jsp" %>
 <body>
 <script>
 	// 체크박스 전체 선택/해제를 위한 jquery
@@ -105,8 +107,8 @@
 			두 번째 미니앨범 ‘Why’ 발매!<br>
 			-폭넓은 음악 스타일 확인케하는 7곡 수록! 딘, 효연 피처링 참여!<br>
 			
-			<a data-toggle="collapse" href="#collapse1">더보기</a>		   
-			<div id="collapse1" class="panel-collapse collapse">        
+			<a data-toggle="collapse" href="#albumInfo">더보기</a>		   
+			<div id="albumInfo" class="panel-collapse collapse">        
 				작년 10월 첫 미니 앨범 ‘I’ 발매, 돌풍을 일으킨 태연.<br>
 				첫 미니 앨범 ‘I’로 국내 음원 및 음반 차트 1위, 아이튠즈 종합 앨범 차트 1위, 미국 빌보드 월드 앨범 차트 1위 등 국내외 각종 차트 정상을 <br>
 				석권해 글로벌한 관심과 인기를 입증했음은 물론, SM엔터테인먼트의 디지털 음원 공개 채널 ‘STATION’을 통해 선보인 ‘Rain’, <br>
@@ -132,10 +134,10 @@
 		<h3>한마디(12)</h3>
 		<div class="row"><!-- 텍스트박스와 입력 버튼-->
 			<div class="col-md-11">
-				<textarea rows="5" cols="100%" style="resize: none;"></textarea>
+				<textarea rows="5" style="width: 100%; height: 100%; resize: none;"></textarea>
 			</div>
-			<div class="col-md-1">
-				<button class="btn-lg">등록</button>
+			<div class="col-md-1" style="height: 100px; padding: 0px">
+				<button class="btn btn-default btn-lg form-control" style="height: 100%;">등록</button>
 			</div>
 		</div><!-- 텍스트박스와 입력 버튼 end-->
 		
@@ -143,15 +145,27 @@
 			<table class="table">
 				<c:forEach begin="1" end="12" var="i">
 					<tr>
-						<th rowspan="2">test${i}</th>
+						<th rowspan="2" width="20%">test${i}</th>
 						<td>굳!</td>
 					</tr>
 					<tr>
-						<td>2016.07.06 15:12</td>
-					</tr>
+						<td>2016.07.06 15:12 | <a data-toggle="collapse" href="#reply${i}">답글쓰기 V</a>
+						
+						<div id="reply${i}" class="panel-collapse collapse"> 
+							<div class="row">   					    
+								<div class="col-md-11">
+									<textarea rows="3" style="width: 100%; height: 100%; resize: none;"></textarea>
+								</div>
+								<div class="col-md-1" style="height: 70px; padding: 0px">
+									<button class="btn btn-default form-control" style="height: 100%">등록</button>
+								</div>
+							</div>
+						</div>	
+						</td>	
+					</tr>				
 				</c:forEach>
 			</table>
 		</div><!-- 한마디 테이블  end -->
-	</div><!-- 다섯 번째 블럭(한마디) end -->
+	</div><!-- 다섯 번째 블럭(한마디) end -->	
 </body>
 </html>
