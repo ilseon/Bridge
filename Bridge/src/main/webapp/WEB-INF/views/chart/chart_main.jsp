@@ -52,7 +52,12 @@ $(function(){
 
 
 
-	
+function PopupWindow()
+  {
+     window.open("/player","popup", "width=500, height=700, left=30, top=30, scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
+  }
+
+
 </script>
 <title>chart</title>
 </head>
@@ -156,8 +161,10 @@ border: none;
     <nav class="navbar">
             <div id="navbar" class="navbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/chart" class="">곡 차트</a></li>
-                    <li><a href="#">뮤직비디오 차트</a>
+
+                    <li class="active"><a href="#" class="">곡 차트</a></li>
+                    <li><a href="chart.video">뮤직비디오 차트</a>
+
                 </ul>
             </div>
     </nav>
@@ -198,6 +205,7 @@ border: none;
                    
 				    <tbody> 
 				    	<c:forEach begin="1" end="100" var="lev">
+<<<<<<< HEAD
 						    <tr>
 							    <td width="3%"><input type="checkbox" value="${lev}"/></td>
 							    <td width="7%">${lev} &nbsp;<a href="/test"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;"></td>
@@ -210,6 +218,20 @@ border: none;
 							    <td width="7%"><button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" ><span class="glyphicon glyphicon-download-alt"></span></button></p></td>
 							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-heart" style="color:red"></span></button></td>
+=======
+						    <tr >
+						    <td><input type="checkbox" value="${lev}"/></td>
+						    <td>${lev} &nbsp;<a href="#"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;"></td>
+						    <td>표적</td>
+						    <td>신화</td>
+						    <td>We</td>
+						    <td><button class="btn btn-default btn-xs" onclick="PopupWindow()"><span class="glyphicon glyphicon-play" style="color:red"></span></button></td>
+						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
+						    <td><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" ><span class="glyphicon glyphicon-paste"></span></button></p></td>
+						    <td><button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" ><span class="glyphicon glyphicon-download-alt"></span></button></p></td>
+						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></td>
+						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-heart" style="color:red"></span></button></td>
+>>>>>>> branch 'hyojin' of https://github.com/qkdeoddl12/Bridge
 						    </tr>
 					    </c:forEach>
 				    </tbody>

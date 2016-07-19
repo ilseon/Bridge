@@ -52,6 +52,7 @@ public class HomeController {
 		return "/artist/artist_detail";
 	}
 	
+
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
 	public String chart(){
 		logger.info("chart");
@@ -63,6 +64,24 @@ public class HomeController {
 		logger.info(genre);
 		WebUtils.setSessionAttribute(req, "genre", genre);
 		return "/chart/chart_main";
+	}
+
+	@RequestMapping(value="video")
+	public String showVideo(){
+		return "/video/video";
+
+	}
+	
+	@RequestMapping(value="chart.video")
+	public String showChartVideo(){
+		return "/chart/chart_video";
+
+	}
+		
+	@RequestMapping(value="player")
+	public String showplayer(){
+		return "/player/player";
+
 	}
 	
 }
