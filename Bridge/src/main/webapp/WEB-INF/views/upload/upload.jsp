@@ -18,6 +18,26 @@
 </head>
 <script>
 	$(document).ready(function() {
+		var cnt = $("#counter").val();
+		    $('input:checkbox[name=title'+i+']').click(function(){
+		    	var  cnt = $('input:checkbox[name=title'+i+']').length;
+		    	alert(cnt);
+		    	for (var i = 0; i < cnt ; i++){
+		      		if ($(this).prop('checked')
+		        		&& $('input[type="checkbox"][name="title"]:checked').size()>1) {
+		            	$(this).prop('checked', false);
+		       			alert('두개 이상 선택할 수 없습니다.');
+		        	}
+				}
+		    });
+
+		//숫자만 입력하는 jquery 
+		$(function() {
+			$('#counter').keyup(function() {
+				$(this).val($(this).val().replace(/[^0-9]/g, ""));
+			});
+		});
+
 		var cnt = 0;
 		//음원의 수를 확인하는 jquery 
 		$("#add").click(function() {
@@ -35,6 +55,7 @@
 
 		//업로드시 빠지는 항목을 체크하는 jquery 
 		$("#upload").click(function() {
+			alert($("#title" + i).length());
 			var cnt = $("#counter").val();
 			if (!$("#album").val()) {
 				alert("앨범명을 입력해주세요.");
@@ -70,6 +91,7 @@
 		});
 	});
 
+	
 	//아티스트 정보 페이지 
 	function fnResigter() {
 		window.open("upload_artist", "",
@@ -148,8 +170,7 @@
 						</div>
 						<div class="form-group">
 							<!-- 등록할 음원의 수 입력 -->
-							<label for="counter" class="col-lg-4 control-label">추가할
-								곡의 수</label>
+							<label for="counter" class="col-lg-4 control-label">곡의 수</label>
 							<div class="col-md-5">
 								<input type="text" class="form-control" id="counter"
 									name="counter" value="">
@@ -197,10 +218,10 @@
 						<input type="hidden" id="cnt" name="cnt" value="" />
 						<table class="table">
 							<tr>
-								<th>음원파일</th>
-								<th><div style="color: blue">타이틀</div></th>
-								<th>곡</th>
-								<th><div style="color: red">19세</div></th>
+								<th width="40%">음원파일</th>
+								<th width="10%"><div style="color: blue">타이틀</div></th>
+								<th width="25%">곡</th>
+								<th width="10%"><div style="color: red">&nbsp;&nbsp;19세</div></th>
 							</tr>
 							<%
 								if (cnt == 0) {
@@ -219,13 +240,13 @@
 								<tr>
 									<td><input type="file" name="upFile<%=i%>"
 										id="upFile<%=i%>" /></td>
-									<td>&nbsp;&nbsp;&nbsp;<input
-											type="checkbox" name="title" id="title<%=i%>"></td>
+									<td>&nbsp;&nbsp;&nbsp;<input type="checkbox"
+										name="title<%=i%>" id="title<%=i%>"></td>
 									<td><input type="text" name="song" id="song<%=i%>"
 										class="form-control" /></td>
-									<td>&nbsp;&nbsp;<a><i class="glyphicon glyphicon-ok-sign" id="limit<%=i%>"
-										style="color:red"></i></a>
-									</td>
+									<td><div class="btn">&nbsp;&nbsp;&nbsp;<i
+											class="glyphicon glyphicon-ok-sign" id="limit<%=i%>"
+											style="color: red"></i></div></td>
 								</tr>
 								<%
 									}

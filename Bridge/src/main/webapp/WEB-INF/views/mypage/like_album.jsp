@@ -20,16 +20,13 @@
 <script>
 	$(document).ready(function() {
 		//삭제를 확인하는 jquery 
-		$(".btn").on("click", function() {
+		$("#del").click(function() {
 			if ($("input:checked").length > 0) {
-				$("#del").click(function() {
 					alert("삭제되었습니다.");
-				});
 			} else {
 				alert("앨범을 선택해주세요.");
 			}
 		});
-
 	});
 </script>
 <body>
@@ -68,7 +65,7 @@
 			<c:forEach begin="1" end="4" step="1">
 				<div class="col-sm-3">
 					<div class="form-group">
-						<c:forEach begin="1" end="1" var="j">
+						<c:forEach begin="1" end="1">
 							<input type="checkbox" name="check" id="check${j}" />&nbsp;&nbsp;
 					&nbsp;&nbsp;<a href="test2"><img
 								src="resources/image/like/like_album.jpg" width="65%"></a>

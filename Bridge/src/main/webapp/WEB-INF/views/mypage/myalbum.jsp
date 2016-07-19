@@ -31,22 +31,40 @@
 										"checked", false);
 							}
 						});
-				// 추가, 삭제, 다운도르를 위한 jquery
-				$(".btn").on("click", function() {
-					if ($("input:checked").length > 0) {
-						$("#add").click(function() {
-							alert("추가되었습니다.");
-						});
-						$("#del").click(function() {
-							alert("삭제되었습니다.");
-						});
-						$("#down").click(function() {
-							alert("다운로드되었습니다.");
-						});
-					} else {
+				// 추가를 위한 jquery	
+				$("#add").click(function() {
+					if ($("input:checked").length == 0) {
 						alert("곡을 선택해주세요.");
+					} else {
+						alert("추가되었습니다.");
 					}
 				});
+
+				//삭제를 위한 jquery				
+					$("#del").click(function() {
+						if ($("input:checked").length == 0) {
+							alert("곡을 선택해주세요.");
+						} else {
+							alert("삭제되었습니다.");
+						}											
+					});
+				// 다운도르를 위한 jquery				
+					$("#down").click(function() {
+						if ($("input:checked").length == 0) {
+							alert("곡을 선택해주세요.");
+						} else {
+							alert("다운로드되었습니다.");
+						}													
+					});
+					// 듣기를 위한 jquery	
+					$("#listen").click(function() {
+						if ($("input:checked").length == 0) {
+							alert("곡을 선택해주세요.");
+						} else {
+							alert("플레이어됩니다.");
+						}						
+					});
+				
 			});
 </script>
 <body>
@@ -68,7 +86,7 @@
 		<br> <br> 
 		<!-- 내 앨범에 추가된 곡 정보 start -->
 			<input type="checkbox" id="allCheck">
-			<button class="btn">듣기</button>
+			<button class="btn" id="listen">듣기</button>
 			<button class="btn" id="add">재생목록에 추가</button>
 			<button class="btn" id="down">다운로드</button>
 			<button class="btn" id="del">삭제</button>

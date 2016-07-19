@@ -31,26 +31,49 @@
 										"checked", false);
 							}
 						});
-				// 추가, 삭제, 담기, 다운도르를 위한 jquery
-				$(".btn").on("click", function() {
-					if ($("input:checked").length > 0) {
-						$("#add").click(function() {
-							alert("추가되었습니다.");
-						});
-						$("#put").click(function() {
-							alert("내 앨범에 담겼습니다.");
-						});
-						$("#del").click(function() {
-							alert("삭제되었습니다.");
-						});
-						$("#down").click(function() {
-							alert("다운로드되었습니다.");
-						});
-					} else {
+				
+				// 추가를 위한 jquery	
+				$("#add").click(function() {
+					if ($("input:checked").length == 0) {
 						alert("곡을 선택해주세요.");
+					} else {
+						alert("추가되었습니다.");
 					}
 				});
-			});
+				// 담기를 위한 jquery	
+					$("#put").click(function() {
+						if ($("input:checked").length == 0) {
+							alert("곡을 선택해주세요.");
+						} else {
+							alert("내 앨범에 담겼습니다.");
+						}						
+					});
+				//삭제를 위한 jquery				
+					$("#del").click(function() {
+						if ($("input:checked").length == 0) {
+							alert("곡을 선택해주세요.");
+						} else {
+							alert("삭제되었습니다.");
+						}											
+					});
+				// 다운도르를 위한 jquery				
+					$("#down").click(function() {
+						if ($("input:checked").length == 0) {
+							alert("곡을 선택해주세요.");
+						} else {
+							alert("다운로드되었습니다.");
+						}													
+					});
+				
+					// 듣기를 위한 jquery	
+					$("#listen").click(function() {
+						if ($("input:checked").length == 0) {
+							alert("곡을 선택해주세요.");
+						} else {
+							alert("플레이어됩니다.");
+						}						
+					});
+				});
 </script>
 <body>
 	<!-- header, sideber start -->
@@ -72,8 +95,7 @@
 
 		<!-- 좋아하는 곡 or 앨범인지 표시 start -->
 		<div class="col-xs-2">
-			<br />
-			<br />
+			<br /> <br />
 			<ul class="breadcrumb">
 				<li class="active">곡</li>
 				<li><a href="like_album">앨범</a></li>
@@ -81,9 +103,9 @@
 		</div>
 		<!-- end -->
 		<!-- 곡에 대한 정보 -->
-		<div class="col-md-12"><br>
-			<input type="checkbox" id="allCheck">
-			<button class="btn">듣기</button>
+		<div class="col-md-12">
+			<br> <input type="checkbox" id="allCheck">
+			<button class="btn" id="listen">듣기</button>
 			<button class="btn" id="add">재생목록에 추가</button>
 			<button class="btn" id="put">내 앨범에 담기</button>
 			<button class="btn" id="down">다운로드</button>
