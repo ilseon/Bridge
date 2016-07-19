@@ -23,6 +23,11 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="login")
+	public String loginSearch(){
+		logger.info("It is loginsearch");
+		return "/login/loginsearch";
+	}
 
 
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
