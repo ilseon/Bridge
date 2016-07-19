@@ -47,6 +47,10 @@ public class HomeController {
 		return "/chart/chart_video";
 	}
 	
+	@RequestMapping("player")
+	public String showplayer(){
+		return "/player/player";
+	}
 	
 }
 
