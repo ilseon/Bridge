@@ -78,8 +78,3 @@
 
 	</div>
  </nav> 
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/qkdeoddl12/Bridge.git
-
