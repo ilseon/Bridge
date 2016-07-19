@@ -9,10 +9,6 @@
 <body>
 
 	<!-- 전체 header -->
-	<div class="col-md-12" style=" margin-bottom: 15px;" align="left"   >
-		
-		<!-- 왼쪽 로고 -->
-		<img src="/resources/image/sample.PNG" align="left" style="height: 60px; width: 75px; " />
 
 		<!-- 검색창 -->
 		<div class="col-xs-6"  align="left" style="margin-top: 15px; margin-left: 175px;">	
@@ -72,5 +68,4 @@
 		</div>
 		</div>
 		<!-- 로그인 모달 끝 -->
-	</div>
 </body>
