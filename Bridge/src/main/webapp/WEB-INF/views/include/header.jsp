@@ -6,21 +6,29 @@
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+
+
 <body>
 
 	<!-- 전체 header -->
 
+	 <nav class="navbar navbar-default">
+	<div class="col-md-12 " style=" margin-bottom: 15px;  background-color: yellow;" align="left"  >
+		
+		<!-- 왼쪽 로고 -->
+		<img src="/resources/image/sample.PNG"   align="left" style="height: 60px; width: 75px; " />
+
 		<!-- 검색창 -->
-		<div class="col-xs-6"  align="left" style="margin-top: 15px; margin-left: 175px;">	
+		<div class="col-xs-6 "  align="left" style="margin-top: 15px; margin-left: 14%;">	
 			<input type="text" class="btn search" style="border: 3px solid red; border-radius:50px;"/>
 			<input type="image" src="/resources/image/search.PNG"  style="vertical-align: middle; " />
 		</div>
 			
 		
 		<!-- 로그인 메뉴 -->
-		<div class="col-xs-2 " align="right" style="margin-top: 20px;">
+		<div class="col-xs-2 "  style="margin-top: 20px;">
 			<a href="#" data-toggle="modal" data-target="#login" style="color: black;">로그인 / </a> 
-			<a href="#" style="color: black;">회원가입</a>
+			<a href="user.add" style="color: black;">회원가입</a>
 		</div>
 
 		<!-- 로그인 모달 -->
@@ -68,4 +76,10 @@
 		</div>
 		</div>
 		<!-- 로그인 모달 끝 -->
+
+
+	</div>
+
 </body>
+</html>
+

@@ -21,6 +21,7 @@ $(document).ready(function(){
 	            $("#mytable input[type=checkbox]").each(function () {
 	                $(this).prop("checked", true);
 	            });
+
 	        } else {
 	            $("#mytable input[type=checkbox]").each(function () {
 	                $(this).prop("checked", false);
@@ -45,19 +46,29 @@ $(function(){
 		}
 	})
 });
+
+
 //한 곡에 대한 선택 사항 처리
+
+
+
 function PopupWindow()
   {
      window.open("/player","popup", "width=500, height=700, left=30, top=30, scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
   }
+
+
 </script>
 <title>chart</title>
 </head>
 <style>
+
 .navbar{
 background:rgba(255,255,255,0.25);
 border: none;
+
 }
+
 .nav>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a, .dropdown-menu>li{
   border-bottom: 3px solid transparent;
 }
@@ -68,16 +79,19 @@ border: none;
 .navbar a, .dropdown-menu>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .navbar-toggle{
  color: black;
 }
+
 .nav li:hover:nth-child(8n+1), .nav li.active:nth-child(8n+1){
   border-bottom: red 3px solid;
 }
 .nav li:hover:nth-child(8n+2), .nav li.active:nth-child(8n+2){
   border-bottom: red 3px solid;
 }
+
 .navbar-toggle .icon-bar{
     color: #fff;
     background: #fff;
 }
+
 .dropdown {
     background:#fff;
     
@@ -113,6 +127,7 @@ border: none;
     right: 14px;
     z-index: 9;
 }
+
 .table tbody>tr>td.vert-align{
     vertical-align: middle;
 }
@@ -228,8 +243,8 @@ border: none;
           	다운받으시겠습니까?
       </div>
           <div class="modal-footer ">
-        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
       </div>
         </div>
     <!-- /.modal-content --> 
@@ -253,8 +268,8 @@ border: none;
      		해당 곡을 내 앨범에 추가하시겠습니까?
       </div>
         <div class="modal-footer ">
-        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
       </div>
         </div>
     <!-- /.modal-content --> 
