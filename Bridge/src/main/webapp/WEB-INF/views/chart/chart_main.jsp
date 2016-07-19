@@ -5,7 +5,7 @@
 	내용 : 실시간 차트 페이지
  -->
 
-<%@ page contentType="text/html; charset=utf-8" isELIgnored="false"%>
+<%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -36,13 +36,14 @@ $(document).ready(function(){
 var list = new Array();
 
 //checkbox를 일부분만 선택했을 경우
-$('#listen').click(
-	function(){
+$(document).ready(function(){
+	$('#listen').click(function(){
 		var items = $("input:checked");//check된 경우
 		consol.log(items[0]);
-	}		
-);
+	})
+});
 	
+
 
 </script>
 <title>chart</title>
@@ -119,12 +120,14 @@ border: none;
 }
 </style>
 <body>
+<%@include file="/WEB-INF/views/include/header.jsp" %>
+<%@include file="/WEB-INF/views/include/sidebar.jsp" %>
 <!-- 실시간 차트 페이지의 메뉴 -->
-<article id="container">
-
-		<div class="col-md-12" style="font:10px">
-		<div class="col-md-1">실시간 차트&nbsp;&nbsp;&nbsp;</div>
-		<div class="col-md-1 dropdown">
+<div id="container">
+		<div class="row">
+		<div class="col-sm-10" style="font:10px">
+		<div class="col-sm-1">실시간 차트&nbsp;&nbsp;&nbsp;</div>
+		<div class="col-sm-1 dropdown">
 			<!-- <span class="bar"></span> -->
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 			<span style="color:red">장르별 차트</span><span class="caret"></span></a>
@@ -137,7 +140,7 @@ border: none;
 			</ul>
 		</div>
 		</div><br/><br/>
- 
+ <div class="col-sm-10">
     <nav class="navbar">
             <div id="navbar" class="navbar">
                 <ul class="nav navbar-nav">
@@ -147,17 +150,17 @@ border: none;
             </div>
     </nav>
     <hr/>
-    
+</div>
 	<!-- 차트 시작 -->
 	<div class="row">
 		
-        <div class="col-md-12">
+        <div class="col-sm-10">
         <div class="table-responsive">   
         	<form action="" method="POST">
         		<input type="hidden" name="" id="" value=""/>
 		        &nbsp;&nbsp;<input type="checkbox" id="checkall"/>
 		        <button class="btn btn-default btn-xs" id="listen"><span class="glyphicon glyphicon-play" style="color:red"></span>듣기</button>
-		        <button class="btn btn-default btn-xs" id="add_listen"><span class="glyphicon glyphicon-plus"></span>재생 목록에 추가</button>
+		        <button class="btn btn-default btn-xs" id="add_listen"><span class="glyphicon glyphicon-plus" style="color:green"></span>재생 목록에 추가</button>
 		        <button class="btn btn-default btn-xs" id="myalbum"><span class="glyphicon glyphicon-paste"></span>내 앨범에 담기</button>
 		        <button class="btn btn-default btn-xs" id="download"><span class="glyphicon glyphicon-download-alt"></span>다운로드</button>
 		        <button class="btn btn-default btn-xs" id="all_listen"><span class="glyphicon glyphicon-play" style="color:red"></span>전체 듣기</button>
@@ -187,20 +190,21 @@ border: none;
 						    <td>표적</td>
 						    <td>신화</td>
 						    <td>We</td>
-						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play"></span></button></td>
-						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span></button></td>
+						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red"></span></button></td>
+						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
 						    <td><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" ><span class="glyphicon glyphicon-paste"></span></button></p></td>
 						    <td><button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" ><span class="glyphicon glyphicon-download-alt"></span></button></p></td>
 						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></td>
-						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-heart"></span></button></td>
+						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-heart" style="color:red"></span></button></td>
 						    </tr>
 					    </c:forEach>
 				    </tbody>
 				        
 				</table>
             </div>
-        </div>
+            </div>
 	</div>
+</div>
 <!-- 차트 끝 -->
 
 
@@ -250,6 +254,8 @@ border: none;
       <!-- /.modal-dialog --> 
     </div>
 <!-- 내 앨범 추가 모달 끝 -->
-</article>
+</div>
+
+		<%@include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>
