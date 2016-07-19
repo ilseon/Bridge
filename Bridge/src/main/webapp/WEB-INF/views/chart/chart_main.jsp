@@ -147,7 +147,7 @@ border: none;
 					<c:if test="${genre}.empty">장르별 차트</c:if>
 					<c:if test="${genre}!=null">${genre}</c:if>
 				</span>
-				<span class="caret"></span></a>
+				장르별 차트<span class="caret"></span></a>
 		
 				<ul class="dropdown-menu" style="font-size:15px; padding:5px; width=100px; align:center;">
 					전체 차트<br/><br/>
@@ -205,33 +205,19 @@ border: none;
                    
 				    <tbody> 
 				    	<c:forEach begin="1" end="100" var="lev">
-<<<<<<< HEAD
+
 						    <tr>
 							    <td width="3%"><input type="checkbox" value="${lev}"/></td>
 							    <td width="7%">${lev} &nbsp;<a href="/test"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;"></td>
 							    <td width="23%">표적</td>
 							    <td width="20%"><a href="/test2">신화</a></td>
 							    <td width="7%">We</td>
-							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red"></span></button></td>
+							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="PopupWindow()"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" ><span class="glyphicon glyphicon-paste"></span></button></p></td>
 							    <td width="7%"><button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" ><span class="glyphicon glyphicon-download-alt"></span></button></p></td>
 							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-heart" style="color:red"></span></button></td>
-=======
-						    <tr >
-						    <td><input type="checkbox" value="${lev}"/></td>
-						    <td>${lev} &nbsp;<a href="#"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;"></td>
-						    <td>표적</td>
-						    <td>신화</td>
-						    <td>We</td>
-						    <td><button class="btn btn-default btn-xs" onclick="PopupWindow()"><span class="glyphicon glyphicon-play" style="color:red"></span></button></td>
-						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
-						    <td><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" ><span class="glyphicon glyphicon-paste"></span></button></p></td>
-						    <td><button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" ><span class="glyphicon glyphicon-download-alt"></span></button></p></td>
-						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></td>
-						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-heart" style="color:red"></span></button></td>
->>>>>>> branch 'hyojin' of https://github.com/qkdeoddl12/Bridge
 						    </tr>
 					    </c:forEach>
 				    </tbody>
