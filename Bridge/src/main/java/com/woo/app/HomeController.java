@@ -23,6 +23,12 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="login")
+	public String loginSearch(){
+		logger.info("It is loginsearch");
+		return "/login/loginsearch";
+	}
+	
 	@RequestMapping(value="test")
 	public String albumDetail(){
 		return "/album/album_detail";
