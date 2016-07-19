@@ -7,7 +7,7 @@
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 
 
-<body>
+
 
 	<hr/>
 	<!-- 전체 footer -->
@@ -27,4 +27,4 @@
 
 	</div>
 
-</body>
+
