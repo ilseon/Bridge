@@ -7,8 +7,7 @@
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 
-
-
+<body>
 
 	<hr/>
 	<!-- 전체 footer -->
@@ -27,8 +26,6 @@
 		<a href="#" style="color: black;">팀장 : 우병수</a> <br />
 
 	</div>
+
 </body>
-
-</html>
-
 

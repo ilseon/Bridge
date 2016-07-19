@@ -11,6 +11,7 @@
 <body>
 
 	<!-- 전체 header -->
+
 	 <nav class="navbar navbar-default">
 	<div class="col-md-12 " style=" margin-bottom: 15px;  background-color: yellow;" align="left"  >
 		

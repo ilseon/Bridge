@@ -1,4 +1,4 @@
-package com.woo.app;
+package com.brige.app.controller;
 
 import org.junit.Ignore;
 import org.slf4j.Logger;
