@@ -20,9 +20,9 @@
 	$(document).ready(function() {
 		$(".btn").on("click", function() {
 			if ($("#checkdel:checked").length > 0) {
-					$("#del").click(function() {
-						alert("삭제되었습니다.");
-					});
+				$("#del").click(function() {
+					alert("삭제되었습니다.");
+				});
 			} else {
 				alert("앨범을 선택해주세요.");
 			}
@@ -50,7 +50,9 @@
 			</ul>
 			<!-- 삭제 button -->
 			<div align="right" style="margin-top: -40px">
-				<button class="btn" id="del">삭제</button>
+				<button class="btn btn-default btn-md" id="del">
+					<span class="glyphicon glyphicon-trash"></span>&nbsp;삭제
+				</button>
 			</div>
 			<!-- end -->
 			<br /> <br />

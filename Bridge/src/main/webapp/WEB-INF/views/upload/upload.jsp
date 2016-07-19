@@ -244,9 +244,9 @@
 										name="title<%=i%>" id="title<%=i%>"></td>
 									<td><input type="text" name="song" id="song<%=i%>"
 										class="form-control" /></td>
-									<td><div class="btn">&nbsp;&nbsp;&nbsp;<i
-											class="glyphicon glyphicon-ok-sign" id="limit<%=i%>"
-											style="color: red"></i></div></td>
+									<td>&nbsp;&nbsp;&nbsp;<button class="btn btn-default btn-xs">
+									<span class="glyphicon glyphicon-star-empty" id="limit<%=i%>"></span></button>
+								</td>
 								</tr>
 								<%
 									}

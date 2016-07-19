@@ -22,19 +22,19 @@
 
 <!-- 중간 메뉴 -->
 <div>
-<input type="image" src="/resources/image/mainlike.PNG"  />
+<a href="like_song"><input type="image" src="/resources/image/mainlike.PNG"  /></a>
 <br/>
-<input type="image" src="/resources/image/mainmyalbum.PNG"  />
+<a href="myalbum"><input type="image" src="/resources/image/mainmyalbum.PNG"  /></a>
 <br/>
-<input type="image" src="/resources/image/maindown.PNG"  />
+<a href="download"><input type="image" src="/resources/image/maindown.PNG"  /></a>
 </div>
 <hr/>
 
 <!-- 아래 메뉴 -->
 <div>
-<input type="image" src="/resources/image/mainup.PNG"  />
+<a href="upload"><input type="image" src="/resources/image/mainup.PNG"  /></a>
 <br/>
-<input type="image" src="/resources/image/maintrack.PNG"  />
+<a href="mytrack"><input type="image" src="/resources/image/maintrack.PNG"  /></a>
 
 </div>
 </div>

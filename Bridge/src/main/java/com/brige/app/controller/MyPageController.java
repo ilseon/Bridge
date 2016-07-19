@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MyPageController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
-	
 
 	@RequestMapping(value="upload",  method = RequestMethod.GET)
 	public String Upload(){
