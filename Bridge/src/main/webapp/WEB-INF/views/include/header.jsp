@@ -28,7 +28,7 @@
 		<!-- 로그인 메뉴 -->
 		<div class="col-xs-2 "  style="margin-top: 20px;">
 			<a href="#" data-toggle="modal" data-target="#login" style="color: black;">로그인 / </a> 
-			<a href="#" style="color: black;">회원가입</a>
+			<a href="user.add" style="color: black;">회원가입</a>
 		</div>
 
 		<!-- 로그인 모달 -->
