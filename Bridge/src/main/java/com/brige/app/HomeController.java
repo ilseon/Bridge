@@ -29,7 +29,6 @@ public class HomeController {
 		return "/login/loginsearch";
 	}
 
-
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
 	public String chart(){
 		logger.info("chart");
