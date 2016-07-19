@@ -39,7 +39,7 @@
 
          <div class="col-sm-offset-2 col-sm-11">
          <div>
-          <label><button   type="button" class="btn btn-link" >아이디/비밀번호 찾기</button></label>
+          <label><button type="button" class="btn btn-link" onclick="/loginsearch.jsp">아이디/비밀번호 찾기</button></label>
          </div>
             <input type="submit" class="btn btn-danger" value="아이디로 로그인" />
 
