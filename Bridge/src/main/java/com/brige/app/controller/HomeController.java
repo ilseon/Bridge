@@ -42,6 +42,14 @@ public class HomeController {
 
 	}
 	
+	@RequestMapping("chart.video")
+	public String video(){
+		return "/chart/chart_video";
+	}
+	
+	@RequestMapping("player")
+	public String showplayer(){
+		return "/player/player";
+	}
 	
 }
-
