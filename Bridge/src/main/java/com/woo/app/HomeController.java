@@ -4,12 +4,16 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.WebUtils;
 
 
 
@@ -54,8 +58,10 @@ public class HomeController {
 		return "/chart/chart_main";
 	}
 	
-	@RequestMapping(value="/chart", method=RequestMethod.POST)
-	public String chart_genre(){
+	@RequestMapping(value="/chart_genre", method=RequestMethod.GET)
+	public String chart_genre(@RequestParam("genre") String genre, HttpServletRequest req){
+		logger.info(genre);
+		WebUtils.setSessionAttribute(req, "genre", genre);
 		return "/chart/chart_main";
 	}
 	
