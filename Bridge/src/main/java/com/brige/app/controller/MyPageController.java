@@ -1,6 +1,5 @@
-package com.woo.app;
+package com.brige.app.controller;
 
-import org.junit.Ignore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

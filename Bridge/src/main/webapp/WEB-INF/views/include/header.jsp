@@ -6,8 +6,6 @@
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-
-
 <body>
 
 	<!-- 전체 header -->
@@ -74,9 +72,5 @@
 		</div>
 		</div>
 		<!-- 로그인 모달 끝 -->
-
-
 	</div>
-
-
 </body>
