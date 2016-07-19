@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -144,5 +145,4 @@
 		</div><!-- 한마디 테이블  end -->
 	</div><!-- 다섯 번째 블럭(한마디) end -->
 </body>
->>>>>>> refs/remotes/origin/master
 </html>

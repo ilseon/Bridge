@@ -154,5 +154,4 @@
 		</div><!-- 한마디 테이블  end -->
 	</div><!-- 다섯 번째 블럭(한마디) end -->
 </body>
->>>>>>> refs/remotes/origin/master
 </html>
