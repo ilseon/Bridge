@@ -3,6 +3,7 @@ package com.brige.app.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,8 +27,9 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
-	public String chart(){
+	public String chart(Model view){
 		logger.info("chart");
+		view.addAttribute("page","/WEB-INF/views/chart/chart_now.jsp");
 		return "/chart/chart_main";
 	}
 
@@ -50,6 +52,11 @@ public class HomeController {
 	@RequestMapping("player")
 	public String showplayer(){
 		return "/player/player";
+	}
+	
+	@RequestMapping("new_album")
+	public String new_album(){
+		return "/album/new_album";
 	}
 	
 }
