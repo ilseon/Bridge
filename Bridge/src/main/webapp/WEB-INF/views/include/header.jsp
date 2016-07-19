@@ -1,3 +1,12 @@
+<%--
+작성자 - 김민정
+내용 - 페이지 위 노출
+시작날짜 - 2016/07/19
+수정날짜 - 
+변경내용 - 
+ --%>
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,11 +19,12 @@
 <body>
 
 	<!-- 전체 header -->
+
 	 <nav class="navbar navbar-default">
 	<div class="col-md-12 " style=" margin-bottom: 15px;  background-color: yellow;" align="left"  >
 		
 		<!-- 왼쪽 로고 -->
-		<img src="/resources/image/sample.PNG"   align="left" style="height: 60px; width: 75px; " />
+		<a href="/"><img src="/resources/image/sample.PNG"   align="left" style="height: 60px; width: 75px; " /></a>
 
 		<!-- 검색창 -->
 		<div class="col-xs-6 "  align="left" style="margin-top: 15px; margin-left: 14%;">	
@@ -26,7 +36,7 @@
 		<!-- 로그인 메뉴 -->
 		<div class="col-xs-2 "  style="margin-top: 20px;">
 			<a href="#" data-toggle="modal" data-target="#login" style="color: black;">로그인 / </a> 
-			<a href="#" style="color: black;">회원가입</a>
+			<a href="user.add" style="color: black;">회원가입</a>
 		</div>
 
 		<!-- 로그인 모달 -->
@@ -77,4 +87,7 @@
 
 
 	</div>
- </nav> 
+
+</body>
+</html>
+
