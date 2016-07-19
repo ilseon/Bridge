@@ -44,6 +44,11 @@ $(document).ready(function(){
 });
 	
 
+function PopupWindow()
+  {
+     window.open("/player","popup", "width=500, height=700, left=30, top=30, scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
+  }
+
 
 </script>
 <title>chart</title>
@@ -145,7 +150,7 @@ border: none;
             <div id="navbar" class="navbar">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#" class="">곡 차트</a></li>
-                    <li><a href="#">뮤직비디오 차트</a>
+                    <li><a href="chart.video">뮤직비디오 차트</a>
                 </ul>
             </div>
     </nav>
@@ -190,7 +195,7 @@ border: none;
 						    <td>표적</td>
 						    <td>신화</td>
 						    <td>We</td>
-						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red"></span></button></td>
+						    <td><button class="btn btn-default btn-xs" onclick="PopupWindow()"><span class="glyphicon glyphicon-play" style="color:red"></span></button></td>
 						    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
 						    <td><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" ><span class="glyphicon glyphicon-paste"></span></button></p></td>
 						    <td><button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" ><span class="glyphicon glyphicon-download-alt"></span></button></p></td>
