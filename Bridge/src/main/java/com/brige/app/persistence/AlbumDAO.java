@@ -8,4 +8,5 @@ import com.brige.app.domain.AlbumVO;
 public interface AlbumDAO {
 	
 	public AlbumVO test();
+	public void AlbumInsert(AlbumVO vo) throws Exception;
 }

@@ -7,4 +7,8 @@
 	<select id="test" resultType="com.brige.app.domain.UserVO">
 		select * from user
 	</select>	
+	<insert id="album">
+		insert into album(albumname, albumdate, albumtype, albumgenre, artist_artistnumber, albumimg)
+		values(#{albumname}, #{albumdate}, #{albumtype}, #{albumgenre}, #{artist_artistnumber}, #{albumimg})
+	</insert>	
 </mapper>

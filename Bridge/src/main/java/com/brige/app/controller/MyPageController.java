@@ -1,104 +1,123 @@
 package com.brige.app.controller;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.brige.app.domain.AlbumVO;
 
 @Controller
 public class MyPageController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
 
-	@RequestMapping(value="upload",  method = RequestMethod.GET)
-	public String Upload(){
-		logger.info("ì—…ë¡œë“œí•˜ê¸°");
-		return "/upload/upload";
+	@RequestMapping(value = "upload", method = RequestMethod.GET)
+	public ModelAndView Upload(AlbumVO vo, HttpServletRequest request, HttpSession session) {
+		logger.info("¾÷·ÎµåÇÏ±â");
+
+		ModelAndView mav = new ModelAndView("/upload/upload_1");
+		/*
+		 * MultipartFile uploadImg = vo.getUploadImg(); if(uploadImg != null){
+		 * try { byte [] fileData = uploadImg.getBytes(); FileOutputStream
+		 * output = new FileOutputStream("E:/upload_img/images/");
+		 * output.write(fileData); } catch (IOException e) {
+		 * 
+		 * e.printStackTrace(); } }
+		 */
+		return mav;
 	}
-	
-	@RequestMapping(value="upload",  method = RequestMethod.POST)
-	public String Upload_Add(){
-		logger.info("ê³¡ ì¶”ê°€");
-		return "/upload/upload";
+
+	@RequestMapping(value = "upload", method = RequestMethod.POST)
+	public String Upload_Add() {
+		logger.info("°î Ãß°¡");
+		return "/upload/upload_2";
 	}
-		
-	@RequestMapping(value="mytrack",  method = RequestMethod.GET)
-	public String MyTrack_(){
-		logger.info("ë‚´íŠ¸ë™");
+
+	@RequestMapping(value = "mytrack", method = RequestMethod.GET)
+	public String MyTrack_() {
+		logger.info("³»Æ®·¢");
 		return "/upload/mytrack";
 	}
-	
-	@RequestMapping(value="mytrack_detail")
-	public String MyTrack_Detail(){
-		logger.info("ë‚´íŠ¸ë™_ìƒì„¸ë³´ê¸°");
+
+	@RequestMapping(value = "mytrack_detail")
+	public String MyTrack_Detail() {
+		logger.info("³»Æ®·¢_»ó¼¼º¸±â");
 		return "/upload/mytrack_detail";
 	}
-	
-	@RequestMapping(value="upload_artist")
-	public String Upload_Artist(){
-		logger.info("ì•„í‹°ìŠ¤íŠ¸ ë“±ë¡");
+
+	@RequestMapping(value = "upload_artist")
+	public String Upload_Artist() {
+		logger.info("¾ÆÆ¼½ºÆ® µî·Ï");
 		return "/upload/upload_artist";
 	}
-	
-	@RequestMapping(value="modify",  method = RequestMethod.GET)
-	public String PassWordConfirm(){
-		logger.info("ì •ë³´ìˆ˜ì •_ë¹„ë°€ë²ˆí˜¸ í™•ì¸");
+
+	@RequestMapping(value = "modify", method = RequestMethod.GET)
+	public String PassWordConfirm() {
+		logger.info("Á¤º¸¼öÁ¤_ºñ¹Ğ¹øÈ£ È®ÀÎ");
 		return "/modify/password_check";
 	}
-		
-	@RequestMapping(value="modify",  method = RequestMethod.POST)
-	public String Modify(){
-		logger.info("ê°œì¸ì •ë³´ìˆ˜ì •");
+
+	@RequestMapping(value = "modify", method = RequestMethod.POST)
+	public String Modify() {
+		logger.info("°³ÀÎÁ¤º¸¼öÁ¤");
 		return "/modify/modify";
 	}
-	
-	@RequestMapping(value="withdrawal", method = RequestMethod.GET)
-	public String PassWordWithdrawal(){
-		logger.info("íƒˆí‡´_ë¹„ë°€ë²ˆí˜¸ í™•ì¸");
+
+	@RequestMapping(value = "withdrawal", method = RequestMethod.GET)
+	public String PassWordWithdrawal() {
+		logger.info("Å»Åğ_ºñ¹Ğ¹øÈ£ È®ÀÎ");
 		return "/modify/password_check2";
 	}
-	
-	@RequestMapping(value="withdrawal", method = RequestMethod.POST)
-	public String Withdrawal(){
-		logger.info("íšŒì›íƒˆí‡´");
+
+	@RequestMapping(value = "withdrawal", method = RequestMethod.POST)
+	public String Withdrawal() {
+		logger.info("È¸¿øÅ»Åğ");
 		return "/modify/withdrawal";
 	}
-	
-	@RequestMapping(value="confirm")
-	public String Confirm(){
-		logger.info("íšŒì›íƒˆí‡´ë™ì˜");
+
+	@RequestMapping(value = "confirm")
+	public String Confirm() {
+		logger.info("È¸¿øÅ»Åğµ¿ÀÇ");
 		return "/modify/confirm";
 	}
-		
-	@RequestMapping(value="like_song")
-	public String LikeSong(){
-		logger.info("ì¢‹ì•„í•˜ëŠ” ê³¡");
+
+	@RequestMapping(value = "like_song")
+	public String LikeSong() {
+		logger.info("ÁÁ¾ÆÇÏ´Â °î");
 		return "/mypage/like_song";
 	}
-	
-	@RequestMapping(value="like_album")
-	public String LikeAlbum(){
-		logger.info("ì¢‹ì•„í•˜ëŠ” ì•¨ë²”");
+
+	@RequestMapping(value = "like_album")
+	public String LikeAlbum() {
+		logger.info("ÁÁ¾ÆÇÏ´Â ¾Ù¹ü");
 		return "/mypage/like_album";
 	}
-	
-	@RequestMapping(value="myalbum")
-	public String Myalbum(){
-		logger.info("ë‚´ì•¨ë²”");
+
+	@RequestMapping(value = "myalbum")
+	public String Myalbum() {
+		logger.info("³»¾Ù¹ü");
 		return "/mypage/myalbum";
 	}
-	
-	@RequestMapping(value="download")
-	public String Download(){
-		logger.info("ë‹¤ìš´ë¡œë“œí•¨");
+
+	@RequestMapping(value = "download")
+	public String Download() {
+		logger.info("´Ù¿î·ÎµåÇÔ");
 		return "/mypage/download";
 	}
 
-	@RequestMapping(value="payment")
-	public String Payment(){
-		logger.info("ê²°ì œë‚´ì—­");
+	@RequestMapping(value = "payment")
+	public String Payment() {
+		logger.info("°áÁ¦³»¿ª");
 		return "/payment/payment";
-	}	
+	}
 }

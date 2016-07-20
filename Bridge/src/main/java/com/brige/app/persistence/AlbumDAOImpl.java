@@ -14,6 +14,8 @@ public class AlbumDAOImpl implements AlbumDAO{
 	@Inject
 	private SqlSession sqlSession;
 	
+	private static final String NAMESPACE = "com.bridge.mappers.albumMapper";
+	
 	@Override
 	public AlbumVO test() {		
 		System.out.println(((UserVO)sqlSession.selectOne("test")).getUserId());
@@ -21,4 +23,8 @@ public class AlbumDAOImpl implements AlbumDAO{
 		return null;
 	}
 
+	@Override
+	public void AlbumInsert(AlbumVO vo) throws Exception {
+		sqlSession.insert(NAMESPACE+".AlbumUpload", vo);
+	}
 }

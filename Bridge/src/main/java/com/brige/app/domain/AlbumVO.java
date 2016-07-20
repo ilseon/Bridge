@@ -1,5 +1,7 @@
 package com.brige.app.domain;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class AlbumVO {
 	private int albumNumber;
 	private String albumType;
@@ -7,8 +9,17 @@ public class AlbumVO {
 	private String albumGenre;
 	private int artistNumber;
 	private String albumImg;
+   //-------------------------//
+	private MultipartFile uploadImg;
+	
 	public int getAlbumNumber() {
 		return albumNumber;
+	}
+	public MultipartFile getUploadImg() {
+		return uploadImg;
+	}
+	public void setUploadImg(MultipartFile uploadImg) {
+		this.uploadImg = uploadImg;
 	}
 	public void setAlbumNumber(int albumNumber) {
 		this.albumNumber = albumNumber;
