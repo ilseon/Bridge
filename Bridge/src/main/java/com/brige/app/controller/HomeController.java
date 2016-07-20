@@ -1,8 +1,5 @@
 /*
-	최초 작성일 : 2016-07-17
-	작성자 : 3조 조원
-	수정일 : 2016-07-20
-	내용 : 실시간 차트 페이지
+	
  */
 
 package com.brige.app.controller;
@@ -29,11 +26,9 @@ public class HomeController {
 	   @RequestMapping(value = "/", method = RequestMethod.GET)
 	   public String home() {
 	      logger.info("It is Main");
-	      test.test();
+	      //test.test();
 	      return "home";
 	   }
-	
-	
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
