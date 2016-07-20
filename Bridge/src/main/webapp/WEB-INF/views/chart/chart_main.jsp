@@ -14,51 +14,6 @@
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script>
-//checkbox 전체 선택
-$(document).ready(function(){
-	$("#checkall").click(function () {
-	        if ($("#checkall").is(':checked')) {
-	            $("#mytable input[type=checkbox]").each(function () {
-	                $(this).prop("checked", true);
-	            });
-
-	        } else {
-	            $("#mytable input[type=checkbox]").each(function () {
-	                $(this).prop("checked", false);
-	            });
-	        }
-	    });
-	});
-	
-var listAll = new Array();
-	
-//여러 곡을 선택한 경우
-$(function(){
-	$("#check_all .btn").click(function(){
-		if($("#check_all .btn")==$("#listen_all")){
-			$("#mytable input[type=checkbox]").each(function () {
-                $(this).prop("checked", true);
-            });	
-		}
-		else if($("#mytable input[type=checkbox]").is(":checked")){
-			alert("곡을 선택하셨습니다.");
-			var list=$("#mytable input[type=checkbox]");
-				for(var i = 0 ; i<list.length; i++){
-					if(list[i].checked==true){
-						listAll.push(list[i].value);
-					}
-				}
-		}else if($("#mytable input[type=checkbox]:not(checked)")){
-			alert("곡을 선택해 주세요!");
-			return false;
-		}
-	})
-});
-
-
-//한 곡에 대한 선택 사항 처리
-
-
 
 function PopupWindow()
   {
@@ -146,7 +101,7 @@ border: none;
 <!-- 실시간 차트 페이지의 메뉴 -->
 <div class="container">
 	<div class="row">
-		<div class="col-sm-11" style="font:10px">
+		<div class="col-sm-12" style="font:15px">
 			<div class="col-sm-2">실시간 차트&nbsp;&nbsp;&nbsp;</div>
 			<div class="col-sm-2 dropdown">
 				<span class="bar"></span>
@@ -161,23 +116,36 @@ border: none;
 					<a href="/chart_genre?genre=bdp">발라드/댄스/팝</a>
 				</ul>
 			</div>
-		</div><br/><br/>
-	 <div class="col-sm-11">
+		</div><br/><br/><br/>
+	 <div class="col-sm-12">
 	    <nav class="navbar">
 	            <div id="navbar" class="navbar">
 	                <ul class="nav navbar-nav">
-	
-	                    <li class="active"><a href="#" class="">곡 차트</a></li>
-	                    <li><a href="chart.video">뮤직비디오 차트</a>
-	
+						<c:if test="${page=='main' or page=='artist' or page=='album'}">
+							<c:set var="active1" value="active"/>
+	                    </c:if>
+	                    <c:if test="${page=='video'}">
+	                    	<c:set var="active2" value="active"/>
+	                    </c:if>
+	                    <li class="${active1}"><a href="chart" class="">곡 차트</a></li>
+	                    <li class="${active2}"><a href="chart.video">뮤직비디오 차트</a></li>
 	                </ul>
 	            </div>
 	    </nav>
 	    <hr/>
 	</div>
-		<c:if test="">
-			<%@include file="/WEB-INF/views/chart/chart_now.jsp" %>
-		</c:if>
+			<c:if test="${page=='main'}">
+				<%@include file="/WEB-INF/views/chart/chart_now.jsp"%>
+			</c:if>
+			<c:if test="${page=='album'}">
+				<%@include file="/WEB-INF/views/album/album_detail.jsp"%>
+			</c:if>
+			<c:if test="${page=='artist'}">
+				<%@include file="/WEB-INF/views/artist/artist_detail.jsp"%>
+			</c:if>
+			<c:if test="${page=='video'}">
+				<%@include file="/WEB-INF/views/chart/chart_video.jsp"%>
+			</c:if>
 
 	</div>
 </div>

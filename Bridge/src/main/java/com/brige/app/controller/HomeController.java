@@ -29,24 +29,27 @@ public class HomeController {
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
 	public String chart(Model view){
 		logger.info("chart");
-		view.addAttribute("page","/WEB-INF/views/chart/chart_now.jsp");
+		view.addAttribute("page","main");
 		return "/chart/chart_main";
 	}
 
 	@RequestMapping(value="test")
-	public String albumDetail(){
-		return "/album/album_detail";
+	public String albumDetail(Model view){
+		view.addAttribute("page","album");
+		return "/chart/chart_main";
 	}
 	
 	@RequestMapping(value="test2")
-	public String artistDetail(){
-		return "/artist/artist_detail";
+	public String artistDetail(Model view){
+		view.addAttribute("page","artist");
+		return "/chart/chart_main";
 
 	}
 	
 	@RequestMapping("chart.video")
-	public String video(){
-		return "/chart/chart_video";
+	public String video(Model view){
+		view.addAttribute("page","video");
+		return "/chart/chart_main";
 	}
 	
 	@RequestMapping("player")

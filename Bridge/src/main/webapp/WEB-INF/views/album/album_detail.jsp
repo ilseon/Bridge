@@ -1,18 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 
-
-</head>
-<%@include file="../include/header.jsp" %>
-<%@include file="../include/sidebar.jsp" %>
-<body>
 <script>
 	// 체크박스 전체 선택/해제를 위한 jquery
 	$(function(){
@@ -167,5 +156,3 @@
 			</table>
 		</div><!-- 한마디 테이블  end -->
 	</div><!-- 다섯 번째 블럭(한마디) end -->	
-</body>
-</html>
