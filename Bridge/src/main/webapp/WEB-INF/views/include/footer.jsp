@@ -1,3 +1,11 @@
+<%--
+작성자 - 김민정
+내용 - 페이지 아래 노출
+시작날짜 - 2016/07/19
+수정날짜 - 
+변경내용 - 
+ --%>
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
@@ -11,7 +19,7 @@
 
 	<hr/>
 	<!-- 전체 footer -->
-	<div class="col-md-12" style=" margin-bottom: 10px;" align="center">
+	<div class="col-md-12 " style=" margin-bottom: 10px; " align="center" >
 
 		<!-- 내용 -->
 		<a href="#" style="color: black;">팀 소개	|</a>  
