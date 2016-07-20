@@ -1,11 +1,8 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=utf-8"%>
 
-
 <jsp:include page="../include/header.jsp" />
-<link rel="stylesheet"
-   href="">
+<jsp:include page="../include/sidebar.jsp" />
 
 
 <script src="../bootstrap/js/jquery-2.2.3.min.js"></script>
@@ -13,6 +10,8 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -169,6 +168,7 @@
 		</form>
 	</div>
 </div>
+
 <jsp:include page="../include/footer.jsp" />
 </body>
 </html>
