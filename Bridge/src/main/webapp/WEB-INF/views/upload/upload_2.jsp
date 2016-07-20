@@ -108,6 +108,8 @@
 				"width=500, height=400, scrollbars=yes");
 	}
 </script>
+<style>
+</style>
 <body>
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
@@ -117,18 +119,19 @@
 		<br /> <br />
 		<!-- 상단 tab start -->
 		<div class="col-md-12">
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="upload">업로드하기</a></li>
-					<li><a href="mytrack">내 트랙</a></li>
-				</ul>
-				<!-- end -->
-				<br /> <br />
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="upload">업로드하기</a></li>
+				<li><a href="mytrack">내 트랙</a></li>
+			</ul>
+			<!-- end -->
+			<br /> <br />
+			<div class="jumbotron" >
 				<!-- 이미지, 날짜 입력 -->
-				<div class="col-md-2 col-md-offset-1">
+				<div class="col-md-3">
 					<img src='resources/image/upload/album/album_image.PNG'
-						width="100%"> <br /> <br /> <input type="file"
+						width="150px"> <br /> <br /> <input type="file"
 						name="uploadimage" id="uploadimage" /> <br /> <input type="date"
-						class="form-control" id="date" placeholder="날짜">
+						class="form-control" id="date" width="200px" >
 				</div>
 				<br />
 
@@ -210,10 +213,11 @@
 							</div>
 						</div>
 					</fieldset>
+
 				</form>
+			</div>
 			<!-- end -->
 			<br /> <br />
-
 			<!-- 입력 후 음원 수  파일 업로드 -->
 			<%
 				int cnt = 0;

@@ -22,7 +22,7 @@ public class HomeController {
 	   @RequestMapping(value = "/", method = RequestMethod.GET)
 	   public String home() {
 	      logger.info("It is Main");
-	      test.test();
+	      //test.test();
 	      return "home";
 	   }
 	
