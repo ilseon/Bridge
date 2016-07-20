@@ -1,6 +1,5 @@
 package com.brige.app.controller;
 
-import org.junit.Ignore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MyPageController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
-	
 
 	@RequestMapping(value="upload",  method = RequestMethod.GET)
 	public String Upload(){
