@@ -1,3 +1,10 @@
+/*
+	최초 작성일 : 2016-07-17
+	작성자 : 3조 조원
+	수정일 : 2016-07-20
+	내용 : 실시간 차트 페이지
+ */
+
 package com.brige.app.controller;
 
 import org.slf4j.Logger;
