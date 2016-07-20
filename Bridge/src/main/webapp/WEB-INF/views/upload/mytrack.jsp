@@ -67,7 +67,7 @@
 								</tr>
 								<tr>
 									<th>앨범 종류</th>
-									<td></td>
+									<td>싱글</td>
 								</tr>
 								<tr>
 									<th>발매일</th>
@@ -79,6 +79,7 @@
 								</tr>
 							</table>
 						</div>
+						<br/>
 					</div>
 				</form>
 			</c:forEach>

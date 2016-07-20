@@ -43,7 +43,7 @@ public class MyPageController {
 		return "/upload/upload_2";
 	}
 
-	@RequestMapping(value = "mytrack", method = RequestMethod.GET)
+	@RequestMapping(value = "mytrack")
 	public String MyTrack_() {
 		logger.info("³»Æ®·¢");
 		return "/upload/mytrack";

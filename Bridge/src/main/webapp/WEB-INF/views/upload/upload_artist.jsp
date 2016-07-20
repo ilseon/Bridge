@@ -35,8 +35,15 @@
 	});	
 </script>
 <style>
-.hr{
-	   color: blue;
+#save{
+	background-color: #F6C4BC;
+	border:none;
+}
+#tab{
+	border:none;
+	background-color: #DF6E76;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+	color:white;
 }
 </style>
 <body>
@@ -44,7 +51,7 @@
 	<div class="container">
 	   <div class="col-md-12 column">
               <div class="panel panel-info">
-                <div class="panel-heading">
+                <div class="panel-heading" id="tab">
                   <h3 class="panel-title">아티스트 정보 입력
                   </h3>
                 </div>                
@@ -52,10 +59,10 @@
             </div>
 		<div class="col-xs-4">
 			<!-- 아티스트 이미지 등록 -->
-			<img src="resources/image/upload/album/artist.jpg" width="120%"><br/><br/>
+			<br/><img src="resources/image/upload/album/artist.jpg" width="120%"><br/><br/>
 			<input type="file" name="upFile" id="upFile" />
 		</div>
-		<form class="form-horizontal">
+		<form class="form-horizontal" >
 			<fieldset>
 				<div class="col-xs-10 col-xs-offset-1">
 				<br/>
