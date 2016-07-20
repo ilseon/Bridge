@@ -2,6 +2,8 @@
 
 package com.brige.app.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -11,12 +13,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.brige.app.domain.MusicVO;
 import com.brige.app.persistence.AlbumDAOImpl;
+import com.brige.app.service.MusicService;
 
 
 
 @Controller
 public class HomeController {
+		@Inject
+		private MusicService music;
 	
 	   @Inject
 	   private AlbumDAOImpl test;
@@ -39,8 +45,9 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
-	public String chart(Model view){
+	public String chart(Model view) throws Exception{
 		logger.info("chart");
+		view.addAttribute("musicList", music.searchAll());
 		view.addAttribute("page","main");
 		return "/chart/chart_main";
 	}

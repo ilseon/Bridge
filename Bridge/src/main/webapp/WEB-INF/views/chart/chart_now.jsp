@@ -9,7 +9,7 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
-var user = "<c:out value='${USER}'/>";
+var user = "<c:out value='${userNumber}'/>";
 
 //checkbox 전체 선택
 $(document).ready(function(){
@@ -27,23 +27,23 @@ $(document).ready(function(){
 	    });
 	});
 	
-var listAll = new Array();
+var playlistAll = new Array();
 	
 //여러 곡을 선택한 경우
 $(function(){
 	$("#check_all .btn").click(function(){
-		var id = $(this).attr('id');
-		if($("#check_all .btn")==$("#listen_all")){
+		if($(this).attr('id')=="all_listen"){
 			$("#mytable input[type=checkbox]").each(function () {
               $(this).prop("checked", true);
-          });	
-		}else if($("#mytable input[type=checkbox]").is(":checked")){
-			if(user!="" && id.contains("listen")){
+         	});	
+		}
+		if($("#mytable input[type=checkbox]").is(":checked")){
+			if(user!=""){
 			alert("곡을 선택하셨습니다.");
 			var list=$("#mytable input[type=checkbox]");
 				for(var i = 0 ; i<list.length; i++){
 					if(list[i].checked==true){
-						listAll.push(list[i].value);
+						playlistAll.push(list[i].value);
 					}
 				}
 			}else{
@@ -84,11 +84,11 @@ $(function(){
         		<div id="check_all">
         		<input type="hidden" name="" id="" value=""/>
 		        &nbsp;&nbsp;<input type="checkbox" id="checkall" name="checkall"/>
-		        <a><button class="btn btn-default btn-xs" id="listen"><span class="glyphicon glyphicon-play" onclick="PopupWindow()" style="color:red"></span>듣기</button></a>
+		        <a><button class="btn btn-default btn-xs" id="listen" onclick="PopupWindow()"><span class="glyphicon glyphicon-play" style="color:red"></span>듣기</button></a>
 		        <button class="btn btn-default btn-xs" id="add_listen"><span class="glyphicon glyphicon-plus" style="color:green"></span>재생 목록에 추가</button>
 		        <button class="btn btn-default btn-xs" id="myalbum"><span class="glyphicon glyphicon-paste"></span>내 앨범에 담기</button>
 		        <button class="btn btn-default btn-xs" id="download"><span class="glyphicon glyphicon-download-alt"></span>다운로드</button>
-		        <button class="btn btn-default btn-xs" id="all_listen"><span class="glyphicon glyphicon-play" style="color:red"></span>전체 듣기</button>
+		        <button class="btn btn-default btn-xs" id="all_listen" onclick="PopupWindow()"><span class="glyphicon glyphicon-play" style="color:red"></span>전체 듣기</button>
 				</div>
 		
               <table id="mytable" class="table table-striped">
@@ -109,14 +109,14 @@ $(function(){
                    </thead>
                    
 				    <tbody> 
-				    	<c:forEach begin="1" end="100" var="lev">
+				    	<c:forEach begin="1" end="100" var="music" items="${musicList}">
 
 						    <tr>
-							    <td width="3%"><input type="checkbox" value="${lev}"/></td>
-							    <td width="7%">${lev} &nbsp;<a href="/test"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;"></td>
-							    <td width="23%">표적</td>
-							    <td width="20%"><a href="/test2">신화</a></td>
-							    <td width="7%">We</td>
+							    <td width="3%"><input type="checkbox" value="${music.musicNumber}"/></td>
+							    <td width="7%">${music.musicRank} &nbsp;<a href="/test"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;"></td>
+							    <td width="23%">${music.musicSubject}</td>
+							    <td width="20%"><a href="/test2">${musicList.artistNumber}신화</a></td>
+							    <td width="7%">${music.albumNumber}</td>
 							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="PopupWindow()"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></p></td>

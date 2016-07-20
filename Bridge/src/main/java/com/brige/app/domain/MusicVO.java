@@ -1,117 +1,117 @@
 package com.brige.app.domain;
 
 public class MusicVO {
-	private int musicNumber;
-	private String musicSubject;
-	private int artistNumber;
+	private int musicnumber;
+	private String musicsubject;
+	private int artistnumber;
 	
-	private String musicLyrics;
-	private String musicFile;
-	private String musicVideo;
+	private String musiclyrics;
+	private String musicfile;
+	private String musicvideo;
 	
-	private int albumNumber;
-	private int musicDownload;
+	private int albumnumber;
+	private int musicdownload;
 	
-	private int musicPlay;
-	private int musicLike;
-	private int musicCheck;
+	private int musicplay;
+	private int musiclike;
+	private int musiccheck;
 	
-	private int musicRank;
+	private int musicrank;
 
-	public int getMusicNumber() {
-		return musicNumber;
+	public int getMusicnumber() {
+		return musicnumber;
 	}
 
-	public void setMusicNumber(int musicNumber) {
-		this.musicNumber = musicNumber;
+	public void setMusicnumber(int musicnumber) {
+		this.musicnumber = musicnumber;
 	}
 
-	public String getMusicSubject() {
-		return musicSubject;
+	public String getMusicsubject() {
+		return musicsubject;
 	}
 
-	public void setMusicSubject(String musicSubject) {
-		this.musicSubject = musicSubject;
+	public void setMusicsubject(String musicsubject) {
+		this.musicsubject = musicsubject;
 	}
 
-	public int getArtistNumber() {
-		return artistNumber;
+	public int getArtistnumber() {
+		return artistnumber;
 	}
 
-	public void setArtistNumber(int artistNumber) {
-		this.artistNumber = artistNumber;
+	public void setArtistnumber(int artistnumber) {
+		this.artistnumber = artistnumber;
 	}
 
-	public String getMusicLyrics() {
-		return musicLyrics;
+	public String getMusiclyrics() {
+		return musiclyrics;
 	}
 
-	public void setMusicLyrics(String musicLyrics) {
-		this.musicLyrics = musicLyrics;
+	public void setMusiclyrics(String musiclyrics) {
+		this.musiclyrics = musiclyrics;
 	}
 
-	public String getMusicFile() {
-		return musicFile;
+	public String getMusicfile() {
+		return musicfile;
 	}
 
-	public void setMusicFile(String musicFile) {
-		this.musicFile = musicFile;
+	public void setMusicfile(String musicfile) {
+		this.musicfile = musicfile;
 	}
 
-	public String getMusicVideo() {
-		return musicVideo;
+	public String getMusicvideo() {
+		return musicvideo;
 	}
 
-	public void setMusicVideo(String musicVideo) {
-		this.musicVideo = musicVideo;
+	public void setMusicvideo(String musicvideo) {
+		this.musicvideo = musicvideo;
 	}
 
-	public int getAlbumNumber() {
-		return albumNumber;
+	public int getAlbumnumber() {
+		return albumnumber;
 	}
 
-	public void setAlbumNumber(int albumNumber) {
-		this.albumNumber = albumNumber;
+	public void setAlbumnumber(int albumnumber) {
+		this.albumnumber = albumnumber;
 	}
 
-	public int getMusicDownload() {
-		return musicDownload;
+	public int getMusicdownload() {
+		return musicdownload;
 	}
 
-	public void setMusicDownload(int musicDownload) {
-		this.musicDownload = musicDownload;
+	public void setMusicdownload(int musicdownload) {
+		this.musicdownload = musicdownload;
 	}
 
-	public int getMusicPlay() {
-		return musicPlay;
+	public int getMusicplay() {
+		return musicplay;
 	}
 
-	public void setMusicPlay(int musicPlay) {
-		this.musicPlay = musicPlay;
+	public void setMusicplay(int musicplay) {
+		this.musicplay = musicplay;
 	}
 
-	public int getMusicLike() {
-		return musicLike;
+	public int getMusiclike() {
+		return musiclike;
 	}
 
-	public void setMusicLike(int musicLike) {
-		this.musicLike = musicLike;
+	public void setMusiclike(int musiclike) {
+		this.musiclike = musiclike;
 	}
 
-	public int getMusicCheck() {
-		return musicCheck;
+	public int getMusiccheck() {
+		return musiccheck;
 	}
 
-	public void setMusicCheck(int musicCheck) {
-		this.musicCheck = musicCheck;
+	public void setMusiccheck(int musiccheck) {
+		this.musiccheck = musiccheck;
 	}
 
-	public int getMusicRank() {
-		return musicRank;
+	public int getMusicrank() {
+		return musicrank;
 	}
 
-	public void setMusicRank(int musicRank) {
-		this.musicRank = musicRank;
+	public void setMusicrank(int musicrank) {
+		this.musicrank = musicrank;
 	}
 	
 	
