@@ -1,24 +1,36 @@
 
 package com.brige.app.controller;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.brige.app.persistence.AlbumDAOImpl;
+
 
 
 @Controller
 public class HomeController {
 	
+	   @Inject
+	   private AlbumDAOImpl test;
+	   
+	   @RequestMapping(value = "/", method = RequestMethod.GET)
+	   public String home() {
+	      logger.info("It is Main");
+	      test.test();
+	      return "home";
+	   }
+	
+	
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
-		logger.info("It is Main");
-		return "home";
-	}
+	
 	
 	@RequestMapping(value="login")
 	public String loginSearch(){
