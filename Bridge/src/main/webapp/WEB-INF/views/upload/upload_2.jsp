@@ -1,9 +1,9 @@
 <%--
 작성자 - 이주연
-내용 - 업로드하기 페이지
-시작날짜 - 2016/07/17
-수정날짜 - 
-변경내용 - 
+내용 - 업로드 2단계
+시작날짜 - 2016/07/20
+수정날짜 - 2016/07/20
+변경내용 - 음원에 대한 예외처리
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -20,27 +20,9 @@
 	$(document)
 			.ready(
 					function() {
-						var cnt = $("#counter").val();
-						$('input:checkbox[name=title' + i + ']')
-								.click(
-										function() {
-											var cnt = $('input:checkbox[name=title'
-													+ i + ']').length;
-											alert(cnt);
-											for (var i = 0; i < cnt; i++) {
-												if ($(this).prop('checked')
-														&& $(
-																'input[type="checkbox"][name="title"]:checked')
-																.size() > 1) {
-													$(this).prop('checked',
-															false);
-													alert('두개 이상 선택할 수 없습니다.');
-												}
-											}
-										});
-
 						//업로드시 빠지는 항목을 체크하는 jquery 
 						$("#upload").click(function() {
+							alert($("#counter").val());
 							var cnt = $("#counter").val();
 							for (var i = 0; i < cnt; i++) {
 								if (!$("#upFile" + i).val()) {
@@ -49,9 +31,12 @@
 								} else if (!$("#song" + i).val()) {
 									alert(i + "번째 곡 명을 입력해주세요.");
 									return false;
-								} else if ($("#title" + i).length() == 0) {
-									alert("타이틀을 체크해주세요.");
+								} else if (!$("#musicvideo" + i).val()) {
+									alert(i + "번째 곡 명을 입력해주세요.");
 									return false;
+								} else {
+									alert("업로드를 완료하였습니다.");
+									$("#f").submit();
 								}
 							}
 						});

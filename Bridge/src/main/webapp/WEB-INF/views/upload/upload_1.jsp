@@ -1,9 +1,9 @@
 <%--
 작성자 - 이주연
-내용 - 업로드하기 페이지
+내용 - 업로드 1단계 페이지
 시작날짜 - 2016/07/17
-수정날짜 - 
-변경내용 - 
+수정날짜 - 2016/07/20
+변경내용 - 아티트스트에 대한 예외처리
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -47,8 +47,8 @@
 							} else if (!$("#counter").val()) {
 								alert("등록할 음원의 수를 입력해주세요.");
 								return false;
-							} else if ($("#counter").val() <= 1) {
-								alert("최소 1개 이상은 등록해야합니다.");
+							} else if ($("#counter").val() <= 0) {
+								alert("최소 0개 이상은 등록해야합니다.");
 								return false;
 							} else if ($("#counter").val() >= 8) {
 								alert("8개 이상은 등록할 수 없습니다.");
