@@ -22,62 +22,57 @@ import com.brige.app.persistence.UserDAO;
 import com.brige.app.service.UserService;
 
 @Controller
-@SessionAttributes({"id"})
+@SessionAttributes({"userid", "usernumber"})
 public class LoginController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	   @Autowired
-	   private UserService service;
-	
-	//로그인을 해주는 메서드
-	@RequestMapping(value="login", method=RequestMethod.POST)
-	public String login(@Valid UserVO uservo, BindingResult result, Model model){
-		logger.info("It is login : "+uservo.getUserId() );
-		logger.info("It is login : "+uservo.getUserPassword() );
-		
-	      if(result.hasErrors()){
-	    	  logger.info("login error ");
-	          return "home";
-	       }
-	      
-	       try {
-	          UserVO vo = service.readLogin(uservo.getUserId(), uservo.getUserPassword());
-	         
-	          System.out.println(vo.getUserNumber());
-	          
-	        model.addAttribute("userid", vo.getUserId());
-	        model.addAttribute("usernumber", vo.getUserNumber());
-	          logger.info("login se :  ");
-	          
-	       } catch (Exception e) { // 로그인 잘못됨   
-	    	   logger.info("login fail ");
-	          return "home";
-	       }      
-	       return "home";
-	} 
-	 
-	
-	//아이디 비밀번호 찾기시에 페이지를 이동해주는 메서드
-	@RequestMapping(value="loginsearch")
-	public String loginSearch(){
-		logger.info("It is loginsearch");
-		return "/login/loginsearch";
-	}
-	
-	//로그아웃을 해주는 메서드
-	  @RequestMapping("/logout")
-	   public String logout(HttpServletRequest req){
-	      req.getSession().invalidate();
-	      return "home";
-	   }
-	
+   
+   private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+   
+      @Autowired
+      private UserService service;
+   
+   //로그인을 해주는 메서드
+   @RequestMapping(value="login", method=RequestMethod.POST)
+   public String login(@Valid UserVO uservo, BindingResult result, Model model){
+      logger.info("It is login : "+uservo.getUserId() );
+      logger.info("It is login : "+uservo.getUserPassword() );
+      
+         if(result.hasErrors()){
+            logger.info("login error ");
+             return "home";
+          }
+         
+          try {
+             UserVO vo = service.readLogin(uservo.getUserId(), uservo.getUserPassword());
+            
+             System.out.println(vo.getUserNumber());
+             
+           model.addAttribute("userid", vo.getUserId());
+           model.addAttribute("usernumber", vo.getUserNumber());
+             logger.info("login se :  ");
+             
+          } catch (Exception e) { // 로그인 잘못됨   
+             logger.info("login fail ");
+             return "home";
+          }      
+          return "home";
+   } 
+    
+   
+   //아이디 비밀번호 찾기시에 페이지를 이동해주는 메서드
+   @RequestMapping(value="loginsearch")
+   public String loginSearch(){
+      logger.info("It is loginsearch");
+      return "/login/loginsearch";
+   }
+   
+   //로그아웃을 해주는 메서드
+     @RequestMapping("logout")
+      public String logout(HttpServletRequest req){
+         req.getSession().invalidate();
+         return "home";
+      }
+
+   
   
-
-	
-	
-	
-	
-
 
 }
