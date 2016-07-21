@@ -1,3 +1,10 @@
+<%--
+작성자 - 조일선
+내용 - 가수 정보 페이지
+시작날짜 - 2016/07/19
+수정날짜 - 
+변경내용 - 
+ --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

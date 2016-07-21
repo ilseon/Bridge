@@ -1,5 +1,11 @@
 package com.brige.app.persistence;
 
-public interface AlbumDAO {
+import javax.inject.Inject;
+import org.apache.ibatis.session.SqlSession;
 
+import com.brige.app.domain.AlbumVO;
+
+public interface AlbumDAO {
+	
+	public AlbumVO test();
 }

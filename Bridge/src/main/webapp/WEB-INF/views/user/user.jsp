@@ -1,15 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=utf-8"%>
 
-<jsp:include page="../include/header.jsp" />
-<jsp:include page="../include/sidebar.jsp" />
 
 
-<script src="../bootstrap/js/jquery-2.2.3.min.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 
 
 <!DOCTYPE html>
@@ -17,18 +12,21 @@
 <head>
 <title>회원가입</title>
 </head>
+
+<jsp:include page="../include/header.jsp" />
+<jsp:include page="../include/sidebar.jsp" />
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <body>
 <div class="container" align="center">
    <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-9">
          <div class="navbar navbar-fixed" align="center"
             style="margin-bottom: 50px">
             <h3>회원가입</h3>
          </div>
       </div>
-   </div>
-   <div class="row" >
+  <!--  </div>
+   <div class="row" > -->
 	<form method="post" action=""  id="top">
 
 		<input type="hidden" value="register" name="cmd"  />
@@ -37,7 +35,7 @@
 			<tr>
 						<th>아이디</th>
 						<td>
-							<div class="col-sm-5">
+							<div class="col-sm-3">
 								<input type="text" class="form-control" name="userid" id="userid" placeholder="id">
 							</div>	
 							<div class="col-sm-3">
@@ -51,7 +49,7 @@
 					<tr>
 						<th>비밀번호</th>
 						<td>
-							<div class="col-sm-5">
+							<div class="col-sm-3">
 								<input type="password" name="userpassword" class="form-control" placeholder="Password">
 							</div>
 						</td>
@@ -59,7 +57,7 @@
 					<tr>
 						<th>비밀번호 확인</th>
 						<td>
-							<div class="col-sm-5">
+							<div class="col-sm-3">
 								<input type="password" name="userpasswordcheck" class="form-control" placeholder="Password">
 							</div>
 							<div class="col-sm-3" id="checkpassspan">
@@ -71,7 +69,7 @@
 						<th>이름</th>
 						<td>
 							<div class="form-group">
-								<div class="col-sm-5">
+								<div class="col-sm-3">
 									<input type="text" class="form-control" name="username" placeholder="이름">
 								</div>								
 							</div>
@@ -134,7 +132,7 @@
 					<tr>
 						<th>이메일 주소</th>
 						<td>
-							<div class="col-sm-5">
+							<div class="col-sm-3">
 								<input type="email" class="form-control " name="useremail">
 							</div>
 							<div class="col-sm-2">
