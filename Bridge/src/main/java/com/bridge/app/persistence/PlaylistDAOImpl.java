@@ -19,7 +19,7 @@ public class PlaylistDAOImpl implements PlaylistDAO {
 
 	@Override
 	public void regist(PlaylistVO playlist) throws Exception {
-		
+		sqlSession.insert(NAMESPACE+".regist", playlist);
 	}
 
 	@Override

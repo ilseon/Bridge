@@ -24,32 +24,43 @@ public class MusicServiceImpl implements MusicService {
 	private MusicDAO musicDAO;
 
 	@Override
-	public void regist(MusicVO music) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void update(MusicVO music) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void remove(Integer musicNumber) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public MusicVO search(Integer musicNumber) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<MusicVO> searchAll() throws Exception {
 		return musicDAO.searchAll();
+	}
+
+
+	@Override
+	public void regist() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void remove(Integer musicnumber) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void modifyStreaming(MusicVO music) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void modifyDownload(MusicVO music) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public MusicVO search() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

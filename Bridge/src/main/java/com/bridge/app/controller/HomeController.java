@@ -17,8 +17,6 @@ import com.bridge.app.domain.MusicVO;
 import com.bridge.app.persistence.AlbumDAOImpl;
 import com.bridge.app.service.MusicService;
 
-
-
 @Controller
 public class HomeController {
 		@Inject

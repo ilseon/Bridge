@@ -30,12 +30,6 @@ public class MusicDAOImpl implements MusicDAO {
 	}
 
 	@Override
-	public void modify(MusicVO music) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public List<MusicVO> searchAll() throws Exception {
 		return sqlSession.selectList(NAMESPACE+".searchAll");
 	}
@@ -44,6 +38,18 @@ public class MusicDAOImpl implements MusicDAO {
 	public MusicVO search() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void modifyStreaming(MusicVO music) throws Exception {
+		
+		
+	}
+
+	@Override
+	public void modifyDownload(MusicVO music) throws Exception {
+		
+		
 	}
 
 }

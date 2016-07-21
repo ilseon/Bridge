@@ -9,7 +9,7 @@
 	</select>	
 	
 	<insert id="regist">
-		insert into playlist (playlistnumber, musicnumber, usernumber) values(#{playlistNumber}, #{musicNumber}, #{userNumber});
+		insert into download(musicnumber, usernumber, downloaddate) values(#{playlistNumber}, #{musicNumber}, #{userNumber}, now());
 	</insert>
 	
 	<delete id="remove">

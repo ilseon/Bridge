@@ -13,10 +13,11 @@ import java.util.List;
 import com.bridge.app.domain.MusicVO;
 
 public interface MusicService {
-	public void regist(MusicVO music) throws Exception;
-	public void update(MusicVO music) throws Exception;
-	public void remove(Integer musicNumber) throws Exception;
+	public void regist() throws Exception;
+	public void remove(Integer musicnumber) throws Exception;
+	public void modifyStreaming(MusicVO music) throws Exception;
+	public void modifyDownload(MusicVO music) throws Exception;
 	
-	public MusicVO search(Integer musicNumber) throws Exception;
 	public List<MusicVO> searchAll() throws Exception;
+	public MusicVO search() throws Exception;
 }

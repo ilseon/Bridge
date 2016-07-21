@@ -8,8 +8,8 @@
 		select * from music
 	</select>	
 
-	<insert id="regist">
-		insert into playlist (musicnumber, usernumber) values(#{musicnumber}, #{usernumber})
+	<insert id="regist" parameterType="com.bridge.app.domain.PlaylistVO">
+		insert into playlist(musicnumber, usernumber) values(#{musicnumber}, #{usernumber})
 	</insert>
 	
 	<insert id="registAll">

@@ -16,6 +16,7 @@ import com.bridge.app.domain.PlaylistVO;
 import com.bridge.app.service.PlaylistService;
 
 
+
 @Controller
 public class ChartController {
 	
@@ -25,14 +26,26 @@ public class ChartController {
 	private PlaylistService playlist;
 	
 	@RequestMapping(value="/myalbum", method=RequestMethod.GET)
-	public String registPlaylist(@RequestParam int musicnumber, HttpServletRequest req, Model view) throws Exception{
+	public String registPlaylist(@RequestParam("musicnumber") int musicnumber, HttpServletRequest req, Model view) throws Exception{
 		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
 		PlaylistVO plist = new PlaylistVO();
-		plist.setMusicNumber(musicnumber);
-		plist.setUserNumber(usernumber);
+		plist.setMusicnumber(musicnumber);
+		plist.setUsernumber(usernumber);
 		
 		playlist.regist(plist);
-		view.addAttribute("page","main");
-		return "/chart/chart_main";
+		
+		return "redirect:/chart";
+	}
+	
+	@RequestMapping("/download_music")
+	public String downloadMusic(@RequestParam("musicnumber") int musicnumber, HttpServletRequest req, Model view){
+		
+		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
+		PlaylistVO plist = new PlaylistVO();
+		plist.setMusicnumber(musicnumber);
+		plist.setUsernumber(usernumber);
+		
+		//playlist.regist(plist);
+		return "redirect:/chart";
 	}
 }
