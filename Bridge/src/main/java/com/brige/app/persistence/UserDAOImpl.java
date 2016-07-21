@@ -28,6 +28,7 @@ public class UserDAOImpl implements UserDAO {
 		Map<String, Object> loginMap = new HashMap<String, Object>();
 		loginMap.put("userid", userid);
 		loginMap.put("userpw", userpw);
+	
 		
 		return sqlSession.selectOne(namespace+".readLogin", loginMap);
 	}

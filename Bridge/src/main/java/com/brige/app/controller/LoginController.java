@@ -44,8 +44,10 @@ public class LoginController {
 	       try {
 	          UserVO vo = service.readLogin(uservo.getUserId(), uservo.getUserPassword());
 	         
-	        model.addAttribute("userid", uservo.getUserId());
-	        model.addAttribute("usernumber", uservo.getUserNumber());
+	          System.out.println(vo.getUserNumber());
+	          
+	        model.addAttribute("userid", vo.getUserId());
+	        model.addAttribute("usernumber", vo.getUserNumber());
 	          logger.info("login se :  ");
 	          
 	       } catch (Exception e) { // 로그인 잘못됨   
