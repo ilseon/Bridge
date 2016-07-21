@@ -113,10 +113,10 @@ $(function(){
 
 						    <tr>
 							    <td width="3%"><input type="checkbox" value="${music.musicnumber}"/></td>
-							    <td width="7%">${music.musicrank} &nbsp;<a href="/test"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;"></td>
+							    <td width="7%">${music.musicrank} &nbsp;<a href="/test"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;">${music.albumimg}</td>
 							    <td width="23%">${music.musicsubject}</td>
-							    <td width="20%"><a href="/test2"></a></td>
-							    <td width="7%">${music.albumnumber}</td>
+							    <td width="20%"><a href="/test2"></a>${music.artistname}</td>
+							    <td width="7%">${music.albumname}</td>
 							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="PopupWindow()"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></p></td>

@@ -24,6 +24,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="com.brige.app" />
+	<context:component-scan base-package="com.bridge.app" />
 
 </beans:beans>
