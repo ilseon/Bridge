@@ -20,10 +20,9 @@ public class HomeController {
 	   @Inject
 	   private AlbumDAOImpl test;
 	   
-	   @RequestMapping(value = "/", method = RequestMethod.GET)
+	   @RequestMapping(value = "/")
 	   public String home() {
 	      logger.info("It is Main");
-	    
 	      return "home";
 	   }
 	   

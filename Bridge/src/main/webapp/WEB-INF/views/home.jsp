@@ -6,10 +6,9 @@
 변경내용 - 최신앨범 썸네일 형식으로변경
  --%>
 
-
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 
 <html>
 <head>
@@ -27,7 +26,7 @@
 		<div class="row">
 			<div class="col-sm-11"
 				style="border: 1px solid #BDBDBD; margin-bottom: 50px;">
-				<h4>최신앨범</h4>
+				<h4>최신앨범</h4>  <div>아이디 테스트 : ${userid} ${usernumber}</div>
 				<c:forEach var="i" begin="0" end="11" step="1">
 					<div class="col-xs-6 col-md-2">
 						<a href="/chart"><div class="thumbnail">

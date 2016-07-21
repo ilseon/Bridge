@@ -56,8 +56,8 @@
 						<label for="inputEmail3" class="col-sm-2 control-label">아이디</label>
 						<div class="col-sm-5">
 							<input type="text" class="form-control " placeholder="id"
-								name="userid">
-								  <div>아이디 테스트 : </div>
+								name="userId">
+								  <div>아이디 테스트 : ${sessionScope.USER_KEY.userid}</div>
 								
 						</div>
 					</div>
@@ -66,7 +66,8 @@
 						<label for="inputPassword3" class="col-sm-2 control-label">비밀번호</label>
 						<div class="col-sm-5">
 							<input type="password" class="form-control"
-								placeholder="password" name="userpassword">
+								placeholder="password" name="userPassword">
+								 <div>비밀번호 테스트 : ${sessionScope.USER_KEY.userpassword}</div>
 						</div>
 					</div>
 

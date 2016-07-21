@@ -16,6 +16,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserVO readLogin(String userid, String userpw) throws Exception {
 		// 컨트롤러와 dao를 연결해줌
+		System.out.println("서비스");
 		return (UserVO)dao.readLogin(userid, userpw);
 	}
 
