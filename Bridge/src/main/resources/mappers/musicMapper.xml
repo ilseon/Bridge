@@ -5,7 +5,7 @@
 
 <mapper namespace="com.bridge.mappers.musicMapper">	
 	<select id="searchAll" resultType="com.bridge.app.domain.MusicVO">
-		select m.musicrank as musicrank, m.musicsubject as musicsubject, m.musicvideo as musicvideo, a.albumimg as albumimg, ar.artistname as artistname, a.albumname as ablumname, m.musicnumber as musicnumber
+		select m.musicrank as musicrank, m.musicsubject as musicsubject, m.musicvideo as musicvideo, a.albumimg as albumimg, ar.artistname as artistname, a.albumname as albumname, m.musicnumber as musicnumber
 		from music as m inner join album as a on m.albumnumber=a.albumnumber inner join artist as ar on m.artistnumber=ar.artistnumber
 	</select>
 	

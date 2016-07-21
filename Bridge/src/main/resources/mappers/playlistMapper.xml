@@ -4,12 +4,12 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bridge.mappers.playlistMapper">	
-	<select id="searchAll" resultType="com.bridge.app.domain.MusicVO">
+	<select id="searchAll" resultType="com.bridge.app.domain.PlaylistVO">
 		select * from music
 	</select>	
 
 	<insert id="regist">
-	
+		insert into playlist (musicnumber, usernumber) values(#{musicnumber}, #{usernumber})
 	</insert>
 	
 	<insert id="registAll">

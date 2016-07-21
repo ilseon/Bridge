@@ -119,8 +119,8 @@ $(function(){
 							    <td width="7%">${music.albumname}</td>
 							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="PopupWindow()"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
-							    <td width="7%"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></p></td>
-							    <td width="7%"><button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span></button></p></td>
+							    <td width="7%"><a href="/myalbum?musicnumber=${music.musicnumber}"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>
+							    <td width="7%"><button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span></button></td>
 							    <td width="7%"><a href="https://www.youtube.com/?gl=KR&hl=ko"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></a></td>
 							    <td width="7%"><button class="btn btn-default btn-xs" id="like"><span class="glyphicon glyphicon-heart"></span></button></td>
 						    </tr>
