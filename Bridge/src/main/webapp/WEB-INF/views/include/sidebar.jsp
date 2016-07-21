@@ -21,7 +21,7 @@
 <div style="margin-bottom: 250px; margin-top: 10px;" >
 <a href="chart" ><input type="image" src="/resources/image/mainchart.PNG"  /></a>
 <br/>
-<a href="#" ><input type="image" src="/resources/image/mainalbum.PNG"  /></a>
+<a href="new_album" ><input type="image" src="/resources/image/mainalbum.PNG"  /></a>
 <br/>
 <a href="video" ><input type="image" src="/resources/image/mainmv.PNG"  /></a>
 </div>
