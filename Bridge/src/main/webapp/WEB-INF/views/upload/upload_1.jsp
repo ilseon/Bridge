@@ -121,7 +121,7 @@
 					<!-- end -->
 
 					<!-- 앨범(앨범명, 앨범종류, 장르, 설명, 곡 수 ) 입력 start  -->
-					<form class="form-horizontal" id="f" method="post" action="upload">
+					<form class="form-horizontal" id="f" action="upload"  method="post" enctype="multipart/form-data">>
 						<div class="col-md-5 col-md-offset-1">
 						<div class="form-group">
 							<!-- 앨범명 입력  -->

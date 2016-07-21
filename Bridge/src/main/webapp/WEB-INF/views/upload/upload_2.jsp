@@ -32,16 +32,16 @@
 				}
 			}
 			alert("업로드되었습니다.");
-			//$("f").submit();
+			$("f").submit();
 		});
 		//클릭시 색 변화로 체크된 것을 확인하는 jquery 
 		$(function() {
 			var cnt = $("#cnt").val();
 			for (var i = 0; i < cnt; i++) {
-				$("title" + i).mousedown(function(event) { //클릭하고 있으면 
+				$("#title" + i).mousedown(function(event) { //클릭하고 있으면 
 					$(event.target).css('Color', 'blue');
 				});
-				$("title" + i).mouseup(function(event) { //클릭을 떼는 순간
+				$("#title" + i).mouseup(function(event) { //클릭을 떼는 순간
 					$(event.target).css('Color', 'white');
 				});
 			}
@@ -109,17 +109,22 @@
 		<div class="col-md-12">
 			<br /><br />
 			<div class="jumbotron" id="pom">
-				<form class="form-horizontal" id="f" action="mytrack">
+				<form class="form-horizontal" id="f" action="mytrack" method="get">
 					<input type="hidden" id="cnt" name="cnt"
 						value="<%=request.getParameter("counter")%>" />
 					<table class="table">
 						<tr>
-							<th width="20%">음원파일</th>
 							<th width="8%"><img
-								src="resources/image/upload/album/title.PNG"></th>
-							<th width="30%">곡</th>
-							<th width="20%">뮤비</th>
-							<th width="10%"><img
+								src="resources/image/upload/album/track.png"></th>
+							<th width="20%"><img
+								src="resources/image/upload/album/soundsource.png"></th>
+							<th width="8%"><img
+								src="resources/image/upload/album/title.png"></th>
+							<th width="30%"><img
+								src="resources/image/upload/album/music.png"></th>
+							<th width="20%"><img
+								src="resources/image/upload/album/mv.png"></th>
+							<th width="8%"><img
 								src="resources/image/upload/album/19.PNG"></th>
 						</tr>
 						<%
@@ -138,20 +143,17 @@
 						<!-- 음원파일, 곡, 타이틀, 뮤비 등록 -->
 						<tbody>
 							<tr>
+								<td><strong><%=i+1%></strong></td>	
 								<td><input type="file" name="upFile<%=i%>"
 									id="upFile<%=i%>" /></td>
-								<td><button class="btn btn-xs" id="btn">
-										<span class="glyphicon glyphicon-star" style="color: blue"
-											id="title<%=i%>"></span>
-									</button></td>
+								<td><input type="radio" name="title" id="title<%=i%>">
+									</td>
 								<td><input type="text" name="song" id="song<%=i%>"
 									class="form-control" width="20%" /></td>
 								<td><input type="text" name="musicvideo<%=i%>"
 									id="musicvideo<%=i%>" class="form-control" width="15%" /></td>
 								<td>
-									<button class="btn btn-xs" id="btn">
-										<span class="glyphicon glyphicon-ok" id="limit<%=i%>"></span>
-									</button>
+									<input type="checkbox" id="limit<%=i%>">
 								</td>
 							</tr>
 							<%

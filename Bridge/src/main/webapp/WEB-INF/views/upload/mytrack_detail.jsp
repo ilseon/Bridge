@@ -18,6 +18,19 @@
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 <script>
 	$(document).ready(function() {
+
+		//업로드시 빠지는 항목을 체크하는 jquery 
+		$(".btn btn-xs").click(function() {
+			var cnt = $("#cnt").val();
+			for (var i = 0; i < cnt; i++) {
+				$("#title" + i).click(function() {
+					alert("타이틀로 지정하였습니다.");
+				});
+			}
+			alert("업로드되었습니다.");
+			//$("f").submit();
+		});
+
 		// 삭제를 위한 jquery	
 		$("#delete").click(function() {
 			if ($("input:checked").length == 0) {
@@ -36,6 +49,20 @@
 			}
 		});
 	});
+
+	//클릭시 색 변화로 체크된 것을 확인하는 jquery 
+	$("#btn").click(function() {
+		var cnt = $("#cnt").val();
+		for (var i = 0; i < cnt; i++) {
+			$("#limit" + i).mousedown(function(event) { //클릭하고 있으면 
+				$(event.target).css('Color', 'blue');
+			});
+			$("#limit" + i).mouseup(function(event) { //클릭을 떼는 순간
+				$(event.target).css('Color', 'white');
+			});
+		}
+	});
+
 	//아티스트 정보 페이지 	
 	function fnResigter() {
 		window.open("upload_artist", "",
@@ -126,7 +153,7 @@
 									<label for="album" class="col-lg-4 control-label">앨범명</label>
 									<div class="col-md-7">
 										<input type="text" class="form-control" id="album"
-											placeholder="앨범명" value="Why So Lonely" >
+											placeholder="앨범명" value="Why So Lonely">
 									</div>
 								</div>
 								<div class="form-group">
@@ -193,28 +220,30 @@
 				<!-- 입력 후 음원 수  파일 업로드 -->
 				<form class="form-horizontal" id="f" method="post">
 					<div class="col-md-12">
-						<br />
-						<input type="hidden" id="cnt" name="cnt"
+						<br /> <input type="hidden" id="cnt" name="cnt"
 							value="<%=request.getParameter("counter")%>" />
 						<table class="table">
 							<tr>
-								<th width="5%"></th>
-								<th width="10%">음원파일</th>
-								<th width="8%"><img
-									src="resources/image/upload/album/title.PNG"></th>
-								<th width="30%">곡</th>
-								<th width="22%">뮤비</th>
-								<th width="10%"><img
-									src="resources/image/upload/album/19.PNG"></th>
+							<th width="5%"></th>
+							<th width="8%"><img
+								src="resources/image/upload/album/track.png"></th>
+							<th width="20%"><img
+								src="resources/image/upload/album/soundsource.png"></th>
+							<th width="8%"><img
+								src="resources/image/upload/album/title.png"></th>
+							<th width="30%"><img
+								src="resources/image/upload/album/music.png"></th>
+							<th width="20%"><img
+								src="resources/image/upload/album/mv.png"></th>
+							<th width="8%"><img
+								src="resources/image/upload/album/19.PNG"></th>
 							</tr>
 							<tbody>
 								<tr>
 									<td><input type="checkbox" name="check" id="check"></td>
+									<td><strong>1</strong></td>
 									<td><input type="file" name="upFile1" id="upFile1" /></td>
-									<td><button class="btn btn-xs" id="btn">
-											<span class="glyphicon glyphicon-star" style="color: blue"
-												id="title1"></span>
-										</button></td>
+									<td><input type="radio" name="title" id="title1"></td>
 									<td><input type="text" name="song" id="song1"
 										class="form-control" value="Why So Lonely" /></td>
 									<td><input type="text" name="musicvideo1" id="musicvideo1"
@@ -228,11 +257,9 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" name="check" id="check"></td>
+									<td><strong>2</strong></td>
 									<td><input type="file" name="upFile2" id="upFile2" /></td>
-									<td><button class="btn btn-xs" id="btn">
-											<span class="glyphicon glyphicon-star" style="color: blue"
-												id="title1"></span>
-										</button></td>
+									<td><input type="radio" name="title" id="title2"></td>
 									<td><input type="text" name="song2" id="song2"
 										class="form-control" value="아름다운 그대에게" /></td>
 									<td><input type="text" name="musicvideo2" id="musicvideo2"
@@ -245,11 +272,9 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox" name="check" id="check"></td>
+									<td><strong> 3 </strong></td>
 									<td><input type="file" name="upFile3" id="upFile3" /></td>
-									<td><button class="btn btn-xs" id="btn">
-											<span class="glyphicon glyphicon-star" style="color: blue"
-												id="title3"></span>
-										</button></td>
+									<td><input type="radio" name="title" id="title3"></td>
 									<td><input type="text" name="song3" id="song3"
 										class="form-control" value="Sweet & Easy" /></td>
 									<td><input type="text" name="musicvideo3" id="musicvideo3"
@@ -264,17 +289,8 @@
 						</table>
 					</div>
 				</form>
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
+				<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+				<br /> <br />
 			</div>
 			<!-- end -->
 

@@ -1,49 +1,52 @@
 package com.brige.app.controller;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.brige.app.domain.AlbumVO;
+import com.brige.app.service.AlbumService;
 
 @Controller
 public class MyPageController {
 
-	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
-
+	@Inject
+	private AlbumService service;
+	
+	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);	
+	
 	@RequestMapping(value = "upload", method = RequestMethod.GET)
-	public ModelAndView Upload(AlbumVO vo, HttpServletRequest request, HttpSession session) {
-		logger.info("업로드하기");
-
-		ModelAndView mav = new ModelAndView("/upload/upload_1");
-		/*
-		 * MultipartFile uploadImg = vo.getUploadImg(); if(uploadImg != null){
-		 * try { byte [] fileData = uploadImg.getBytes(); FileOutputStream
-		 * output = new FileOutputStream("E:/upload_img/images/");
-		 * output.write(fileData); } catch (IOException e) {
-		 * 
-		 * e.printStackTrace(); } }
-		 */
-		return mav;
+	public String Upload() throws Exception {
+		logger.info("업로드 페이지");
+		return "uplaod/upload_1";
 	}
 
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
-	public String Upload_Add() {
-		logger.info("곡 추가");
+	public String Upload_Album(AlbumVO vo, HttpServletRequest request) throws Exception {
+		logger.info("앨범 업로드");
+		service.AlbumInsert(vo, request);	
 		return "/upload/upload_2";
 	}
 
-	@RequestMapping(value = "mytrack")
+	@RequestMapping(value = "upload2", method = RequestMethod.GET)
+	public String Upload_Music(AlbumVO vo,  Model model) throws Exception {
+		logger.info("음원 업로드 페이지");	
+		return "uplaod/upload_2";
+	}
+
+	@RequestMapping(value = "upload2", method = RequestMethod.POST)
+	public String Upload_Add() {
+		logger.info("음원 업로드");
+		return "/upload/mytrack";
+	}
+	
+	@RequestMapping(value = "mytrack", method = RequestMethod.GET)
 	public String MyTrack_() {
 		logger.info("내트랙");
 		return "/upload/mytrack";

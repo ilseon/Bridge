@@ -9,7 +9,8 @@ public class AlbumVO {
 	private String albumGenre;
 	private int artistNumber;
 	private String albumImg;
-   //-------------------------//
+	
+   //파입업로드//
 	private MultipartFile uploadImg;
 	
 	public int getAlbumNumber() {
