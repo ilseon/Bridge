@@ -4,12 +4,14 @@ public class MusicVO {
 	private int musicnumber;
 	private String musicsubject;
 	private int artistnumber;
+	private String artistname;
 	
 	private String musiclyrics;
 	private String musicfile;
 	private String musicvideo;
 	
 	private int albumnumber;
+	private String albumname;
 	private int musicdownload;
 	
 	private int musicplay;
@@ -112,6 +114,22 @@ public class MusicVO {
 
 	public void setMusicrank(int musicrank) {
 		this.musicrank = musicrank;
+	}
+
+	public String getArtistname() {
+		return artistname;
+	}
+
+	public void setArtistname(String artistname) {
+		this.artistname = artistname;
+	}
+
+	public String getAlbumname() {
+		return albumname;
+	}
+
+	public void setAlbumname(String albumname) {
+		this.albumname = albumname;
 	}
 	
 	

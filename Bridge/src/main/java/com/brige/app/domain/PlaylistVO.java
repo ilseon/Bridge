@@ -1,15 +1,17 @@
+/*
+ 작성자 - 정효진
+내용 - 내앨범 VO
+시작날짜 - 2016-07-20
+수정날짜 - 2016-07-20
+변경내용 - 내앨범 VO 작성
+ */
 package com.brige.app.domain;
 
 public class PlaylistVO {
-	private int playlistNumber;
+
 	private int musicNumber;
 	private int userNumber;
-	public int getPlaylistNumber() {
-		return playlistNumber;
-	}
-	public void setPlaylistNumber(int playlistNumber) {
-		this.playlistNumber = playlistNumber;
-	}
+
 	public int getMusicNumber() {
 		return musicNumber;
 	}
