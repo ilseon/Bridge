@@ -57,6 +57,8 @@
 						<div class="col-sm-5">
 							<input type="text" class="form-control " placeholder="id"
 								name="userid">
+								  <div>아이디 테스트 : </div>
+								
 						</div>
 					</div>
 
@@ -70,7 +72,7 @@
 
 					<div class="col-sm-offset-2 col-sm-11">
 						<div>
-							<label><button type="button" class="btn btn-link">아이디/비밀번호 찾기</button></label>
+							<a href="loginsearch"><label><button type="button" class="btn btn-link">아이디/비밀번호 찾기</button></label></a>
 						</div>
 						<input type="submit" class="btn btn-danger" value="아이디로 로그인" />
 

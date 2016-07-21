@@ -15,6 +15,8 @@ import com.brige.app.persistence.AlbumDAOImpl;
 @Controller
 public class HomeController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
 	   @Inject
 	   private AlbumDAOImpl test;
 	   
@@ -24,18 +26,8 @@ public class HomeController {
 	    
 	      return "home";
 	   }
+	   
 	
-	
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
-	
-	
-	@RequestMapping(value="login")
-	public String loginSearch(){
-		logger.info("It is loginsearch");
-		return "/login/loginsearch";
-	}
 
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
 	public String chart(){
