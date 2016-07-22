@@ -1,48 +1,46 @@
 package com.bridge.app.domain;
 
 public class ArtistVO {
-	private int artistNumber;
-	private String artistName;
-	private String artistType;
-	private String artistGenre;
-	private String artistImg;
-	private int userNumber;
-	public int getArtistNumber() {
-		return artistNumber;
+	private int artistnumber;
+	private String artistname;
+	private String artisttype;
+	private String artistgenre;
+	private String artistimg;
+	private int usernumber;
+	public int getArtistnumber() {
+		return artistnumber;
 	}
-	public void setArtistNumber(int artistNumber) {
-		this.artistNumber = artistNumber;
+	public void setArtistnumber(int artistnumber) {
+		this.artistnumber = artistnumber;
 	}
-	public String getArtistName() {
-		return artistName;
+	public String getArtistname() {
+		return artistname;
 	}
-	public void setArtistName(String artistName) {
-		this.artistName = artistName;
+	public void setArtistname(String artistname) {
+		this.artistname = artistname;
 	}
-	public String getArtistType() {
-		return artistType;
+	public String getArtisttype() {
+		return artisttype;
 	}
-	public void setArtistType(String artistType) {
-		this.artistType = artistType;
+	public void setArtisttype(String artisttype) {
+		this.artisttype = artisttype;
 	}
-	public String getArtistGenre() {
-		return artistGenre;
+	public String getArtistgenre() {
+		return artistgenre;
 	}
-	public void setArtistGenre(String artistGenre) {
-		this.artistGenre = artistGenre;
+	public void setArtistgenre(String artistgenre) {
+		this.artistgenre = artistgenre;
 	}
-	public String getArtistImg() {
-		return artistImg;
+	public String getArtistimg() {
+		return artistimg;
 	}
-	public void setArtistImg(String artistImg) {
-		this.artistImg = artistImg;
+	public void setArtistimg(String artistimg) {
+		this.artistimg = artistimg;
 	}
-	public int getUserNumber() {
-		return userNumber;
+	public int getUsernumber() {
+		return usernumber;
 	}
-	public void setUserNumber(int userNumber) {
-		this.userNumber = userNumber;
-	}
-	
-	
+	public void setUsernumber(int usernumber) {
+		this.usernumber = usernumber;
+	}	
 }

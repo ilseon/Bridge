@@ -7,8 +7,8 @@
 	<select id="test" resultType="com.bridge.app.domain.UserVO">
 		select * from user
 	</select>	
-	<insert id="album">
-		insert into album(albumname, albumdate, albumtype, albumgenre, artist_artistnumber, albumimg)
-		values(#{albumname}, #{albumdate}, #{albumtype}, #{albumgenre}, #{artist_artistnumber}, #{albumimg})
+	<insert id="regist">
+		insert into album(albumname, albumtype, albumdate, albumgenre, artist_artistnumber, albumcontent)
+		values(#{albumname}, #{albumtype}, #{albumdate}, #{albumgenre}, #{artist_artistnumber}, #{albumcontent})
 	</insert>	
 </mapper>

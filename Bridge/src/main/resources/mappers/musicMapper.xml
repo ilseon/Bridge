@@ -14,7 +14,8 @@
 	</select>
 	
 	<insert id="regist">
-	
+		insert into music (musicnumber, musicsubject, musiccheck)
+		values(#{musicnumber}, #{musicsubject}, #{musiccheck})
 	</insert>
 	
 	<delete id="remove">

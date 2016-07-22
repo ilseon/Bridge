@@ -112,6 +112,7 @@
 				<form class="form-horizontal" id="f" action="mytrack" method="get">
 					<input type="hidden" id="cnt" name="cnt"
 						value="<%=request.getParameter("counter")%>" />
+						
 					<table class="table">
 						<tr>
 							<th width="8%"><img

@@ -1,9 +1,9 @@
 /*
- ÀÛ¼ºÀÚ - Á¤È¿Áø
-³»¿ë - À½¿ø Service ±¸Çö Å¬·¡½º
-½ÃÀÛ³¯Â¥ - 2016-07-20
-¼öÁ¤³¯Â¥ - 2016-07-21
-º¯°æ³»¿ë - ±âº» ¸Þ¼­µå ÀÛ¼º
+ ï¿½Û¼ï¿½ï¿½ï¿½ - ï¿½ï¿½È¿ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ Service ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½Û³ï¿½Â¥ - 2016-07-20
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥ - 2016-07-21
+ï¿½ï¿½ï¿½æ³»ï¿½ï¿½ - ï¿½âº» ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½
  */
 
 package com.bridge.app.service;
@@ -26,7 +26,6 @@ public class MusicServiceImpl implements MusicService {
 	@Override
 	public void regist(MusicVO music) throws Exception {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override

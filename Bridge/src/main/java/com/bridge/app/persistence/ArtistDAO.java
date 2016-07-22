@@ -1,5 +1,9 @@
 package com.bridge.app.persistence;
 
-public interface ArtistDAO {
+import com.bridge.app.domain.ArtistVO;
 
+public interface ArtistDAO {
+	
+	public void regist(ArtistVO vo) throws Exception;
+	
 }

@@ -3,7 +3,7 @@
 내용 - 업로드 1단계 페이지
 시작날짜 - 2016/07/17
 수정날짜 - 2016/07/20
-변경내용 - 
+변경내용 - 아티스트에 대한 예외처리
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -56,13 +56,8 @@
 		});
 	});
 
-	function fnResigter() {
-		opener.document.f.value = null;
-
-	}
-
 	//아티스트 정보 페이지 
-	function fnAristSubmit() {
+	function fnResigter() {
 		window.open("upload_artist", "",
 				"width=500, height=400, scrollbars=yes");
 	}
@@ -112,34 +107,21 @@
 			<!-- end -->
 			<br />
 			<div class="jumbotron" id="pom">
-				<form id="f" action="upload" method="post" accept-charset="UTF-8">
-					<!-- 아티스트 항목 값 -->
-					<input type="hidden" name="artistname" id="artistname" /> <input
-						type="hidden" name="artistimg" id="artistimg" /> <input
-						type="hidden" name="artisttype" id="artisttype" /> <input
-						type="hidden" name="artistgenre" id="artistgenre" />
-										<input type="hidden" name="usernumber" id="usernumber" />
-
-					<div id="upload_main">
-						<br />
+				<form id="f" action="upload" method="post" accept-charset="UTF-8" >
+				<input type="hidden" name="artist_artistnumber" id="artist_artistnumber" value="1" />
+					<div id="upload_main"><br/>
 						<!-- 앨범(이미지, 날짜, 아티스트 정보) 입력 start -->
 						<div class="col-md-2 col-md-offset-1">
 							<img src='resources/image/upload/album/album_image.PNG'
-								width="150%"><br /> <input type="file" name="albumimg"
-								id="albumimg" /><br /> <input type="date" class="form-control"
-								name="albumdate" id="albumdate" style="width: 148%;"><br />
-							<!-- 아티스트  정보 입력 -->
-							<div class="row">
-								<label for="artist" class="control-label"
-									style="margin-left: 18px">아티스트</label>
-								<div class="btn-group btn-group-justified"
-									style="width: 50%; margin-left: 114px; margin-top: -30px">
-									<a href="#" class="btn btn-info" onclick="fnAristSubmit()"
-										id="artist_regist">등록</a>
-								</div>
+								width="150%"><br /><br /> 
+							<input type="file" name="albumimg" id="albumimg" /><br /> <input
+								type="date" class="form-control" name="albumdate" id="albumdate"
+								style="width: 148%;"><br />
+							<!-- 아티스트  정보 입력을 위한 버튼 -->
+							<div class="btn-group btn-group-justified" style="width: 148%;">
+								<a href="#" class="btn btn-info" onclick="fnResigter()"
+									id="artist_regist">아티스트</a>
 							</div>
-							<br /> <input type="hidden" name="artist_artistnumber"
-								id="artist_artistnumber" value="1" />
 						</div>
 						<!-- end -->
 						<!-- 앨범(앨범명, 앨범종류, 장르, 설명, 곡 수 ) 입력 start  -->
@@ -178,8 +160,7 @@
 								<label for="albumcontent" class="col-lg-4 control-label">설명</label>
 								<div class="col-lg-8">
 									<textarea class="form-control" rows="6" cols="70"
-										id="albumcontent" name="albumcontent"
-										placeholder="앨범에 대한 설명을 적어주세요.">
+										id="albumcontent" name="albumcontent" placeholder="앨범에 대한 설명을 적어주세요.">
 								</textarea>
 									<br />
 								</div>

@@ -20,7 +20,7 @@ public class MusicDAOImpl implements MusicDAO {
 
 	@Override
 	public void regist() throws Exception {
-
+		//sqlSession.insert(NAMESPACE + ".regist", vo);
 	}
 
 	@Override
