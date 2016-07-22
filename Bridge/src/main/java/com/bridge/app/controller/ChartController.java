@@ -54,12 +54,12 @@ public class ChartController {
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
 	public String chart(Model view, HttpServletRequest req) throws Exception{
 		logger.info("chart");
-		int usernumber;
-		/*if(WebUtils.getSessionAttribute(req, "userNumber")!=null){
-			usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
-			view.addAttribute("likeList", like.searchAll(usernumber));
-		}
-		*/
+		int userNumber;
+		if(WebUtils.getSessionAttribute(req, "userNumber")!=null){
+			userNumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
+			view.addAttribute("likeList", like.searchAll(userNumber));
+		}	
+		logger.info("123456");
 		view.addAttribute("musicList", music.searchAll(100));
 		view.addAttribute("page","main");
 		return "/chart/chart_main";
