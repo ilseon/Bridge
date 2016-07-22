@@ -4,6 +4,6 @@ import com.brige.app.domain.UserVO;
 
 public interface UserDAO {
 	
-	public void create (UserVO vo) throws Exception;
-
+	public void insertUser (UserVO vo) throws Exception;
+	public UserVO readUser (String userId)throws Exception;
 }

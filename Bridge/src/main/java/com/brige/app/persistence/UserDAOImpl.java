@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.brige.app.domain.UserVO;
 
+
 public class UserDAOImpl implements UserDAO {
 
 	@Inject
@@ -15,9 +16,16 @@ public class UserDAOImpl implements UserDAO {
 	
 	
 	@Override
-	public void create(UserVO vo) throws Exception {
-		SqlSession.insert(NAMESPACE + ".create");
+	public void insertUser(UserVO vo) throws Exception {
+		SqlSession.insert(NAMESPACE + ".insertUser", vo);
 
+	}
+
+
+	@Override
+	public UserVO readUser(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		return (UserVO)SqlSession.selectOne(NAMESPACE + ".readUser");
 	}
 
 }
