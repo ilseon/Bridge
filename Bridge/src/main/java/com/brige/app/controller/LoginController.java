@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.util.WebUtils;
 
@@ -67,9 +68,10 @@ public class LoginController {
    
    //로그아웃을 해주는 메서드
      @RequestMapping("logout")
-      public String logout(HttpServletRequest req){
-         req.getSession().invalidate();
-         return "home";
+     public String logout(SessionStatus session){
+    	 logger.info("It is logout");
+    	session.setComplete();
+    	return "redirect:/";
       }
 
    

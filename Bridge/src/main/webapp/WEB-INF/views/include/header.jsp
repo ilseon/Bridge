@@ -16,131 +16,131 @@
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 
+<style>
+#fixed {
+	height: 7%;
+	width: 100%;
+	font-size: 15px;
+	top: 0px;
+	left: 0px;
+	background-color: white;
+	position: fixed;
+	z-index: 998;
+}
+
+.popover{
+min-width: 530px;
+min-height: 250px;
+margin-bottom: 50px;
+}
+
+</style>
+
+<script>
+$(function(){
+    $("#example-popover-2").popover({
+        html : true,
+        
+        content: function() {
+          return $("#example-popover-2-content").html();
+        },
+
+        title: function() {
+          return $("#example-popover-2-title").html();
+        }
+    });
+});
+</script>
 
 <body>
-
-	<!-- 전체 header -->
-
-	<nav class="navbar navbar-default">
-		<div class="col-md-12 "
-			style="margin-bottom: 15px; background-color: yellow;" align="left">
-
-			<!-- 왼쪽 로고 -->
-			<a href="/"><img src="/resources/image/sample.PNG" align="left"
-				style="height: 60px; width: 75px;" /></a>
-
-			<!-- 검색창 -->
-			<div class="col-xs-6 " align="left"
-				style="margin-top: 15px; margin-left: 14%;">
-				<input type="text" class="btn search"
-					style="border: 3px solid red; border-radius: 50px;" /> <input
-					type="image" src="/resources/image/search.PNG"
-					style="vertical-align: middle;" />
+	<nav class="navbar navbar-default" id="fixed">
+		<div class="container-fluid">
+		
+		<!-- 로고를 클릭시 메인으로 이동 -->
+			<div class="navbar-header">	
+				<a href="/">
+				<img src="/resources/image/sample.PNG"
+					style="margin-top: 5px;" />
+					</a>
 			</div>
 
-
-
-			<c:choose>
-				<c:when test="${(userid)==null}">
-					<!-- 로그인 메뉴 -->
-					<div class="col-xs-2 " style="margin-top: 20px;">
-						<a href="#" data-toggle="modal" data-target="#login"
-							style="color: black;">로그인 / </a> <a href="user.add"
-							style="color: black;">회원가입</a>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			
+			<!-- 헤더 검색창부분 -->
+				<form class="navbar-form  navbar-left " role="search" style="margin-left: 10%">
+					<div class="form-group">
+						<input type="text" class="btn search" style="border: 3px solid red; border-radius: 50px;">
 					</div>
-
-					<!-- 로그인 모달 -->
-					<div class="modal fade" id="login" role="dialog">
-						<div class="modal-dialog">
-							<div class="modal-content">
-
-								<div class="modal-header" style="background-color: white;">
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">x</span>
-									</button>
-									<h4 class="modal-title">로그인</h4>
-								</div>
-
-								<div class="modal-body" style="background-color: white;">
-									<div class="row ">
+					<input type="image" src="/resources/image/search.PNG" style="vertical-align: middle;" />
+				</form>
+				
+			<!-- 아이디가 있을 경우와 없을 경우 드랍메뉴가 다름 : 로그인은 팝오버를 사용-->
+				<c:choose>
+				
+					<c:when test="${(userid)==null}">
+						<ul class="nav navbar-nav navbar-right" style="margin-right: 13%;">
+							<li><a href="#" id="example-popover-2" data-placement="bottom" >로그인</a>
+													
+								<div id="example-popover-2-title" class="hidden" >로그인</div>
+								<div id="example-popover-2-content" class="hidden">
+									<div>
 										<form class="form-horizontal" method="post" action="login">
 											<input type="hidden" value="login" name="cmd" />
 											<div class="form-group ">
 												<label for="inputEmail3" class="col-sm-2 control-label">아이디</label>
 												<div class="col-sm-5">
-													<input type="text" class="form-control " placeholder="id"
-														name="userId">
-													<div>아이디 테스트 :${userid} ${usernumber}</div>
-
+													<input type="text" class="form-control " placeholder="id" name="userId">
 												</div>
 											</div>
 
 											<div class="form-group">
 												<label for="inputPassword3" class="col-sm-2 control-label">비밀번호</label>
 												<div class="col-sm-5">
-													<input type="password" class="form-control"
-														placeholder="password" name="userPassword">
-
+													<input type="password" class="form-control"	placeholder="password" name="userPassword">
 												</div>
 											</div>
 
 											<div class="col-sm-offset-2 col-sm-11">
 												<div>
-													<a href="loginsearch"><label><button
-																type="button" class="btn btn-link">아이디/비밀번호 찾기</button></label></a>
+													<a href="loginsearch">
+													<label><button type="button" class="btn btn-link">아이디/비밀번호 찾기</button></label></a>
 												</div>
 												<input type="submit" class="btn btn-danger" value="아이디로 로그인" />
-
 											</div>
 										</form>
 									</div>
 								</div>
+		
+								</li>
+							<li><a href="user.add">회원가입</a></li>
+						</ul>
+					</c:when>
 
-								<div class="modal-footer" style="background-color: white;">
-									<button type="button" class="btn btn-default"
-										data-dismiss="modal">Close</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- 로그인 모달 끝 -->
-				</c:when>
+			
+					<c:otherwise>
+						<ul class="nav navbar-nav navbar-right " style="margin-right: 13%;">
 
-				<c:otherwise>
-					<div class="col-xs-2 " style="margin-top: 20px;">
+							<li class="dropdown">
+							<a href="#" class="dropdown-toggle"	data-toggle="dropdown" role="button" aria-expanded="false">${userid}
+									<span class="caret"></span>
+							</a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="#">결제내역</a></li>
+									<li class="divider"></li>
+									<li><a href="#">정보관리</a></li>
+									<li class="divider"></li>
+									<li><a href="logout">로그아웃</a></li>
+								</ul>
+								</li>
+						</ul>
 
-						<div class="dropdown">
+					</c:otherwise>
+				</c:choose>
 
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false" id="dropbox"> <strong>
-									${userid}</strong> <span class="caret"></span></a>
-
-							<ul class="dropdown-menu" role="menu">
-
-								<a href="#">
-									<li>그러하다</li>
-								</a>
-								<hr />
-								<a href="#">
-									<li>그러하다</li>
-								</a>
-								<hr />
-								<a href="#">
-									<li>그러하다</li>
-								</a>
-								<br />
-							</ul>
-						</div>
-
-
-
-					</div>
-				</c:otherwise>
-			</c:choose>
-
-
+			</div>
 		</div>
+	</nav>
+
 </body>
 </html>
 

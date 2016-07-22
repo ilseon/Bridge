@@ -16,7 +16,7 @@
 	type="text/css" />
 <title>Home</title>
 </head>
-<body>
+<body style="margin-top: 4%;">
 
 	<%@include file="include/header.jsp"%>
 	<%@include file="include/sidebar.jsp"%>
@@ -26,7 +26,7 @@
 		<div class="row">
 			<div class="col-sm-11"
 				style="border: 1px solid #BDBDBD; margin-bottom: 50px;">
-				<h4>최신앨범</h4>  <div>아이디 테스트 : ${userid} ${usernumber}</div>
+				<h4>최신앨범</h4> 
 				<c:forEach var="i" begin="0" end="11" step="1">
 					<div class="col-xs-6 col-md-2">
 						<a href="/chart"><div class="thumbnail">
