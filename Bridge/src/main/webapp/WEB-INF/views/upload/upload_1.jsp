@@ -51,7 +51,7 @@
 			} else {
 				alert("추가되었습니다.");
 				//cnt = $("#counter").val();
-				$("#f").submit();
+				$("#album").submit();
 			}
 		});
 	});
@@ -112,13 +112,13 @@
 			<!-- end -->
 			<br />
 			<div class="jumbotron" id="pom">
-				<form id="f" action="upload" method="post" accept-charset="UTF-8">
+				<form id="album" name="album" action="upload" method="post" accept-charset="UTF-8">
 					<!-- 아티스트 항목 값 -->
-					<input type="hidden" name="artistname" id="artistname" /> <input
-						type="hidden" name="artistimg" id="artistimg" /> <input
-						type="hidden" name="artisttype" id="artisttype" /> <input
-						type="hidden" name="artistgenre" id="artistgenre" />
-										<input type="hidden" name="usernumber" id="usernumber" />
+					<input type="hidden" name="artistname" id="artistname" value="${artistname}"/> 
+					<input type="hidden" name="artistimg" id="artistimg" value="${artistimg}"/> 
+					<input type="hidden" name="artisttype" id="artisttype" value="${artisttype}"/>
+					<input type="hidden" name="artistgenre" id="artistgenre" value="${artistgenre}"/>
+					<input type="hidden" name="usernumber" id="usernumber" value="${artistnumber}"/>
 
 					<div id="upload_main">
 						<br />

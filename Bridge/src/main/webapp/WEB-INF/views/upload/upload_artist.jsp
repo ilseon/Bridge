@@ -7,10 +7,10 @@
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@page import="java.util.Vector"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
 	type="text/css" />
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
@@ -19,6 +19,7 @@
 </head>
 <script>
 	$(document).ready(function() {
+		form.target ="album";
 		// 아티스트 정보에 대한 항목 입력을 확인하는 jquery 
 		$("#save").on("click", function() {
 			if (!$("#artistname").val()) {
@@ -34,12 +35,14 @@
 				alert("장르를 선택해주세요.");
 				return false;
 			} else {
-				opener.document.f.artistname.value = $("#artistname").val();
-				opener.document.f.artistimg.value = $("#artistimg").val();
-				opener.document.f.artisttype.value = $("#artisttype").val();
-				opener.document.f.artistgenre.value = $("#artistgenre").val();
-				opener.document.f.usernumber.value = $("#usernumber").val();
-				alert("등록되었습니다.");
+				alert("insert");
+				opener.document.album.artistname.value = $('#artistname').val();
+				alert(opener.document.album.artistimg.val());
+				opener.document.album.artistimg.value = $('#artistimg').val();
+				opener.document.album.artisttype.value = $('#artisttype').val();
+				opener.document.album.artistgenre.value = $('#artistgenre').val();
+				opener.document.album.usernumber.value = $('#usernumber').val();
+				form.submit();
 				self.close();
 			}
 		});
@@ -68,7 +71,7 @@
 				</div>
 			</div>
 		</div>
-		<form id="f">
+		<form id="artist" accept-charset="UTF-8">
 			<div class="col-xs-4">
 				<input type="hidden" name="usernumber" id="usernumber" value="2" />
 				<!-- 아티스트 이미지 등록 -->

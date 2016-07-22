@@ -7,6 +7,8 @@ public class ArtistVO {
 	private String artistgenre;
 	private String artistimg;
 	private int usernumber;
+	
+	
 	public int getArtistnumber() {
 		return artistnumber;
 	}
