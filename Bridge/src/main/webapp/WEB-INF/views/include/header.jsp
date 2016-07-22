@@ -2,17 +2,15 @@
 작성자 - 김민정
 내용 - 페이지 위 노출
 시작날짜 - 2016/07/19
-수정날짜 - 
-변경내용 - 
+수정날짜 - 2016/07/22
+변경내용 - 헤더 디자인 및 로그인, 로그아웃 기능 완료
  --%>
 
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
-	type="text/css" />
+<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 
@@ -50,6 +48,8 @@ $(function(){
         }
     });
 });
+
+
 </script>
 
 <body>
@@ -91,6 +91,7 @@ $(function(){
 												<div class="col-sm-5">
 													<input type="text" class="form-control " placeholder="id" name="userId">
 												</div>
+												<div>-</div>
 											</div>
 
 											<div class="form-group">

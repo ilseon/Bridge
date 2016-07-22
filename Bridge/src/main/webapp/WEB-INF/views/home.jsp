@@ -16,6 +16,18 @@
 	type="text/css" />
 <title>Home</title>
 </head>
+
+<script type="text/javascript">
+$(document).ready(function() {
+ $(".quick").animate( { "top": $(document).scrollTop() + 20 +"px" }, 500 ); 
+ $(window).scroll(function(){
+  $(".quick").stop();
+  $(".quick").animate( { "top": $(document).scrollTop() + 20 + "px" }, 1000 );
+ });
+});
+</script>
+
+
 <body style="margin-top: 4%;">
 
 	<%@include file="include/header.jsp"%>
@@ -69,9 +81,11 @@
 			<!-- 인기차트 끝-->
 
 			<!-- 옆에 퀵메뉴 -->
-			<div class="col-sm-1 visible-lg "
-				style="position: fixed; bottom: 20px; height: auto; right: 20px;">
+			<div class="col-sm-1  " 
+			style="position: fixed;  bottom: 20px; height: auto; right: 20px; margin-bottom:3%;" >
+				<a href="#top">
 				<input type="image" src="/resources/image/maintop.PNG" />
+				</a>
 			</div>
 			<!-- 옆에 퀵메뉴 끝 -->
 
