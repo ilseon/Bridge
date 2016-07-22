@@ -51,9 +51,7 @@
 						</div>
 					</div>
 
-					<div>-</div>
-
-
+					<div>당신의 아이디는 ${usersearchid } 입니다 ! </div>
 
 				</form>
 
@@ -91,7 +89,7 @@
 						</div>
 					</div>
 
-					<div>${usersearchid }</div>
+					<div>당신의 비밀번호는 - 입니다 !</div>
 
 
 
