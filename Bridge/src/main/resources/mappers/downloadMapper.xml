@@ -4,15 +4,15 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bridge.mappers.downloadMapper">
-	<select id="searchAll" resultType="DownloadVO">
-		select * from download where usernumber=#{usernumber}
+	<select id="searchAll" resultType="com.bridge.app.domain.DownloadVO">
+		select * from download where usernumber=#{userNumber}
 	</select>	
 	
 	<insert id="regist">
-		insert into download(musicnumber, usernumber, downloaddate) values(#{playlistNumber}, #{musicNumber}, #{userNumber}, now());
+		insert into download(musicnumber, usernumber, downloaddate) values(#{musicNumber}, #{userNumber}, now())
 	</insert>
 	
 	<delete id="remove">
-		delete from download where musicnumber=#{musicNumber}
+		delete from download where musicnumber=#{musicNumber} and usernumber=#{userNumber}
 	</delete>
 </mapper>

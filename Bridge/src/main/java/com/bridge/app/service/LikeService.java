@@ -8,8 +8,12 @@
 
 package com.bridge.app.service;
 
+import java.util.List;
+
+import com.bridge.app.domain.LikeVO;
+
 public interface LikeService {
-	public void regist(Integer userNumber, Integer musicNumber) throws Exception;
-	public void remove(Integer userNumber, Integer musicNumber) throws Exception;
-	public Integer searchAll(Integer musicNumber) throws Exception;
+	public void regist(LikeVO like) throws Exception;
+	public void remove(LikeVO like) throws Exception;
+	public List<Integer> searchAll(Integer userNumber) throws Exception;
 }

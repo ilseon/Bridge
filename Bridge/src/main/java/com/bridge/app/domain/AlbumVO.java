@@ -2,11 +2,13 @@ package com.bridge.app.domain;
 
 public class AlbumVO {
 	private int albumNumber;
+	private String albumName;
 	private String albumType;
 	private String albumDate;
 	private String albumGenre;
 	private int artistNumber;
 	private String albumImg;
+	private String artistName;
 	public int getAlbumNumber() {
 		return albumNumber;
 	}
@@ -42,6 +44,18 @@ public class AlbumVO {
 	}
 	public void setAlbumImg(String albumImg) {
 		this.albumImg = albumImg;
+	}
+	public String getArtistName() {
+		return artistName;
+	}
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
+	}
+	public String getAlbumName() {
+		return albumName;
+	}
+	public void setAlbumName(String albumName) {
+		this.albumName = albumName;
 	}
 	
 	

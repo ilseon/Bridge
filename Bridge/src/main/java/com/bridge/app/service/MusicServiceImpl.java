@@ -13,6 +13,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bridge.app.domain.MusicVO;
 import com.bridge.app.persistence.MusicDAO;
@@ -24,8 +25,8 @@ public class MusicServiceImpl implements MusicService {
 	private MusicDAO musicDAO;
 
 	@Override
-	public List<MusicVO> searchAll() throws Exception {
-		return musicDAO.searchAll();
+	public List<MusicVO> searchAll(@RequestParam("limit") int limit) throws Exception {
+		return musicDAO.searchAll(limit);
 	}
 
 
@@ -62,5 +63,4 @@ public class MusicServiceImpl implements MusicService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

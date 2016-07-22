@@ -8,6 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script>
 var user = "<c:out value='${userNumber}'/>";
 
@@ -119,20 +120,34 @@ $(function(){
                    </thead>
                    
 				    <tbody> 
-				    	<c:forEach begin="1" end="100" var="music" items="${musicList}">
+				    	<c:forEach begin="0" end="100" var="music" items="${musicList}">
 
 						    <tr>
-							    <td width="3%"><input type="checkbox" value="${music.musicnumber}"/></td>
-							    <td width="7%">${music.musicrank} &nbsp;<a href="/test"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;">${music.albumimg}</td>
-							    <td width="23%">${music.musicsubject}</td>
-							    <td width="20%"><a href="/test2"></a>${music.artistname}</td>
-							    <td width="7%">${music.albumname}</td>
+							    <td width="3%"><input type="checkbox" value="${music.musicNumber}"/></td>
+							    <td width="7%">${music.musicRank} &nbsp;<a href="/test"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;">${music.albumImg}</td>
+							    <td width="23%">${music.musicSubject}</td>
+							    <td width="20%"><a href="/test2"></a>${music.artistName}</td>
+							    <td width="7%">${music.albumName}</td>
 							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="PopupWindow()"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
-							    <td width="7%"><a href="/myalbum?musicnumber=${music.musicnumber}"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>
-							    <td width="7%"><!-- <a href="/download?musicnumber=${music.musicnumber}"> --><button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" id="download" data-musicnumber="${music.musicnumber}"><span class="glyphicon glyphicon-download-alt"></span></button><!-- </a> --></td>
+							    <td width="7%"><a href="/myalbum?musicnumber=${music.musicNumber}"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>
+							    <td width="7%"><a href="/download_music?musicnumber=${music.musicNumber}"><button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" id="download" data-musicnumber="${music.musicNumber}"><span class="glyphicon glyphicon-download-alt"></span></button></a></td>
 							    <td width="7%"><a href="https://www.youtube.com/?gl=KR&hl=ko"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></a></td>
-							    <td width="7%"><button class="btn btn-default btn-xs" id="like"><span class="glyphicon glyphicon-heart"></span></button></td>
+							    <td width="7%"><a href="/like_music?musicnumber=${music.musicNumber}">
+							    	<button class="btn btn-default btn-xs" id="like">
+							    	<!--<c:forEach var="like" items="${likeList}">
+							    		<c:if test="${like eq music.musicnumber}">
+							    			<c:set var="is_music_like" value="true"/>
+							    		</c:if>
+							    	</c:forEach>
+									<c:if test="${is_music_value eq true}">
+							    		<span class="glyphicon glyphicon-heart" style="color:red"></span>
+									</c:if>
+									<c:if test="${is_music_value != true}">
+							    		<span class="glyphicon glyphicon-heart"></span>
+									</c:if>-->
+									<span class="glyphicon glyphicon-heart"></span>
+							    	</button></a></td>
 						    </tr>
 					    </c:forEach>
 				    </tbody>

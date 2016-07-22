@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bridge.mappers.likeMapper">	
+	<select id="searchAll" parameterType="int" resultType="com.bridge.app.domain.LikeVO">
+		select musicnumber from bridgedb.like where usernumber=#{userNumber}
+	</select>
+	
+	<insert id="regist">
+		insert into bridgedb.like(usernumber, musicnumber) values(#{userNumber}, #{musicNumber})	
+	</insert>
+	
+	<delete id="remove">
+		delete from bridgedb.like where musicnumber=#{musicNumber} and usernumber=#{userNumber}
+	</delete>
+
+</mapper>

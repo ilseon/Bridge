@@ -23,11 +23,6 @@ public class DownloadServiceImpl implements DownloadService {
 	private DownloadDAO downloadDAO;
 
 	@Override
-	public void registOne(Integer musicNumber, Integer userNumber) throws Exception {
-		downloadDAO.registOne(musicNumber, userNumber);
-	}
-
-	@Override
 	public void registSeveral(Integer musicNumber, Integer userNumber) throws Exception {
 
 	}
@@ -41,6 +36,11 @@ public class DownloadServiceImpl implements DownloadService {
 	public List<DownloadVO> searchAll(Integer userNumber) throws Exception {
 
 		return null;
+	}
+
+	@Override
+	public void registOne(DownloadVO download) throws Exception {
+		downloadDAO.registOne(download);
 	}
 
 }

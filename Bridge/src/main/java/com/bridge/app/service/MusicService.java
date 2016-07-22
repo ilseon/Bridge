@@ -18,6 +18,6 @@ public interface MusicService {
 	public void modifyStreaming(MusicVO music) throws Exception;
 	public void modifyDownload(MusicVO music) throws Exception;
 	
-	public List<MusicVO> searchAll() throws Exception;
+	public List<MusicVO> searchAll(int limit) throws Exception;
 	public MusicVO search() throws Exception;
 }

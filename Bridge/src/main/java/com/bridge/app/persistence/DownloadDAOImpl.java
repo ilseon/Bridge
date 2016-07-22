@@ -20,11 +20,8 @@ public class DownloadDAOImpl implements DownloadDAO {
 	private static final String NAMESPACE = "com.bridge.mappers.downloadMapper";
 
 	@Override
-	public void registOne(Integer musicnumber, Integer usernumber) throws Exception {
-		Map<String, Integer> paramMap = new HashMap<String, Integer>();
-		paramMap.put("musicnumber", musicnumber);
-		paramMap.put("usernumber", usernumber);
-		sqlSession.insert(NAMESPACE+".register", paramMap);		
+	public void registOne(DownloadVO download) throws Exception {
+		sqlSession.insert(NAMESPACE+".regist", download);		
 	}
 
 	@Override

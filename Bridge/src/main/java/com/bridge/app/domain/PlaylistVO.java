@@ -9,19 +9,19 @@ package com.bridge.app.domain;
 
 public class PlaylistVO {
 
-	private int musicnumber;
-	private int usernumber;
-	public int getMusicnumber() {
-		return musicnumber;
+	private int musicNumber;
+	private int userNumber;
+	public int getMusicNumber() {
+		return musicNumber;
 	}
-	public void setMusicnumber(int musicnumber) {
-		this.musicnumber = musicnumber;
+	public void setMusicNumber(int musicNumber) {
+		this.musicNumber = musicNumber;
 	}
-	public int getUsernumber() {
-		return usernumber;
+	public int getUserNumber() {
+		return userNumber;
 	}
-	public void setUsernumber(int usernumber) {
-		this.usernumber = usernumber;
+	public void setUserNumber(int userNumber) {
+		this.userNumber = userNumber;
 	}
 	
 }

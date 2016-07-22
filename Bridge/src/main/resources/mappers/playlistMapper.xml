@@ -9,7 +9,7 @@
 	</select>	
 
 	<insert id="regist" parameterType="com.bridge.app.domain.PlaylistVO">
-		insert into playlist(musicnumber, usernumber) values(#{musicnumber}, #{usernumber})
+		insert into playlist(musicnumber, usernumber) values(#{musicNumber}, #{userNumber})
 	</insert>
 	
 	<insert id="registAll">

@@ -7,4 +7,10 @@
 	<select id="test" resultType="com.bridge.app.domain.UserVO">
 		select * from user
 	</select>	
+	<select id="searchAll" parameterType="int" resultType="com.bridge.app.domain.AlbumVO">
+		select a.albumname as albumname, ar.artistname as artistname, a.albumdate as albumdate 
+		from album as a inner join artist as ar on a.artist_artistnumber=ar.artistnumber 
+		order by albumdate asc
+		Limit #{limit}
+	</select>
 </mapper>

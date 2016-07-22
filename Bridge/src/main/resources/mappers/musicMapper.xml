@@ -4,13 +4,13 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bridge.mappers.musicMapper">	
-	<select id="searchAll" resultType="com.bridge.app.domain.MusicVO">
+	<select id="searchAll" parameterType="int" resultType="com.bridge.app.domain.MusicVO">
 		select m.musicrank as musicrank, m.musicsubject as musicsubject, m.musicvideo as musicvideo, a.albumimg as albumimg, ar.artistname as artistname, a.albumname as albumname, m.musicnumber as musicnumber
-		from music as m inner join album as a on m.albumnumber=a.albumnumber inner join artist as ar on m.artistnumber=ar.artistnumber
+		from music as m inner join album as a on m.albumnumber=a.albumnumber inner join artist as ar on m.artistnumber=ar.artistnumber AND musicrank<![CDATA[<=]]>#{limit} ORDER BY musicrank asc
 	</select>
 	
 	<select id="searchPlaylist" resultType="int">
-		select plyalistNumber from music where usernumber=#{usernumber}
+		select plyalistNumber from music where usernumber=#{userNumber}
 	</select>
 	
 	<insert id="regist">
@@ -18,6 +18,10 @@
 	</insert>
 	
 	<delete id="remove">
-		delete from playlist where musicnumber=#{musicnumber}
+		delete from playlist where musicnumber=#{musicNumber}
 	</delete>
+	
+	<insert id="like">
+		insert into bridgedb.like(usernumber, musicnumber) values(#{userNumber}, #{musicNumber})	
+	</insert>
 </mapper>
