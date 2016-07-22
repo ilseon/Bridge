@@ -57,6 +57,18 @@ $(function(){
 						playlistAll.push(list[i].value);
 					}
 				}
+				
+			var this_name=$(this).attr('id');
+			
+			if(this_name=="download"){
+				$("#Download").on("show.bs.modal", function (event) {
+					var button = $(event.relatedTarget); // Button that triggered the modal
+					var modal = $(this);
+
+					modal.find(".modal-body a").href("/download_music_sev?musicnumber="+playlistAll);
+					});
+			}
+				
 			}else{
 				alert("로그인을 해 주세요!");	
 			}
@@ -72,16 +84,17 @@ $(function(){
 //한 곡에 대한 선택 사항 처리
 $(function(){
 	$("#mytable .btn[id]").click(function(){
+		var tagId = $(this).attr('id');
 		if(user==""){
 			alert("로그인을 해 주세요!");
 			return false;
-		}else{
-			var tagId = $(this).attr('id');
-			if(tagId=="like"&&$(this).children().attr('style')==null){
-				alert("좋아요를 눌러 주셨습니다!");
+		}else if(tagId=="like"){
+			if((this).children().attr('style')==null){
+				alert("'좋아요'를 눌러 주셨습니다!");
 				$(this).children().css("color","red");
-			}else if(tagId=="like"&&$(this).children().attr('style')!=null){
-				alert("좋아요가 취소 되었습니다ㅠㅠ");
+				
+			}else if($(this).children().attr('style')!=null){
+				alert("'좋아요'가 취소 되었습니다ㅠㅠ");
 				$(this).children().css("color","");
 			}
 		}
@@ -102,7 +115,7 @@ $(function(){
 		        <a><button class="btn btn-default btn-xs" id="listen" onclick="PopupWindow()"><span class="glyphicon glyphicon-play" style="color:red"></span>듣기</button></a>
 		        <button class="btn btn-default btn-xs" id="add_listen"><span class="glyphicon glyphicon-plus" style="color:green"></span>재생 목록에 추가</button>
 		        <button class="btn btn-default btn-xs" id="myalbum"><span class="glyphicon glyphicon-paste"></span>내 앨범에 담기</button>
-		        <button class="btn btn-default btn-xs" id="download"><span class="glyphicon glyphicon-download-alt"></span>다운로드</button>
+		        <button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span>다운로드</button>
 		        <button class="btn btn-default btn-xs" id="all_listen" onclick="PopupWindow()"><span class="glyphicon glyphicon-play" style="color:red"></span>전체 듣기</button>
 				</div>
 		
@@ -135,7 +148,7 @@ $(function(){
 							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="PopupWindow()"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
 							    <td width="7%"><a href="/myalbum?musicnumber=${music.musicNumber}"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>
-							    <td width="7%"><a href="/download_music?musicnumber=${music.musicNumber}"><button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" id="download" data-musicnumber="${music.musicNumber}"><span class="glyphicon glyphicon-download-alt"></span></button></a></td>
+							    <td width="7%"><button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" id="download" data-musicnumber="${music.musicNumber}"><span class="glyphicon glyphicon-download-alt"></span></button></td>
 							    <td width="7%"><a href="https://www.youtube.com/?gl=KR&hl=ko"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></a></td>
 							    <td width="7%"><!-- <a href="/like_music?musicnumber=${music.musicNumber}"> -->
 							    	<button class="btn btn-default btn-xs" id="like">

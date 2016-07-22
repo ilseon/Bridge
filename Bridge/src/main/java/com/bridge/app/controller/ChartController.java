@@ -7,6 +7,8 @@
  */
 package com.bridge.app.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -86,6 +88,17 @@ public class ChartController {
 		dlist.setUserNumber(usernumber);
 		
 		download.registOne(dlist);
+		return "redirect:/chart";
+	}
+	
+	@RequestMapping("/download_music_sev")
+	public String downloadMusicSev(List<Integer> musicnumbers, HttpServletRequest req, Model view) throws Exception{
+		
+		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
+		DownloadVO dlist = new DownloadVO();
+		dlist.setUserNumber(usernumber);
+		
+		//download.registSevral(dlist, musicnumbers);
 		return "redirect:/chart";
 	}
 	

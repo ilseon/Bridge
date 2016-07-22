@@ -32,9 +32,8 @@ public class DownloadDAOImpl implements DownloadDAO {
 	}
 
 	@Override
-	public void registSeveral(Integer musicNumber, Integer userNumber) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void registSeveral(List<Integer> musicNumbers, Integer userNumber) throws Exception {
+		//sqlSession.insert(NAMESPACE+".registSeveral", arg1);
 	}
 
 	@Override

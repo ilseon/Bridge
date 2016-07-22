@@ -23,8 +23,8 @@ public class DownloadServiceImpl implements DownloadService {
 	private DownloadDAO downloadDAO;
 
 	@Override
-	public void registSeveral(Integer musicNumber, Integer userNumber) throws Exception {
-
+	public void registSeveral(List<Integer> musicNumbers, Integer userNumber) throws Exception {
+		downloadDAO.registSeveral(musicNumbers, userNumber);
 	}
 
 	@Override
