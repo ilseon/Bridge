@@ -23,7 +23,7 @@ import com.brige.app.persistence.UserDAO;
 import com.brige.app.service.UserService;
 
 @Controller
-@SessionAttributes({"userid", "usernumber"})
+@SessionAttributes({"userid", "usernumber","usersearchid"})
 public class LoginController {
    
    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -72,6 +72,33 @@ public class LoginController {
     	 logger.info("It is logout");
     	session.setComplete();
     	return "redirect:/";
+      }
+     
+    
+     
+     //아이디를 찾아주는 메서드
+     @RequestMapping(value="searchid",method=RequestMethod.POST)
+     public String  Searchid(@Valid UserVO uservo, BindingResult result, Model model){
+    	 logger.info("It is searchid : "+uservo.getUserName() );
+         logger.info("It is searchid : "+uservo.getUserBirthday() );
+
+    	
+        if(result.hasErrors()){
+            logger.info("search error ");
+            return "/login/loginsearch";
+          }
+         
+          try {
+             UserVO vo = service.searchId(uservo.getUserName(), uservo.getUserBirthday());
+       
+             model.addAttribute("usersearchid", vo.getUserId());
+             logger.info("search se :  ");
+             
+          } catch (Exception e) { // 아이디 찾기가 잘못됨
+             logger.info("search fail ");
+             return "/login/loginsearch";
+          }      
+          return "/login/loginsearch";
       }
 
    

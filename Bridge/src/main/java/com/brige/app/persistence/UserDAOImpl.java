@@ -29,8 +29,19 @@ public class UserDAOImpl implements UserDAO {
 		loginMap.put("userid", userid);
 		loginMap.put("userpw", userpw);
 	
-		
 		return sqlSession.selectOne(namespace+".readLogin", loginMap);
+	}
+
+	@Override
+	public UserVO searchId(String username, String userbirthday) throws Exception {
+		// 이름과 생년월일으로 아이디 찾기
+		
+		System.out.println("dao까지 왔음");
+		Map<String, Object> idsearchMap = new HashMap<String, Object>();
+		idsearchMap.put("username", username);
+		idsearchMap.put("userbirthday", userbirthday);
+		
+		return sqlSession.selectOne(namespace+".searchId", idsearchMap);
 	}
 
 }

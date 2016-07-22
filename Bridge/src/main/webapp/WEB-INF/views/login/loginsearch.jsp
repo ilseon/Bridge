@@ -27,13 +27,13 @@
 			<div class="col-sm-5" style="border: 1px solid #BDBDBD; margin-bottom: 50px; margin-right: 6%;">
 				<h4 style="margin-bottom: 10%;">아이디 찾기</h4>
 
-				<form class="form-horizontal" method="POST">
+				<form class="form-horizontal" method="POST" action="searchid">
 
 					<div class="form-group">
 						<span class="glyphicon glyphicon-ok" style="color: red"></span> <label
 							for="inputEmail3" class="col-sm-3 control-label">이름</label>
 						<div class="col-sm-6">
-							<input type="email" class="form-control" id="name">
+							<input type="text" class="form-control" name="userName">
 						</div>
 					</div>
 
@@ -41,7 +41,7 @@
 						<span class="glyphicon glyphicon-ok" style="color: red"></span> <label
 							for="inputEmail3" class="col-sm-3 control-label">생년월일</label>
 						<div class="col-sm-6">
-							<input type="email" class="form-control" id="bir" />
+							<input type="text" class="form-control" name="userBirthday" />
 						</div>
 					</div>
 
@@ -91,7 +91,7 @@
 						</div>
 					</div>
 
-					<div>-</div>
+					<div>${usersearchid }</div>
 
 
 

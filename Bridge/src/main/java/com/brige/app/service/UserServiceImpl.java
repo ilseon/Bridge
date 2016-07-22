@@ -20,4 +20,17 @@ public class UserServiceImpl implements UserService {
 		return (UserVO)dao.readLogin(userid, userpw);
 	}
 
+
+	@Override
+	public UserVO searchId(String username, String userbirthday) throws Exception {
+		// 아이디를 찾음
+		System.out.println("id 찾음");
+		return dao.searchId(username, userbirthday);
+	}
+
+
+
+
+
+
 }
