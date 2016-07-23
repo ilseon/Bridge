@@ -1,8 +1,8 @@
 <%--
 작성자 - 이주연
-내용 - 아티스트 정보 등록 페이지
+내용 - 업로드 1단계 페이지
 시작날짜 - 2016/07/17
-수정날짜 - 
+수정날짜 - 2016/07/22
 변경내용 - 
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,125 +10,145 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
 	type="text/css" />
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 </head>
+<title>Upload1_Artist</title>
 <script>
 	$(document).ready(function() {
-		form.target ="album";
 		// 아티스트 정보에 대한 항목 입력을 확인하는 jquery 
-		$("#save").on("click", function() {
-			if (!$("#artistname").val()) {
+		$("#regist").click(function() {
+			if (!$("#artistName").val()) {
 				alert("아티스트명을 입력해주세요.");
 				return false;
-			} else if (!$("#artistimg").val()) {
+			} else if (!$("#artistImg").val()) {
 				alert("이미지를 업로드해주세요.");
 				return false;
-			} else if (!$("#artisttype").val()) {
+			} else if (!$("#artistType").val()) {
 				alert("타입을 선택해주세요.");
 				return false;
-			} else if (!$("#artistgenre").val()) {
+			} else if (!$("#artistGenre").val()) {
 				alert("장르를 선택해주세요.");
 				return false;
 			} else {
-				alert("insert");
-				opener.document.album.artistname.value = $('#artistname').val();
-				alert(opener.document.album.artistimg.val());
-				opener.document.album.artistimg.value = $('#artistimg').val();
-				opener.document.album.artisttype.value = $('#artisttype').val();
-				opener.document.album.artistgenre.value = $('#artistgenre').val();
-				opener.document.album.usernumber.value = $('#usernumber').val();
-				form.submit();
-				self.close();
+				alert("등록되었습니다.");
+				$("#artist").submit();
 			}
 		});
 	});
 </script>
 <style>
-#save {
-	background-color: #F6C4BC;
-	border: none;
-}
-
 #tab {
 	border: none;
 	background-color: #DF6E76;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: white;
 }
+
+#upload_main {
+	margin-left: 100px;
+}
+
+#pom {
+	border-radius: 17px;
+	background-color: #EDE6E6;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+}
+
+#regist {
+	border: none;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+}
+
+#cencle {
+	border: none;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+	background-color: gray;
+}
 </style>
 <body>
-	<br />
+	<!-- header, sideber start -->
+	<%@include file="/WEB-INF/views/include/header.jsp"%>
+	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
+	<!-- end -->
 	<div class="container">
+		<div class="panel panel-info">
+			<br />
+			<div class="panel-heading col-md-2" id="tab">
+				<h3 class="panel-title">
+					<img src='resources/image/upload/album/one.png'>&nbsp;아티스트 등록
+				</h3>
+			</div>
+		</div>
+
 		<div class="col-md-12 column">
-			<div class="panel panel-info">
-				<div class="panel-heading" id="tab">
-					<h3 class="panel-title">아티스트 정보 입력</h3>
+			<br /> <br />
+			<div class="jumbotron" id="pom">
+				<form id="artist" action="upload" method="post"
+					enctype="multipart/form-data">
+					<input type="hidden" name="userNumber" id="userNumber" value="2" />
+					<input type="hidden" name="artistNumber" id="artistNumbe" value="1" />
+					<div id="upload_main">
+						<div class="col-md-2 col-md-offset-1">
+							<br /> <img src="resources/image/upload/album/album_image.PNG"
+								width="120%"><br /> <br /> <input type="file"
+								name="artistImg" id="artistImg" />
+						</div>
+						<!-- end -->
+						<br />
+						<div class="row">
+							<div class="col-md-5 col-md-offset-1">
+								<label for="artistName" class="col-xs-4 control-label">아티스트</label>
+								<div class="col-xs-8">
+									<input type="text" class="form-control" id="artistName"
+										name="artistName"><br />
+								</div>
+								<!-- 아티스트 타입 등록 -->
+								<label for="artistType" class="col-xs-4 control-label">타입</label>
+								<div class="col-xs-8">
+									<select class="form-control" id="artistType" name="artistType">
+										<option>솔로</option>
+										<option>그룹</option>
+										<option>밴드</option>
+									</select><br />
+								</div>
+								<label for="artistGenre" class="col-xs-4 control-label">장르</label>
+								<div class="col-xs-8">
+									<!-- 아티스트 장르 등록 -->
+									<select class="form-control" id="artistGenre"
+										name="artistGenre">
+										<option>발라드/댄스/팝</option>
+										<option>일렉트로닉</option>
+										<option>알앤비</option>
+										<option>락/메탈</option>
+										<option>재즈</option>
+										<option>힙합</option>
+										<option>인디</option>
+									</select><br />
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- 버튼 start -->
+			<div align="center" style="margin-top: 160px">
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary" id="regist">등록</button>
+					<button type="reset" class="btn btn-primary" id="cencle">취소</button>
 				</div>
 			</div>
-		</div>
-		<form id="artist" accept-charset="UTF-8">
-			<div class="col-xs-4">
-				<input type="hidden" name="usernumber" id="usernumber" value="2" />
-				<!-- 아티스트 이미지 등록 -->
-				<br /> <img src="resources/image/upload/album/artist.jpg"
-					width="120%"><br /> <br /> <input type="file"
-					name="artistimg" id="artistimg" />
-			</div>
-
-			<div class="col-xs-7 col-xs-offset-1">
-				<br />
-				<div class="row">
-					<!-- 아티스트명 입력 -->
-					<label for="artistname" class="col-xs-4 control-label">아티스트</label>
-					<div class="col-xs-7">
-						<input type="text" class="form-control" id="artistname"><br />
-					</div>
-
-				</div>
-
-				<div class="row">
-					<!-- 아티스트 타입 등록 -->
-					<label for="artisttype" class="col-xs-3 control-label">타입</label>
-					<div class="col-xs-8">
-						<select class="form-control" id="artisttype">
-							<option>솔로</option>
-							<option>그룹</option>
-							<option>밴드</option>
-						</select><br />
-					</div>
-				</div>
-				<div class="row">
-					<label for="artistgenre" class="col-xs-3 control-label">장르</label>
-					<div class="col-xs-8">
-						<!-- 아티스트 장르 등록 -->
-						<select class="form-control" id="artistgenre">
-							<option>발라드/댄스/팝</option>
-							<option>일렉트로닉</option>
-							<option>알앤비</option>
-							<option>락/메탈</option>
-							<option>재즈</option>
-							<option>힙합</option>
-							<option>인디</option>
-						</select><br />
-					</div>
-				</div>
-			</div>
-		</form>
-	</div>
-	<!-- end -->
-	<!-- 버튼 start -->
-	<div align="center" style="margin-top: 50px">
-		<div class="form-group">
-			<button type="submit" class="btn btn-primary" id="save">저장</button>
-			<button type="reset" class="btn btn-default"
-				onclick="window.close();">닫기</button>
+			<!-- end -->
 		</div>
 	</div>
 	<!-- end -->
+	<br />
+	<br />
+	<!--  footer start -->
+	<%@include file="/WEB-INF/views/include/footer.jsp"%>
+	<!--  end -->
 </body>
 </html>

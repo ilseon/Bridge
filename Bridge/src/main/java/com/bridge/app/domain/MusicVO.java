@@ -20,6 +20,15 @@ public class MusicVO {
 	private int musiccheck;
 	
 	private int musicrank;
+	
+	@Override
+	public String toString() {
+		return "MusicVO [musicnumber=" + musicnumber + ", musicsubject=" + musicsubject + ", artistnumber="
+				+ artistnumber + ", artistname=" + artistname + ", musiclyrics=" + musiclyrics + ", musicfile="
+				+ musicfile + ", musicvideo=" + musicvideo + ", albumnumber=" + albumnumber + ", albumname=" + albumname
+				+ ", albumimg=" + albumimg + ", musicdownload=" + musicdownload + ", musicplay=" + musicplay
+				+ ", musiclike=" + musiclike + ", musiccheck=" + musiccheck + ", musicrank=" + musicrank + "]";
+	}
 
 	public int getMusicnumber() {
 		return musicnumber;

@@ -1,48 +1,53 @@
 package com.bridge.app.domain;
 
 public class ArtistVO {
-	private int artistnumber;
-	private String artistname;
-	private String artisttype;
-	private String artistgenre;
-	private String artistimg;
-	private int usernumber;
+	private int artistNumber;
+	private String artistName;
+	private String artistType;
+	private String artistGenre;
+	private String artistImg;
+	private int userNumber;
 	
-	
-	public int getArtistnumber() {
-		return artistnumber;
+		
+	@Override
+	public String toString() {
+		return "ArtistVO [artistNumber=" + artistNumber + ", artistName=" + artistName + ", artistType=" + artistType
+				+ ", artistGenre=" + artistGenre + ", artistImg=" + artistImg + ", userNumber=" + userNumber + "]";
 	}
-	public void setArtistnumber(int artistnumber) {
-		this.artistnumber = artistnumber;
+	public int getArtistNumber() {
+		return artistNumber;
 	}
-	public String getArtistname() {
-		return artistname;
+	public void setArtistNumber(int artistNumber) {
+		this.artistNumber = artistNumber;
 	}
-	public void setArtistname(String artistname) {
-		this.artistname = artistname;
+	public String getArtistName() {
+		return artistName;
 	}
-	public String getArtisttype() {
-		return artisttype;
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
 	}
-	public void setArtisttype(String artisttype) {
-		this.artisttype = artisttype;
+	public String getArtistType() {
+		return artistType;
 	}
-	public String getArtistgenre() {
-		return artistgenre;
+	public void setArtistType(String artistType) {
+		this.artistType = artistType;
 	}
-	public void setArtistgenre(String artistgenre) {
-		this.artistgenre = artistgenre;
+	public String getArtistGenre() {
+		return artistGenre;
 	}
-	public String getArtistimg() {
-		return artistimg;
+	public void setArtistGenre(String artistGenre) {
+		this.artistGenre = artistGenre;
 	}
-	public void setArtistimg(String artistimg) {
-		this.artistimg = artistimg;
+	public String getArtistImg() {
+		return artistImg;
 	}
-	public int getUsernumber() {
-		return usernumber;
+	public void setArtistImg(String artistImg) {
+		this.artistImg = artistImg;
 	}
-	public void setUsernumber(int usernumber) {
-		this.usernumber = usernumber;
-	}	
+	public int getUserNumber() {
+		return userNumber;
+	}
+	public void setUserNumber(int userNumber) {
+		this.userNumber = userNumber;
+	}
 }

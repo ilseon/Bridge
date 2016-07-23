@@ -25,7 +25,7 @@ public class MusicServiceImpl implements MusicService {
 
 	@Override
 	public void regist(MusicVO music) throws Exception {
-		// TODO Auto-generated method stub
+		musicDAO.regist(music);
 	}
 
 	@Override

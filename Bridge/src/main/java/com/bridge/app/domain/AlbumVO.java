@@ -1,78 +1,89 @@
 package com.bridge.app.domain;
 
-import java.util.Date;
+import java.io.IOException;
+import java.util.Enumeration;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.cglib.core.DefaultNamingPolicy;
+import org.springframework.web.multipart.MultipartRequest;
 
 public class AlbumVO {
-	private int albumnumber;
-	private String albumtype;
+	private int albumNumber;
+	private String albumName;
+	private String albumType;
+	private String albumDate;
+	private String albumGenre;
+	private int artistNumber;
+	private String albumImg;
+	private String albumContent;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date albumdate;
-	private String albumgenre;
-	private int artist_artistnumber;
-	private String albumname;	
-	private String albumcontent;
+	/*파일 업로드*/
+	private String path;
+	private MultipartRequest multi;
 	
-    private MultipartFile file; 
-	private String albumimg;
-	public int getAlbumnumber() {
-		return albumnumber;
-	}
-	public void setAlbumnumber(int albumnumber) {
-		this.albumnumber = albumnumber;
-	}
-	public String getAlbumtype() {
-		return albumtype;
-	}
-	public void setAlbumtype(String albumtype) {
-		this.albumtype = albumtype;
-	}
-	public Date getAlbumdate() {
-		return albumdate;
-	}
-	public void setAlbumdate(Date albumdate) {
-		this.albumdate = albumdate;
-	}
-	public String getAlbumgenre() {
-		return albumgenre;
-	}
-	public void setAlbumgenre(String albumgenre) {
-		this.albumgenre = albumgenre;
-	}
-	public int getArtist_artistnumber() {
-		return artist_artistnumber;
-	}
-	public void setArtist_artistnumber(int artist_artistnumber) {
-		this.artist_artistnumber = artist_artistnumber;
-	}
-	public String getAlbumname() {
-		return albumname;
-	}
-	public void setAlbumname(String albumname) {
-		this.albumname = albumname;
-	}
-	public String getAlbumcontent() {
-		return albumcontent;
-	}
-	public void setAlbumcontent(String albumcontent) {
-		this.albumcontent = albumcontent;
-	}
-	public MultipartFile getFile() {
-		return file;
-	}
-	public void setFile(MultipartFile file) {
-		this.file = file;
-	}
-	public String getAlbumimg() {
-		return albumimg;
-	}
-	public void setAlbumimg(String albumimg) {
-		this.albumimg = albumimg;
+	@Override
+	public String toString() {
+		return "AlbumVO [albumNumber=" + albumNumber + ", albumName=" + albumName + ", albumType=" + albumType
+				+ ", albumDate=" + albumDate + ", albumGenre=" + albumGenre + ", artistNumber=" + artistNumber
+				+ ", albumImg=" + albumImg + ", albumContent=" + albumContent + "]";
 	}
 	
-
-	
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	public MultipartRequest getMulti() {
+		return multi;
+	}
+	public String getAlbumName() {
+		return albumName;
+	}
+	public void setAlbumName(String albumName) {
+		this.albumName = albumName;
+	}
+	public String getAlbumContent() {
+		return albumContent;
+	}
+	public void setAlbumContent(String albumContent) {
+		this.albumContent = albumContent;
+	}
+	public int getAlbumNumber() {
+		return albumNumber;
+	}
+	public void setAlbumNumber(int albumNumber) {
+		this.albumNumber = albumNumber;
+	}
+	public String getAlbumType() {
+		return albumType;
+	}
+	public void setAlbumType(String albumType) {
+		this.albumType = albumType;
+	}
+	public String getAlbumDate() {
+		return albumDate;
+	}
+	public void setAlbumDate(String albumDate) {
+		this.albumDate = albumDate;
+	}
+	public String getAlbumGenre() {
+		return albumGenre;
+	}
+	public void setAlbumGenre(String albumGenre) {
+		this.albumGenre = albumGenre;
+	}
+	public int getArtistNumber() {
+		return artistNumber;
+	}
+	public void setArtistNumber(int artistNumber) {
+		this.artistNumber = artistNumber;
+	}
+	public String getAlbumImg() {
+		return albumImg;
+	}
+	public void setAlbumImg(String albumImg) {
+		this.albumImg = albumImg;
+	}		
 }

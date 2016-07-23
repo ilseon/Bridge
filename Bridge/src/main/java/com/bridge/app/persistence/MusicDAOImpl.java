@@ -19,8 +19,8 @@ public class MusicDAOImpl implements MusicDAO {
 	private static final String NAMESPACE = "com.bridge.mappers.musicMapper";
 
 	@Override
-	public void regist() throws Exception {
-		//sqlSession.insert(NAMESPACE + ".regist", vo);
+	public void regist(MusicVO music) throws Exception {
+		sqlSession.insert(NAMESPACE + ".regist", music);
 	}
 
 	@Override

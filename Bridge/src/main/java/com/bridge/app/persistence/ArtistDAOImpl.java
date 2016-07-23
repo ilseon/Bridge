@@ -21,8 +21,6 @@ public class ArtistDAOImpl implements ArtistDAO {
 	
 	@Override
 	public void regist(ArtistVO vo) throws Exception {
-		logger.info(vo.getArtistname()+","+vo.getArtistnumber()+","
-	+vo.getArtistgenre()+","+vo.getArtisttype()+","+vo.getUsernumber());
 		sqlSession.insert(NAMESPACE + ".regist", vo);
 	}
 

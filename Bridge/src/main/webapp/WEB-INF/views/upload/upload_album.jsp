@@ -2,7 +2,7 @@
 작성자 - 이주연
 내용 - 업로드 1단계 페이지
 시작날짜 - 2016/07/17
-수정날짜 - 2016/07/20
+수정날짜 - 2016/07/22
 변경내용 - 
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -16,27 +16,31 @@
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 </head>
+<title>Upload1_Album</title>
 <script>
 	$(document).ready(function() {
 		//숫자만 입력하는 jquery 
 		$(function() {
-			$('#counter').keyup(function() {
+			$("#counter").keyup(function() {
+				$(this).val($(this).val().replace(/[^0-9]/g, ""));
+			});
+			$("#albumDate").keyup(function() {
 				$(this).val($(this).val().replace(/[^0-9]/g, ""));
 			});
 		});
 		var cnt = 0;
 		//음원의 수를 확인하는 jquery 
 		$("#add").click(function() {
-			if (!$("#albumname").val()) {
+			if (!$("#albumName").val()) {
 				alert("앨범명을 입력해주세요.");
 				return false;
-			} else if (!$("#albumimg").val()) {
+			} else if (!$("#albumImg").val()) {
 				alert("앨범이미지를 업로드해주세요.");
 				return false;
-			} else if (!$("#albumdate").val()) {
+			} else if (!$("#albumDate").val()) {
 				alert("날짜를 입력해주세요.");
 				return false;
-			} else if (!$("#albumcontent").val()) {
+			} else if (!$("#albumContent").val()) {
 				alert("앨범에 대한 설명을 입력해주세요.");
 				return false;
 			} else if (!$("#counter").val()) {
@@ -46,28 +50,23 @@
 				alert("최소 0개 이상은 등록해야합니다.");
 				return false;
 			} else if ($("#counter").val() >= 8) {
-				alert("8개 이상은 등록할 수 없습니다.");
+				alert("최대 7개까지 등록할 수 있습니다.");
 				return false;
 			} else {
 				alert("추가되었습니다.");
-				//cnt = $("#counter").val();
 				$("#album").submit();
 			}
 		});
 	});
-
-	function fnResigter() {
-		opener.document.f.value = null;
-
-	}
-
-	//아티스트 정보 페이지 
-	function fnAristSubmit() {
-		window.open("upload_artist", "",
-				"width=500, height=400, scrollbars=yes");
-	}
+	
 </script>
 <style>
+#tab {
+	border: none;
+	background-color: #DF6E76;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+	color: white;
+}
 #upload_main {
 	margin-left: 100px;
 }
@@ -102,69 +101,63 @@
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
 	<!-- end -->
 	<div class="container">
-		<br /> <br />
-		<!-- 상단 tab start -->
-		<div class="col-md-12">
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="upload">업로드하기</a></li>
-				<li><a href="mytrack">내 트랙</a></li>
-			</ul>
-			<!-- end -->
+		<div class="panel panel-info">
 			<br />
+			<div class="panel-heading col-md-2" id="tab">
+				<h3 class="panel-title"><img src='resources/image/upload/album/two.png'>&nbsp;앨범 등록</h3>
+			</div>
+
+		</div>
+		<div class="col-md-12">
+			<br /><br />
 			<div class="jumbotron" id="pom">
-				<form id="album" name="album" action="upload" method="post" accept-charset="UTF-8">
+				<form id="album" name="album" action="upload2" method="post"
+					accept-charset="UTF-8">
 					<!-- 아티스트 항목 값 -->
-					<input type="hidden" name="artistname" id="artistname" value="${artistname}"/> 
-					<input type="hidden" name="artistimg" id="artistimg" value="${artistimg}"/> 
-					<input type="hidden" name="artisttype" id="artisttype" value="${artisttype}"/>
-					<input type="hidden" name="artistgenre" id="artistgenre" value="${artistgenre}"/>
-					<input type="hidden" name="usernumber" id="usernumber" value="${artistnumber}"/>
+					<input type="hidden" name="artistName" id="artistName"
+						value="${artistVO.artistName}" /> <input type="hidden" name="artistImg"
+						id="artistImg" value="${artistVO.artistImg}" /> <input type="hidden"
+						name="artistType" id="artistType" value="${artistVO.artistType}" /> <input
+						type="hidden" name="artistGenre" id="artistGenre"
+						value="${artistVO.artistGenre}" /> <input type="hidden"
+						name="artistNumber" id="artistNumber"
+						value="${artistVO.artistNumber}" /> <input type="hidden"
+						name="userNumber" id="userNumber" value="${artistVO.userNumber}" />
 
 					<div id="upload_main">
 						<br />
 						<!-- 앨범(이미지, 날짜, 아티스트 정보) 입력 start -->
 						<div class="col-md-2 col-md-offset-1">
 							<img src='resources/image/upload/album/album_image.PNG'
-								width="150%"><br /> <input type="file" name="albumimg"
-								id="albumimg" /><br /> <input type="date" class="form-control"
-								name="albumdate" id="albumdate" style="width: 148%;"><br />
-							<!-- 아티스트  정보 입력 -->
-							<div class="row">
-								<label for="artist" class="control-label"
-									style="margin-left: 18px">아티스트</label>
-								<div class="btn-group btn-group-justified"
-									style="width: 50%; margin-left: 114px; margin-top: -30px">
-									<a href="#" class="btn btn-info" onclick="fnAristSubmit()"
-										id="artist_regist">등록</a>
-								</div>
-							</div>
-							<br /> <input type="hidden" name="artist_artistnumber"
-								id="artist_artistnumber" value="1" />
+								width="150%"><br /><br /> <input type="file" name="albumImg"
+								id="albumImg" /><br /> <input type="text" class="form-control"
+								name="albumDate" id="albumDate" style="width: 148%;"><br />
+							<br />
 						</div>
 						<!-- end -->
 						<!-- 앨범(앨범명, 앨범종류, 장르, 설명, 곡 수 ) 입력 start  -->
 						<div class="row">
 							<div class="col-md-5 col-md-offset-1">
 								<!-- 앨범명 입력  -->
-								<label for="albumname" class="col-lg-4 control-label">앨범명</label>
+								<label for="albumName" class="col-lg-4 control-label">앨범명</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control" id="albumname"
+									<input type="text" class="form-control" id="albumName"
 										name="albumName" placeholder="앨범명"> <br />
 								</div>
 								<!-- 앨범 종류 입력 -->
-								<label for="albumtype" class="col-lg-4 control-label">앨범
+								<label for="albumType" class="col-lg-4 control-label">앨범
 									종류</label>
 								<div class="col-md-8">
-									<select class="form-control" id="albumtype" name="albumtype">
+									<select class="form-control" id="albumType" name="albumType">
 										<option>싱글</option>
 										<option>미니</option>
 										<option>정규</option>
 									</select> <br />
 								</div>
 								<!-- 장르 입력 -->
-								<label for="albumgenre" class="col-lg-4 control-label">장르</label>
+								<label for="albumGenre" class="col-lg-4 control-label">장르</label>
 								<div class="col-md-8">
-									<select class="form-control" id="albumgenre" name="albumgenre">
+									<select class="form-control" id="albumGenre" name="albumGenre">
 										<option>발라드/댄스/팝</option>
 										<option>일렉트로닉</option>
 										<option>알앤비</option>
@@ -175,10 +168,10 @@
 									</select> <br />
 								</div>
 								<!-- 앨범에 대한 설명 입력 -->
-								<label for="albumcontent" class="col-lg-4 control-label">설명</label>
+								<label for="albumContent" class="col-lg-4 control-label">설명</label>
 								<div class="col-lg-8">
 									<textarea class="form-control" rows="6" cols="70"
-										id="albumcontent" name="albumcontent"
+										id="albumContent" name="albumContent"
 										placeholder="앨범에 대한 설명을 적어주세요.">
 								</textarea>
 									<br />

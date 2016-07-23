@@ -8,7 +8,7 @@
 		select * from user
 	</select>	
 	<insert id="regist">
-		insert into album(albumname, albumtype, albumdate, albumgenre, artist_artistnumber, albumcontent)
-		values(#{albumname}, #{albumtype}, #{albumdate}, #{albumgenre}, #{artist_artistnumber}, #{albumcontent})
+		insert into album(albumname, albumtype, albumdate, albumgenre, artist_artistnumber, albumimg, albumcontent)
+		values(#{albumName}, #{albumType}, #{albumDate}, #{albumGenre}, #{artistNumber}, #{albumImg}, #{albumContent})
 	</insert>	
 </mapper>

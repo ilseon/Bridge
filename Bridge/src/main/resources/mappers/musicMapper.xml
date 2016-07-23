@@ -14,8 +14,8 @@
 	</select>
 	
 	<insert id="regist">
-		insert into music (musicnumber, musicsubject, musiccheck)
-		values(#{musicnumber}, #{musicsubject}, #{musiccheck})
+		insert into music (musicsubject, musicfile, musicvideo, musiccheck)
+		values(#{musicsubject+i}, #{musicfile+i}, #{musicvideo+i}, #{musiccheck+i})
 	</insert>
 	
 	<delete id="remove">

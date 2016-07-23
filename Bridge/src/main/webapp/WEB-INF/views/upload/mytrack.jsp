@@ -51,10 +51,8 @@
 			<c:forEach begin="1" end="4" step="1">
 				<div class="col-sm-3">
 					<div class="form-group">
-						<c:forEach begin="1" end="1" var="j">
 							<a href="mytrack_detail"><img
 								src="resources/image/upload/album/album_art.jpg" width="65%"></a>
-						</c:forEach>
 					</div>
 				</div>
 				<form class="form-horizontal">
@@ -63,19 +61,19 @@
 							<table class="table">
 								<tr>
 									<th>아티스트</th>
-									<td>원더걸스</td>
+									<td>${albumVO.artistName}</td>
 								</tr>
 								<tr>
 									<th>앨범 종류</th>
-									<td>싱글</td>
+									<td>${albumVO.albumType}</td>
 								</tr>
 								<tr>
 									<th>발매일</th>
-									<td>2016.06.27</td>
+									<td>${albumVO.albumDate}</td>
 								</tr>
 								<tr>
 									<th>장르</th>
-									<td>발라드</td>
+									<td>${albumVO.albumGenre}</td>
 								</tr>
 							</table>
 						</div>
