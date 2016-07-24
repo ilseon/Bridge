@@ -1,5 +1,7 @@
 package com.bridge.app.service;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,8 +17,8 @@ public class AritistServiceImpl implements ArtistService {
 	private ArtistDAO artist;
 	
 	@Override
-	public void ArtistInsert(ArtistVO vo) throws Exception {
-		artist.regist(vo);
+	public void ArtistInsert(Map<String, String> paramMap) throws Exception {
+		artist.regist(paramMap);
 	}
 
 	@Override

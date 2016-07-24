@@ -3,6 +3,7 @@ package com.bridge.app.persistence;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -17,32 +18,31 @@ import com.bridge.app.controller.MyPageController;
 import com.bridge.app.domain.ArtistVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.oreilly.servlet.multipart.MultipartParser;
 
 @Repository
 public class ArtistDAOImpl implements ArtistDAO {
-	
+
 	@Inject
 	private SqlSession sqlSession;
-	
-	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);	
+
+	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
 	private static final String NAMESPACE = "com.bridge.mappers.artistMapper";
-	
+
 	@Override
-	public void regist(ArtistVO vo) throws Exception {
-				
-		sqlSession.insert(NAMESPACE + ".regist", vo);
+	public void regist(Map<String, String> paramMap) throws Exception {
+		sqlSession.insert(NAMESPACE + ".regist", paramMap);
 	}
 
 	@Override
 	public String FileUpload(HttpServletRequest req) throws Exception {
-		// TODO Auto-generated method stub
+	
 		int postMaxSize = 10 * 1024 * 1024;
-		String folderPath =req.getServletPath(); // realpath
-        String artistImg=folderPath+"upload"+File.separator+"artist"+File.separator;
-        System.out.println("realpath"+folderPath);
-       
+		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
+        String folder_p=folderPath+"upload"+File.separator+"artist"+File.separator;
+           
         File file = null;
-        file = new File(artistImg);
+        file = new File(folder_p);
         if(!file.exists()) {
            file.mkdirs();
         }
@@ -50,16 +50,17 @@ public class ArtistDAOImpl implements ArtistDAO {
         String encoding = "UTF-8";
         Enumeration enumer=null;
         MultipartRequest multiReq = 
-        new MultipartRequest(req, artistImg, postMaxSize, "euc-kr", new DefaultFileRenamePolicy());        
-        String fileName = "";
+        			new MultipartRequest(req, folder_p, postMaxSize, "euc-kr", new DefaultFileRenamePolicy());
+        MultipartParser parser = new MultipartParser((HttpServletRequest) multiReq, 10000000); 
         
-         int i=0;
+        String artistImg = "";      
          while(enumer.hasMoreElements()){
         	enumer=(Enumeration) multiReq.getFileNames();
         	
             String name = (String)enumer.nextElement();
-            fileName = multiReq.getFilesystemName(name);
+            artistImg = multiReq.getFilesystemName(name);
          }
-		return fileName;	         		
-	}
+		return artistImg;
+	}	
+	
 }

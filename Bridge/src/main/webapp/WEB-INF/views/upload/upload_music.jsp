@@ -52,6 +52,17 @@
 					}
 				});
 			});
+
+	$(function() {
+		var cnt = $("#cnt").val();
+		for (var i = 0; i < cnt; i++) {
+			$("[id^=text]").hide();
+
+			$(".button").click(function() {
+				$("#text" + $(this).data("rel")).toggle();
+			});
+		}
+	});
 </script>
 <style>
 #tab {
@@ -155,29 +166,31 @@
 						<%
 							for (int i = 0; i < cnt; i++) {
 						%>
-							<!-- 음원파일, 곡, 타이틀, 뮤비 등록 -->
-							<tbody>
-								<tr>
-									<td><strong><%=i + 1%></strong></td>
-									<td><input type="file" name="musicfile<%=i%>"
-										id="musicfile<%=i%>" /></td>
-									<td><input type="radio" name="title<%=i%>" id="title<%=i%>">
-									</td>
-									<td><input type="text" name="musicsubject<%=i%>"
-										id="musicsubject<%=i%>" class="form-control" width="20%" /></td>
-									<td><input type="text" name="musicvideo<%=i%>"
-										id="musicvideo<%=i%>" class="form-control" width="15%" /></td>
-									<td><input type="checkbox" name="musiccheck<%=i%>" id="musiccheck<%=i%>"></td>
-								</tr>
-								<%
-									}
-								%>
-							</tbody>
+						<!-- 음원파일, 곡, 타이틀, 뮤비 등록 -->
+						<tbody>
+							<tr>
+								<td><strong><%=i + 1%></strong></td>
+								<td><input type="file" name="musicfile<%=i%>"
+									id="musicfile<%=i%>" /></td>
+								<td><input type="radio" name="title<%=i%>" id="title<%=i%>">
+								</td>
+								<td><input type="text" name="musicsubject<%=i%>"
+									id="musicsubject<%=i%>" class="form-control" width="20%" /></td>
+								<td><button type="submit" class="btn btn-md"
+										name="musicvideo<%=i%>" id="musicvideo<%=i%>"
+										onclick="check()">클릭</button> <!-- <input type="text" name="musicvideo"
+										id="musicvideo" class="form-control" width="15%" /> --></td>
+								<td><input type="checkbox" name="musiccheck<%=i%>"
+									id="musiccheck<%=i%>"></td>
+							</tr>
+							<%
+								}
+							%>
+						</tbody>
 					</table>
 				</form>
 			</div>
 			<!-- end -->
-
 			<!-- 버튼 start -->
 			<div align="center" style="margin-top: 90px">
 				<div class="form-group">

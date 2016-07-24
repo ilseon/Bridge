@@ -112,8 +112,7 @@
 		<div class="col-md-12">
 			<br /><br />
 			<div class="jumbotron" id="pom">
-				<form id="album" name="album" action="upload2" method="post"
-					accept-charset="UTF-8">
+				<form id="album" name="album" action="upload2" method="post" accept-charset="UTF-8">
 					<!-- 아티스트 항목 값 -->
 					<input type="hidden" name="artistName" id="artistName"
 						value="${artistVO.artistName}" /> <input type="hidden" name="artistImg"
@@ -131,7 +130,7 @@
 						<div class="col-md-2 col-md-offset-1">
 							<img src='resources/image/upload/album/album_image.PNG'
 								width="150%"><br /><br /> <input type="file" name="albumImg"
-								id="albumImg" /><br /> <input type="date" class="form-control"
+								id="albumImg" /><br /> <input type="text" class="form-control"
 								name="albumDate" id="albumDate" style="width: 148%;"><br />
 							<br />
 						</div>

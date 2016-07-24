@@ -8,6 +8,9 @@
 
 package com.bridge.app.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bridge.app.service.AlbumService;
@@ -45,14 +49,21 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
-	public ModelAndView Upload_Artist(@ModelAttribute ArtistVO artist, HttpServletRequest req) throws Exception {
+	public ModelAndView Upload_Artist(@RequestParam Map<String, String> paramMap,
+			HttpServletRequest req) throws Exception {
 
 		logger.info("현재 페이지는 It is upload_artist");
-		logger.info(artist.toString());
+		ModelAndView mav = new ModelAndView("/upload/upload_album");
+		
+		String artistImg = artistservice.FileUpload(req);
+		
+		paramMap.get("artistName");
+		paramMap.get("artistType");
+		paramMap.get("artistGenre");
+		Integer.parseInt(paramMap.get("userNumber"));
+		paramMap.get("artistImg");
 
-		ModelAndView mav =new ModelAndView("/upload/upload_album");
-		artistservice.ArtistInsert(artist);
-		//artistservice.FileUpload(req);
+		artistservice.ArtistInsert(paramMap);	
 		return mav;
 	}
 
