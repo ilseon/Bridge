@@ -1,6 +1,7 @@
 package com.bridge.app.service;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
@@ -17,4 +18,9 @@ public class AritistServiceImpl implements ArtistService {
 	public void ArtistInsert(ArtistVO vo) throws Exception {
 		artist.regist(vo);
 	}
+
+	@Override
+	public void FileUpload(HttpServletRequest req) throws Exception {
+		artist.FileUpload(req);
+	}	
 }

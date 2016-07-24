@@ -10,6 +10,5 @@ import com.bridge.app.domain.ArtistVO;
 public interface ArtistDAO {
 	
 	public void regist(ArtistVO vo) throws Exception;
-
-	
+	public void FileUpload(HttpServletRequest req) throws Exception;
 }

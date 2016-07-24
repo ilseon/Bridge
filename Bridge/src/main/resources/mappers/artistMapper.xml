@@ -5,7 +5,7 @@
 
 <mapper namespace="com.bridge.mappers.artistMapper">	
 	<insert id="regist">
-		insert into artist(artistname, artisttype, artistgenre, artistimg, usernumber)
-		values(#{artistName}, #{artistType}, #{artistGenre}, #{artistImg}, #{userNumber})
+		insert into artist(artistname, artisttype, artistgenre, usernumber)
+		values(#{artistName}, #{artistType}, #{artistGenre}, #{userNumber})
 	</insert>	
 </mapper>

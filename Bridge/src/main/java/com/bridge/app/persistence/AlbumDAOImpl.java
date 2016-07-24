@@ -39,4 +39,13 @@ public class AlbumDAOImpl implements AlbumDAO {
 		 */
 		sqlSession.insert(NAMESPACE + ".regist", vo);
 	}
+	
+	public String FileUpload() throws Exception{
+		
+		
+		
+		
+		return null;
+	}
+	
 }

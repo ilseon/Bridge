@@ -87,13 +87,12 @@
 		<div class="col-md-12 column">
 			<br /> <br />
 			<div class="jumbotron" id="pom">
-				<form id="artist" action="upload" method="post">
-					<!-- enctype="multipart/form-data"-->
+				<form id="artist" action="upload" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="userNumber" id="userNumber" value="2" />
 					<input type="hidden" name="artistNumber" id="artistNumbe" value="1" />
 					<div id="upload_main">
 						<div class="col-md-2 col-md-offset-1">
-							<br /> <img src="resources/image/upload/album/album_image.PNG"
+							<br /> <img src="<%=request.getAttribute("artistImg")%>"
 								width="120%"><br /> <br /> <input type="file"
 								name="artistImg" id="artistImg" />
 						</div>

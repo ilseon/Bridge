@@ -24,9 +24,10 @@
 			$("#counter").keyup(function() {
 				$(this).val($(this).val().replace(/[^0-9]/g, ""));
 			});
-			$("#albumDate").keyup(function() {
+			/*$("#albumDate").keyup(function() {
 				$(this).val($(this).val().replace(/[^0-9]/g, ""));
 			});
+			*/
 		});
 		var cnt = 0;
 		//음원의 수를 확인하는 jquery 
@@ -130,7 +131,7 @@
 						<div class="col-md-2 col-md-offset-1">
 							<img src='resources/image/upload/album/album_image.PNG'
 								width="150%"><br /><br /> <input type="file" name="albumImg"
-								id="albumImg" /><br /> <input type="text" class="form-control"
+								id="albumImg" /><br /> <input type="date" class="form-control"
 								name="albumDate" id="albumDate" style="width: 148%;"><br />
 							<br />
 						</div>
