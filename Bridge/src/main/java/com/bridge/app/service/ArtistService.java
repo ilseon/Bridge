@@ -7,5 +7,5 @@ import com.bridge.app.domain.ArtistVO;
 public interface ArtistService {
 
 	public void ArtistInsert(ArtistVO vo) throws Exception;
-	public void FileUpload(HttpServletRequest req) throws Exception;	
+	public String FileUpload(HttpServletRequest req) throws Exception;	
 }

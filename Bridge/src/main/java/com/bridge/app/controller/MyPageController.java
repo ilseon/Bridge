@@ -1,12 +1,12 @@
-package com.bridge.app.controller;
+/**
+작성자 - 이주연
+내용 - 업로드 1단계 페이지
+시작날짜 - 2016/07/17
+수정날짜 - 2016/07/24
+변경내용 - 
+ */
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.Map;
+package com.bridge.app.controller;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +28,7 @@ import com.bridge.app.domain.MusicVO;
 
 @Controller
 public class MyPageController {
+	
 	@Inject
 	private AlbumService albumservice;
 	@Inject
@@ -51,7 +52,7 @@ public class MyPageController {
 
 		ModelAndView mav =new ModelAndView("/upload/upload_album");
 		artistservice.ArtistInsert(artist);
-		artistservice.FileUpload(req);
+		//artistservice.FileUpload(req);
 		return mav;
 	}
 

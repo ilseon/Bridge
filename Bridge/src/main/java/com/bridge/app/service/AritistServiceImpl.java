@@ -20,7 +20,7 @@ public class AritistServiceImpl implements ArtistService {
 	}
 
 	@Override
-	public void FileUpload(HttpServletRequest req) throws Exception {
-		artist.FileUpload(req);
+	public String FileUpload(HttpServletRequest req) throws Exception {
+		return artist.FileUpload(req);
 	}	
 }

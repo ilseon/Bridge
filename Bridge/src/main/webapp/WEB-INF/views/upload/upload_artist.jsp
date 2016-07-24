@@ -2,7 +2,7 @@
 작성자 - 이주연
 내용 - 업로드 1단계 페이지
 시작날짜 - 2016/07/17
-수정날짜 - 2016/07/22
+수정날짜 - 2016/07/24
 변경내용 - 
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -87,14 +87,14 @@
 		<div class="col-md-12 column">
 			<br /> <br />
 			<div class="jumbotron" id="pom">
-				<form id="artist" action="upload" method="post" enctype="multipart/form-data">
+				<form id="artist" action="upload" method="post" accept-charset="UTF-8">
 					<input type="hidden" name="userNumber" id="userNumber" value="2" />
 					<input type="hidden" name="artistNumber" id="artistNumbe" value="1" />
 					<div id="upload_main">
 						<div class="col-md-2 col-md-offset-1">
-							<br /> <img src="<%=request.getAttribute("artistImg")%>"
+							<br /> <img src="resources/image/upload/album/album_image.PNG"
 								width="120%"><br /> <br /> <input type="file"
-								name="artistImg" id="artistImg" />
+								name="artistImg" id="artistImg" value="resources/image/upload/album/album_image.PNG"/>
 						</div>
 						<!-- end -->
 						<br />

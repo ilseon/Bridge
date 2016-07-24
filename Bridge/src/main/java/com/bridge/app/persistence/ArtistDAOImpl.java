@@ -34,7 +34,8 @@ public class ArtistDAOImpl implements ArtistDAO {
 	}
 
 	@Override
-	public void FileUpload(HttpServletRequest req) throws Exception {
+	public String FileUpload(HttpServletRequest req) throws Exception {
+		// TODO Auto-generated method stub
 		int postMaxSize = 10 * 1024 * 1024;
 		String folderPath =req.getServletPath(); // realpath
         String artistImg=folderPath+"upload"+File.separator+"artist"+File.separator;
@@ -57,7 +58,8 @@ public class ArtistDAOImpl implements ArtistDAO {
         	enumer=(Enumeration) multiReq.getFileNames();
         	
             String name = (String)enumer.nextElement();
-            artistImg = multiReq.getFilesystemName(name);
-         }	         
+            fileName = multiReq.getFilesystemName(name);
+         }
+		return fileName;	         		
 	}
 }
