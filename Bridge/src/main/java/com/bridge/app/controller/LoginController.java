@@ -1,3 +1,11 @@
+/*
+작성자 - 김민정
+내용 - 로그인/로그아웃
+시작날짜 - 2016/07/17
+수정날짜 - 2016/07/25
+변경내용 - 아이디 및 비밀번호 찾기 예외처리 완성
+*/
+
 package com.bridge.app.controller;
 
 import javax.inject.Inject;
@@ -75,23 +83,6 @@ public class LoginController {
 		return "redirect:/";
 	}
 
-	/*
-	 * //아이디 찾기 메서드
-	 * 
-	 * @RequestMapping(value="searchid",method=RequestMethod.POST) public String
-	 * Searchid(@Valid UserVO uservo, BindingResult result, Model model){
-	 * logger.info("It is searchid : "+uservo.getUserName() ); logger.info(
-	 * "It is searchid : "+uservo.getUserBirthday() );
-	 * 
-	 * if(result.hasErrors()){ logger.info("search error "); return
-	 * "/login/loginsearch"; } try { UserVO vo =
-	 * service.searchId(uservo.getUserName(), uservo.getUserBirthday());
-	 * model.addAttribute("usersearchid", vo.getUserId()); logger.info(
-	 * "search se :  ");
-	 * 
-	 * } catch (Exception e) { logger.info("search fail "); return
-	 * "/login/loginsearch"; } return "/login/loginsearch"; }
-	 */
 
 	// 아이디 찾기 메서드
 	@RequestMapping(value = "searchid", method = RequestMethod.POST)
@@ -105,12 +96,14 @@ public class LoginController {
 		}
 		try {
 			UserVO vo = service.searchId(uservo.getUserName(), uservo.getUserBirthday());
+			model.addAttribute("idmsg", 2);
 			model.addAttribute("usersearchid", vo.getUserId());
 
 			logger.info("search se :  ");
 
 		} catch (Exception e) {
 			logger.info("search fail ");
+			model.addAttribute("idmsg", 1);
 			return "/login/loginsearch";
 		}
 		return "/login/loginsearch";
@@ -128,9 +121,12 @@ public class LoginController {
 		}
 		try {
 			UserVO vo = service.searchPassword(uservo.getUserId(), uservo.getUserEmail());
+			
+			model.addAttribute("passwordmsg",2);
 			model.addAttribute("usersearchpassword", vo.getUserPassword());
 			logger.info("search se :  ");
 		} catch (Exception e) {
+			model.addAttribute("passwordmsg",1);
 			logger.info("search fail ");
 			return "/login/loginsearch";
 		}
