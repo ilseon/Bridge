@@ -39,15 +39,19 @@ $(document).ready(function() {
 			<div class="col-sm-11"
 				style="border: 1px solid #BDBDBD; margin-bottom: 50px;">
 				<h4>최신앨범</h4> 
-				<c:forEach var="i" begin="0" end="11" step="1">
+				
+				
+				<c:forEach var="album" begin="0" end="11" step="1" items="${albumList}">
 					<div class="col-xs-6 col-md-2">
 						<a href="/chart"><div class="thumbnail">
 								<img src="/resources/image/shinhwa.PNG">
-								<p>WE (12번째..)</p>
-								<p>신화</p>
+								<p>${album.albumName}</p>
+								<p>${album.artistName}</p>
 							</div></a>
 					</div>
 				</c:forEach>
+				
+				
 			</div>
 
 
@@ -60,12 +64,12 @@ $(document).ready(function() {
 
 				<!-- 인기차트 테이블 -->
 				<table class="table">
-					<c:forEach begin="1" end="10" var="j">
+					<c:forEach begin="0" end="9" var="music" items="${musicList}">
 						<tr style="height: 70px;">
-							<td width="7%">${j}</td>
+							<td width="7%">${music.musicNumber}</td>
 							<td width="20%">-</td>
-							<td width="20%">표적</td>
-							<td width="7%">신화</td>
+							<td width="20%">${music.musicSubject}</td>
+							<td width="7%">${music.artistName}</td>
 							<td width="10%"><button class="btn btn-default btn-xs">
 									<span class="glyphicon glyphicon-play" style="color: red"></span>
 								</button></td>

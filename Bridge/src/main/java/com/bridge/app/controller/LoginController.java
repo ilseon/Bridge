@@ -1,5 +1,6 @@
 package com.bridge.app.controller;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -20,88 +21,120 @@ import org.springframework.web.util.WebUtils;
 
 import com.bridge.app.domain.UserVO;
 import com.bridge.app.persistence.UserDAO;
+import com.bridge.app.service.DownloadService;
 import com.bridge.app.service.UserService;
 
 @Controller
-@SessionAttributes({"userid", "usernumber","usersearchid"})
+@SessionAttributes({ "userid", "usernumber" })
 public class LoginController {
-   
-   private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-   
-      @Autowired
-      private UserService service;
-   
-   //·Î±×ÀÎÀ» ÇØÁÖ´Â ¸Ş¼­µå
-   @RequestMapping(value="login", method=RequestMethod.POST)
-   public String login(@Valid UserVO uservo, BindingResult result, Model model){
-      logger.info("It is login : "+uservo.getUserId() );
-      logger.info("It is login : "+uservo.getUserPassword() );
-      
-         if(result.hasErrors()){
-            logger.info("login error ");
-             return "home";
-          }
-         
-          try {
-             UserVO vo = service.readLogin(uservo.getUserId(), uservo.getUserPassword());
-            
-             System.out.println(vo.getUserNumber());
-             
-           model.addAttribute("userid", vo.getUserId());
-           model.addAttribute("usernumber", vo.getUserNumber());
-             logger.info("login se :  ");
-             
-          } catch (Exception e) { // ·Î±×ÀÎ Àß¸øµÊ   
-             logger.info("login fail ");
-             return "home";
-          }      
-          return "home";
-   } 
-    
-   
-   //¾ÆÀÌµğ ºñ¹Ğ¹øÈ£ Ã£±â½Ã¿¡ ÆäÀÌÁö¸¦ ÀÌµ¿ÇØÁÖ´Â ¸Ş¼­µå
-   @RequestMapping(value="loginsearch")
-   public String loginSearch(){
-      logger.info("It is loginsearch");
-      return "/login/loginsearch";
-   }
-   
-   //·Î±×¾Æ¿ôÀ» ÇØÁÖ´Â ¸Ş¼­µå
-     @RequestMapping("logout")
-     public String logout(SessionStatus session){
-    	 logger.info("It is logout");
-    	session.setComplete();
-    	return "redirect:/";
-      }
-     
-    
-     
-     //¾ÆÀÌµğ¸¦ Ã£¾ÆÁÖ´Â ¸Ş¼­µå
-     @RequestMapping(value="searchid",method=RequestMethod.POST)
-     public String  Searchid(@Valid UserVO uservo, BindingResult result, Model model){
-    	 logger.info("It is searchid : "+uservo.getUserName() );
-         logger.info("It is searchid : "+uservo.getUserBirthday() );
 
-    	
-        if(result.hasErrors()){
-            logger.info("search error ");
-            return "/login/loginsearch";
-          }
-         
-          try {
-             UserVO vo = service.searchId(uservo.getUserName(), uservo.getUserBirthday());
-       
-             model.addAttribute("usersearchid", vo.getUserId());
-             logger.info("search se :  ");
-             
-          } catch (Exception e) { // ¾ÆÀÌµğ Ã£±â°¡ Àß¸øµÊ
-             logger.info("search fail ");
-             return "/login/loginsearch";
-          }      
-          return "/login/loginsearch";
-      }
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-   
-  
+	@Autowired
+	private UserService service;
+
+	// ë¡œê·¸ì¸ ë©”ì„œë“œ
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String login(@Valid UserVO uservo, BindingResult result, Model model) {
+		logger.info("It is login : " + uservo.getUserId());
+		logger.info("It is login : " + uservo.getUserPassword());
+
+		if (result.hasErrors()) {
+			logger.info("login error ");
+			return "home";
+		}
+
+		try {
+			UserVO vo = service.readLogin(uservo.getUserId(), uservo.getUserPassword());
+
+			System.out.println(vo.getUserNumber());
+
+			model.addAttribute("userid", vo.getUserId());
+			model.addAttribute("usernumber", vo.getUserNumber());
+			logger.info("login se :  ");
+
+		} catch (Exception e) { // ë¡œê·¸ì¸ì‹¤íŒ¨ì‹œ
+			logger.info("login fail ");
+			return "home";
+		}
+		return "home";
+	}
+
+	// ì•„ì´ë”” ë° ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° í˜ì´ì§€ë¡œ ì´ë™
+	@RequestMapping(value = "loginsearch")
+	public String loginSearch() {
+		logger.info("It is loginsearch");
+		return "/login/loginsearch";
+	}
+
+	// ë¡œê·¸ì•„ì›ƒ ë©”ì„œë“œ
+	@RequestMapping("logout")
+	public String logout(SessionStatus session) {
+		logger.info("It is logout");
+		session.setComplete();
+		return "redirect:/";
+	}
+
+	/*
+	 * //ì•„ì´ë”” ì°¾ê¸° ë©”ì„œë“œ
+	 * 
+	 * @RequestMapping(value="searchid",method=RequestMethod.POST) public String
+	 * Searchid(@Valid UserVO uservo, BindingResult result, Model model){
+	 * logger.info("It is searchid : "+uservo.getUserName() ); logger.info(
+	 * "It is searchid : "+uservo.getUserBirthday() );
+	 * 
+	 * if(result.hasErrors()){ logger.info("search error "); return
+	 * "/login/loginsearch"; } try { UserVO vo =
+	 * service.searchId(uservo.getUserName(), uservo.getUserBirthday());
+	 * model.addAttribute("usersearchid", vo.getUserId()); logger.info(
+	 * "search se :  ");
+	 * 
+	 * } catch (Exception e) { logger.info("search fail "); return
+	 * "/login/loginsearch"; } return "/login/loginsearch"; }
+	 */
+
+	// ì•„ì´ë”” ì°¾ê¸° ë©”ì„œë“œ
+	@RequestMapping(value = "searchid", method = RequestMethod.POST)
+	public String Searchid(@Valid UserVO uservo, BindingResult result, Model model) {
+		logger.info("It is searchid : " + uservo.getUserName());
+		logger.info("It is searchid : " + uservo.getUserBirthday());
+
+		if (result.hasErrors()) {
+			logger.info("search error ");
+			return "/login/loginsearch";
+		}
+		try {
+			UserVO vo = service.searchId(uservo.getUserName(), uservo.getUserBirthday());
+			model.addAttribute("usersearchid", vo.getUserId());
+
+			logger.info("search se :  ");
+
+		} catch (Exception e) {
+			logger.info("search fail ");
+			return "/login/loginsearch";
+		}
+		return "/login/loginsearch";
+	}
+
+	// ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° ë©”ì„œë“œ
+	@RequestMapping(value = "usersearchpassword", method = RequestMethod.POST)
+	public String Searchpassword(@Valid UserVO uservo, BindingResult result, Model model) {
+		logger.info("It is searchpassword : " + uservo.getUserId());
+		logger.info("It is searchemail : " + uservo.getUserEmail());
+
+		if (result.hasErrors()) {
+			logger.info("search error ");
+			return "/login/loginsearch";
+		}
+		try {
+			UserVO vo = service.searchPassword(uservo.getUserId(), uservo.getUserEmail());
+			model.addAttribute("usersearchpassword", vo.getUserPassword());
+			logger.info("search se :  ");
+		} catch (Exception e) {
+			logger.info("search fail ");
+			return "/login/loginsearch";
+		}
+		return "/login/loginsearch";
+	}
 
 }

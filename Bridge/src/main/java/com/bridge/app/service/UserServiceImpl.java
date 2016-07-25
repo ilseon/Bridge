@@ -15,17 +15,24 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserVO readLogin(String userid, String userpw) throws Exception {
-		// ÄÁÆ®·Ñ·¯¿Í dao¸¦ ¿¬°áÇØÁÜ
-		System.out.println("¼­ºñ½º");
+		// ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ daoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		System.out.println("ï¿½ï¿½ï¿½ï¿½");
 		return (UserVO)dao.readLogin(userid, userpw);
 	}
 
 
 	@Override
 	public UserVO searchId(String username, String userbirthday) throws Exception {
-		// ¾ÆÀÌµð¸¦ Ã£À½
-		System.out.println("id Ã£À½");
+		// ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
+		System.out.println("id Ã£ï¿½ï¿½");
 		return dao.searchId(username, userbirthday);
+	}
+
+
+	@Override
+	public UserVO searchPassword(String userid, String useremail) throws Exception {
+		System.out.println("password service");
+		return dao.searchPassword(userid, useremail);
 	}
 
 

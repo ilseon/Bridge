@@ -65,13 +65,13 @@
 			<div class="col-sm-5" style="border: 1px solid #BDBDBD; margin-bottom: 50px;">
 				<h4 style="margin-bottom: 10%;">비밀번호 찾기</h4>
 				
-				<form class="form-horizontal" method="POST">
+				<form class="form-horizontal" method="POST" action="usersearchpassword">
 
 					<div class="form-group">
 						<span class="glyphicon glyphicon-ok" style="color: red"></span> <label
 							for="inputEmail3" class="col-sm-3 control-label">아이디</label>
 						<div class="col-sm-6">
-							<input type="email" class="form-control" id="id">
+							<input type="text" class="form-control" name="userId">
 						</div>
 					</div>
 
@@ -79,7 +79,7 @@
 						<span class="glyphicon glyphicon-ok" style="color: red"></span> <label
 							for="inputEmail3" class="col-sm-3 control-label">이메일</label>
 						<div class="col-sm-6">
-							<input type="email" class="form-control" id="email" />
+							<input type="email" class="form-control" name="userEmail" />
 						</div>
 					</div>
 
@@ -89,7 +89,7 @@
 						</div>
 					</div>
 
-					<div>당신의 비밀번호는 - 입니다 !</div>
+					<div>당신의 비밀번호는 ${usersearchpassword } 입니다 !</div>
 
 
 

@@ -20,11 +20,11 @@ public class UserDAOImpl implements UserDAO {
 	private static final String namespace = "com.brige.mappers.loginMapper";
 	
 
+	// ì•„ì´ë””ì™€ ë¹„ë°€ë²ˆí˜¸ë¡œ ë¡œê·¸ì¸ í•˜ëŠ” ë©”ì„œë“œ
 	@Override
 	public UserVO readLogin(String userid, String userpw) throws Exception {
-		// ÀÔ·Â¹ŞÀº userid¿Í pw¸¦ ºñ±³ÇÏ¿© ·Î±×ÀÎÀ» ÇØÁÖ´Â ¸Ş¼­µå
 		
-		System.out.println("dao±îÁö ¿ÔÀ½");
+		System.out.println("dao");
 		Map<String, Object> loginMap = new HashMap<String, Object>();
 		loginMap.put("userid", userid);
 		loginMap.put("userpw", userpw);
@@ -32,16 +32,29 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne(namespace+".readLogin", loginMap);
 	}
 
+	//ì•„ì´ë””ë¥¼ ì°¾ëŠ” ë©”ì„œë“œ
 	@Override
 	public UserVO searchId(String username, String userbirthday) throws Exception {
-		// ÀÌ¸§°ú »ı³â¿ùÀÏÀ¸·Î ¾ÆÀÌµğ Ã£±â
 		
-		System.out.println("dao±îÁö ¿ÔÀ½");
+		System.out.println("dao");
 		Map<String, Object> idsearchMap = new HashMap<String, Object>();
 		idsearchMap.put("username", username);
 		idsearchMap.put("userbirthday", userbirthday);
 		
 		return sqlSession.selectOne(namespace+".searchId", idsearchMap);
+	}
+	
+	//ì•„ì´ë””ë¥¼ ì°¾ëŠ” ë©”ì„œë“œ
+	@Override
+	public UserVO searchPassword(String userid, String useremail) throws Exception {
+		
+		System.out.println("dao");
+		Map<String, Object> passwordsearchMap = new HashMap<String, Object>();
+		passwordsearchMap.put("userid", userid);
+		passwordsearchMap.put("useremail", useremail);
+		System.out.println("ë˜ë‚˜ìš”?");
+		
+		return sqlSession.selectOne(namespace+".searchPassword", passwordsearchMap);
 	}
 
 }

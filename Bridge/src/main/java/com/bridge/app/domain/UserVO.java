@@ -5,7 +5,7 @@ public class UserVO {
 	private String userName;
 	private String userBirthday;
 	
-	private String usesrEmail;
+	private String userEmail;
 	private String userId;
 	private String userPassword;
 	
@@ -31,11 +31,11 @@ public class UserVO {
 	public void setUserBirthday(String userBirthday) {
 		this.userBirthday = userBirthday;
 	}
-	public String getUsesrEmail() {
-		return usesrEmail;
+	public String getUserEmail() {
+		return userEmail;
 	}
-	public void setUsesrEmail(String usesrEmail) {
-		this.usesrEmail = usesrEmail;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 	public String getUserId() {
 		return userId;
