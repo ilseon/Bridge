@@ -1,9 +1,9 @@
 /*
- ÀÛ¼ºÀÚ - ÀÌÁÖ¿¬, Á¤È¿Áø
-³»¿ë - À½¾Ç Service ÀÎÅÍÆäÀÌ½º
-½ÃÀÛ³¯Â¥ - 2016-07-20
-¼öÁ¤³¯Â¥ - 2016-07-20
-º¯°æ³»¿ë - ±âº» ¸Þ¼­µå ÀÛ¼º
+ ï¿½Û¼ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½Ö¿ï¿½, ï¿½ï¿½È¿ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ Service ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½
+ï¿½ï¿½ï¿½Û³ï¿½Â¥ - 2016-07-20
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥ - 2016-07-20
+ï¿½ï¿½ï¿½æ³»ï¿½ï¿½ - ï¿½âº» ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½
  */
 
 package com.bridge.app.service;
@@ -19,5 +19,6 @@ public interface MusicService {
 	public void modifyDownload(MusicVO music) throws Exception;
 	
 	public List<MusicVO> searchAll(int limit) throws Exception;
+	public MusicVO searchMusic(int musicnumber) throws Exception;
 	public MusicVO search() throws Exception;
 }

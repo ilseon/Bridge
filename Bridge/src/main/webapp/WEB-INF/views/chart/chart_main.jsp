@@ -98,7 +98,7 @@ border: none;
     vertical-align: middle;
 }
 </style>
-<body>
+<body style="margin-top: 4%;">
 <%@include file="/WEB-INF/views/include/header.jsp" %>
 <%@include file="/WEB-INF/views/include/sidebar.jsp" %>
 <!-- 실시간 차트 페이지의 메뉴 -->

@@ -1,9 +1,9 @@
 /*
- ÀÛ¼ºÀÚ - Á¤È¿Áø
-³»¿ë - À½¿ø dao impelements ±¸Çö Å¬·¡½º
-½ÃÀÛ³¯Â¥ - 2016-07-20
-¼öÁ¤³¯Â¥ - 2016-07-22
-º¯°æ³»¿ë - À½¿ø dao impl
+ ï¿½Û¼ï¿½ï¿½ï¿½ - ï¿½ï¿½È¿ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ dao impelements ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½Û³ï¿½Â¥ - 2016-07-20
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥ - 2016-07-22
+ï¿½ï¿½ï¿½æ³»ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ dao impl
  */
 package com.bridge.app.persistence;
 
@@ -58,6 +58,11 @@ public class MusicDAOImpl implements MusicDAO {
 	public void modifyDownload(MusicVO music) throws Exception {
 		
 		
+	}
+
+	@Override
+	public MusicVO searchMusic(int musicnumber) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+".searchMusic", musicnumber);
 	}
 
 }

@@ -1,13 +1,16 @@
 /*
- ÀÛ¼ºÀÚ - Á¤È¿Áø
-³»¿ë - Â÷Æ® ÄÁÆ®·Ñ·¯ ±¸Çö Å¬·¡½º
-½ÃÀÛ³¯Â¥ - 2016-07-20
-¼öÁ¤³¯Â¥ - 2016-07-22
-º¯°æ³»¿ë - viewÆäÀÌÁö·Î ÀÌµ¿ÇÏ´Â ÄÁÆ®·Ñ·¯ ÀÛ¼º
+ ï¿½Û¼ï¿½ï¿½ï¿½ - ï¿½ï¿½È¿ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½Æ® ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½Û³ï¿½Â¥ - 2016-07-20
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥ - 2016-07-22
+ï¿½ï¿½ï¿½æ³»ï¿½ï¿½ - viewï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ ï¿½Û¼ï¿½
  */
 package com.bridge.app.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
 import com.bridge.app.domain.AlbumVO;
@@ -67,6 +71,12 @@ public class ChartController {
 		return "/chart/chart_main";
 	}
 	
+	@RequestMapping("/myalbum_modal")
+	public String myalbum_modal(@RequestParam("musicnumber") int musicnumber, Model view) throws Exception{
+		view.addAttribute("musicnumber", musicnumber);
+		return "/chart/modal/myalbum_modal";
+	}
+	
 	@RequestMapping(value="/myalbum", method=RequestMethod.GET)
 	public String registPlaylist(@RequestParam("musicnumber") int musicnumber, HttpServletRequest req, Model view) throws Exception{
 		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
@@ -77,6 +87,24 @@ public class ChartController {
 		playlist.regist(plist);
 		
 		return "redirect:/chart";
+	}
+	
+	@RequestMapping("/download_modal")
+	public String download_modal(@RequestParam("musicnumber") int musicnumber, Model view) throws Exception{
+		view.addAttribute("music", music.searchMusic(musicnumber));
+		return "/chart/modal/download_modal";
+	}
+	
+	@RequestMapping("/download_modal_sev")
+	public String download_modal_sev(@RequestParam("playlistAll") ArrayList<Integer> playlistAll, Model view, HttpServletRequest req) throws Exception{
+		logger.info(playlistAll.get(0)+"");
+		Map map = new HashMap();
+		map.put("playlistAll", playlistAll);
+		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
+		map.put("usernumber", usernumber);
+		view.addAttribute("playlistAll", download.registSeveral(map));
+		//mav.addObject("playlistAll", playlistAll);
+		return "/chart/modal/download_modal";
 	}
 	
 	@RequestMapping("/download_music")
@@ -97,9 +125,12 @@ public class ChartController {
 		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
 		DownloadVO dlist = new DownloadVO();
 		dlist.setUserNumber(usernumber);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userNumber", usernumber);
+		map.put("musicnumbers", musicnumbers);
 		
-		//download.registSevral(dlist, musicnumbers);
-		return "redirect:/chart";
+		download.registSeveral(map);
+		return "/chart";
 	}
 	
 	@RequestMapping("/like_music")
@@ -121,4 +152,6 @@ public class ChartController {
 		view.addAttribute("albumList", album.searchAll(30));
 		return "/album/new_album";
 	}
+	
+
 }

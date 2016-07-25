@@ -1,19 +1,20 @@
 /*
- ÀÛ¼ºÀÚ - Á¤È¿Áø
-³»¿ë - ¾Ù¹ü dao ±¸Çö Å¬·¡½º
-½ÃÀÛ³¯Â¥ - 2016-07-20
-¼öÁ¤³¯Â¥ - 2016-07-22
-º¯°æ³»¿ë - ¾Ù¹ü dao
+ ï¿½Û¼ï¿½ï¿½ï¿½ - ï¿½ï¿½È¿ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ - ï¿½Ù¹ï¿½ dao ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½Û³ï¿½Â¥ - 2016-07-20
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥ - 2016-07-22
+ï¿½ï¿½ï¿½æ³»ï¿½ï¿½ - ï¿½Ù¹ï¿½ dao
  */
 package com.bridge.app.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.bridge.app.domain.DownloadVO;
 
 public interface DownloadDAO {
 	public void registOne(DownloadVO download) throws Exception;
-	public void registSeveral(List<Integer> musicNumbers, Integer userNumber) throws Exception;
+	public void registSeveral(Map<String, Object> map) throws Exception;
 	public void remove(Integer downloadNumber) throws Exception;
 	
 	public List<DownloadVO> searchAll(Integer userNumber) throws Exception;

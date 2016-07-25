@@ -7,15 +7,23 @@
 	<select id="searchAll" resultType="com.bridge.app.domain.DownloadVO">
 		select * from download where usernumber=#{userNumber}
 	</select>
+	<select id="search_sev" parameterType="Map" resultType="com.bridge.app.domain.MusicVO">
+		select * from music where
+		<foreach collection="playlistAll" item="list" separator=",">
+		usernumber=#{usernumber} and musicnumber=#{list}
+		</foreach>
+	</select>
 	
 	<insert id="regist">
 		insert into download(musicnumber, usernumber, downloaddate) values(#{musicNumber}, #{userNumber}, now())
 	</insert>
 	
-	<insert id="registSevral" parameterType="java.util.List">
+	<insert id="registSevral" parameterType="ArrayList">
 		insert into download(musicnumber, usernumber, downloaddate) 
 		values(
-		<foreach collection="musiclist" item="musicnumbers"></foreach>
+		<foreach collection="musiclist" item="musicnumbers">
+			#{userNumber}, #{musiclist}
+		</foreach>
 		)
 	</insert>
 	

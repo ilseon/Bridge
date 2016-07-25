@@ -12,6 +12,7 @@
 <script>
 var user = "<c:out value='${userNumber}'/>";
 
+/*
 $(document).ready(function() {
 	$("#Download").on("show.bs.modal", function (event) {
 	var button = $(event.relatedTarget); // Button that triggered the modal
@@ -20,7 +21,7 @@ $(document).ready(function() {
 
 	modal.find(".modal-body a").href("/download_music?musicnumber="+musicnumber);
 	});
-});
+});*/
 
 //checkbox 전체 선택
 $(document).ready(function(){
@@ -61,12 +62,22 @@ $(function(){
 			var this_name=$(this).attr('id');
 			
 			if(this_name=="download"){
+				$('#Download').modal({
+			        remote: '/download_modal_sev?playlistAll='+playlistAll
+				});
+				
+				/*
 				$("#Download").on("show.bs.modal", function (event) {
-					var button = $(event.relatedTarget); // Button that triggered the modal
+					
+					$.get(this.href, function(html) {
+					    $(html).appendTo('body').modal();
+					  });
+					
+					/*var button = $(event.relatedTarget); // Button that triggered the modal
 					var modal = $(this);
 
 					modal.find(".modal-body a").href("/download_music_sev?musicnumber="+playlistAll);
-					});
+					});*/
 			}
 				
 			}else{
@@ -147,8 +158,8 @@ $(function(){
 							    <td width="7%">${music.albumName}</td>
 							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="PopupWindow()"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
-							    <td width="7%"><a href="/myalbum?musicnumber=${music.musicNumber}"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>
-							    <td width="7%"><a href="/download_modal?musicnumber=${music.musicNumber}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span></a></td>
+							    <td width="7%"><a href="/myalbum_modal?musicnumber=${music.musicNumber}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>
+							    <td width="7%"><a href="/download_modal?musicnumber=${music.musicNumber}"class="btn btn-default btn-xs" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span></a></td>
 							    <td width="7%"><a href="https://www.youtube.com/?gl=KR&hl=ko"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></a></td>
 							    <td width="7%"><!-- <a href="/like_music?musicnumber=${music.musicNumber}"> -->
 							    	<button class="btn btn-default btn-xs" id="like">
@@ -189,22 +200,10 @@ $(function(){
 <!-- 내 앨범 추가 모달 시작 -->
     <div class="modal fade" id="MyAlbum" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
       <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">내 앨범에 추가</h4>
-      </div>
-          <div class="modal-body">
-       
-     		해당 곡을 내 앨범에 추가하시겠습니까?
-      </div>
-        <div class="modal-footer ">
-        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
-      </div>
-        </div>
+   		 <div class="modal-content">
+         </div>
     <!-- /.modal-content --> 
-  </div>
+ 	 </div>
       <!-- /.modal-dialog --> 
-    </div>
+   </div>
 <!-- 내 앨범 추가 모달 끝 -->
