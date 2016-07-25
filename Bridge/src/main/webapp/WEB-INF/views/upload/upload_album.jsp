@@ -130,7 +130,7 @@
 						<div class="col-md-2 col-md-offset-1">
 							<img src='resources/image/upload/album/album_image.PNG'
 								width="150%"><br /><br /> <input type="file" name="albumImg"
-								id="albumImg" /><br /> <input type="text" class="form-control"
+								id="albumImg" /><br /> <input type="date" class="form-control"
 								name="albumDate" id="albumDate" style="width: 148%;"><br />
 							<br />
 						</div>

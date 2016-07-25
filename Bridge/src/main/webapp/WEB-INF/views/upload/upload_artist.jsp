@@ -47,22 +47,18 @@
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: white;
 }
-
 #upload_main {
 	margin-left: 100px;
 }
-
 #pom {
 	border-radius: 17px;
 	background-color: #EDE6E6;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 }
-
 #regist {
 	border: none;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 }
-
 #cencle {
 	border: none;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;

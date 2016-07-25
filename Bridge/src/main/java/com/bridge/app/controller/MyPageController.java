@@ -1,15 +1,12 @@
 /**
 작성자 - 이주연
-내용 - 업로드 1단계 페이지
+내용 - MyPageController
 시작날짜 - 2016/07/17
-수정날짜 - 2016/07/24
+수정날짜 - 2016/07/25
 변경내용 - 
  */
 
 package com.bridge.app.controller;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bridge.app.service.AlbumService;
@@ -28,15 +24,15 @@ import com.bridge.app.service.ArtistService;
 import com.bridge.app.service.MusicService;
 import com.bridge.app.domain.AlbumVO;
 import com.bridge.app.domain.ArtistVO;
-import com.bridge.app.domain.MusicVO;
+
 
 @Controller
 public class MyPageController {
 	
 	@Inject
-	private AlbumService albumservice;
-	@Inject
 	private ArtistService artistservice;
+	@Inject
+	private AlbumService albumservice;
 	@Inject
 	private MusicService musicservice;
 
@@ -44,65 +40,38 @@ public class MyPageController {
 
 	@RequestMapping(value = "upload", method = RequestMethod.GET)
 	public String Upload() throws Exception {
-		logger.info("It is upload_artist");
+		logger.info("업로드 시작");
 		return "/upload/upload_artist";
 	}
 
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
-	public ModelAndView Upload_Artist(@RequestParam Map<String, String> paramMap,
-			HttpServletRequest req) throws Exception {
+	public String Upload_Artist(HttpServletRequest req) throws Exception {
 
-		logger.info("현재 페이지는 It is upload_artist");
-		ModelAndView mav = new ModelAndView("/upload/upload_album");
-		
-		String artistImg = artistservice.FileUpload(req);
-		
-		//paramMap.get("artistName");
-		//paramMap.get("artistType");
-		//paramMap.get("artistGenre");
-		paramMap.put("artistImg", artistImg);
-		//paramMap.get(Integer.parseInt("userNumber"));
-		
-		logger.info(paramMap.get("artistName")+paramMap.get("artistType")+paramMap.get("artistGenre")+paramMap.get("userNumber")+paramMap.get("artistImg"));
-
-
-		artistservice.ArtistInsert(paramMap);	
-		return mav;		
+		logger.info("아티스트 등록");
+		artistservice.regist(req);
+		return "/upload/upload_album";		
 	}
 
 	@RequestMapping(value = "upload2", method = RequestMethod.POST)
-	public ModelAndView Upload_Album(@ModelAttribute AlbumVO album, @ModelAttribute ArtistVO artist) throws Exception {
+	public String Upload_Album(@ModelAttribute AlbumVO album, @ModelAttribute ArtistVO artist) throws Exception {
 
-		logger.info("현재 페이지는 It is upoad_album");
+		logger.info("앨범 등록");
 		logger.info("아티스트 값 : " + artist.toString());
 		logger.info("앨범 값 : " + album.toString());
 
 		ModelAndView mav = new ModelAndView("/upload/upload_music");
-		return mav;
+		return "/upload/upload_music";
 	}
 
 	@RequestMapping(value = "upload3", method = RequestMethod.POST)
-	public ModelAndView Upload_Music(@ModelAttribute AlbumVO album, @ModelAttribute ArtistVO artist,
-			@ModelAttribute MusicVO music) throws Exception {
+	public ModelAndView Upload_Music(HttpServletRequest req) throws Exception {
 
 		logger.info("현재 페이지는 It is upoad_music");
-		logger.info("아티스트 값 : " + artist.toString());
-		logger.info("앨범 값 : " + album.toString());
 
 		ModelAndView mav = new ModelAndView("/upload/mytrack");
 
-		/*
-		 * AlbumVO album = new AlbumVO();
-		 * album.setAlbumName((String)request.getAttribute("albumName"));
-		 * album.setAlbumType((String)request.getAttribute("albumType"));
-		 * album.setAlbumDate((String)request.getAttribute("albumDate"));
-		 * album.setArtistNumber(Integer.parseInt((String)
-		 * request.getAttribute("ArtistNumber")));
-		 * album.setAlbumImg((String)request.getAttribute("albumDate"));
-		 * album.setAlbumContent((String)request.getAttribute("albumDate"));
-		 */
-		albumservice.AlbumInsert(album);
-		musicservice.regist(music);
+		albumservice.regist(req);
+		//musicservice.regist(music);
 		return mav;
 	}
 

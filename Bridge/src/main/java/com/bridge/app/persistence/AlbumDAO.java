@@ -1,10 +1,11 @@
 package com.bridge.app.persistence;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.bridge.app.domain.AlbumVO;
 
 public interface AlbumDAO {
 	
 	public AlbumVO test();
-	public void AlbumInsert(AlbumVO vo) throws Exception;
-	public String FileUpload() throws Exception;
+	public void AlbumInsert(HttpServletRequest req) throws Exception;
 }

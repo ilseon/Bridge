@@ -11,9 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import com.bridge.app.controller.MyPageController;
+import com.bridge.app.domain.ArtistVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.oreilly.servlet.multipart.MultipartParser;
 
 
 @Repository
@@ -26,15 +26,8 @@ public class ArtistDAOImpl implements ArtistDAO {
 	private static final String NAMESPACE = "com.bridge.mappers.artistMapper";
 
 	@Override
-	public void regist(Map<String, String> paramMap) throws Exception {
-		
-		
-		sqlSession.insert(NAMESPACE + ".regist", paramMap);
-	}
+	public void regist(HttpServletRequest req) throws Exception {
 
-	@Override
-	public String FileUpload(HttpServletRequest req) throws Exception {
-	
 		int postMaxSize = 10 * 1024 * 1024;
 		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
         String folder_p=folderPath+"upload"+File.separator+"artist"+File.separator;
@@ -44,7 +37,7 @@ public class ArtistDAOImpl implements ArtistDAO {
         if(!file.exists()) {
            file.mkdirs();
         }
-      
+       		
         String encoding = "UTF-8";
         Enumeration enumer = null;
         MultipartRequest multiReq = 
@@ -58,7 +51,19 @@ public class ArtistDAOImpl implements ArtistDAO {
             String name = (String)enumer.nextElement();
             artistImg = multiReq.getFilesystemName(name);
          }
-         System.out.println(folderPath);
-		return artistImg;
-	}		
+         
+         ArtistVO artist = new ArtistVO();
+         
+         artist.setArtistName(multiReq.getParameter("artistName"));
+         artist.setArtistGenre(multiReq.getParameter("artistGenre"));
+         artist.setArtistType(multiReq.getParameter("artistType"));
+         artist.setArtistImg(artistImg);
+         artist.setUserNumber(Integer.parseInt(multiReq.getParameter("userNumber")));
+            
+        logger.info(multiReq.getParameter("artistName")+multiReq.getParameter("artistGenre")+multiReq.getParameter("artistType")
+        +artistImg+multiReq.getParameter("userNumber")); 
+        logger.info(artist.toString());
+       
+        sqlSession.insert(NAMESPACE + ".regist", artist);
+	}
 }

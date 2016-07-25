@@ -11,6 +11,5 @@ import com.bridge.app.domain.ArtistVO;
 
 public interface ArtistDAO {
 	
-	public void regist(Map<String, String> paramMap) throws Exception;
-	public String FileUpload(HttpServletRequest req) throws Exception;
+	public void regist(HttpServletRequest req) throws Exception;
 }
