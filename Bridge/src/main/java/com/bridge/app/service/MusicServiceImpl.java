@@ -11,6 +11,7 @@ package com.bridge.app.service;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Repository;
 
@@ -24,8 +25,8 @@ public class MusicServiceImpl implements MusicService {
 	private MusicDAO musicDAO;
 
 	@Override
-	public void regist(MusicVO music) throws Exception {
-		musicDAO.regist(music);
+	public void regist(HttpServletRequest req) throws Exception {
+		musicDAO.regist(req);
 	}
 
 	@Override

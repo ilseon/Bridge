@@ -60,8 +60,8 @@ public class ArtistDAOImpl implements ArtistDAO {
          artist.setArtistImg(artistImg);
          artist.setUserNumber(Integer.parseInt(multiReq.getParameter("userNumber")));
             
-        logger.info(multiReq.getParameter("artistName")+multiReq.getParameter("artistGenre")+multiReq.getParameter("artistType")
-        +artistImg+multiReq.getParameter("userNumber")); 
+        logger.info("multiReq :"+multiReq.getParameter("artistName")+" / "+multiReq.getParameter("artistGenre")+" / "+multiReq.getParameter("artistType")
+        +" / "+artistImg+multiReq.getParameter("userNumber")); 
         logger.info(artist.toString());
        
         sqlSession.insert(NAMESPACE + ".regist", artist);

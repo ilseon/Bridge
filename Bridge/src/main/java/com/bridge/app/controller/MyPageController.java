@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,9 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bridge.app.service.AlbumService;
 import com.bridge.app.service.ArtistService;
 import com.bridge.app.service.MusicService;
-import com.bridge.app.domain.AlbumVO;
-import com.bridge.app.domain.ArtistVO;
-
 
 @Controller
 public class MyPageController {
@@ -48,33 +44,27 @@ public class MyPageController {
 	public String Upload_Artist(HttpServletRequest req) throws Exception {
 
 		logger.info("아티스트 등록");
-		artistservice.regist(req);
+		//artistservice.regist(req);
 		return "/upload/upload_album";		
 	}
-
 	@RequestMapping(value = "upload2", method = RequestMethod.POST)
-	public String Upload_Album(@ModelAttribute AlbumVO album, @ModelAttribute ArtistVO artist) throws Exception {
+	public String Upload_Album() throws Exception {
 
-		logger.info("앨범 등록");
-		logger.info("아티스트 값 : " + artist.toString());
-		logger.info("앨범 값 : " + album.toString());
-
-		ModelAndView mav = new ModelAndView("/upload/upload_music");
-		return "/upload/upload_music";
+	logger.info("앨범 등록");
+	return "/upload/upload_music";
 	}
-
+	
 	@RequestMapping(value = "upload3", method = RequestMethod.POST)
-	public ModelAndView Upload_Music(HttpServletRequest req) throws Exception {
+	public String Upload_Music(HttpServletRequest req) throws Exception {
 
-		logger.info("현재 페이지는 It is upoad_music");
+	logger.info("뮤직등록");
 
-		ModelAndView mav = new ModelAndView("/upload/mytrack");
-
-		albumservice.regist(req);
-		//musicservice.regist(music);
-		return mav;
+	albumservice.regist(req);
+	musicservice.regist(req);
+	return "/upload/mytrack";
 	}
-
+	
+	
 	@RequestMapping(value = "mytrack", method = RequestMethod.GET)
 	public String MyTrack_() {
 		logger.info("It is mytrack");

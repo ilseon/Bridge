@@ -14,9 +14,12 @@
 	</select>
 	
 	<insert id="regist">
-		insert into music (musicsubject, musicfile, musicvideo, musiccheck)
-		values(#{musicsubject+i}, #{musicfile+i}, #{musicvideo+i}, #{musiccheck+i})
+		insert into music (musicsubject, musicfile, musicvideo, musictitle)
+		 <foreach collection="list" item="item" separator=" , ">
+		values(#{musicsubject}, #{musicfile}, #{musicvideo}, #{musictitle})
+		  </foreach>
 	</insert>
+	
 	
 	<delete id="remove">
 		delete from playlist where musicnumber=#{musicnumber}

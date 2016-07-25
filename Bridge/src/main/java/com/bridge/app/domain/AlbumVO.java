@@ -17,44 +17,28 @@ public class AlbumVO {
 	private int artistNumber;
 	private String albumImg;
 	private String albumContent;
-	
-	/*파일 업로드*/
-	private String path;
-	private MultipartRequest multi;
-	
+	private int ageLimit;	
+	private int counter;
+
+		
 	@Override
 	public String toString() {
 		return "AlbumVO [albumNumber=" + albumNumber + ", albumName=" + albumName + ", albumType=" + albumType
 				+ ", albumDate=" + albumDate + ", albumGenre=" + albumGenre + ", artistNumber=" + artistNumber
-				+ ", albumImg=" + albumImg + ", albumContent=" + albumContent + "]";
-	}
-	
-	public String getPath() {
-		return path;
-	}
-	public void setPath(String path) {
-		this.path = path;
-	}
-	public MultipartRequest getMulti() {
-		return multi;
-	}
-	public String getAlbumName() {
-		return albumName;
-	}
-	public void setAlbumName(String albumName) {
-		this.albumName = albumName;
-	}
-	public String getAlbumContent() {
-		return albumContent;
-	}
-	public void setAlbumContent(String albumContent) {
-		this.albumContent = albumContent;
+				+ ", albumImg=" + albumImg + ", albumContent=" + albumContent + ", ageLimit=" + ageLimit + ", counter="
+				+ counter + "]";
 	}
 	public int getAlbumNumber() {
 		return albumNumber;
 	}
 	public void setAlbumNumber(int albumNumber) {
 		this.albumNumber = albumNumber;
+	}
+	public String getAlbumName() {
+		return albumName;
+	}
+	public void setAlbumName(String albumName) {
+		this.albumName = albumName;
 	}
 	public String getAlbumType() {
 		return albumType;
@@ -85,5 +69,25 @@ public class AlbumVO {
 	}
 	public void setAlbumImg(String albumImg) {
 		this.albumImg = albumImg;
-	}		
+	}
+	public String getAlbumContent() {
+		return albumContent;
+	}
+	public void setAlbumContent(String albumContent) {
+		this.albumContent = albumContent;
+	}
+	public int getAgeLimit() {
+		return ageLimit;
+	}
+	public void setAgeLimit(int ageLimit) {
+		this.ageLimit = ageLimit;
+	}
+	public int getCounter() {
+		return counter;
+	}
+	public void setCounter(int counter) {
+		this.counter = counter;
+	}
+	
+	
 }

@@ -13,21 +13,20 @@ public class MusicVO {
 	private int albumnumber;
 	private String albumname;
 	private String albumimg;
-	private int musicdownload;
+	private int musictitle;
 	
+	private int musicdownload;	
 	private int musicplay;
 	private int musiclike;
-	private int musiccheck;
 	
 	private int musicrank;
 	
-	@Override
-	public String toString() {
-		return "MusicVO [musicnumber=" + musicnumber + ", musicsubject=" + musicsubject + ", artistnumber="
-				+ artistnumber + ", artistname=" + artistname + ", musiclyrics=" + musiclyrics + ", musicfile="
-				+ musicfile + ", musicvideo=" + musicvideo + ", albumnumber=" + albumnumber + ", albumname=" + albumname
-				+ ", albumimg=" + albumimg + ", musicdownload=" + musicdownload + ", musicplay=" + musicplay
-				+ ", musiclike=" + musiclike + ", musiccheck=" + musiccheck + ", musicrank=" + musicrank + "]";
+	public int getMusictitle() {
+		return musictitle;
+	}
+
+	public void setMusictitle(int musictitle) {
+		this.musictitle = musictitle;
 	}
 
 	public int getMusicnumber() {
@@ -110,14 +109,8 @@ public class MusicVO {
 		this.musiclike = musiclike;
 	}
 
-	public int getMusiccheck() {
-		return musiccheck;
-	}
-
-	public void setMusiccheck(int musiccheck) {
-		this.musiccheck = musiccheck;
-	}
-
+	
+	
 	public int getMusicrank() {
 		return musicrank;
 	}
@@ -148,7 +141,5 @@ public class MusicVO {
 
 	public void setAlbumimg(String albumimg) {
 		this.albumimg = albumimg;
-	}
-	
-	
+	}	
 }

@@ -26,8 +26,5 @@ public class AlbumController {
 	public String albumDetail(Model model) throws Exception{
 		model.addAttribute(service.getAlbumOne());
 		return "/album/album_detail";
-	}
-	
-
-	
+	}	
 }

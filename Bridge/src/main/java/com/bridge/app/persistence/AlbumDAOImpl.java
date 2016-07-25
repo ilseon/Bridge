@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.bridge.app.controller.MyPageController;
 import com.bridge.app.domain.AlbumVO;
 import com.bridge.app.domain.ArtistVO;
+import com.bridge.app.domain.MusicVO;
 import com.bridge.app.domain.UserVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -39,13 +40,14 @@ public class AlbumDAOImpl implements AlbumDAO {
 		int postMaxSize = 10 * 1024 * 1024;
 		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
         String folder_p=folderPath+"upload"+File.separator+"album"+File.separator;
-           
+                 
         File file = null;
         file = new File(folder_p);
         if(!file.exists()) {
            file.mkdirs();
         }
        		
+        
         String encoding = "UTF-8";
         Enumeration enumer = null;
         MultipartRequest multiReq = 
@@ -60,16 +62,22 @@ public class AlbumDAOImpl implements AlbumDAO {
             albumImg = multiReq.getFilesystemName(name);
          }
          
-         AlbumVO album = new  AlbumVO();
+        AlbumVO album = new  AlbumVO();
          
         album.setAlbumName(multiReq.getParameter("albumName"));
         album.setAlbumType(multiReq.getParameter("albumType"));
+        album.setAlbumDate(multiReq.getParameter("albumDate"));
         album.setAlbumGenre(multiReq.getParameter("albumGenre"));
-        album.setAlbumDate(multiReq.getParameter("albumDate"));
-        album.setAlbumContent(multiReq.getParameter("albumContent"));
+        album.setArtistNumber(9);
         album.setAlbumImg(albumImg);
-        album.setAlbumDate(multiReq.getParameter("albumDate"));
-            
+        
+        logger.info(multiReq.getParameter("albumName")+multiReq.getParameter("albumType")+multiReq.getParameter("albumDate")
+        +multiReq.getParameter("albumGenre")+albumImg+"카운터 : "+multiReq.getParameter("counter"));
+        
+        album.setAgeLimit(1);
+        album.setAlbumContent(multiReq.getParameter("albumContent"));
+           
+        logger.info(multiReq.getParameter("ageLimit")+multiReq.getParameter("albumContent"));
         logger.info(album.toString());
 		
 		sqlSession.insert(NAMESPACE + ".regist", album);
