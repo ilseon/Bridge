@@ -148,7 +148,7 @@ $(function(){
 							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="PopupWindow()"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
 							    <td width="7%"><a href="/myalbum?musicnumber=${music.musicNumber}"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>
-							    <td width="7%"><button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" id="download" data-musicnumber="${music.musicNumber}"><span class="glyphicon glyphicon-download-alt"></span></button></td>
+							    <td width="7%"><a href="/download_modal?musicnumber=${music.musicNumber}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span></a></td>
 							    <td width="7%"><a href="https://www.youtube.com/?gl=KR&hl=ko"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></a></td>
 							    <td width="7%"><!-- <a href="/like_music?musicnumber=${music.musicNumber}"> -->
 							    	<button class="btn btn-default btn-xs" id="like">
@@ -175,21 +175,9 @@ $(function(){
 </div>
 
 <!-- 다운로드 모달창 시작 -->
-<div class="modal fade" id="Download" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+<div class="modal fade" id="Download" role="dialog" aria-labelledby="edit" aria-hidden="true">
       <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">다운로드</h4>
-      </div>
-          <div class="modal-body">
-          	해당 노래를 다운받으시겠습니까?
-      </div>
-          <div class="modal-footer">
-        <a href=""><button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span><input type="hidden" id="" value=""/> Yes</button></a>
-        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
-      </div>
-        </div>
+    <div class="modal-content"></div>
     <!-- /.modal-content --> 
   </div>
       <!-- /.modal-dialog --> 
