@@ -57,14 +57,17 @@ public class MyPageController {
 		
 		String artistImg = artistservice.FileUpload(req);
 		
-		paramMap.get("artistName");
-		paramMap.get("artistType");
-		paramMap.get("artistGenre");
-		Integer.parseInt(paramMap.get("userNumber"));
-		paramMap.get("artistImg");
+		//paramMap.get("artistName");
+		//paramMap.get("artistType");
+		//paramMap.get("artistGenre");
+		paramMap.put("artistImg", artistImg);
+		//paramMap.get(Integer.parseInt("userNumber"));
+		
+		logger.info(paramMap.get("artistName")+paramMap.get("artistType")+paramMap.get("artistGenre")+paramMap.get("userNumber")+paramMap.get("artistImg"));
+
 
 		artistservice.ArtistInsert(paramMap);	
-		return mav;
+		return mav;		
 	}
 
 	@RequestMapping(value = "upload2", method = RequestMethod.POST)

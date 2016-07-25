@@ -1,24 +1,20 @@
 package com.bridge.app.persistence;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cglib.core.DefaultNamingPolicy;
 import org.springframework.stereotype.Repository;
-
 import com.bridge.app.controller.MyPageController;
-import com.bridge.app.domain.ArtistVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.MultipartParser;
+
 
 @Repository
 public class ArtistDAOImpl implements ArtistDAO {
@@ -31,6 +27,8 @@ public class ArtistDAOImpl implements ArtistDAO {
 
 	@Override
 	public void regist(Map<String, String> paramMap) throws Exception {
+		
+		
 		sqlSession.insert(NAMESPACE + ".regist", paramMap);
 	}
 
@@ -46,13 +44,13 @@ public class ArtistDAOImpl implements ArtistDAO {
         if(!file.exists()) {
            file.mkdirs();
         }
-        
+      
         String encoding = "UTF-8";
-        Enumeration enumer=null;
+        Enumeration enumer = null;
         MultipartRequest multiReq = 
-        			new MultipartRequest(req, folder_p, postMaxSize, "euc-kr", new DefaultFileRenamePolicy());
-        MultipartParser parser = new MultipartParser((HttpServletRequest) multiReq, 10000000); 
-        
+        			new MultipartRequest(req, folder_p, postMaxSize, "UTF-8", new DefaultFileRenamePolicy());
+
+        enumer=multiReq.getFileNames();
         String artistImg = "";      
          while(enumer.hasMoreElements()){
         	enumer=(Enumeration) multiReq.getFileNames();
@@ -60,7 +58,7 @@ public class ArtistDAOImpl implements ArtistDAO {
             String name = (String)enumer.nextElement();
             artistImg = multiReq.getFilesystemName(name);
          }
+         System.out.println(folderPath);
 		return artistImg;
-	}	
-	
+	}		
 }

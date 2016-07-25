@@ -89,7 +89,7 @@
 			<div class="jumbotron" id="pom">
 				<form id="artist" action="upload" method="post" accept-charset="UTF-8" enctype="multipart/form-data" >
 					<input type="hidden" name="userNumber" id="userNumber" value="2" />
-					<input type="hidden" name="artistNumber" id="artistNumbe" value="1" />
+					<input type="hidden" name="artistNumber" id="artistNumber" value="1" />
 					<div id="upload_main">
 						<div class="col-md-2 col-md-offset-1">
 							<br /> <img src="resources/image/upload/album/album_image.PNG"
