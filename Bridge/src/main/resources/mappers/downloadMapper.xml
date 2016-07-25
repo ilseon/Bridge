@@ -7,24 +7,23 @@
 	<select id="searchAll" resultType="com.bridge.app.domain.DownloadVO">
 		select * from download where usernumber=#{userNumber}
 	</select>
-	<select id="search_sev" parameterType="Map" resultType="com.bridge.app.domain.MusicVO">
-		select * from music where
-		<foreach collection="playlistAll" item="list" separator=",">
-		usernumber=#{usernumber} and musicnumber=#{list}
-		</foreach>
+	<select id="search_sev" parameterType="map" resultType="com.bridge.app.domain.MusicVO">
+	
+		select m.musicsubject as musicsubject, a.artistname as artistname, m.musicnumber as musicnumber from music as m inner join artist as a on m.artistnumber=a.artistnumber and
+	<foreach collection="playlistAll" item="playlist" open="(" close=")" separator="or">
+		musicnumber=#{playlist.value}
+	</foreach>
 	</select>
 	
 	<insert id="regist">
-		insert into download(musicnumber, usernumber, downloaddate) values(#{musicNumber}, #{userNumber}, now())
+		insert into download(musicnumber, usernumber, user_usernumber, downloaddate) values(#{musicNumber}, #{userNumber}, #{userNumber}, now())
 	</insert>
 	
-	<insert id="registSevral" parameterType="ArrayList">
-		insert into download(musicnumber, usernumber, downloaddate) 
-		values(
-		<foreach collection="musiclist" item="musicnumbers">
-			#{userNumber}, #{musiclist}
+	<insert id="registSeveral" parameterType="map">
+		insert into download(musicnumber, usernumber, user_usernumber, downloaddate) values
+		<foreach collection="playListAll" item="playlist" separator=",">
+			(#{playlist.value}, #{userNumber}, #{userNumber}, now())
 		</foreach>
-		)
 	</insert>
 	
 	<delete id="remove">

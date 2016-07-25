@@ -12,8 +12,11 @@
 		insert into playlist(musicnumber, usernumber) values(#{musicNumber}, #{userNumber})
 	</insert>
 	
-	<insert id="registAll">
-	
+	<insert id="registAll" parameterType="map">
+		insert into playlist(musicnumber, usernumber) values
+		<foreach collection="playListAll" item="playlist" separator=",">
+			(#{playlist.value}, #{userNumber})
+		</foreach>
 	</insert>
 	
 	<delete id="remove">

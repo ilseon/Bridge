@@ -9,6 +9,7 @@
 package com.bridge.app.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -68,5 +69,11 @@ public class MusicServiceImpl implements MusicService {
 	@Override
 	public MusicVO searchMusic(int musicnumber) throws Exception {
 		return musicDAO.searchMusic(musicnumber);
+	}
+
+
+	@Override
+	public List<MusicVO> searchGenre(Map map) throws Exception {
+		return musicDAO.searchGenre(map);
 	}
 }

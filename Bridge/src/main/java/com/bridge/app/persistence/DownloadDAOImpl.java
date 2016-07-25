@@ -17,6 +17,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.bridge.app.domain.DownloadVO;
+import com.bridge.app.domain.MusicVO;
 
 @Repository
 public class DownloadDAOImpl implements DownloadDAO {
@@ -32,8 +33,8 @@ public class DownloadDAOImpl implements DownloadDAO {
 	}
 
 	@Override
-	public void registSeveral(Map<String, Object> map) throws Exception {
-		sqlSession.insert(NAMESPACE+".registSeveral", map);
+	public void registSeveral(Map playListAll) throws Exception {
+		sqlSession.insert(NAMESPACE+".registSeveral", playListAll);
 	}
 
 	@Override
@@ -46,6 +47,11 @@ public class DownloadDAOImpl implements DownloadDAO {
 	public List<DownloadVO> searchAll(Integer userNumber) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<MusicVO> search_sev(Map playlistAll) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".search_sev", playlistAll);
 	}
 	
 }

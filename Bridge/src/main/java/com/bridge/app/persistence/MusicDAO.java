@@ -8,6 +8,7 @@
 package com.bridge.app.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.bridge.app.domain.MusicVO;
 
@@ -19,6 +20,7 @@ public interface MusicDAO {
 	
 	public List<MusicVO> searchAll(int limit) throws Exception;
 	public MusicVO searchMusic(int musicnumber) throws Exception;
+	public List<MusicVO> searchGenre(Map map) throws Exception;
 	public MusicVO search() throws Exception;
  	
 }

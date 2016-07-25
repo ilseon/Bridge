@@ -11,11 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.bridge.app.domain.DownloadVO;
+import com.bridge.app.domain.MusicVO;
 
 public interface DownloadDAO {
 	public void registOne(DownloadVO download) throws Exception;
-	public void registSeveral(Map<String, Object> map) throws Exception;
+	public void registSeveral(Map playListAll) throws Exception;
 	public void remove(Integer downloadNumber) throws Exception;
 	
 	public List<DownloadVO> searchAll(Integer userNumber) throws Exception;
+	public List<MusicVO> search_sev(Map playlistAll) throws Exception;
 }

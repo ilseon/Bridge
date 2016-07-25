@@ -28,6 +28,7 @@ import org.springframework.web.util.WebUtils;
 import com.bridge.app.domain.AlbumVO;
 import com.bridge.app.domain.DownloadVO;
 import com.bridge.app.domain.LikeVO;
+import com.bridge.app.domain.MusicVO;
 import com.bridge.app.domain.PlaylistVO;
 import com.bridge.app.service.AlbumService;
 import com.bridge.app.service.DownloadService;
@@ -58,22 +59,61 @@ public class ChartController {
 	private AlbumService album;
 	
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
-	public String chart(Model view, HttpServletRequest req) throws Exception{
+	public String chart(String genre, Model view, HttpServletRequest req) throws Exception{
 		logger.info("chart");
 		int userNumber;
 		if(WebUtils.getSessionAttribute(req, "userNumber")!=null){
 			userNumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
 			view.addAttribute("likeList", like.searchAll(userNumber));
 		}	
-		logger.info("123456");
-		view.addAttribute("musicList", music.searchAll(100));
+		if(genre==null){
+			view.addAttribute("musicList", music.searchAll(100));
+		}else{
+			Map map = new HashMap();
+			map.put("limit", 100);
+			if(genre.equals("indie")){
+				logger.info(genre+"인디");
+				map.put("genre", "인디");
+				view.addAttribute("genre","indie");
+			}else if(genre.equals("rnb")){
+				map.put("genre", "알앤비");
+				view.addAttribute("genre","rnb");
+			}else if(genre.equals("hiphop")){
+				map.put("genre", "힙합");
+				view.addAttribute("genre","hiphop");
+			}else if(genre.equals("el")){
+				map.put("genre", "일렉트로닉");
+				view.addAttribute("genre","el");
+			}else if(genre.equals("rnm")){
+				map.put("genre", "락/메탈");
+				view.addAttribute("genre","rnm");
+			}else if(genre.equals("jazz")){
+				map.put("genre", "재즈");
+				view.addAttribute("genre","jazz");
+			}else if(genre.equals("bdp")){
+				map.put("genre", "발라드/댄스/팝");
+				view.addAttribute("genre","bdp");
+			}
+			
+			view.addAttribute("musicList", music.searchGenre(map));
+		}
+		
 		view.addAttribute("page","main");
 		return "/chart/chart_main";
 	}
 	
 	@RequestMapping("/myalbum_modal")
 	public String myalbum_modal(@RequestParam("musicnumber") int musicnumber, Model view) throws Exception{
-		view.addAttribute("musicnumber", musicnumber);
+		view.addAttribute("music", music.searchMusic(musicnumber));
+		return "/chart/modal/myalbum_modal";
+	}
+	
+	@RequestMapping("/myalbum_modal_sev")
+	public String myalbum_modal_sev(@RequestParam("playlistAll") List<Integer> playlistAll, Model view) throws Exception{
+		HashMap map = new HashMap();
+		map.put("playlistAll", playlistAll);
+		List<MusicVO> music = download.search_sev(map);
+		view.addAttribute("playlistAll", music);
 		return "/chart/modal/myalbum_modal";
 	}
 	
@@ -89,6 +129,23 @@ public class ChartController {
 		return "redirect:/chart";
 	}
 	
+	@RequestMapping(value="/myalbum_sev", method=RequestMethod.GET)
+	public String registPlaylist_sev(@RequestParam("playlistall") String playlistall, HttpServletRequest req, Model view) throws Exception{
+		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
+		Map plist = new HashMap();
+		plist.put("userNumber", usernumber);
+		List<Integer> playListAll = new ArrayList();
+		String[] play = playlistall.split(",");
+		for(int i=1;i<play.length;i++){
+			playListAll.add(Integer.parseInt(play[i]));
+		}
+		
+		plist.put("playListAll", playListAll);
+		
+		playlist.registAll(plist);
+		return "redirect:/chart";
+	}
+	
 	@RequestMapping("/download_modal")
 	public String download_modal(@RequestParam("musicnumber") int musicnumber, Model view) throws Exception{
 		view.addAttribute("music", music.searchMusic(musicnumber));
@@ -96,15 +153,13 @@ public class ChartController {
 	}
 	
 	@RequestMapping("/download_modal_sev")
-	public String download_modal_sev(@RequestParam("playlistAll") ArrayList<Integer> playlistAll, Model view, HttpServletRequest req) throws Exception{
-		logger.info(playlistAll.get(0)+"");
-		Map map = new HashMap();
+	public ModelAndView download_modal_sev(@RequestParam("playlistAll") List<Integer> playlistAll, HttpServletRequest req) throws Exception{
+		HashMap map = new HashMap();
 		map.put("playlistAll", playlistAll);
-		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
-		map.put("usernumber", usernumber);
-		view.addAttribute("playlistAll", download.registSeveral(map));
-		//mav.addObject("playlistAll", playlistAll);
-		return "/chart/modal/download_modal";
+		List<MusicVO> music = download.search_sev(map);
+		ModelAndView view = new ModelAndView("/chart/modal/download_modal");
+		view.addObject("playlistAll", music);
+		return view;
 	}
 	
 	@RequestMapping("/download_music")
@@ -120,17 +175,23 @@ public class ChartController {
 	}
 	
 	@RequestMapping("/download_music_sev")
-	public String downloadMusicSev(List<Integer> musicnumbers, HttpServletRequest req, Model view) throws Exception{
+	public String downloadMusicSev(String musicnumbers, HttpServletRequest req, Model view) throws Exception{
 		
 		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
-		DownloadVO dlist = new DownloadVO();
-		dlist.setUserNumber(usernumber);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("userNumber", usernumber);
-		map.put("musicnumbers", musicnumbers);
+		Map dlist = new HashMap();
+		dlist.put("userNumber", usernumber);
+		List<Integer> playListAll = new ArrayList();
+		String[] play = musicnumbers.split(",");
+		for(int i=1;i<play.length;i++){
+			playListAll.add(Integer.parseInt(play[i]));
+		}
 		
-		download.registSeveral(map);
-		return "/chart";
+		dlist.put("playListAll", playListAll);
+
+		//download.registSeveral(dlist);
+		view.addAttribute("download_now", "download_now");
+		view.addAttribute("download_list", playListAll);
+		return "redirect:/chart";
 	}
 	
 	@RequestMapping("/like_music")
@@ -151,6 +212,43 @@ public class ChartController {
 		AlbumVO aList = new AlbumVO();
 		view.addAttribute("albumList", album.searchAll(30));
 		return "/album/new_album";
+	}
+	
+	@RequestMapping("/chart_genre")
+	public String music_genre(String genre, Model view) throws Exception{
+		Map map = new HashMap();
+		map.put("limit", 100);
+		if(genre.equals("indie")){
+			map.put("genre", "인디");
+			view.addAttribute("genre","indie");
+		}else if(genre.equals("rnb")){
+			map.put("genre", "알앤비");
+			view.addAttribute("genre","rnb");
+		}else if(genre.equals("hiphop")){
+			map.put("genre", "힙합");
+			view.addAttribute("genre","hiphop");
+		}else if(genre.equals("el")){
+			map.put("genre", "일렉트로닉");
+			view.addAttribute("genre","el");
+		}else if(genre.equals("rnm")){
+			map.put("genre", "락/메탈");
+			view.addAttribute("genre","rnm");
+		}else if(genre.equals("jazz")){
+			map.put("genre", "재즈");
+			view.addAttribute("genre","jazz");
+		}else if(genre.equals("bdp")){
+			map.put("genre", "발라드/댄스/팝");
+			view.addAttribute("genre","bdp");
+		}
+		
+		view.addAttribute("musicList", music.searchGenre(map));
+		return "redirect:/chart";
+	}
+	
+	@RequestMapping("/pay_modal")
+	public String pay_success(List<Integer> musicnumbers, Model view) throws Exception{
+		view.addAttribute("musicnumbers", musicnumbers);
+		return "/chart/modal/pay_modal";
 	}
 	
 

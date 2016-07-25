@@ -10,6 +10,7 @@ package com.bridge.app.persistence;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -63,6 +64,11 @@ public class MusicDAOImpl implements MusicDAO {
 	@Override
 	public MusicVO searchMusic(int musicnumber) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+".searchMusic", musicnumber);
+	}
+
+	@Override
+	public List<MusicVO> searchGenre(Map map) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".searchGenre", map);
 	}
 
 }

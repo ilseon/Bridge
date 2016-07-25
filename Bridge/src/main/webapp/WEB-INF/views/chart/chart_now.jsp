@@ -11,6 +11,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script>
 var user = "<c:out value='${userNumber}'/>";
+var download="<c:out value='${download_now}'/>";
+var download_list= new Array();
+download_list="<c:out value='${download_list}'/>";
 
 /*
 $(document).ready(function() {
@@ -39,6 +42,15 @@ $(document).ready(function(){
 	    });
 	});
 	
+$(function(){
+	if(download!=""){
+		alert("왜안되지?");
+		$('#Download').modal({
+	        remote: '/modal/pay_modal?musicnumbers='+download_list
+		});
+	}
+});
+	
 var playlistAll = new Array();
 	
 //여러 곡을 선택한 경우
@@ -65,19 +77,10 @@ $(function(){
 				$('#Download').modal({
 			        remote: '/download_modal_sev?playlistAll='+playlistAll
 				});
-				
-				/*
-				$("#Download").on("show.bs.modal", function (event) {
-					
-					$.get(this.href, function(html) {
-					    $(html).appendTo('body').modal();
-					  });
-					
-					/*var button = $(event.relatedTarget); // Button that triggered the modal
-					var modal = $(this);
-
-					modal.find(".modal-body a").href("/download_music_sev?musicnumber="+playlistAll);
-					});*/
+			}else if(this_name="myalbum"){
+				$('#MyAlbum').modal({
+			        remote: '/myalbum_modal_sev?playlistAll='+playlistAll
+				});
 			}
 				
 			}else{
@@ -125,8 +128,8 @@ $(function(){
 		        &nbsp;&nbsp;<input type="checkbox" id="checkall" name="checkall"/>
 		        <a><button class="btn btn-default btn-xs" id="listen" onclick="PopupWindow()"><span class="glyphicon glyphicon-play" style="color:red"></span>듣기</button></a>
 		        <button class="btn btn-default btn-xs" id="add_listen"><span class="glyphicon glyphicon-plus" style="color:green"></span>재생 목록에 추가</button>
-		        <button class="btn btn-default btn-xs" id="myalbum"><span class="glyphicon glyphicon-paste"></span>내 앨범에 담기</button>
-		        <button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span>다운로드</button>
+		        <button class="btn btn-default btn-xs" id="myalbum"  data-toggle="modal"><span class="glyphicon glyphicon-paste"></span>내 앨범에 담기</button>
+		        <button class="btn btn-default btn-xs" data-toggle="modal" id="download"><span class="glyphicon glyphicon-download-alt"></span>다운로드</button>
 		        <button class="btn btn-default btn-xs" id="all_listen" onclick="PopupWindow()"><span class="glyphicon glyphicon-play" style="color:red"></span>전체 듣기</button>
 				</div>
 		
@@ -159,7 +162,7 @@ $(function(){
 							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="PopupWindow()"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
 							    <td width="7%"><a href="/myalbum_modal?musicnumber=${music.musicNumber}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>
-							    <td width="7%"><a href="/download_modal?musicnumber=${music.musicNumber}"class="btn btn-default btn-xs" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span></a></td>
+							    <td width="7%"><a href="/download_modal?musicnumber=${music.musicNumber}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span></a></td>
 							    <td width="7%"><a href="https://www.youtube.com/?gl=KR&hl=ko"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></a></td>
 							    <td width="7%"><!-- <a href="/like_music?musicnumber=${music.musicNumber}"> -->
 							    	<button class="btn btn-default btn-xs" id="like">

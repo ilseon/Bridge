@@ -7,6 +7,7 @@
  */
 package com.bridge.app.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Repository;
 
 import com.bridge.app.domain.DownloadVO;
+import com.bridge.app.domain.MusicVO;
 import com.bridge.app.persistence.DownloadDAO;
 
 @Repository
@@ -24,8 +26,8 @@ public class DownloadServiceImpl implements DownloadService {
 	private DownloadDAO downloadDAO;
 
 	@Override
-	public void registSeveral(Map<String, Object> map) throws Exception {
-		downloadDAO.registSeveral(map);
+	public void registSeveral(Map playListAll) throws Exception {
+		downloadDAO.registSeveral(playListAll);
 	}
 
 	@Override
@@ -42,6 +44,11 @@ public class DownloadServiceImpl implements DownloadService {
 	@Override
 	public void registOne(DownloadVO download) throws Exception {
 		downloadDAO.registOne(download);
+	}
+
+	@Override
+	public List<MusicVO> search_sev(Map playlistAll) throws Exception {
+		return downloadDAO.search_sev(playlistAll);
 	}
 
 }

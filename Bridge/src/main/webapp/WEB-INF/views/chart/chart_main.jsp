@@ -110,13 +110,22 @@ border: none;
 				<span class="bar"></span>
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<span style="color:red">
-					장르별 차트<span class="caret"></span></a>
+					<c:if test="${genre eq null}">장르별 차트</c:if>
+					<c:if test="${genre eq 'indie'}">인디</c:if>
+					<c:if test="${genre eq 'rnb'}">알앤비</c:if>
+					<c:if test="${genre eq 'hiphop'}">힙합</c:if>
+					<c:if test="${genre eq 'el'}">일렉트로닉</c:if>
+					<c:if test="${genre eq 'rnm'}">락/메탈</c:if>
+					<c:if test="${genre eq 'jazz'}">재즈</c:if>
+					<c:if test="${genre eq 'bdp'}">발라드/댄스/팝</c:if>
+					<span class="caret"></span></a>
 				</span>
 				<ul class="dropdown-menu" style="font-size:15px; padding:5px; width=100px; align:center;">
-					전체 차트<br/><br/>
-					<a href="/chart_genre?genre=indie">인디</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart_genre?genre=rnb">알앤비</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart_genre?genre=hiphop">힙합</a><br/><br/>
-					<a href="/chart_genre?genre=el">일렉트로닉</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart_genre?genre=rnm">락/메탈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart_genre?genre=jazz">재즈</a><br/><br/>
-					<a href="/chart_genre?genre=bdp">발라드/댄스/팝</a>
+					<a href="/chart">전체차트</a>
+					<br/><br/>
+					<a href="/chart?genre=indie">인디</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart?genre=rnb">알앤비</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart?genre=hiphop">힙합</a><br/><br/>
+					<a href="/chart?genre=el">일렉트로닉</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart?genre=rnm">락/메탈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart?genre=jazz">재즈</a><br/><br/>
+					<a href="/chart?genre=bdp">발라드/댄스/팝</a>
 				</ul>
 			</div>
 		</div><br/><br/><br/>
