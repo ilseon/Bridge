@@ -1,12 +1,12 @@
 <%--
-ΐΫΌΊΐΪ - ΐΜΑΦΏ¬
-³»Ώλ - ΎΖΖΌ½ΊΖ® Α¤ΊΈ µξ·Ο ΖδΐΜΑφ
-½ΓΐΫ³―Β¥ - 2016/07/17
-ΌφΑ¤³―Β¥ - 
-Ί―°ζ³»Ώλ - 
+μ‘μ„±μ - μ΄μ£Όμ—°
+λ‚΄μ© - μ•„ν‹°μ¤νΈ μ •λ³΄ λ“±λ΅ νμ΄μ§€
+μ‹μ‘λ‚ μ§ - 2016/07/17
+μμ •λ‚ μ§ - 
+λ³€κ²½λ‚΄μ© - 
  --%>
-<%@ page contentType="text/html; charset=EUC-KR"%>
-<%@page import="java.util.Vector"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +17,10 @@
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 </head>
 <script>
-	//Ε»Επ µΏΐΗ jquery 
+	//νƒν‡΄ λ™μ jquery 
 	$(document).ready(function() {
 		$(".btn-danger").on("click", function() {
-			alert("Ε»ΕπµΗΎϊ½ΐ΄Ο΄Ω.");
+			alert("νƒν‡΄λμ—μµλ‹λ‹¤.");
 			window.close();
 		});
 	});
@@ -33,19 +33,19 @@
 		<div class="col-md-4">
 			<div class="panel panel-danger">
 				<div class="panel-heading">
-					<h4 class="text-center">ΘΈΏψ Ε»Επ</h4>
+					<h4 class="text-center">νμ› νƒν‡΄</h4>
 				</div>
 				<div class="panel-body text-center">
 					<p class="leave">
 					<br />
-						<strong>Α¤Έ»·Ξ Ε»ΕπΗΟ½Γ°Ϊ½ΐ΄Ο±ξ?</strong>
+						<strong>μ •λ§λ΅ νƒν‡΄ν•μ‹κ² μµλ‹κΉ?</strong>
 					</p>
 				</div>
 			</div>
 			<div class="form-group" align="center" style="margin-top: 40px">
-				<button type="submit" class="btn btn-danger">Θ®ΐΞ</button>
+				<button type="submit" class="btn btn-danger">ν™•μΈ</button>
 				<button type="reset" class="btn btn-default"
-					onclick="window.close();">ΓλΌÒ</button>
+					onclick="window.close();">μ·¨μ†</button>
 			</div>
 		</div>
 	</div>

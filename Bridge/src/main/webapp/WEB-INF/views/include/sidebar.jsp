@@ -21,7 +21,7 @@
 <div style="margin-bottom: 250px; margin-top: 10px;" >
 <a href="chart" ><input type="image" src="/resources/image/mainchart.PNG"  /></a>
 <br/>
-<a href="#" ><input type="image" src="/resources/image/mainalbum.PNG"  /></a>
+<a href="new_album" ><input type="image" src="/resources/image/mainalbum.PNG"  /></a>
 <br/>
 <a href="video" ><input type="image" src="/resources/image/mainmv.PNG"  /></a>
 </div>
@@ -29,9 +29,10 @@
 
 <!-- 중간 메뉴 -->
 <div>
-<a href="like_song" ><input type="image" src="/resources/image/mainlike.PNG"  /></a>
+
+<a href="like_song"><input type="image" src="/resources/image/mainlike.PNG"  /></a>
 <br/>
-<a href="myalbum" ><input type="image" src="/resources/image/mainmyalbum.PNG"  /></a>
+<a href="myalbum"><input type="image" src="/resources/image/mainmyalbum.PNG"  /></a>
 <br/>
 <a href="download" ><input type="image" src="/resources/image/maindown.PNG"  /></a>
 </div>
@@ -41,8 +42,7 @@
 <div>
 <a href="upload" ><input type="image" src="/resources/image/mainup.PNG"  /></a>
 <br/>
-<a href="mytrack" ><input type="image" src="/resources/image/maintrack.PNG"  /></a>
-
+<a href="mytrack"><input type="image" src="/resources/image/maintrack.PNG"  /></a>
 </div>
 </div>
 

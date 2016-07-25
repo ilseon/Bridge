@@ -15,4 +15,5 @@
 		where username=#{username} and userbirthday=#{userbirthday}
 	</select>
 	
+
 </mapper>

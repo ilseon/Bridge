@@ -1,14 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
-<%@include file="/WEB-INF/views/include/header.jsp" %>
-<%@include file="/WEB-INF/views/include/sidebar.jsp" %>
+
 <div class="row">
 	
    <c:forEach begin="0" end="20" step="1">
@@ -52,6 +44,3 @@
 			
 </div>
 </div>
- <%@include file="/WEB-INF/views/include/footer.jsp"%>
-</body>
-</html>

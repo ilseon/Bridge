@@ -22,7 +22,7 @@
 		//삭제를 확인하는 jquery 
 		$("#del").click(function() {
 			if ($("input:checked").length > 0) {
-					alert("삭제되었습니다.");
+				alert("삭제되었습니다.");
 			} else {
 				alert("앨범을 선택해주세요.");
 			}
@@ -55,50 +55,52 @@
 			</ul>
 		</div>
 		<div class="col-md-12" style="margin-top: -40px" align="right">
-			<button class="btn" id="del">삭제</button>
+			<button class="btn btn-default btn-md" id="del">
+				<span class="glyphicon glyphicon-trash"></span>&nbsp;삭제
+			</button>
 			<hr />
 			<br />
 		</div>
 		<!-- end -->
 		<br />
 		<!-- 앨범 정보 start -->
-			<c:forEach begin="1" end="4" step="1">
+		<c:forEach begin="1" end="4" step="1">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<c:forEach begin="1" end="1">
+						<input type="checkbox" name="check" id="check${j}" />&nbsp;&nbsp;
+					&nbsp;&nbsp;<a href="test2"><img
+							src="resources/image/like/like_album.jpg" width="65%"></a>
+					</c:forEach>
+				</div>
+			</div>
+			<form class="form-horizontal">
 				<div class="col-sm-3">
 					<div class="form-group">
-						<c:forEach begin="1" end="1">
-							<input type="checkbox" name="check" id="check${j}" />&nbsp;&nbsp;
-					&nbsp;&nbsp;<a href="test2"><img
-								src="resources/image/like/like_album.jpg" width="65%"></a>
-						</c:forEach>
+						<br />
+						<table class="table">
+							<tr>
+								<td>아티스트</td>
+								<td>태연</td>
+							</tr>
+							<tr>
+								<td>앨범 종류</td>
+								<td>미니</td>
+							</tr>
+							<tr>
+								<td>발매일</td>
+								<td>2016.06.27</td>
+							</tr>
+							<tr>
+								<td>장르</td>
+								<td>발라드</td>
+							</tr>
+						</table>
 					</div>
 				</div>
-				<form class="form-horizontal">
-					<div class="col-sm-3">
-						<div class="form-group">
-							<br />
-							<table class="table">
-								<tr>
-									<td>아티스트</td>
-									<td>태연</td>
-								</tr>
-								<tr>
-									<td>앨범 종류</td>
-									<td>미니</td>
-								</tr>
-								<tr>
-									<td>발매일</td>
-									<td>2016.06.27</td>
-								</tr>
-								<tr>
-									<td>장르</td>
-									<td>발라드</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</form>
-			</c:forEach>
-		</div>
+			</form>
+		</c:forEach>
+	</div>
 	<!-- end -->
 	<!--  footer start -->
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
