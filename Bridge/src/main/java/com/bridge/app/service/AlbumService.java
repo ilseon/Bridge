@@ -7,5 +7,5 @@ import com.bridge.app.domain.AlbumVO;
 public interface AlbumService {
 
 	public void regist(HttpServletRequest req) throws Exception;	
-
+	public AlbumVO getAlbumOne() throws Exception;
 }

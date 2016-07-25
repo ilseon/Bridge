@@ -66,4 +66,9 @@ public class ArtistDAOImpl implements ArtistDAO {
        
         sqlSession.insert(NAMESPACE + ".regist", artist);
 	}
+	
+	@Override
+	public ArtistVO getArtistOne() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getArtistOne");
+	}
 }
