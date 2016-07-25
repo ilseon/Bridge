@@ -64,7 +64,7 @@ $(document).ready(function() {
 
 				<!-- 인기차트 테이블 -->
 				<table class="table">
-					<c:forEach begin="0" end="9" var="music" items="${musicList}">
+					<c:forEach begin="0" end="9" var="music" items="${musicList}" step="1">
 						<tr style="height: 70px;">
 							<td width="7%">${music.musicNumber}</td>
 							<td width="20%">-</td>

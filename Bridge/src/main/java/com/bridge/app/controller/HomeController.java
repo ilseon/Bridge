@@ -3,7 +3,7 @@
 내용 - 메인페이지 관련 
 시작날짜 - 2016/07/19
 수정날짜 - 
-변경내용 - 
+변경내용 - 아이디/비밀번호 찾기 예외처리
 */
 
 package com.bridge.app.controller;
@@ -51,6 +51,8 @@ public class HomeController {
 		view.addAttribute("albumList", album.searchAll(12));
 		
 		return "home";
+		
+		//return "redirect:/";
 	}
 
 }

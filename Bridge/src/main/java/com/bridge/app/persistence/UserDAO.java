@@ -16,6 +16,7 @@ public interface UserDAO {
 	public UserVO searchId(String username, String userbirthday) throws Exception;
 	public UserVO searchPassword(String userid, String useremail) throws Exception;
 	
-	
+	public void insertUser (UserVO vo) throws Exception;
+	public UserVO readUser (String userId)throws Exception;
 	
 }

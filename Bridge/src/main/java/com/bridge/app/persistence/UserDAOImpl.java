@@ -27,6 +27,7 @@ public class UserDAOImpl implements UserDAO {
 	private SqlSession sqlSession;
 
 	private static final String namespace = "com.brige.mappers.loginMapper";
+	private static final String NAMESPACE="com.bridge.mappers.UserMapper";
 	
 
 	// 아이디와 비밀번호로 로그인 하는 메서드
@@ -64,6 +65,21 @@ public class UserDAOImpl implements UserDAO {
 		System.out.println("되나요?");
 		
 		return sqlSession.selectOne(namespace+".searchPassword", passwordsearchMap);
+	}
+
+	@Override
+	public void insertUser(UserVO vo) throws Exception {
+		sqlSession.insert(NAMESPACE + ".insertUser", vo);
+
+		
+	}
+
+	@Override
+	public UserVO readUser(String userId) throws Exception {
+
+		// TODO Auto-generated method stub
+		
+		return (UserVO)sqlSession.selectOne(NAMESPACE + ".readUser");
 	}
 
 }
