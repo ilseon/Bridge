@@ -6,8 +6,8 @@
 
 <mapper namespace="com.brige.mappers.UserMapper">
 	<insert id="insertUser"><!-- 파라미터 생략하고 작성 -->
-		insert into bridgedb.user(userName, userBirthday, userId, userPassword, userPhone)
-		values(#{userName}, #{userBirthday}, #{userId}, #{userPassword}, #{userPhone})
+		insert into bridgedb.user(username, userbirthday, userid, userpassword, userphone, usertype, useremail)
+		values(#{userName}, #{userBirthday}, #{userId}, #{userPassword}, #{userPhone}, #{userType}, #{userEmail})
 	</insert>
 	
 	<select id="selectUser" resultType="UserVO">

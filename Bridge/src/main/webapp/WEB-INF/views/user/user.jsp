@@ -1,14 +1,9 @@
+ <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html; charset=utf-8"%>
-
-
-
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-
-
 <!DOCTYPE html>
 <html>
+<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <head>
 <title>회원가입</title>
 </head>
@@ -17,6 +12,19 @@
 <jsp:include page="../include/sidebar.jsp" />
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <body>
+
+<script>
+$(document).ready(function(){
+	$( "input[name='userpasswordcheck']" ).focusout(function(){
+		if($( "input[name='userpassword']" ).val() != $( "input[name='userpasswordcheck']" ).val()){			
+			$("#checkpassspan").text("불일치");			
+		}else{
+			$("#checkpassspan").text("일치");			
+		}
+	});
+	
+	</script>
+	
 <div class="container" align="center">
    <div class="row">
       <div class="col-md-9">
@@ -27,7 +35,7 @@
       </div>
   <!--  </div>
    <div class="row" > -->
-	<form method="post" action=""  id="top">
+	<form method="post" action="user.add"  id="top">
 
 		<input type="hidden" value="register" name="cmd"  />
 		<table class="table" id="content_table">
@@ -36,7 +44,7 @@
 						<th>아이디</th>
 						<td>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="userid" id="userid" placeholder="id">
+								<input type="text" class="form-control" name="userId" id="userId" placeholder="id">
 							</div>	
 							<div class="col-sm-3">
 								<input type="button" id="dupliBtn" value="중복검사"> 
@@ -50,7 +58,7 @@
 						<th>비밀번호</th>
 						<td>
 							<div class="col-sm-3">
-								<input type="password" name="userpassword" class="form-control" placeholder="Password">
+								<input type="password" name="userPassword" class="form-control" placeholder="Password">
 							</div>
 						</td>
 					</tr>
@@ -70,7 +78,7 @@
 						<td>
 							<div class="form-group">
 								<div class="col-sm-3">
-									<input type="text" class="form-control" name="username" placeholder="이름">
+									<input type="text" class="form-control" name="userName" placeholder="이름">
 								</div>								
 							</div>
 						</td>
@@ -133,10 +141,10 @@
 						<th>이메일 주소</th>
 						<td>
 							<div class="col-sm-3">
-								<input type="email" class="form-control " name="useremail">
+								<input type="text" class="form-control " name="useremail1">
 							</div>
 							<div class="col-sm-2">
-									<select class="form-control " name="tel1" >
+									<select class="form-control " name="useremail2" >
 										<option>@naver</option>
 										<option>@duam.net</option>
 										<option>@gmail.com</option>
@@ -154,10 +162,10 @@
 						<td colspan="2">
 							<div class="form-group">
 								<div class="col-sm-3 col-md-offset-3">
-									<input type="button" class="form-control" value="가입하기" id="submitBtn">
+									<input type="submit" class="form-control" value="가입하기" id="submitBtn">
 								</div>
 								<div class="col-sm-3">
-									<input type="button" class="form-control" value="취소" onclick="location.href=history.back()">
+									<input type="reset" class="form-control" value="취소" onclick="location.href=history.back()">
 								</div>
 							</div>
 						</td>

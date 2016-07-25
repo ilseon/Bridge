@@ -1,23 +1,67 @@
 
 package com.brige.app.controller;
 
-import java.sql.SQLException;
-import java.util.List;
+import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.brige.app.domain.UserVO;
+import com.brige.app.service.UserService;
 
 
 @Controller
 public class UserController {
-	@RequestMapping("/user.add")
-public String requestHandler(){
-		
-		
-		
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
+	@Inject
+	private UserService Service;
+
+	@RequestMapping(value="/user.add", method=RequestMethod.GET)
+	public String user_add_get() {
 		return "user/user";
 	}
+	@RequestMapping(value="/user.add", method=RequestMethod.POST)
+	public ModelAndView user_add_post(UserVO vo)throws Exception{
+		vo.setUserBirthday(vo.getYear() + "-" + vo.getMonth() + "-" + vo.getDay());
+		vo.setUserPhone(vo.getTel1() + "-" + vo.getTel2() + "-" + vo.getTel3());
+		vo.setUsesrEmail(vo.getUseremail1() + vo.getUseremail2());
+		
+		vo.setUserType(0);
+		logger.info("user : " + vo.getUserName());
+		Service.insertUser(vo);
+		ModelAndView mav = new ModelAndView("/user/User_add_compleate");
+		mav.addObject("username", vo.getUserName());
+		
+		return mav;
+	};
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
