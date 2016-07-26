@@ -4,8 +4,8 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bridge.mappers.likeMapper">	
-	<select id="searchAll" parameterType="int" resultType="int">
-		select musicnumber as musicNumber from bridgedb.like where usernumber=#{userNumber}
+	<select id="searchAll" parameterType="int" resultType="com.bridge.app.domain.LikeVO">
+		select musicnumber as musicNumber, likenumber as likeNumber from bridgedb.like where usernumber=#{userNumber}
 	</select>
 	
 	<insert id="regist">
@@ -13,7 +13,7 @@
 	</insert>
 	
 	<delete id="remove">
-		delete from bridgedb.like where musicnumber=#{musicNumber} and usernumber=#{userNumber}
+		delete from bridgedb.like where likenumber=(select likenumber from bridgedb.like where usernumber=#{userNumber} and musicnumber=#{musicNumber})
 	</delete>
 
 </mapper>

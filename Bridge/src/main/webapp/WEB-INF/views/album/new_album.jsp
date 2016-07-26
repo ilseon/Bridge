@@ -8,6 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<body style="margin-top: 4%;">
 <%@include file="/WEB-INF/views/include/header.jsp" %>
 <%@include file="/WEB-INF/views/include/sidebar.jsp" %>
 <h2>최신 앨범</h2>

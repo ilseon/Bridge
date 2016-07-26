@@ -42,14 +42,14 @@ $(document).ready(function(){
 	    });
 	});
 	
-$(function(){
+$(document).ready((function(){
 	if(download!=""){
 		alert("왜안되지?");
 		$('#Download').modal({
 	        remote: '/modal/pay_modal?musicnumbers='+download_list
 		});
 	}
-});
+}));
 	
 var playlistAll = new Array();
 	
@@ -103,13 +103,14 @@ $(function(){
 			alert("로그인을 해 주세요!");
 			return false;
 		}else if(tagId=="like"){
-			if((this).children().attr('style')==null){
-				alert("'좋아요'를 눌러 주셨습니다!");
-				$(this).children().css("color","red");
+			if($(this).find("span").attr('style')==null){
+				$.post("/like_music?musicnumber="+$(this).find("span").attr('id'));
+				alert("'좋아요'를 눌러 주셨습니다!"+$(this).find("span").attr('id'));
+				$(this).find("span").css("color","red");
 				
-			}else if($(this).children().attr('style')!=null){
+			}else if($(this).find("span").attr('style')!=null){
 				alert("'좋아요'가 취소 되었습니다ㅠㅠ");
-				$(this).children().css("color","");
+				$(this).find("span").css("color","");
 			}
 		}
 	})
@@ -164,17 +165,18 @@ $(function(){
 							    <td width="7%"><a href="/myalbum_modal?musicnumber=${music.musicNumber}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>
 							    <td width="7%"><a href="/download_modal?musicnumber=${music.musicNumber}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span></a></td>
 							    <td width="7%"><a href="https://www.youtube.com/?gl=KR&hl=ko"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></a></td>
-							    <td width="7%"><!-- <a href="/like_music?musicnumber=${music.musicNumber}"> -->
+							    <td width="7%">
 							    	<button class="btn btn-default btn-xs" id="like">
+							    	<c:set var="like_is" value="no"/>
 							    	<c:forEach var="like" items="${likeList}">
-							    		<c:if test="${like eq music.musicNumber}">
-							    			<span class="glyphicon glyphicon-heart" style="color:red"></span>
+							    		<c:if test="${like.musicNumber eq music.musicNumber}">
+							    			<span class="glyphicon glyphicon-heart" style="color:red" id="${music.musicNumber}"></span>
+							    			<c:set var="like_is" value="yes"/>
 							    		</c:if>
-							    		<c:if test="${like != music.musicNumber}">
-							    			<span class="glyphicon glyphicon-heart"></span>
-										</c:if>
 							    	</c:forEach>
-									
+									<c:if test="${like_is eq 'no'}">
+										<span class="glyphicon glyphicon-heart" id="${music.musicNumber}"></span>
+									</c:if>
 							    	</button><!-- </a> --></td>
 						    </tr>
 					    </c:forEach>
