@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +16,8 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.bridge.app.controller.MyPageController;
 import com.bridge.app.domain.MusicVO;
@@ -70,12 +74,18 @@ public class MusicDAOImpl implements MusicDAO {
 	}
 
 	@Override
-	public void regist(HttpServletRequest req) throws Exception {
-		// TODO Auto-generated method stub
-			
+	public void regist(HttpServletRequest req, MusicVO music) throws Exception {	
+
+			/*		  
+			 * List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+		    	Map<String, Object> listMap = null; 
+		     
+		    	String boardIdx = (String)map.get("IDX");
+			 */	    
+		
 			 int postMaxSize = 10 * 1024 * 1024;
 	         String folderPath = req.getSession().getServletContext().getRealPath("/"); //realPath
-	         String folder_p=folderPath+"upload"+File.separator+"estimate"+File.separator;
+	         String folder_p=folderPath+"upload"+File.separator+"music"+File.separator;
 	        
 	         File file = null;
 	         file = new File(folder_p);
@@ -85,29 +95,30 @@ public class MusicDAOImpl implements MusicDAO {
 	         
 	         String encoding = "UTF-8";
 	         ArrayList filePath = new ArrayList();
+	         
+	         
 	         Enumeration enumer=null;
 	          MultipartRequest multiReq = new MultipartRequest(req, folder_p,
-	               postMaxSize, encoding, new DefaultFileRenamePolicy());
+	        		  							postMaxSize, encoding, new DefaultFileRenamePolicy());
 	          
 	          enumer=multiReq.getFileNames();
 	          
-	          ArrayList fileNameList = new ArrayList();//파일 이름 저장
-	          
-	          int i=0;
+	          //ArrayList fileNameList = new ArrayList();//파일 이름 저장
+	          String musicFile = "";    
 	          while(enumer.hasMoreElements()){
 	             String name = (String)enumer.nextElement();
-	             fileNameList.add(multiReq.getFilesystemName(name));
+	             //fileNameList.add(multiReq.getFilesystemName(name));
+	             musicFile = multiReq.getFilesystemName(name);
 	          }
 		
-	          MusicVO music = new  MusicVO();
+	          music = new  MusicVO();
 	          music.setMusicSubject(multiReq.getParameter("musicSubject"));
 	          music.setMusicFile(multiReq.getParameter("musicFile"));
 	          music.setMusicVideo(multiReq.getParameter("musicVideo"));
+	          	          
 	          
 	          logger.info(music.toString());
-	          
-	          
-			sqlSession.insert(NAMESPACE + ".regist", req);
-		}
-	
+		    
+	          sqlSession.insert(NAMESPACE + ".regist", music);
+	} 	
 }

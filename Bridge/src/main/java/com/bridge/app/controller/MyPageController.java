@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bridge.app.domain.AlbumVO;
+import com.bridge.app.domain.MusicVO;
 import com.bridge.app.service.AlbumService;
 import com.bridge.app.service.ArtistService;
 import com.bridge.app.service.MusicService;
@@ -45,23 +46,24 @@ public class MyPageController {
 	public String Upload_Artist(HttpServletRequest req) throws Exception {
 
 		logger.info("아티스트 등록 ");
-		//artistservice.regist(req);
+		artistservice.regist(req);
 		return "/upload/upload_album";		
 	}
 	@RequestMapping(value = "upload2", method = RequestMethod.POST)
 	public String Upload_Album(HttpServletRequest req, AlbumVO album) throws Exception {
 
 	logger.info("앨범 등록");
-	//albumservice.regist(req, album);
+
 	logger.info("앨범 등록 완료");
 	return "/upload/upload_music";
 	}
 	
 	@RequestMapping(value = "upload3", method = RequestMethod.POST)
-	public String Upload_Music(HttpServletRequest req, AlbumVO album) throws Exception {
+	public String Upload_Music(HttpServletRequest req, AlbumVO album, MusicVO music) throws Exception {
 
 	logger.info("뮤직등록");
-	musicservice.regist(req);
+	albumservice.regist(req, album);
+	musicservice.regist(req, music);
 	logger.info("뮤직 등록 완료");
 	return "/upload/mytrack";
 	}	

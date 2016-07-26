@@ -5,11 +5,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.bridge.app.domain.MusicVO;
 
 public interface MusicDAO {
 
-	public void regist(HttpServletRequest req) throws Exception;
+	public void regist(HttpServletRequest req, MusicVO music) throws Exception;
 	public void remove(Integer musicnumber) throws Exception;
 	public void modifyStreaming(MusicVO music) throws Exception;
 	public void modifyDownload(MusicVO music) throws Exception;

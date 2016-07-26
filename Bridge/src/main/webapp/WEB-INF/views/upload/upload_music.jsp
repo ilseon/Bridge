@@ -25,24 +25,21 @@
 				//업로드시 빠지는 항목을 체크하는 jquery 
 				$("#regist").click(
 						function() {
-							alert($("#counter").val());
-							alert($("#albumName").val());
-							alert($("#albumNumber").val());
-
 							var cnt = $("#counter").val();
 							for (var i = 0; i < cnt; i++) {
 								if (!$("#musicFile" + i).val()) {
-									alert((i + 1) + "번째 음원이 업로드되지 않았습니다.");
+									alert((i + 1) + " 트랙 음원이 업로드되지 않았습니다.");
 									return false;
 								} else if (!$("#musicSubject" + i).val()) {
-									alert((i + 1) + "번째 곡 명이 입력되지 않았습니다.");
+									alert((i + 1) + " 트랙 곡 명이 입력되지 않았습니다.");
 									return false;
 								} else if ($("#musicFile" + i).val()
 										&& $("#musicSubject" + i).val()) {
+
+									alert("업로드되었습니다.");
+									$("#music").submit();
 								}
 							}
-							alert("업로드되었습니다.");
-							$("#music").submit();
 						});
 
 				//체크박스 (타이틀) 하나만 체크하는 jquery
@@ -52,7 +49,7 @@
 						$(this).prop('checked', true);
 					}
 				});
-	});	
+			});
 </script>
 <style>
 #tab {
@@ -131,14 +128,16 @@
 				<form class="form-horizontal" id="music" action="upload3"
 					method="post" enctype="multipart/form-data">
 					<!-- 앨범 정보 start -->
-					<input type="hidden" name="albumName" id="albumName"
-						value="${albumVO.albumName}" /> <input type="hidden"
+					<input type="hidden" name="artistName" id="artistName"
+						value="${artistVO.artistName}" /> <input type="hidden"
 						name="albumNumber" id="albumNumber" value="${albumVO.albumNumber}" />
-					<input type="hidden" name="artistNumber" id="artistNumber"
-						value="${album.artistNumber}" />
+					<input type="hidden" name="albumGenre" id="albumGenre"
+						value="${albumVO.albumGenre}" />
 					<!-- end -->
 					<input type="hidden" id="counter" name="counter"
-						value="${album.counter}" />
+						value="3" />
+					<input type="hidden" id="counter" name="counter"
+						value="3" />	
 
 					<div>
 						<div class="btn btn-primary" id="album">
@@ -159,29 +158,23 @@
 							<th width="30%">곡</th>
 							<th width="20%">뮤비</th>
 						</tr>
-						<%
-							//임의로 값을 부여함.
-							int cnt = 3;
-							for (int i = 0; i < cnt; i++) {
-						%>
-						<!-- 음원파일, 곡, 타이틀, 뮤비 등록 -->
+				<!-- 음원파일, 곡, 타이틀, 뮤비 등록 -->
+					<c:forEach begin="1" end="${albumVO.counter}" var="i">
 						<tbody>
 							<tr>
-								<td><strong><%=i + 1%></strong></td>
-								<td><input type="file" name="musicFile<%=i%>"
-									id="musicFile<%=i%>" accept="audio/*"/></td>
-								<td><input type="checkbox" name="musicTitle<%=i%>"
-									id="musicTitle<%=i%>"></td>
-								<td><input type="text" name="musicSubject<%=i%>"
-									id="musicSubject<%=i%>" class="form-control" width="20%" /></td>
-								<td><input type="text"
-										name="musicVideo<%=i%>" id="musicVideo<%=i%>" class="form-control"/></td>
-		
+								<td><strong>${i}+1</strong></td>
+								<td><input type="file" name="musicFile${i}"
+									id="musicFile${i}" accept="audio/*" /></td>
+								<td><input type="checkbox" name="musicTitle${i}"
+									id="musicTitle${i}"></td>
+								<td><input type="text" name="musicSubject${i}"
+									id="musicSubject${i}" class="form-control" width="20%" /></td>
+								<td><input type="text" name="musicVideo${i}"
+									id="musicVideo${i}" class="form-control" /></td>
+
 							</tr>
-							<%
-								}
-							%>
 						</tbody>
+						</c:forEach>
 					</table>
 				</form>
 			</div>

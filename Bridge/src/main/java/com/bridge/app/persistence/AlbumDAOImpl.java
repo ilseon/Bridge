@@ -77,6 +77,7 @@ public class AlbumDAOImpl implements AlbumDAO {
         logger.info(multiReq.getParameter("albumName")+"/"+multiReq.getParameter("albumType")+"/"+multiReq.getParameter("albumDate")
         			+"/"+multiReq.getParameter("albumGenre")+"/"+albumImg+"/"+multiReq.getParameter("counter")+"/"+multiReq.getParameter("ageLimit")
         			+"/"+multiReq.getParameter("albumContent"));
+        
         logger.info(album.toString());
 		
 		sqlSession.insert(NAMESPACE + ".regist", album);

@@ -34,6 +34,8 @@
 							var file = album.albumImg.value;
 							var fileExt = file
 									.substring(file.lastIndexOf('.') + 1); //파일확장자 
+							var age = $("input:radio[name=ageLimit]:checked")
+									.val();
 							if (!$("#albumName").val()) {
 								alert("앨범명을 입력해주세요.");
 								return false;
@@ -64,21 +66,18 @@
 								alert("최대 7개까지 등록할 수 있습니다.");
 								return false;
 							} else {
-								alert("추가되었습니다.");
-								$("#album").submit();
+								if (age == 0) {
+									alert("모든 연령이 이 앨범을 이용하도록 설정합니다.");
+									alert("추가되었습니다.");
+									$("#album").submit();
+								} else if (age == 1) {
+									alert("19세 이상만 이 앨범을 이용하도록 설정합니다.");
+									alert("추가되었습니다.");
+									$("#album").submit();
+								}
+
 							}
 						});
-
-				$("#ageLimit").click(function() {
-					var age = $(":input:radio[name=ageLimit]:checked").val();
-					if (age == 0) {
-						alert("모든 연령이 앨범을 이용할 수 있도록 설정되어있습니다.");
-						return false;
-					} else if (age == 1) {
-						alert("19세 이상만 이용가능하도록 설정합니다.");
-						return false;
-					}
-				});
 			});
 </script>
 <style>

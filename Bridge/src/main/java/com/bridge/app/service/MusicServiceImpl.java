@@ -73,9 +73,9 @@ public class MusicServiceImpl implements MusicService {
 
 
 	@Override
-	public void regist(HttpServletRequest req) throws Exception {
+	public void regist(HttpServletRequest req, MusicVO music) throws Exception {
 		// TODO Auto-generated method stub
-		musicDAO.regist(req);
+		musicDAO.regist(req, music);
 	}
 
 

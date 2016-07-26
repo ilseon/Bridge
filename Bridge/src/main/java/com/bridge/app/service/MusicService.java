@@ -26,7 +26,7 @@ public interface MusicService {
 	public List<MusicVO> searchGenre(Map map) throws Exception;
 	public MusicVO search() throws Exception;
 	
-	public void regist(HttpServletRequest req) throws Exception;
+	public void regist(HttpServletRequest req, MusicVO music) throws Exception;
 	public void update(MusicVO music) throws Exception;		
 	
 }

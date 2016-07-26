@@ -87,6 +87,4 @@ public class AlbumVO {
 	public void setCounter(int counter) {
 		this.counter = counter;
 	}
-	
-	
 }
