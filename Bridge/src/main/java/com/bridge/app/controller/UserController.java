@@ -22,7 +22,8 @@ public class UserController {
 
 	@RequestMapping(value="/user.add", method=RequestMethod.GET)
 	public String user_add_get() {
-		return "user/user";
+		System.out.println("ㅇ????");
+		return "/user/user";
 	}
 	@RequestMapping(value="/user.add", method=RequestMethod.POST)
 	public ModelAndView user_add_post(UserVO vo)throws Exception{

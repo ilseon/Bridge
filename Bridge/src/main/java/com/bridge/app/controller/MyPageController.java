@@ -1,104 +1,149 @@
+/**
+ì‘ì„±ì - ì´ì£¼ì—°
+ë‚´ìš© - MyPageController
+ì‹œì‘ë‚ ì§œ - 2016/07/17
+ìˆ˜ì •ë‚ ì§œ - 2016/07/25
+ë³€ê²½ë‚´ìš© - 
+ */
+
 package com.bridge.app.controller;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.bridge.app.service.AlbumService;
+import com.bridge.app.service.ArtistService;
+import com.bridge.app.service.MusicService;
 
 @Controller
 public class MyPageController {
 	
+	@Inject
+	private ArtistService artistservice;
+	@Inject
+	private AlbumService albumservice;
+	@Inject
+	private MusicService musicservice;
+
 	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
 
-	@RequestMapping(value="upload",  method = RequestMethod.GET)
-	public String Upload(){
-		logger.info("?—…ë¡œë“œ?•˜ê¸?");
-		return "/upload/upload";
-	}
-	
-	@RequestMapping(value="upload",  method = RequestMethod.POST)
-	public String Upload_Add(){
-		logger.info("ê³? ì¶”ê?");
-		return "/upload/upload";
-	}
-		
-	@RequestMapping(value="mytrack",  method = RequestMethod.GET)
-	public String MyTrack_(){
-		logger.info("?‚´?Š¸?™");
-		return "/upload/mytrack";
-	}
-	
-	@RequestMapping(value="mytrack_detail")
-	public String MyTrack_Detail(){
-		logger.info("?‚´?Š¸?™_?ƒ?„¸ë³´ê¸°");
-		return "/upload/mytrack_detail";
-	}
-	
-	@RequestMapping(value="upload_artist")
-	public String Upload_Artist(){
-		logger.info("?•„?‹°?Š¤?Š¸ ?“±ë¡?");
+	@RequestMapping(value = "upload", method = RequestMethod.GET)
+	public String Upload() throws Exception {
+		logger.info("ì—…ë¡œë“œ ì‹œì‘");
 		return "/upload/upload_artist";
 	}
+
+	@RequestMapping(value = "upload", method = RequestMethod.POST)
+	public String Upload_Artist(HttpServletRequest req) throws Exception {
+
+		logger.info("ì•„í‹°ìŠ¤íŠ¸ ë“±ë¡");
+		//artistservice.regist(req);
+		return "/upload/upload_album";		
+	}
+	@RequestMapping(value = "upload2", method = RequestMethod.POST)
+	public String Upload_Album() throws Exception {
+
+	logger.info("ì•¨ë²” ë“±ë¡");
+	return "/upload/upload_music";
+	}
 	
-	@RequestMapping(value="modify",  method = RequestMethod.GET)
-	public String PassWordConfirm(){
-		logger.info("? •ë³´ìˆ˜? •_ë¹„ë?ë²ˆí˜¸ ?™•?¸");
+	@RequestMapping(value = "upload3", method = RequestMethod.POST)
+	public String Upload_Music(HttpServletRequest req) throws Exception {
+
+	logger.info("ë®¤ì§ë“±ë¡");
+
+	albumservice.regist(req);
+	musicservice.regist(req);
+	return "/upload/mytrack";
+	}
+	
+	
+	@RequestMapping(value = "mytrack", method = RequestMethod.GET)
+	public String MyTrack_() {
+		logger.info("It is mytrack");
+		return "/upload/mytrack";
+	}
+
+	@RequestMapping(value = "mytrack_detail")
+	public String MyTrack_Detail() {
+
+		logger.info("It is mytrack_datail");
+		return "/upload/mytrack_detail";
+	}
+
+	@RequestMapping(value = "modify", method = RequestMethod.GET)
+	public String PassWordConfirm() {
+
+		logger.info("It is password_check");
 		return "/modify/password_check";
 	}
-		
-	@RequestMapping(value="modify",  method = RequestMethod.POST)
-	public String Modify(){
-		logger.info("ê°œì¸? •ë³´ìˆ˜? •");
+
+	@RequestMapping(value = "modify", method = RequestMethod.POST)
+	public String Modify() {
+
+		logger.info("It is modify");
 		return "/modify/modify";
 	}
-	
-	@RequestMapping(value="withdrawal", method = RequestMethod.GET)
-	public String PassWordWithdrawal(){
-		logger.info("?ƒˆ?‡´_ë¹„ë?ë²ˆí˜¸ ?™•?¸");
+
+	@RequestMapping(value = "withdrawal", method = RequestMethod.GET)
+	public String PassWordWithdrawal() {
+
+		logger.info("It is password_check2");
 		return "/modify/password_check2";
 	}
-	
-	@RequestMapping(value="withdrawal", method = RequestMethod.POST)
-	public String Withdrawal(){
-		logger.info("?šŒ?›?ƒˆ?‡´");
+
+	@RequestMapping(value = "withdrawal", method = RequestMethod.POST)
+	public String Withdrawal() {
+		logger.info("It is withdrawal");
 		return "/modify/withdrawal";
 	}
-	
-	@RequestMapping(value="confirm")
-	public String Confirm(){
-		logger.info("?šŒ?›?ƒˆ?‡´?™?˜");
+
+	@RequestMapping(value = "confirm")
+	public String Confirm() {
+
+		logger.info("It is confirm");
 		return "/modify/confirm";
 	}
-		
-	@RequestMapping(value="like_song")
-	public String LikeSong(){
-		logger.info("ì¢‹ì•„?•˜?Š” ê³?");
+
+	@RequestMapping(value = "like_song")
+	public String LikeSong() {
+
+		logger.info("It is like_song");
 		return "/mypage/like_song";
 	}
-	
-	@RequestMapping(value="like_album")
-	public String LikeAlbum(){
-		logger.info("ì¢‹ì•„?•˜?Š” ?•¨ë²?");
+
+	@RequestMapping(value = "like_album")
+	public String LikeAlbum() {
+
+		logger.info("It is like_album");
 		return "/mypage/like_album";
 	}
-	
-	@RequestMapping(value="myalbum")
-	public String Myalbum(){
-		logger.info("?‚´?•¨ë²?");
+
+	@RequestMapping(value = "myalbum")
+	public String Myalbum() {
+
+		logger.info("It is myalbum");
 		return "/mypage/myalbum";
 	}
-	
-	@RequestMapping(value="download")
-	public String Download(){
-		logger.info("?‹¤?š´ë¡œë“œ?•¨");
+
+	@RequestMapping(value = "download")
+	public String Download() {
+
+		logger.info("It is download");
 		return "/mypage/download";
 	}
 
-	@RequestMapping(value="payment")
-	public String Payment(){
-		logger.info("ê²°ì œ?‚´?—­");
+	@RequestMapping(value = "payment")
+	public String Payment() {
+
+		logger.info("It is payment");
 		return "/payment/payment";
-	}	
+	}
 }

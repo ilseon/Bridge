@@ -1,14 +1,16 @@
 /*
- ÀÛ¼ºÀÚ - ÀÌÁÖ¿¬, Á¤È¿Áø
-³»¿ë - À½¾Ç Service ÀÎÅÍÆäÀÌ½º
-½ÃÀÛ³¯Â¥ - 2016-07-20
-¼öÁ¤³¯Â¥ - 2016-07-20
-º¯°æ³»¿ë - ±âº» ¸Þ¼­µå ÀÛ¼º
+ ï¿½Û¼ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½Ö¿ï¿½, ï¿½ï¿½È¿ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ Service ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½
+ï¿½ï¿½ï¿½Û³ï¿½Â¥ - 2016-07-20
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥ - 2016-07-20
+ï¿½ï¿½ï¿½æ³»ï¿½ï¿½ - ï¿½âº» ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½
  */
 
 package com.bridge.app.service;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.bridge.app.domain.MusicVO;
 
@@ -20,4 +22,10 @@ public interface MusicService {
 	
 	public List<MusicVO> searchAll(int limit) throws Exception;
 	public MusicVO search() throws Exception;
+	
+	
+	public void regist(HttpServletRequest req) throws Exception;
+	public void update(MusicVO music) throws Exception;	
+	public MusicVO search(Integer musicNumber) throws Exception;
+	public List<MusicVO> searchAll() throws Exception;
 }

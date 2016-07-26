@@ -46,7 +46,6 @@ $(document).ready(function() {
 						<a href="/chart"><div class="thumbnail">
 								<img src="/resources/image/shinhwa.PNG">
 								<p>${album.albumName}</p>
-								<p>${album.artistName}</p>
 							</div></a>
 					</div>
 				</c:forEach>

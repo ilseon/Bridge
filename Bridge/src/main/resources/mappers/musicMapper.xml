@@ -8,20 +8,19 @@
 		select m.musicrank as musicrank, m.musicsubject as musicsubject, m.musicvideo as musicvideo, a.albumimg as albumimg, ar.artistname as artistname, a.albumname as albumname, m.musicnumber as musicnumber
 		from music as m inner join album as a on m.albumnumber=a.albumnumber inner join artist as ar on m.artistnumber=ar.artistnumber AND musicrank<![CDATA[<=]]>#{limit} ORDER BY musicrank asc
 	</select>
-	
 	<select id="searchPlaylist" resultType="int">
-		select plyalistNumber from music where usernumber=#{userNumber}
+		select plyalistNumber from music where usernumber=#{usernumber}
 	</select>
 	
 	<insert id="regist">
-	
+		insert into music (musicsubject, musicfile, musicvideo, musictitle)
+		 <foreach collection="list" item="item" separator=" , ">
+		values(#{musicsubject}, #{musicfile}, #{musicvideo}, #{musictitle})
+		  </foreach>
 	</insert>
+	
 	
 	<delete id="remove">
-		delete from playlist where musicnumber=#{musicNumber}
+		delete from playlist where musicnumber=#{musicnumber}
 	</delete>
-	
-	<insert id="like">
-		insert into bridgedb.like(usernumber, musicnumber) values(#{userNumber}, #{musicNumber})	
-	</insert>
 </mapper>

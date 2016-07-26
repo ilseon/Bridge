@@ -1,22 +1,4 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @ksa98117
-You don’t have any verified emails. We recommend verifying at least one email.
-Email verification helps our support team verify ownership if you lose account access and allows you to receive all the notifications you ask for.
- Unwatch 5
-  Star 0
- Fork 0 qkdeoddl12/Bridge
- Code  Issues 0  Pull requests 0  Wiki  Pulse  Graphs
-Branch: woojun Find file Copy pathBridge/Bridge/src/main/webapp/WEB-INF/views/user/user.jsp
-a0a5b85  14 minutes ago
-@LeeNaKyung LeeNaKyung 0725 우준의 커밋
-2 contributors @LeeNaKyung @ksa98117
-RawBlameHistory     181 lines (162 sloc)  4.78 KB
- <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%> 
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>

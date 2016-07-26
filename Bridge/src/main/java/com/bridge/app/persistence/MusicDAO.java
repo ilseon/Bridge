@@ -1,13 +1,15 @@
 /*
- ÀÛ¼ºÀÚ - Á¤È¿Áø
-³»¿ë - À½¿ø dao ±¸Çö Å¬·¡½º
-½ÃÀÛ³¯Â¥ - 2016-07-20
-¼öÁ¤³¯Â¥ - 2016-07-22
-º¯°æ³»¿ë - À½¿ø dao
+ ï¿½Û¼ï¿½ï¿½ï¿½ - ï¿½ï¿½È¿ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ dao ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½Û³ï¿½Â¥ - 2016-07-20
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥ - 2016-07-22
+ï¿½ï¿½ï¿½æ³»ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ dao
  */
 package com.bridge.app.persistence;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.bridge.app.domain.MusicVO;
 
@@ -19,5 +21,10 @@ public interface MusicDAO {
 	
 	public List<MusicVO> searchAll(int limit) throws Exception;
 	public MusicVO search() throws Exception;
+	
+	public void regist(HttpServletRequest req) throws Exception;
+	public void modify(MusicVO music) throws Exception;
+	
+	public List<MusicVO> searchAll() throws Exception;
 	
 }
