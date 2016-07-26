@@ -29,7 +29,7 @@
 		});
 	});
 </script>
-<body>
+<body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>

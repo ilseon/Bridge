@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import com.bridge.app.domain.MusicVO;
 
 public interface MusicDAO {
-	public void regist() throws Exception;
 	public void remove(Integer musicnumber) throws Exception;
 	public void modifyStreaming(MusicVO music) throws Exception;
 	public void modifyDownload(MusicVO music) throws Exception;

@@ -16,7 +16,7 @@
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 </head>
-<body>
+<body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>

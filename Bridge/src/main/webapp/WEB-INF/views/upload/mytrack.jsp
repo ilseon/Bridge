@@ -2,7 +2,7 @@
 작성자 - 이주연
 내용 - 업로드한 내 트랙 페이지
 시작날짜 - 2016/07/17
-수정날짜 - 2016/07/20
+수정날짜 - 2016/07/26
 변경내용 - 
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -31,7 +31,7 @@
 		});
 	});
 </script>
-<body>
+<body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>

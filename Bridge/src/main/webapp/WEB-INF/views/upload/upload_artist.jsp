@@ -46,6 +46,7 @@
 	background-color: #DF6E76;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: white;
+	margin-top:35px;
 }
 #upload_main {
 	margin-left: 100px;
@@ -65,19 +66,16 @@
 	background-color: gray;
 }
 </style>
-<body>
+<body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
 	<!-- end -->
 	<div class="container">
-		<div class="panel panel-info">
-			<br />
 			<div class="panel-heading col-md-2" id="tab">
 				<h3 class="panel-title">
 					<img src='resources/image/upload/album/one.png'>&nbsp;아티스트 등록
 				</h3>
-			</div>
 		</div>
 
 		<div class="col-md-12 column">

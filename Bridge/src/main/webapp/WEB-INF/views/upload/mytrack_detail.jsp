@@ -2,8 +2,8 @@
 작성자 - 이주연
 내용 - 업로드 트랙 디테일
 시작날짜 - 2016/07/17
-수정날짜 - 2016/07/20
-변경내용 - read페이지로 수정필요
+수정날짜 - 2016/07/26
+변경내용 - 
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -106,7 +106,7 @@
 }
 </style>
 </head>
-<body>
+<body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>

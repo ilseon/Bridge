@@ -42,11 +42,6 @@ public class MusicDAOImpl implements MusicDAO {
 	private static final String NAMESPACE = "com.bridge.mappers.musicMapper";
 
 	@Override
-	public void regist() throws Exception {
-
-	}
-
-	@Override
 	public void remove(Integer musicNumber) throws Exception {
 		// TODO Auto-generated method stub
 
