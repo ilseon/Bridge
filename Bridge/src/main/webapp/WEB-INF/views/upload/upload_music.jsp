@@ -25,16 +25,20 @@
 				//업로드시 빠지는 항목을 체크하는 jquery 
 				$("#regist").click(
 						function() {
+							alert( $("#counter").val());
+							alert( $("#albumName").val());
+							alert( $("#albumNumber").val());
+							
 							var cnt = $("#counter").val();
 							for (var i = 0; i < cnt; i++) {
-								if (!$("#musicfile" + i).val()) {
+								if (!$("#musicFile" + i).val()) {
 									alert((i + 1) + "번째 음원이 업로드되지 않았습니다.");
 									return false;
-								} else if (!$("#musicsubject" + i).val()) {
+								} else if (!$("#musicSubject" + i).val()) {
 									alert((i + 1) + "번째 곡 명이 입력되지 않았습니다.");
 									return false;
-								} else if ($("#musicfile" + i).val()
-										&& $("#musicsubject" + i).val()) {
+								} else if ($("#musicFile" + i).val()
+										&& $("#musicSubject" + i).val()) {
 								}
 							}
 							alert("업로드되었습니다.");
@@ -45,16 +49,36 @@
 				$(function() {
 					var cnt = $("#counter").val();
 					for (var i = 0; i < cnt; i++) {
-						$("#musictitle" + i).mousedown(function(event) { //클릭하고 있으면 
+						$("#musicTitle" + i).mousedown(function(event) { //클릭하고 있으면 
 							$(event.target).css('Color', 'blue');
 						});
-						$("#musictitle" + i).mouseup(function(event) { //클릭을 떼는 순간
+						$("#musicTitle" + i).mouseup(function(event) { //클릭을 떼는 순간
 							$(event.target).css('Color', 'white');
 						});
 					}
 				});
-			});
-
+				
+		//확장자 제한
+			function CheckuploadFile(objFile)
+				{
+				 var strFilePath = objFile.value;
+				 
+				 // 정규식
+				 var RegExtFilter = /\.(zip)$/i;
+				 if (strFilePath.match(RegExtFilter) == null) alert("허용하지 않는 확장자 (1)");
+				 
+				 if (RegExtFilter.test(strFilePath) == false) alert("허용하지 않는 확장자 (2)");
+				 
+				 // inArray
+				 var strExt = strFilePath.split('.').pop().toLowerCase();
+				 if ($.inArray(strExt, ["zip"]) == -1)
+				 {
+				  alert("허용하지 않는 확장자 (3)");
+				  objFile.outerHTML = objFile.outerHTML;
+				 }
+				}
+				
+	//업로드할 음원 개수 
 	$(function() {
 		var cnt = $("#counter").val();
 		for (var i = 0; i < cnt; i++) {
@@ -144,15 +168,15 @@
 				<form class="form-horizontal" id="music" action="upload3"
 					method="post" enctype="multipart/form-data">
 					<!-- 앨범 정보 start -->
-					<!-- <input type="hidden" name="albumName" id="albumName"
+					 <input type="hidden" name="albumName" id="albumName"
 						value="${albumVO.albumName}" /> <input
 						type="hidden" name="albumNumber" id="albumNumber"
 						value="${albumVO.albumNumber}" /> <input
 						type="hidden" name="artistNumber" id="artistNumber"
-						value="${albumVO.artistNumber}" /> 
-					-->					<!-- end -->
+						value="${album.artistNumber}" /> 
+					<!-- end -->
 					<input type="hidden"
-						id="counter" name="counter" value="3"/>
+						id="counter" name="counter" value="${album.counter}"/>
 
 					<div>
 						<div class="btn btn-primary" id="album">
@@ -182,7 +206,7 @@
 							<tr>
 								<td><strong><%=i + 1%></strong></td>
 								<td><input type="file" name="musicFile<%=i%>"
-									id="musicFile<%=i%>" /></td>
+									id="musicFile<%=i%>" onclick="CheckuploadFile" /></td>
 								<td><input type="radio" name="musicTitle<%=i%>" id="musicTitle<%=i%>">
 								</td>
 								<td><input type="text" name="musicSubject<%=i%>"

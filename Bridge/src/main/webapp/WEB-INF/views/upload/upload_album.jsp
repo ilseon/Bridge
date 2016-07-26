@@ -173,7 +173,7 @@
 									</select> <br />
 								</div>
 								<!-- 19세 여부 체크 -->
-								<label for="albumContent" class="col-lg-4 control-label">
+								<label for="ageLimit" class="col-lg-4 control-label">
 								<span style="text-decoration: underline;color:red">19세</span>&nbsp;제한
 								</label>
 								<div class="col-md-8">

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bridge.app.domain.AlbumVO;
 import com.bridge.app.service.AlbumService;
 import com.bridge.app.service.ArtistService;
 import com.bridge.app.service.MusicService;
@@ -43,27 +44,27 @@ public class MyPageController {
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
 	public String Upload_Artist(HttpServletRequest req) throws Exception {
 
-		logger.info("아티스트 등록");
-		//artistservice.regist(req);
+		logger.info("아티스트 등록 ");
+		artistservice.regist(req);
 		return "/upload/upload_album";		
 	}
 	@RequestMapping(value = "upload2", method = RequestMethod.POST)
-	public String Upload_Album() throws Exception {
+	public String Upload_Album(HttpServletRequest req, AlbumVO album) throws Exception {
 
 	logger.info("앨범 등록");
+	albumservice.regist(req, album);
+	logger.info("앨범 등록 완료");
 	return "/upload/upload_music";
 	}
 	
 	@RequestMapping(value = "upload3", method = RequestMethod.POST)
-	public String Upload_Music(HttpServletRequest req) throws Exception {
+	public String Upload_Music(HttpServletRequest req, AlbumVO album) throws Exception {
 
 	logger.info("뮤직등록");
-
-	albumservice.regist(req);
 	musicservice.regist(req);
+	logger.info("뮤직 등록 완료");
 	return "/upload/mytrack";
-	}
-	
+	}	
 	
 	@RequestMapping(value = "mytrack", method = RequestMethod.GET)
 	public String MyTrack_() {
@@ -78,6 +79,13 @@ public class MyPageController {
 		return "/upload/mytrack_detail";
 	}
 
+	@RequestMapping(value = "artist_update", method = RequestMethod.GET)
+	public String Update_artist() throws Exception {
+		logger.info("아티스트 수정");
+		return "/upload/artist_update";
+	}
+
+	
 	@RequestMapping(value = "modify", method = RequestMethod.GET)
 	public String PassWordConfirm() {
 

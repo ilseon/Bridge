@@ -1,6 +1,15 @@
+/*
+ �ۼ��� - ��ȿ��
+���� - ���� Service ���� Ŭ����
+���۳�¥ - 2016-07-20
+������¥ - 2016-07-21
+���泻�� - �⺻ �޼��� �ۼ�
+ */
+
 package com.bridge.app.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -16,19 +25,11 @@ public class MusicServiceImpl implements MusicService {
 	
 	@Inject
 	private MusicDAO musicDAO;
-
+	
 	@Override
 	public List<MusicVO> searchAll(@RequestParam("limit") int limit) throws Exception {
 		return musicDAO.searchAll(limit);
 	}
-
-
-	@Override
-	public void regist() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	@Override
 	public void remove(Integer musicnumber) throws Exception {
@@ -56,27 +57,32 @@ public class MusicServiceImpl implements MusicService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+
+	@Override
+	public MusicVO searchMusic(int musicnumber) throws Exception {
+		return musicDAO.searchMusic(musicnumber);
+	}
+
+
+	@Override
+	public List<MusicVO> searchGenre(Map map) throws Exception {
+		return musicDAO.searchGenre(map);
+	}
+
+
+
 	@Override
 	public void regist(HttpServletRequest req) throws Exception {
+		// TODO Auto-generated method stub
 		musicDAO.regist(req);
 	}
+
+
 
 	@Override
 	public void update(MusicVO music) throws Exception {
 		// TODO Auto-generated method stub
-
-	}
-	
-
-	@Override
-	public MusicVO search(Integer musicNumber) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<MusicVO> searchAll() throws Exception {
-		return musicDAO.searchAll();
+		
 	}
 }

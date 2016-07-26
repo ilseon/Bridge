@@ -30,7 +30,6 @@
 										"checked", false);
 							}
 						});
-
 				// 추가를 위한 jquery	
 				$("#add").click(function() {
 					if ($("input:checked").length == 0) {
@@ -39,7 +38,6 @@
 						alert("추가되었습니다.");
 					}
 				});
-
 				//삭제를 위한 jquery				
 				$("#del").click(function() {
 					if ($("input:checked").length == 0) {
@@ -48,7 +46,6 @@
 						alert("삭제되었습니다.");
 					}
 				});
-
 				// 듣기를 위한 jquery	
 				$("#listen").click(function() {
 					if ($("input:checked").length == 0) {
@@ -58,7 +55,6 @@
 					}
 				});
 			});
-
 	//한 곡에 대한 선택 사항 처리
 	function PopupWindow() {
 		window
@@ -69,23 +65,30 @@
 	}
 </script>
 </head>
+<style>
+#tab {
+	border: none;
+	background-color: #DF6E76;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+	color: white;
+	margin-top: 30px
+}
+</style>
 <body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
 	<!-- end -->
 
-	<!-- 상단 tab start-->
-	<div class="container">
-		<br /> <br />
+	<!-- 상단 tab start -->
+	<div class="container" style="margin-bottom: 150px">
+		<div class="panel-heading col-md-2" id="tab">
+			<h3 class="panel-title">다운로드함</h3>
+		</div>
+		<!-- end -->
+		<!-- 좋아하는 곡 or 앨범인지 표시 start -->
 		<div class="col-md-12">
-			<ul class="nav nav-tabs">
-				<li><a href="like_song">좋아하는 곡</a></li>
-				<li><a href="myalbum">내 앨범</a></li>
-				<li class="active"><a href="download">다운로드함</a></li>
-			</ul>
-			<!-- end -->
-			<br> <br>
+	<br/><br/>
 			<!-- 다운로드함에 추가된 음원 정보 start -->
 			 &nbsp;&nbsp;<input type="checkbox" id="allCheck">
 			 &nbsp;<button class="btn btn-default btn-md" id="listen">
@@ -139,7 +142,7 @@
 				</c:forEach>
 			</table>
 		</div>
-	</div>
+		</div>
 	<!-- end -->
 	<br />
 	<br />

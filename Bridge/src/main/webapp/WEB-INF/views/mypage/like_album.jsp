@@ -46,7 +46,7 @@
 
 	<!-- 상단 tab start -->
 	<div class="container" style="margin-bottom: 150px">
-		<div class="panel-heading col-md-2" >
+		<div class="panel-heading col-md-2" id="tab" >
 			<h3 class="panel-title">좋아하는 앨범</h3>
 		</div>
 		<!-- end -->

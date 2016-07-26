@@ -72,51 +72,42 @@
 	color: white;
 	margin-top: 30px
 }
-
 #pom {
 	border-radius: 17px;
 	background-color: #EDE6E6;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 }
-
 #upload_main {
 	margin-left: 48px;
 }
-
 #update {
 	border: none;
 	background-color: orange;
 }
-
 #delete {
 	border: none;
 	background-color: #D13838;
 }
-
 #artist_regist {
 	border: none;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	background-color: #F6C4BC;
 }
-
 #add {
 	border: none;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	background-color: #DF6E76;
 	color: white;
 }
-
 .table th {
 	background-color: #ECA4A6;
 	text-align: center;
 	color: white;
 }
-
 .table td {
 	text-align: center;
 	background-color: white;
 }
-
 #btn {
 	background-color: white;
 }

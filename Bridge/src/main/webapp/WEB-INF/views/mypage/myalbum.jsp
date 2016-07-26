@@ -39,7 +39,6 @@
 						alert("추가되었습니다.");
 					}
 				});
-
 				//삭제를 위한 jquery				
 				$("#del").click(function() {
 					if ($("input:checked").length == 0) {
@@ -72,9 +71,7 @@
 						alert("전체 플레이어됩니다.");
 					}
 				});
-
 			});
-
 	//한 곡에 대한 선택 사항 처리
 	function PopupWindow() {
 		window
@@ -94,11 +91,6 @@
 	<div class="container">
 		<br /> <br />
 		<div class="col-md-12">
-			<ul class="nav nav-tabs">
-				<li><a href="like_song">좋아하는 곡</a></li>
-				<li class="active"><a href="myalbum">내 앨범</a></li>
-				<li><a href="download">다운로드함</a></li>
-			</ul>
 			<!-- end -->
 			<br> <br>
 			<!-- 내 앨범에 추가된 곡 정보 start -->
@@ -187,10 +179,10 @@
 				<div class="modal-body">다운받으시겠습니까?</div>
 				<div class="modal-footer ">
 					<button type="button" class="btn btn-success">
-						<span class="glyphicon glyphicon-ok-sign"></span> Yes
+						<span class="glyphicon glyphicon-ok-sign"></span> Yes
 					</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove"></span> No
+						<span class="glyphicon glyphicon-remove"></span> No
 					</button>
 				</div>
 			</div>
