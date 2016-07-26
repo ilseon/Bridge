@@ -8,11 +8,14 @@
 		select * from download where usernumber=#{userNumber}
 	</select>
 	<select id="search_sev" parameterType="map" resultType="com.bridge.app.domain.MusicVO">
-	
-		select m.musicsubject as musicsubject, a.artistname as artistname, m.musicnumber as musicnumber from music as m inner join artist as a on m.artistnumber=a.artistnumber and
+		select m.musicsubject as musicsubject, a.artistname as artistname, m.musicnumber as musicnumber, m.musicfile as musicfile from music as m inner join artist as a on m.artistnumber=a.artistnumber and
 	<foreach collection="playlistAll" item="playlist" open="(" close=")" separator="or">
 		musicnumber=#{playlist.value}
 	</foreach>
+	</select>
+	
+	<select id="searchDownload" resultType="DownloadVO">
+		select * from download where usernumber=#{userNumber} and musicnumber=#{musicNumber}
 	</select>
 	
 	<insert id="regist">

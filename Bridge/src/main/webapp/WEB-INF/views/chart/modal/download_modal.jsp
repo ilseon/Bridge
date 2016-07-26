@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 
 function paycheck(){
-	 var gsWin = window.open('about:blank','payviewer','width=800,height=800');
+	 var gsWin = window.open('about:blank','payviewer','width=1000,height=500');
 	 var frm =document.pay;
 	 frm.target ="payviewer";
 	 frm.method ="post";
@@ -52,9 +52,9 @@ function paycheck(){
 			            상점계정 : <input type="index" name="business" value="muhj89-facilitator@naver.com" size="50" /><br />
 			            총 금액 : <input type="index" name="amount" value="${i*2}" size="50" /><br />
 			            상품이름 : <input type="index" name="item_name" value="music" size="50" /><br />
-			            결제후 이동되는 페이지 : <input type="index" name="return" value="http://localhost:8005${href}" size="50" /><br />
-			        IPN메세지 받을 페이지 : <input type="hidden" name="notify_url" value="http://localhost:8005/chart/modal/pay_modal_fail" size="50" /><br />
-			            결제 취소 페이지 : <input type="hidden" name="cancel_return" value="http://localhost:8005/chart/modal/pay_modal_cancel" size="50" /><br />
+			            결제후 이동되는 페이지 : <input type="index" name="return" value="http://localhost:8080${href}" size="50" /><br />
+			        IPN메세지 받을 페이지 : <input type="hidden" name="notify_url" value="http://localhost:8080/chart/modal/pay_modal_fail" size="50" /><br />
+			            결제 취소 페이지 : <input type="hidden" name="cancel_return" value="http://localhost:8080/chart/modal/pay_modal_cancel" size="50" /><br />
 			            인코딩 : <input type="hidden" name="charset" value="UTF-8" size="50" /><br />
 	            <input type="index" name="currency_type" value="USD" size="50" /><br />
             <input type="submit" value="pay" size="50" />
@@ -62,8 +62,8 @@ function paycheck(){
 		</span>
 	</div>
 	<div class="modal-footer">
-        <button type="button" class="btn btn-success" id="pay_now" onclick="paycheck()" data-dismiss="modal"><span class="glyphicon glyphicon-ok-sign"></span>다운로드</a>
-        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+        <a type="button" class="btn btn-success" id="pay_now" onclick="paycheck()" data-dismiss="modal"><span class="glyphicon glyphicon-ok-sign"></span>다운로드</a>
+        <a type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
     </div>
         </div>
     <!-- /.modal-content --> 

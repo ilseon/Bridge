@@ -51,4 +51,9 @@ public class DownloadServiceImpl implements DownloadService {
 		return downloadDAO.search_sev(playlistAll);
 	}
 
+	@Override
+	public List<DownloadVO> searchDownload(Map playlistAll) throws Exception {
+		return downloadDAO.searchDownload(playlistAll);
+	}
+
 }

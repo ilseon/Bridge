@@ -20,6 +20,7 @@ public interface DownloadService {
 	public void registSeveral(Map playListAll) throws Exception;
 	public void remove(Integer downloadNumber) throws Exception;
 	
+	public List<DownloadVO> searchDownload(Map playlistAll) throws Exception;
 	public List<DownloadVO> searchAll(Integer userNumber) throws Exception;
 	public List<MusicVO> search_sev(Map map) throws Exception;
 }

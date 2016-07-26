@@ -10,10 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script>
-var user = "<c:out value='${userNumber}'/>";
-var download="<c:out value='${download_now}'/>";
-var download_list= new Array();
-download_list="<c:out value='${download_list}'/>";
+var user="${usernumber}";
 
 /*
 $(document).ready(function() {
@@ -42,15 +39,6 @@ $(document).ready(function(){
 	    });
 	});
 	
-$(document).ready((function(){
-	if(download!=""){
-		alert("왜안되지?");
-		$('#Download').modal({
-	        remote: '/modal/pay_modal?musicnumbers='+download_list
-		});
-	}
-}));
-	
 var playlistAll = new Array();
 	
 //여러 곡을 선택한 경우
@@ -63,7 +51,6 @@ $(function(){
 		}
 		if($("#mytable input[type=checkbox]").is(":checked")){
 			if(user!=""){
-			alert("곡을 선택하셨습니다.");
 			var list=$("#mytable input[type=checkbox]");
 				for(var i = 0 ; i<list.length; i++){
 					if(list[i].checked==true){
@@ -84,7 +71,7 @@ $(function(){
 			}
 				
 			}else{
-				alert("로그인을 해 주세요!");	
+				alert("로그인 후 이용하실 수 있는 서비스입니다!");	
 			}
 		}else if($("#mytable input[type=checkbox]:not(checked)")){
 			alert("곡을 선택해 주세요!");
@@ -100,7 +87,7 @@ $(function(){
 	$("#mytable .btn[id]").click(function(){
 		var tagId = $(this).attr('id');
 		if(user==""){
-			alert("로그인을 해 주세요!");
+			alert("로그인 후 이용하실 수 있는 서비스입니다!");
 			return false;
 		}else if(tagId=="like"){
 			if($(this).find("span").attr('style')==null){
@@ -126,7 +113,6 @@ $(function(){
         <div class="table-responsive">   
         
         		<div id="check_all">
-        		<input type="hidden" name="" id="" value=""/>
 		        &nbsp;&nbsp;<input type="checkbox" id="checkall" name="checkall"/>
 		        <a><button class="btn btn-default btn-xs" id="listen" onclick="PopupWindow()"><span class="glyphicon glyphicon-play" style="color:red"></span>듣기</button></a>
 		        <button class="btn btn-default btn-xs" id="add_listen"><span class="glyphicon glyphicon-plus" style="color:green"></span>재생 목록에 추가</button>

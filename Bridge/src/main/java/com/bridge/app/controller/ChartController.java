@@ -61,10 +61,10 @@ public class ChartController {
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
 	public String chart(String genre, Model view, HttpServletRequest req) throws Exception{
 		logger.info("chart");
-		int userNumber;
-		if(WebUtils.getSessionAttribute(req, "userNumber")!=null){
-			userNumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
-			view.addAttribute("likeList", like.searchAll(userNumber));
+		int usernumber;
+		if(WebUtils.getSessionAttribute(req, "usernumber")!=null){
+			usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+			view.addAttribute("likeList", like.searchAll(usernumber));
 		}	
 		if(genre==null){
 			view.addAttribute("musicList", music.searchAll(100));
@@ -119,7 +119,7 @@ public class ChartController {
 	
 	@RequestMapping(value="/myalbum", method=RequestMethod.GET)
 	public String registPlaylist(@RequestParam("musicnumber") int musicnumber, HttpServletRequest req, Model view) throws Exception{
-		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
+		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 		PlaylistVO plist = new PlaylistVO();
 		plist.setMusicNumber(musicnumber);
 		plist.setUserNumber(usernumber);
@@ -131,9 +131,9 @@ public class ChartController {
 	
 	@RequestMapping(value="/myalbum_sev", method=RequestMethod.GET)
 	public String registPlaylist_sev(@RequestParam("playlistall") String playlistall, HttpServletRequest req, Model view) throws Exception{
-		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
+		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 		Map plist = new HashMap();
-		plist.put("userNumber", usernumber);
+		plist.put("usernumber", usernumber);
 		List<Integer> playListAll = new ArrayList();
 		String[] play = playlistall.split(",");
 		for(int i=1;i<play.length;i++){
@@ -165,38 +165,40 @@ public class ChartController {
 	@RequestMapping("/download_music")
 	public String downloadMusic(@RequestParam("musicnumber") int musicnumber, HttpServletRequest req, Model view) throws Exception{
 		
-		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
+		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 		DownloadVO dlist = new DownloadVO();
 		dlist.setMusicNumber(musicnumber);
 		dlist.setUserNumber(usernumber);
 		
-		download.registOne(dlist);
-		return "redirect:/chart";
+		//download.registOne(dlist);
+		view.addAttribute("music", music.searchMusic(musicnumber));
+		
+		return "/chart/modal/pay_success";
 	}
 	
 	@RequestMapping("/download_music_sev")
 	public String downloadMusicSev(String musicnumbers, HttpServletRequest req, Model view) throws Exception{
 		
-		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
+		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 		Map dlist = new HashMap();
-		dlist.put("userNumber", usernumber);
+		dlist.put("usernumber", usernumber);
 		List<Integer> playListAll = new ArrayList();
 		String[] play = musicnumbers.split(",");
 		for(int i=1;i<play.length;i++){
 			playListAll.add(Integer.parseInt(play[i]));
+			logger.info(play[i]);
 		}
 		
-		dlist.put("playListAll", playListAll);
+		dlist.put("playlistAll", playListAll);
 
-		download.registSeveral(dlist);
-		view.addAttribute("download_now", "download_now");
-		view.addAttribute("download_list", playListAll);
-		return "redirect:/chart";
+		//download.registSeveral(dlist);
+		view.addAttribute("download_list", download.search_sev(dlist));
+		return "/chart/modal/pay_success";
 	}
 	
 	@RequestMapping("/like_music")
 	public String likeMusic(@RequestParam("musicnumber") int musicnumber, HttpServletRequest req, Model view) throws Exception{
-		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
+		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 		LikeVO lList = new LikeVO();
 		lList.setMusicNumber(musicnumber);
 		lList.setUserNumber(usernumber);
@@ -208,7 +210,7 @@ public class ChartController {
 	
 	@RequestMapping("/like_music_cancel")
 	public String likeMusicCancel(@RequestParam("musicnumber") int musicnumber, HttpServletRequest req, Model view) throws Exception{
-		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
+		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 		LikeVO lList = new LikeVO();
 		lList.setMusicNumber(musicnumber);
 		lList.setUserNumber(usernumber);
@@ -224,37 +226,6 @@ public class ChartController {
 		AlbumVO aList = new AlbumVO();
 		view.addAttribute("albumList", album.searchAll(30));
 		return "/album/new_album";
-	}
-	
-	@RequestMapping("/chart_genre")
-	public String music_genre(String genre, Model view) throws Exception{
-		Map map = new HashMap();
-		map.put("limit", 100);
-		if(genre.equals("indie")){
-			map.put("genre", "인디");
-			view.addAttribute("genre","indie");
-		}else if(genre.equals("rnb")){
-			map.put("genre", "알앤비");
-			view.addAttribute("genre","rnb");
-		}else if(genre.equals("hiphop")){
-			map.put("genre", "힙합");
-			view.addAttribute("genre","hiphop");
-		}else if(genre.equals("el")){
-			map.put("genre", "일렉트로닉");
-			view.addAttribute("genre","el");
-		}else if(genre.equals("rnm")){
-			map.put("genre", "락/메탈");
-			view.addAttribute("genre","rnm");
-		}else if(genre.equals("jazz")){
-			map.put("genre", "재즈");
-			view.addAttribute("genre","jazz");
-		}else if(genre.equals("bdp")){
-			map.put("genre", "발라드/댄스/팝");
-			view.addAttribute("genre","bdp");
-		}
-		
-		view.addAttribute("musicList", music.searchGenre(map));
-		return "redirect:/chart";
 	}
 	
 	@RequestMapping("/pay_modal")

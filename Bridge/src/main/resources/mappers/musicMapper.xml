@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="searchMusic" parameterType="int" resultType="com.bridge.app.domain.MusicVO">
-		select m.musicrank as musicrank, m.musicsubject as musicsubject, m.musicvideo as musicvideo, a.albumimg as albumimg, ar.artistname as artistname, a.albumname as albumname, m.musicnumber as musicnumber
+		select m.musicrank as musicrank, m.musicsubject as musicsubject, m.musicvideo as musicvideo, a.albumimg as albumimg, ar.artistname as artistname, a.albumname as albumname, m.musicnumber as musicnumber, m.musicfile as musicfile
 		from music as m inner join album as a on m.albumnumber=a.albumnumber inner join artist as ar on m.artistnumber=ar.artistnumber
 		AND musicnumber=#{musicnumber}
 	</select>
