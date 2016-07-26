@@ -2,6 +2,7 @@ package com.bridge.app.persistence;
 
 import java.io.File;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -74,6 +75,7 @@ public class AlbumDAOImpl implements AlbumDAO {
         logger.info(multiReq.getParameter("albumName")+multiReq.getParameter("albumType")+multiReq.getParameter("albumDate")
         +multiReq.getParameter("albumGenre")+albumImg+"카운터 : "+multiReq.getParameter("counter"));
         
+        
         album.setAgeLimit(1);
         album.setAlbumContent(multiReq.getParameter("albumContent"));
            
@@ -85,5 +87,9 @@ public class AlbumDAOImpl implements AlbumDAO {
 	@Override
 	public AlbumVO getAlbumOne() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getAlbumOne");
+	}
+	@Override
+	public List<AlbumVO> searchAll(int limit) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".searchAll", limit);
 	}
 }

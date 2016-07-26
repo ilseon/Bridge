@@ -9,13 +9,22 @@ package com.bridge.app.service;
 
 import java.util.List;
 
-import com.bridge.app.domain.PlaylistVO;
+import javax.inject.Inject;
 
+import org.springframework.stereotype.Repository;
+
+import com.bridge.app.domain.PlaylistVO;
+import com.bridge.app.persistence.PlaylistDAO;
+
+@Repository
 public class PlaylistServiceImpl implements PlaylistService {
+	
+	@Inject
+	private PlaylistDAO playlistdao;
 
 	@Override
 	public void regist(PlaylistVO playlist) throws Exception {
-
+		playlistdao.regist(playlist);
 	}
 
 	@Override

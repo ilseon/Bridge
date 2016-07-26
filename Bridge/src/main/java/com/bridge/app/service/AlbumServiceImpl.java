@@ -1,4 +1,7 @@
+
 package com.bridge.app.service;
+
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -27,5 +30,10 @@ public class AlbumServiceImpl implements AlbumService {
 	public AlbumVO getAlbumOne() throws Exception {
 		return dao.getAlbumOne();
 	}
+		
+	@Override
+	public List<AlbumVO> searchAll(int limit) throws Exception{
+		return dao.searchAll(limit);
+	};
 
 }

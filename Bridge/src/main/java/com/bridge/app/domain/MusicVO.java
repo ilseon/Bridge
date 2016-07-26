@@ -1,145 +1,145 @@
 package com.bridge.app.domain;
 
 public class MusicVO {
-	private int musicnumber;
-	private String musicsubject;
-	private int artistnumber;
-	private String artistname;
+	private int musicNumber;
+	private String musicSubject;
+	private int artistNumber;
+	private String artistName;
 	
-	private String musiclyrics;
-	private String musicfile;
-	private String musicvideo;
+	private String musicLyrics;
+	private String musicFile;
+	private String musicVideo;
 	
-	private int albumnumber;
-	private String albumname;
-	private String albumimg;
-	private int musictitle;
+	private int albumNumber;
+	private String albumName;
+	private String albumImg;
+	private int musicDownload;
 	
-	private int musicdownload;	
-	private int musicplay;
-	private int musiclike;
+	private int musicPlay;
+	private int musicLike;
+	private int musicTitle;
 	
-	private int musicrank;
+	private int musicRank;
+
+	public int getMusicNumber() {
+		return musicNumber;
+	}
+
+	public void setMusicNumber(int musicNumber) {
+		this.musicNumber = musicNumber;
+	}
+
+	public String getMusicSubject() {
+		return musicSubject;
+	}
+
+	public void setMusicSubject(String musicSubject) {
+		this.musicSubject = musicSubject;
+	}
+
+	public int getArtistNumber() {
+		return artistNumber;
+	}
+
+	public void setArtistNumber(int artistNumber) {
+		this.artistNumber = artistNumber;
+	}
+
+	public String getArtistName() {
+		return artistName;
+	}
+
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
+	}
+
+	public String getMusicLyrics() {
+		return musicLyrics;
+	}
+
+	public void setMusicLyrics(String musicLyrics) {
+		this.musicLyrics = musicLyrics;
+	}
+
+	public String getMusicFile() {
+		return musicFile;
+	}
+
+	public void setMusicFile(String musicFile) {
+		this.musicFile = musicFile;
+	}
+
+	public String getMusicVideo() {
+		return musicVideo;
+	}
+
+	public void setMusicVideo(String musicVideo) {
+		this.musicVideo = musicVideo;
+	}
+
+	public int getAlbumNumber() {
+		return albumNumber;
+	}
+
+	public void setAlbumNumber(int albumNumber) {
+		this.albumNumber = albumNumber;
+	}
+
+	public String getAlbumName() {
+		return albumName;
+	}
+
+	public void setAlbumName(String albumName) {
+		this.albumName = albumName;
+	}
+
+	public String getAlbumImg() {
+		return albumImg;
+	}
+
+	public void setAlbumImg(String albumImg) {
+		this.albumImg = albumImg;
+	}
+
+	public int getMusicDownload() {
+		return musicDownload;
+	}
+
+	public void setMusicDownload(int musicDownload) {
+		this.musicDownload = musicDownload;
+	}
+
+	public int getMusicPlay() {
+		return musicPlay;
+	}
+
+	public void setMusicPlay(int musicPlay) {
+		this.musicPlay = musicPlay;
+	}
+
+	public int getMusicLike() {
+		return musicLike;
+	}
+
+	public void setMusicLike(int musicLike) {
+		this.musicLike = musicLike;
+	}
+
+	public int getMusicTitle() {
+		return musicTitle;
+	}
+
+	public void setMusicTitle(int musicTitle) {
+		this.musicTitle = musicTitle;
+	}
+
+	public int getMusicRank() {
+		return musicRank;
+	}
+
+	public void setMusicRank(int musicRank) {
+		this.musicRank = musicRank;
+	}
+
 	
-	public int getMusictitle() {
-		return musictitle;
-	}
-
-	public void setMusictitle(int musictitle) {
-		this.musictitle = musictitle;
-	}
-
-	public int getMusicnumber() {
-		return musicnumber;
-	}
-
-	public void setMusicnumber(int musicnumber) {
-		this.musicnumber = musicnumber;
-	}
-
-	public String getMusicsubject() {
-		return musicsubject;
-	}
-
-	public void setMusicsubject(String musicsubject) {
-		this.musicsubject = musicsubject;
-	}
-
-	public int getArtistnumber() {
-		return artistnumber;
-	}
-
-	public void setArtistnumber(int artistnumber) {
-		this.artistnumber = artistnumber;
-	}
-
-	public String getMusiclyrics() {
-		return musiclyrics;
-	}
-
-	public void setMusiclyrics(String musiclyrics) {
-		this.musiclyrics = musiclyrics;
-	}
-
-	public String getMusicfile() {
-		return musicfile;
-	}
-
-	public void setMusicfile(String musicfile) {
-		this.musicfile = musicfile;
-	}
-
-	public String getMusicvideo() {
-		return musicvideo;
-	}
-
-	public void setMusicvideo(String musicvideo) {
-		this.musicvideo = musicvideo;
-	}
-
-	public int getAlbumnumber() {
-		return albumnumber;
-	}
-
-	public void setAlbumnumber(int albumnumber) {
-		this.albumnumber = albumnumber;
-	}
-
-	public int getMusicdownload() {
-		return musicdownload;
-	}
-
-	public void setMusicdownload(int musicdownload) {
-		this.musicdownload = musicdownload;
-	}
-
-	public int getMusicplay() {
-		return musicplay;
-	}
-
-	public void setMusicplay(int musicplay) {
-		this.musicplay = musicplay;
-	}
-
-	public int getMusiclike() {
-		return musiclike;
-	}
-
-	public void setMusiclike(int musiclike) {
-		this.musiclike = musiclike;
-	}
-
-	
-	
-	public int getMusicrank() {
-		return musicrank;
-	}
-
-	public void setMusicrank(int musicrank) {
-		this.musicrank = musicrank;
-	}
-
-	public String getArtistname() {
-		return artistname;
-	}
-
-	public void setArtistname(String artistname) {
-		this.artistname = artistname;
-	}
-
-	public String getAlbumname() {
-		return albumname;
-	}
-
-	public void setAlbumname(String albumname) {
-		this.albumname = albumname;
-	}
-
-	public String getAlbumimg() {
-		return albumimg;
-	}
-
-	public void setAlbumimg(String albumimg) {
-		this.albumimg = albumimg;
-	}	
 }

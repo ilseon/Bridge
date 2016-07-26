@@ -18,7 +18,6 @@
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 <script>
 	$(document).ready(function() {
-
 		//업로드시 빠지는 항목을 체크하는 jquery 
 		$(".btn btn-xs").click(function() {
 			var cnt = $("#cnt").val();
@@ -30,7 +29,6 @@
 			alert("업로드되었습니다.");
 			//$("f").submit();
 		});
-
 		// 삭제를 위한 jquery	
 		$("#delete").click(function() {
 			if ($("input:checked").length == 0) {
@@ -39,7 +37,6 @@
 				alert("삭제되었습니다.");
 			}
 		});
-
 		// 수정를 위한 jquery	
 		$("#update").click(function() {
 			if ($("input:checked").length == 0) {
@@ -49,7 +46,6 @@
 			}
 		});
 	});
-
 	//클릭시 색 변화로 체크된 것을 확인하는 jquery 
 	$("#btn").click(function() {
 		var cnt = $("#cnt").val();
@@ -62,7 +58,6 @@
 			});
 		}
 	});
-
 	//아티스트 정보 페이지 	
 	function fnResigter() {
 		window.open("upload_artist", "",
@@ -75,51 +70,43 @@
 	background-color: #EDE6E6;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 }
-
 #upload_main {
 	margin-left: 48px;
 }
-
 #update {
 	border: none;
 	background-color: orange;
 }
-
 #delete {
 	border: none;
 	background-color: #D13838;
 }
-
 #artist_regist {
 	border: none;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	background-color: #F6C4BC;
 }
-
 #add {
 	border: none;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	background-color: #DF6E76;
 	color: white;
 }
-
 .table th {
 	background-color: #ECA4A6;
 	text-align: center;
 	color: white;
 }
-
 .table td {
 	text-align: center;
 	background-color: white;
 }
-
 #btn {
 	background-color: white;
 }
 </style>
 </head>
-<body>
+<body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
@@ -324,10 +311,10 @@
 				<div class="modal-body">삭제하시겠습니까?</div>
 				<div class="modal-footer ">
 					<button type="button" class="btn btn-success">
-						<span class="glyphicon glyphicon-ok-sign"></span> Yes
+						<span class="glyphicon glyphicon-ok-sign"></span> Yes
 					</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove"></span> No
+						<span class="glyphicon glyphicon-remove"></span> No
 					</button>
 				</div>
 			</div>

@@ -8,8 +8,19 @@
 <%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script>
 var user = "<c:out value='${userNumber}'/>";
+
+$(document).ready(function() {
+	$("#Download").on("show.bs.modal", function (event) {
+	var button = $(event.relatedTarget); // Button that triggered the modal
+	var musicnumber = button.data("musicnumber"); // Extract info from data-* attributes
+	var modal = $(this);
+
+	modal.find(".modal-body a").href("/download_music?musicnumber="+musicnumber);
+	});
+});
 
 //checkbox 전체 선택
 $(document).ready(function(){
@@ -46,6 +57,18 @@ $(function(){
 						playlistAll.push(list[i].value);
 					}
 				}
+				
+			var this_name=$(this).attr('id');
+			
+			if(this_name=="download"){
+				$("#Download").on("show.bs.modal", function (event) {
+					var button = $(event.relatedTarget); // Button that triggered the modal
+					var modal = $(this);
+
+					modal.find(".modal-body a").href("/download_music_sev?musicnumber="+playlistAll);
+					});
+			}
+				
 			}else{
 				alert("로그인을 해 주세요!");	
 			}
@@ -61,13 +84,18 @@ $(function(){
 //한 곡에 대한 선택 사항 처리
 $(function(){
 	$("#mytable .btn[id]").click(function(){
+		var tagId = $(this).attr('id');
 		if(user==""){
 			alert("로그인을 해 주세요!");
 			return false;
-		}else{
-			var tagId = $(this).attr('id');
-			if(tagId=="like"){
+		}else if(tagId=="like"){
+			if((this).children().attr('style')==null){
+				alert("'좋아요'를 눌러 주셨습니다!");
 				$(this).children().css("color","red");
+				
+			}else if($(this).children().attr('style')!=null){
+				alert("'좋아요'가 취소 되었습니다ㅠㅠ");
+				$(this).children().css("color","");
 			}
 		}
 	})
@@ -87,7 +115,7 @@ $(function(){
 		        <a><button class="btn btn-default btn-xs" id="listen" onclick="PopupWindow()"><span class="glyphicon glyphicon-play" style="color:red"></span>듣기</button></a>
 		        <button class="btn btn-default btn-xs" id="add_listen"><span class="glyphicon glyphicon-plus" style="color:green"></span>재생 목록에 추가</button>
 		        <button class="btn btn-default btn-xs" id="myalbum"><span class="glyphicon glyphicon-paste"></span>내 앨범에 담기</button>
-		        <button class="btn btn-default btn-xs" id="download"><span class="glyphicon glyphicon-download-alt"></span>다운로드</button>
+		        <button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span>다운로드</button>
 		        <button class="btn btn-default btn-xs" id="all_listen" onclick="PopupWindow()"><span class="glyphicon glyphicon-play" style="color:red"></span>전체 듣기</button>
 				</div>
 		
@@ -109,20 +137,31 @@ $(function(){
                    </thead>
                    
 				    <tbody> 
-				    	<c:forEach begin="1" end="100" var="music" items="${musicList}">
+				    	<c:forEach begin="0" end="100" var="music" items="${musicList}">
 
 						    <tr>
-							    <td width="3%"><input type="checkbox" value="${music.musicnumber}"/></td>
-							    <td width="7%">${music.musicrank} &nbsp;<a href="/test"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;">${music.albumimg}</td>
-							    <td width="23%">${music.musicsubject}</td>
-							    <td width="20%"><a href="/test2"></a>${music.artistname}</td>
-							    <td width="7%">${music.albumname}</td>
+							    <td width="3%"><input type="checkbox" value="${music.musicNumber}"/></td>
+							    <td width="7%">${music.musicRank} &nbsp;<a href="/test"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;">${music.albumImg}</td>
+							    <td width="23%">${music.musicSubject}</td>
+							    <td width="20%"><a href="/test2"></a>${music.artistName}</td>
+							    <td width="7%">${music.albumName}</td>
 							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="PopupWindow()"></span></button></td>
 							    <td width="7%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
-							    <td width="7%"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></p></td>
-							    <td width="7%"><button class="btn btn-default btn-xs" data-title="Download" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span></button></p></td>
+							    <td width="7%"><a href="/myalbum?musicnumber=${music.musicNumber}"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>
+							    <td width="7%"><a href="/download_modal?musicnumber=${music.musicNumber}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span></a></td>
 							    <td width="7%"><a href="https://www.youtube.com/?gl=KR&hl=ko"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></a></td>
-							    <td width="7%"><button class="btn btn-default btn-xs" id="like"><span class="glyphicon glyphicon-heart"></span></button></td>
+							    <td width="7%"><!-- <a href="/like_music?musicnumber=${music.musicNumber}"> -->
+							    	<button class="btn btn-default btn-xs" id="like">
+							    	<c:forEach var="like" items="${likeList}">
+							    		<c:if test="${like eq music.musicNumber}">
+							    			<span class="glyphicon glyphicon-heart" style="color:red"></span>
+							    		</c:if>
+							    		<c:if test="${like != music.musicNumber}">
+							    			<span class="glyphicon glyphicon-heart"></span>
+										</c:if>
+							    	</c:forEach>
+									
+							    	</button><!-- </a> --></td>
 						    </tr>
 					    </c:forEach>
 				    </tbody>
@@ -136,21 +175,9 @@ $(function(){
 </div>
 
 <!-- 다운로드 모달창 시작 -->
-<div class="modal fade" id="Download" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+<div class="modal fade" id="Download" role="dialog" aria-labelledby="edit" aria-hidden="true">
       <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">다운로드</h4>
-      </div>
-          <div class="modal-body">
-          	다운받으시겠습니까?
-      </div>
-          <div class="modal-footer ">
-        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
-      </div>
-        </div>
+    <div class="modal-content"></div>
     <!-- /.modal-content --> 
   </div>
       <!-- /.modal-dialog --> 

@@ -1,33 +1,33 @@
 package com.bridge.app.domain;
 
 public class DownloadVO {
-	private int downloadnumber;
-	private int musicnumber;
-	private int usernumber;
-	private String downloaddate;
-	public int getDownloadnumber() {
-		return downloadnumber;
+	private int downloadNumber;
+	private int musicNumber;
+	private int userNumber;
+	private String downloadDate;
+	public int getDownloadNumber() {
+		return downloadNumber;
 	}
-	public void setDownloadnumber(int downloadnumber) {
-		this.downloadnumber = downloadnumber;
+	public void setDownloadNumber(int downloadNumber) {
+		this.downloadNumber = downloadNumber;
 	}
-	public int getMusicnumber() {
-		return musicnumber;
+	public int getMusicNumber() {
+		return musicNumber;
 	}
-	public void setMusicnumber(int musicnumber) {
-		this.musicnumber = musicnumber;
+	public void setMusicNumber(int musicNumber) {
+		this.musicNumber = musicNumber;
 	}
-	public int getUsernumber() {
-		return usernumber;
+	public int getUserNumber() {
+		return userNumber;
 	}
-	public void setUsernumber(int usernumber) {
-		this.usernumber = usernumber;
+	public void setUserNumber(int userNumber) {
+		this.userNumber = userNumber;
 	}
-	public String getDownloaddate() {
-		return downloaddate;
+	public String getDownloadDate() {
+		return downloadDate;
 	}
-	public void setDownloaddate(String downloaddate) {
-		this.downloaddate = downloaddate;
+	public void setDownloadDate(String downloadDate) {
+		this.downloadDate = downloadDate;
 	}
 	
 }

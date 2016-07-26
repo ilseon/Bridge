@@ -76,6 +76,7 @@
 	background-color: #DF6E76;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: white;
+	margin-top:35px
 }
 
 #upload_main {
@@ -106,19 +107,16 @@
 	background-color: #DF6E76;
 }
 </style>
-<body>
+<body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
 	<!-- end -->
 	<div class="container">
-		<div class="panel panel-info">
-			<br />
 			<div class="panel-heading col-md-2" id="tab">
 				<h3 class="panel-title">
 					<img src='resources/image/upload/album/two.png'>&nbsp;앨범 등록
 				</h3>
-			</div>
 
 		</div>
 		<div class="col-md-12">
@@ -139,7 +137,6 @@
 						name="userNumber" id="userNumber" value="${artistVO.userNumber}" />
 
 					<div id="upload_main">
-						<br />
 						<!-- 앨범(이미지, 날짜, 아티스트 정보) 입력 start -->
 						<div class="col-md-2 col-md-offset-1">
 							<img src='resources/image/upload/album/album_image.PNG'

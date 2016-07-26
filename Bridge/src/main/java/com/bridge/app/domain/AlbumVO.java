@@ -19,8 +19,15 @@ public class AlbumVO {
 	private String albumContent;
 	private int ageLimit;	
 	private int counter;
+	private String artistName;
 
 		
+	public String getArtistName() {
+		return artistName;
+	}
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
+	}
 	@Override
 	public String toString() {
 		return "AlbumVO [albumNumber=" + albumNumber + ", albumName=" + albumName + ", albumType=" + albumType

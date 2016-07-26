@@ -4,15 +4,29 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bridge.mappers.downloadMapper">
-	<select id="searchAll" resultType="DownloadVO">
-		select * from download where usernumber=#{usernumber}
-	</select>	
+	<select id="searchAll" resultType="com.bridge.app.domain.DownloadVO">
+		select * from download where usernumber=#{userNumber}
+	</select>
+	<select id="search_sev" parameterType="map" resultType="com.bridge.app.domain.MusicVO">
+	
+		select m.musicsubject as musicsubject, a.artistname as artistname, m.musicnumber as musicnumber from music as m inner join artist as a on m.artistnumber=a.artistnumber and
+	<foreach collection="playlistAll" item="playlist" open="(" close=")" separator="or">
+		musicnumber=#{playlist.value}
+	</foreach>
+	</select>
 	
 	<insert id="regist">
-		insert into playlist (playlistnumber, musicnumber, usernumber) values(#{playlistNumber}, #{musicNumber}, #{userNumber});
+		insert into download(musicnumber, usernumber, user_usernumber, downloaddate) values(#{musicNumber}, #{userNumber}, #{userNumber}, now())
+	</insert>
+	
+	<insert id="registSeveral" parameterType="map">
+		insert into download(musicnumber, usernumber, user_usernumber, downloaddate) values
+		<foreach collection="playListAll" item="playlist" separator=",">
+			(#{playlist.value}, #{userNumber}, #{userNumber}, now())
+		</foreach>
 	</insert>
 	
 	<delete id="remove">
-		delete from download where musicnumber=#{musicNumber}
+		delete from download where musicnumber=#{musicNumber} and usernumber=#{userNumber}
 	</delete>
 </mapper>

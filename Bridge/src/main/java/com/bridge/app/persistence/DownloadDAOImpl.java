@@ -20,15 +20,13 @@ public class DownloadDAOImpl implements DownloadDAO {
 	private static final String NAMESPACE = "com.bridge.mappers.downloadMapper";
 
 	@Override
-	public void registOne(Integer musicnumber, Integer usernumber) throws Exception {
-		Map<String, Integer> paramMap = new HashMap<String, Integer>();
-		paramMap.put("musicnumber", musicnumber);
-		paramMap.put("usernumber", usernumber);
-		sqlSession.insert(NAMESPACE+".register", paramMap);		
+	public void registOne(DownloadVO download) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(NAMESPACE+".regist", download);
 	}
 
 	@Override
-	public void registSeveral(Integer musicNumber, Integer userNumber) throws Exception {
+	public void registSeveral(List<Integer> musicNumbers, Integer userNumber) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
@@ -44,5 +42,8 @@ public class DownloadDAOImpl implements DownloadDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
 	
 }

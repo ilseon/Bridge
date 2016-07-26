@@ -6,10 +6,9 @@
 변경내용 - 최신앨범 썸네일 형식으로변경
  --%>
 
-
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 
 <html>
 <head>
@@ -17,7 +16,19 @@
 	type="text/css" />
 <title>Home</title>
 </head>
-<body>
+
+<script type="text/javascript">
+$(document).ready(function() {
+ $(".quick").animate( { "top": $(document).scrollTop() + 20 +"px" }, 500 ); 
+ $(window).scroll(function(){
+  $(".quick").stop();
+  $(".quick").animate( { "top": $(document).scrollTop() + 20 + "px" }, 1000 );
+ });
+});
+</script>
+
+
+<body style="margin-top: 4%;">
 
 	<%@include file="include/header.jsp"%>
 	<%@include file="include/sidebar.jsp"%>
@@ -27,16 +38,19 @@
 		<div class="row">
 			<div class="col-sm-11"
 				style="border: 1px solid #BDBDBD; margin-bottom: 50px;">
-				<h4>최신앨범</h4>
-				<c:forEach var="i" begin="0" end="11" step="1">
+				<h4>최신앨범</h4> 
+				
+				
+				<c:forEach var="album" begin="0" end="11" step="1" items="${albumList}">
 					<div class="col-xs-6 col-md-2">
 						<a href="/chart"><div class="thumbnail">
 								<img src="/resources/image/shinhwa.PNG">
-								<p>WE (12번째..)</p>
-								<p>신화</p>
+								<p>${album.albumName}</p>
 							</div></a>
 					</div>
 				</c:forEach>
+				
+				
 			</div>
 
 
@@ -49,12 +63,12 @@
 
 				<!-- 인기차트 테이블 -->
 				<table class="table">
-					<c:forEach begin="1" end="10" var="j">
+					<c:forEach begin="0" end="9" var="music" items="${musicList}" step="1">
 						<tr style="height: 70px;">
-							<td width="7%">${j}</td>
+							<td width="7%">${music.musicNumber}</td>
 							<td width="20%">-</td>
-							<td width="20%">표적</td>
-							<td width="7%">신화</td>
+							<td width="20%">${music.musicSubject}</td>
+							<td width="7%">${music.artistName}</td>
 							<td width="10%"><button class="btn btn-default btn-xs">
 									<span class="glyphicon glyphicon-play" style="color: red"></span>
 								</button></td>
@@ -70,9 +84,11 @@
 			<!-- 인기차트 끝-->
 
 			<!-- 옆에 퀵메뉴 -->
-			<div class="col-sm-1 visible-lg "
-				style="position: fixed; bottom: 20px; height: auto; right: 20px;">
+			<div class="col-sm-1  " 
+			style="position: fixed;  bottom: 20px; height: auto; right: 20px; margin-bottom:3%;" >
+				<a href="#top">
 				<input type="image" src="/resources/image/maintop.PNG" />
+				</a>
 			</div>
 			<!-- 옆에 퀵메뉴 끝 -->
 

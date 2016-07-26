@@ -72,6 +72,7 @@
 	background-color: #DF6E76;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: white;
+	margin-top:35px;
 }
 
 #album{
@@ -123,20 +124,17 @@
 	background-color: white;
 }
 </style>
-<body>
+<body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
 	<!-- end -->
 	<div class="container">
-		<div class="panel panel-info">
-			<br />
 			<div class="panel-heading col-md-2" id="tab">
 				<h3 class="panel-title">
 					<img src='resources/image/upload/album/three.png'>&nbsp;음원 정보
 					입력
 				</h3>
-			</div>
 		</div>
 
 		<!-- 음원  업로드 -->
@@ -152,10 +150,10 @@
 						value="${albumVO.albumNumber}" /> <input
 						type="hidden" name="artistNumber" id="artistNumber"
 						value="${albumVO.artistNumber}" /> 
-					-->
+					-->					<!-- end -->
 					<input type="hidden"
 						id="counter" name="counter" value="3"/>
-					<!-- end -->
+
 					<div>
 						<div class="btn btn-primary" id="album">
 								<strong>앨범</strong>
@@ -183,14 +181,14 @@
 						<tbody>
 							<tr>
 								<td><strong><%=i + 1%></strong></td>
-								<td><input type="file" name="musicfile<%=i%>"
-									id="musicfile<%=i%>" /></td>
-								<td><input type="radio" name="title<%=i%>" id="title<%=i%>">
+								<td><input type="file" name="musicFile<%=i%>"
+									id="musicFile<%=i%>" /></td>
+								<td><input type="radio" name="musicTitle<%=i%>" id="musicTitle<%=i%>">
 								</td>
-								<td><input type="text" name="musicsubject<%=i%>"
-									id="musicsubject<%=i%>" class="form-control" width="20%" /></td>
+								<td><input type="text" name="musicSubject<%=i%>"
+									id="musicSubject<%=i%>" class="form-control" width="20%" /></td>
 								<td><button type="submit" class="btn btn-md"
-										name="musicvideo<%=i%>" id="musicvideo<%=i%>"
+										name="musicVideo<%=i%>" id="musicVideo<%=i%>"
 										onclick="check()">클릭</button> <!-- <input type="text" name="musicvideo"
 										id="musicvideo" class="form-control" width="15%" /> --></td>
 
