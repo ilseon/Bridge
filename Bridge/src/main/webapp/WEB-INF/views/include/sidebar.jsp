@@ -3,7 +3,7 @@
 내용 - 페이지 옆 노출
 시작날짜 - 2016/07/19
 수정날짜 - 2016/07/26
-변경내용 - 로그인이 안되있을경우 팝업창 노출!
+변경내용 - 로그인이 안되있을경우 팝업창 노출!test
  --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
