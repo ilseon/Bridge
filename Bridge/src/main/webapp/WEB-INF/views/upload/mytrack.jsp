@@ -1,8 +1,8 @@
 <%--
 작성자 - 이주연
-내용 - 좋아하는 앨범 페이지
+내용 - 업로드한 내 트랙 페이지
 시작날짜 - 2016/07/17
-수정날짜 - 
+수정날짜 - 2016/07/26
 변경내용 - 
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -29,10 +29,9 @@
 				alert("앨범을 선택해주세요.");
 			}
 		});
-
 	});
 </script>
-<body>
+<body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
@@ -51,10 +50,8 @@
 			<c:forEach begin="1" end="4" step="1">
 				<div class="col-sm-3">
 					<div class="form-group">
-						<c:forEach begin="1" end="1" var="j">
 							<a href="mytrack_detail"><img
 								src="resources/image/upload/album/album_art.jpg" width="65%"></a>
-						</c:forEach>
 					</div>
 				</div>
 				<form class="form-horizontal">
@@ -63,22 +60,23 @@
 							<table class="table">
 								<tr>
 									<th>아티스트</th>
-									<td>원더걸스</td>
+									<td>${albumVO.artistName}</td>
 								</tr>
 								<tr>
 									<th>앨범 종류</th>
-									<td></td>
+									<td>${albumVO.albumType}</td>
 								</tr>
 								<tr>
 									<th>발매일</th>
-									<td>2016.06.27</td>
+									<td>${albumVO.albumDate}</td>
 								</tr>
 								<tr>
 									<th>장르</th>
-									<td>발라드</td>
+									<td>${albumVO.albumGenre}</td>
 								</tr>
 							</table>
 						</div>
+						<br/>
 					</div>
 				</form>
 			</c:forEach>

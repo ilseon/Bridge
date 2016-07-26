@@ -1,5 +1,13 @@
 package com.bridge.app.domain;
 
+import java.io.IOException;
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.cglib.core.DefaultNamingPolicy;
+import org.springframework.web.multipart.MultipartRequest;
+
 public class AlbumVO {
 	private int albumNumber;
 	private String albumName;
@@ -8,12 +16,36 @@ public class AlbumVO {
 	private String albumGenre;
 	private int artistNumber;
 	private String albumImg;
+	private String albumContent;
+	private int ageLimit;	
+	private int counter;
 	private String artistName;
+
+		
+	public String getArtistName() {
+		return artistName;
+	}
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
+	}
+	@Override
+	public String toString() {
+		return "AlbumVO [albumNumber=" + albumNumber + ", albumName=" + albumName + ", albumType=" + albumType
+				+ ", albumDate=" + albumDate + ", albumGenre=" + albumGenre + ", artistNumber=" + artistNumber
+				+ ", albumImg=" + albumImg + ", albumContent=" + albumContent + ", ageLimit=" + ageLimit + ", counter="
+				+ counter + "]";
+	}
 	public int getAlbumNumber() {
 		return albumNumber;
 	}
 	public void setAlbumNumber(int albumNumber) {
 		this.albumNumber = albumNumber;
+	}
+	public String getAlbumName() {
+		return albumName;
+	}
+	public void setAlbumName(String albumName) {
+		this.albumName = albumName;
 	}
 	public String getAlbumType() {
 		return albumType;
@@ -45,17 +77,23 @@ public class AlbumVO {
 	public void setAlbumImg(String albumImg) {
 		this.albumImg = albumImg;
 	}
-	public String getArtistName() {
-		return artistName;
+	public String getAlbumContent() {
+		return albumContent;
 	}
-	public void setArtistName(String artistName) {
-		this.artistName = artistName;
+	public void setAlbumContent(String albumContent) {
+		this.albumContent = albumContent;
 	}
-	public String getAlbumName() {
-		return albumName;
+	public int getAgeLimit() {
+		return ageLimit;
 	}
-	public void setAlbumName(String albumName) {
-		this.albumName = albumName;
+	public void setAgeLimit(int ageLimit) {
+		this.ageLimit = ageLimit;
+	}
+	public int getCounter() {
+		return counter;
+	}
+	public void setCounter(int counter) {
+		this.counter = counter;
 	}
 	
 	

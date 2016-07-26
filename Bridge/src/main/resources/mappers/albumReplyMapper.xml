@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bridge.mappers.albumReplyMapper">	
+	<select id="getReplyList" parameterType="hashMap" resultType="AlbumReplyVO">
+		SELECT c.* 
+		FROM (SELECT @RNUM := @RNUM + 1 AS rnum, a.* FROM (SELECT * FROM album_reply where albumNumber=1 ORDER BY replygroup DESC) a,  
+			 ( SELECT @RNUM := 0 ) b) c where c.rnum <![CDATA[>=]]> #{start} and c.rnum <![CDATA[<=]]> #{end}
+	</select> 
+	
+	<insert id="writeReply" parameterType="AlbumReplyVO">			
+		INSERT INTO album_reply(albumnumber, usernumber, replycontext, replygroup, replydept) 
+		VALUES (#{albumNumber}, #{userNumber}, #{replyContext}, IF(#{replyNumber}=0, 0, #{replyNumber}), IF(#{replyNumber}=0, 0, 1));
+	</insert>
+	
+	<update id="updateReplyGroupNumber">
+		update album_reply as a, (select max(replynumber) maxi from album_reply) r
+		set a.replygroup=a.replynumber 
+		where a.replynumber=r.maxi;
+	</update>
+	
+	<delete id="deleteReply" parameterType="int">
+		DELETE FROM album_reply WHERE replynumber=#{replyNumber} 
+	</delete>
+</mapper>

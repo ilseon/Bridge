@@ -17,24 +17,18 @@
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script>
-
 function PopupWindow()
   {
      window.open("/player","popup", "width=500, height=700, left=30, top=30, scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
   }
-
-
 </script>
 <title>chart</title>
 </head>
 <style>
-
 .navbar{
 background:rgba(255,255,255,0.25);
 border: none;
-
 }
-
 .nav>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a, .dropdown-menu>li{
   border-bottom: 3px solid transparent;
 }
@@ -45,19 +39,16 @@ border: none;
 .navbar a, .dropdown-menu>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .navbar-toggle{
  color: black;
 }
-
 .nav li:hover:nth-child(8n+1), .nav li.active:nth-child(8n+1){
   border-bottom: red 3px solid;
 }
 .nav li:hover:nth-child(8n+2), .nav li.active:nth-child(8n+2){
   border-bottom: red 3px solid;
 }
-
 .navbar-toggle .icon-bar{
     color: #fff;
     background: #fff;
 }
-
 .dropdown {
     background:#fff;
     
@@ -93,12 +84,11 @@ border: none;
     right: 14px;
     z-index: 9;
 }
-
 .table tbody>tr>td.vert-align{
     vertical-align: middle;
 }
 </style>
-<body>
+<body style="margin-top: 4%;">
 <%@include file="/WEB-INF/views/include/header.jsp" %>
 <%@include file="/WEB-INF/views/include/sidebar.jsp" %>
 <!-- 실시간 차트 페이지의 메뉴 -->
@@ -110,13 +100,22 @@ border: none;
 				<span class="bar"></span>
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<span style="color:red">
-					장르별 차트<span class="caret"></span></a>
+					<c:if test="${genre eq null}">장르별 차트</c:if>
+					<c:if test="${genre eq 'indie'}">인디</c:if>
+					<c:if test="${genre eq 'rnb'}">알앤비</c:if>
+					<c:if test="${genre eq 'hiphop'}">힙합</c:if>
+					<c:if test="${genre eq 'el'}">일렉트로닉</c:if>
+					<c:if test="${genre eq 'rnm'}">락/메탈</c:if>
+					<c:if test="${genre eq 'jazz'}">재즈</c:if>
+					<c:if test="${genre eq 'bdp'}">발라드/댄스/팝</c:if>
+					<span class="caret"></span></a>
 				</span>
 				<ul class="dropdown-menu" style="font-size:15px; padding:5px; width=100px; align:center;">
-					전체 차트<br/><br/>
-					<a href="/chart_genre?genre=indie">인디</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart_genre?genre=rnb">알앤비</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart_genre?genre=hiphop">힙합</a><br/><br/>
-					<a href="/chart_genre?genre=el">일렉트로닉</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart_genre?genre=rnm">락/메탈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart_genre?genre=jazz">재즈</a><br/><br/>
-					<a href="/chart_genre?genre=bdp">발라드/댄스/팝</a>
+					<a href="/chart">전체차트</a>
+					<br/><br/>
+					<a href="/chart?genre=indie">인디</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart?genre=rnb">알앤비</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart?genre=hiphop">힙합</a><br/><br/>
+					<a href="/chart?genre=el">일렉트로닉</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart?genre=rnm">락/메탈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/chart?genre=jazz">재즈</a><br/><br/>
+					<a href="/chart?genre=bdp">발라드/댄스/팝</a>
 				</ul>
 			</div>
 		</div><br/><br/><br/>

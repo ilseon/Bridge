@@ -124,7 +124,7 @@ public class LoginController {
 			
 			model.addAttribute("passwordmsg",2);
 			model.addAttribute("usersearchpassword", vo.getUserPassword());
-			logger.info("search se :  ");
+			logger.info("pw search se :  ");
 		} catch (Exception e) {
 			model.addAttribute("passwordmsg",1);
 			logger.info("search fail ");
