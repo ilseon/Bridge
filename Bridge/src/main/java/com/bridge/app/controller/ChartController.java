@@ -188,7 +188,7 @@ public class ChartController {
 		
 		dlist.put("playListAll", playListAll);
 
-		//download.registSeveral(dlist);
+		download.registSeveral(dlist);
 		view.addAttribute("download_now", "download_now");
 		view.addAttribute("download_list", playListAll);
 		return "redirect:/chart";
@@ -202,6 +202,18 @@ public class ChartController {
 		lList.setUserNumber(usernumber);
 
 		like.regist(lList);
+		
+		return "redirect:/chart";
+	}
+	
+	@RequestMapping("/like_music_cancel")
+	public String likeMusicCancel(@RequestParam("musicnumber") int musicnumber, HttpServletRequest req, Model view) throws Exception{
+		int usernumber = Integer.parseInt((String)WebUtils.getSessionAttribute(req, "userNumber"));
+		LikeVO lList = new LikeVO();
+		lList.setMusicNumber(musicnumber);
+		lList.setUserNumber(usernumber);
+
+		like.remove(lList);
 		
 		return "redirect:/chart";
 	}

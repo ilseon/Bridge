@@ -105,10 +105,11 @@ $(function(){
 		}else if(tagId=="like"){
 			if($(this).find("span").attr('style')==null){
 				$.post("/like_music?musicnumber="+$(this).find("span").attr('id'));
-				alert("'좋아요'를 눌러 주셨습니다!"+$(this).find("span").attr('id'));
+				alert("'좋아요'를 눌러 주셨습니다!");
 				$(this).find("span").css("color","red");
 				
 			}else if($(this).find("span").attr('style')!=null){
+				$.get("/like_music_cancel?musicnumber="+$(this).find("span").attr('id'));
 				alert("'좋아요'가 취소 되었습니다ㅠㅠ");
 				$(this).find("span").css("color","");
 			}

@@ -1,9 +1,9 @@
 /*
- ÀÛ¼ºÀÚ - Á¤È¿Áø
-³»¿ë - ÁÁ¾Æ¿ä Service implement Å¬·¡½º
-½ÃÀÛ³¯Â¥ - 2016-07-20
-¼öÁ¤³¯Â¥ - 2016-07-20
-º¯°æ³»¿ë - ±âº» ¸Þ¼­µå ÀÛ¼º
+ ï¿½Û¼ï¿½ï¿½ï¿½ - ï¿½ï¿½È¿ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½Æ¿ï¿½ Service implement Å¬ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½Û³ï¿½Â¥ - 2016-07-20
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥ - 2016-07-20
+ï¿½ï¿½ï¿½æ³»ï¿½ï¿½ - ï¿½âº» ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½
  */
 
 package com.bridge.app.service;
@@ -31,7 +31,7 @@ public class LikeServiceImpl implements LikeService {
 
 	@Override
 	public void remove(LikeVO like) throws Exception {
-		// TODO Auto-generated method stub
+		likeDAO.remove(like);
 
 	}
 

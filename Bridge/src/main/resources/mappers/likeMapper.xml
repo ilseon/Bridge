@@ -5,7 +5,7 @@
 
 <mapper namespace="com.bridge.mappers.likeMapper">	
 	<select id="searchAll" parameterType="int" resultType="com.bridge.app.domain.LikeVO">
-		select musicnumber as musicNumber, likenumber as likeNumber from bridgedb.like where usernumber=#{userNumber}
+		select musicnumber as musicNumber from bridgedb.like where usernumber=#{userNumber}
 	</select>
 	
 	<insert id="regist">
@@ -13,7 +13,7 @@
 	</insert>
 	
 	<delete id="remove">
-		delete from bridgedb.like where likenumber=(select likenumber from bridgedb.like where usernumber=#{userNumber} and musicnumber=#{musicNumber})
+		delete from bridgedb.like where usernumber=#{userNumber} and musicnumber=#{musicNumber}
 	</delete>
 
 </mapper>
