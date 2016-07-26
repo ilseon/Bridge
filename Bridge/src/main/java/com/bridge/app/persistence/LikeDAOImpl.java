@@ -1,9 +1,9 @@
 /*
- ÀÛ¼ºÀÚ - Á¤È¿Áø
-³»¿ë - ÁÁ¾Æ¿ä dao impelements ±¸Çö Å¬·¡½º
-½ÃÀÛ³¯Â¥ - 2016-07-20
-¼öÁ¤³¯Â¥ - 2016-07-22
-º¯°æ³»¿ë - ÁÁ¾Æ¿ä dao impl
+ ï¿½Û¼ï¿½ï¿½ï¿½ - ï¿½ï¿½È¿ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½Æ¿ï¿½ dao impelements ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½Û³ï¿½Â¥ - 2016-07-20
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥ - 2016-07-22
+ï¿½ï¿½ï¿½æ³»ï¿½ï¿½ - ï¿½ï¿½ï¿½Æ¿ï¿½ dao impl
  */
 package com.bridge.app.persistence;
 
@@ -31,7 +31,7 @@ public class LikeDAOImpl implements LikeDAO {
 
 	@Override
 	public void remove(LikeVO like) throws Exception {
-		// TODO Auto-generated method stub
+		sqlSession.delete(NAMESPACE+".remove", like);
 		
 	}
 

@@ -94,11 +94,6 @@
 	<div class="container">
 		<br /> <br />
 		<div class="col-md-12">
-			<ul class="nav nav-tabs">
-				<li><a href="like_song">좋아하는 곡</a></li>
-				<li class="active"><a href="myalbum">내 앨범</a></li>
-				<li><a href="download">다운로드함</a></li>
-			</ul>
 			<!-- end -->
 			<br> <br>
 			<!-- 내 앨범에 추가된 곡 정보 start -->

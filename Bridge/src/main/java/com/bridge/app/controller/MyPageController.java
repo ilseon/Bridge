@@ -47,6 +47,7 @@ public class MyPageController {
 		//artistservice.regist(req);
 		return "/upload/upload_album";		
 	}
+	
 	@RequestMapping(value = "upload2", method = RequestMethod.POST)
 	public String Upload_Album() throws Exception {
 
@@ -77,6 +78,13 @@ public class MyPageController {
 		logger.info("It is mytrack_datail");
 		return "/upload/mytrack_detail";
 	}
+	
+	@RequestMapping(value = "artist_update", method = RequestMethod.GET)
+	public String Update_artist() throws Exception {
+		logger.info("아티스트 수정");
+		return "/upload/artist_update";
+	}
+
 
 	@RequestMapping(value = "modify", method = RequestMethod.GET)
 	public String PassWordConfirm() {

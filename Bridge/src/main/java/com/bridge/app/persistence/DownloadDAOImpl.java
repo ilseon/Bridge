@@ -1,9 +1,9 @@
 /*
- ÀÛ¼ºÀÚ - Á¤È¿Áø
-³»¿ë - ¾Ù¹ü dao impelements ±¸Çö Å¬·¡½º
-½ÃÀÛ³¯Â¥ - 2016-07-20
-¼öÁ¤³¯Â¥ - 2016-07-22
-º¯°æ³»¿ë - ¾Ù¹ü dao impl
+ ï¿½Û¼ï¿½ï¿½ï¿½ - ï¿½ï¿½È¿ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ - ï¿½Ù¹ï¿½ dao impelements ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½Û³ï¿½Â¥ - 2016-07-20
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥ - 2016-07-22
+ï¿½ï¿½ï¿½æ³»ï¿½ï¿½ - ï¿½Ù¹ï¿½ dao impl
  */
 package com.bridge.app.persistence;
 
@@ -17,6 +17,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.bridge.app.domain.DownloadVO;
+import com.bridge.app.domain.MusicVO;
 
 @Repository
 public class DownloadDAOImpl implements DownloadDAO {
@@ -32,8 +33,8 @@ public class DownloadDAOImpl implements DownloadDAO {
 	}
 
 	@Override
-	public void registSeveral(List<Integer> musicNumbers, Integer userNumber) throws Exception {
-		//sqlSession.insert(NAMESPACE+".registSeveral", arg1);
+	public void registSeveral(Map playListAll) throws Exception {
+		sqlSession.insert(NAMESPACE+".registSeveral", playListAll);
 	}
 
 	@Override
@@ -46,6 +47,11 @@ public class DownloadDAOImpl implements DownloadDAO {
 	public List<DownloadVO> searchAll(Integer userNumber) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<MusicVO> search_sev(Map playlistAll) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".search_sev", playlistAll);
 	}
 	
 }

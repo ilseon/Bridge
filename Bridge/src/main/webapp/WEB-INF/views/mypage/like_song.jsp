@@ -84,6 +84,15 @@
 						"width=500, height=700, left=30, top=30, scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
 	}
 </script>
+<style>
+#tab {
+	border: none;
+	background-color: #DF6E76;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+	color: white;
+	margin-top: 30px
+}
+</style>
 <body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
@@ -92,24 +101,20 @@
 
 	<!-- 상단 tab start -->
 	<div class="container" style="margin-bottom: 150px">
-		<br /> <br />
-		<div class="col-md-12">
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="like_song">좋아하는 곡</a></li>
-				<li><a href="myalbum">내 앨범</a></li>
-				<li><a href="download">다운로드함</a></li>
-			</ul>
+		<div class="panel-heading col-md-2" id="tab">
+			<h3 class="panel-title">좋아하는 곡</h3>
 		</div>
 		<!-- end -->
-
 		<!-- 좋아하는 곡 or 앨범인지 표시 start -->
-		<div class="col-xs-2">
-			<br /> <br />
-			<ul class="breadcrumb">
-				<li class="active">곡</li>
+		<div class="col-md-12">
+		<br/><br/>
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="like_song">곡</a></li>
 				<li><a href="like_album">앨범</a></li>
 			</ul>
+			<br/>
 		</div>
+
 		<!-- end -->
 		<!-- 곡에 대한 정보 -->
 		<div class="col-md-12">

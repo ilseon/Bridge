@@ -75,7 +75,7 @@
 	background-color: #DF6E76;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: white;
-	margin-top:35px
+	margin-top:30px
 }
 #upload_main {
 	margin-left: 100px;

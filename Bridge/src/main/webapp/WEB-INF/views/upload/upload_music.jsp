@@ -72,6 +72,7 @@
 	background-color: #DF6E76;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: white;
+	margin-top:30px;
 }
 
 #album{
@@ -123,25 +124,22 @@
 	background-color: white;
 }
 </style>
-<body>
+<body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
 	<!-- end -->
 	<div class="container">
-		<div class="panel panel-info">
-			<br />
 			<div class="panel-heading col-md-2" id="tab">
 				<h3 class="panel-title">
 					<img src='resources/image/upload/album/three.png'>&nbsp;음원 정보
 					입력
 				</h3>
-			</div>
 		</div>
 
 		<!-- 음원  업로드 -->
 		<div class="col-md-12">
-			<br /> <br />
+			<br /><br />
 			<div class="jumbotron" id="pom">
 				<form class="form-horizontal" id="music" action="upload3"
 					method="post" enctype="multipart/form-data">
@@ -162,10 +160,9 @@
 						</div>&nbsp;&nbsp;
 							<div class="btn btn-primary" id="albumsub">
 								<strong>앨범명${albumVO.albumName}</strong>	
-						</div>
-					<br />									
+						</div>									
 					</div>
-					<br /><br />	
+					<br />	
 					<table class="table">
 						<tr>
 							<th width="8%">트랙</th>
@@ -204,7 +201,7 @@
 			</div>
 			<!-- end -->
 			<!-- 버튼 start -->
-			<div align="center" style="margin-top: 90px">
+			<div align="center" style="margin-top: 140px">
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary" id="before">뒤로</button>
 					<button type="submit" class="btn btn-primary" id="regist">업로드</button>
