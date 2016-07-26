@@ -75,6 +75,7 @@ public class AlbumDAOImpl implements AlbumDAO {
         logger.info(multiReq.getParameter("albumName")+multiReq.getParameter("albumType")+multiReq.getParameter("albumDate")
         +multiReq.getParameter("albumGenre")+albumImg+"카운터 : "+multiReq.getParameter("counter"));
         
+        
         album.setAgeLimit(1);
         album.setAlbumContent(multiReq.getParameter("albumContent"));
            
