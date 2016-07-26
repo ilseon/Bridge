@@ -21,11 +21,16 @@
 	$(document).ready(function() {
 		// 아티스트 정보에 대한 항목 입력을 확인하는 jquery 
 		$("#regist").click(function() {
+			var file = artist.artistImg.value;
+			var fileExt = file.substring(file.lastIndexOf('.')+1); //파일확장자 
 			if (!$("#artistName").val()) {
 				alert("아티스트명을 입력해주세요.");
 				return false;
 			} else if (!$("#artistImg").val()) {
 				alert("이미지를 업로드해주세요.");
+				return false;
+			} else if (fileExt.toUpperCase() == "MP3" || fileExt.toUpperCase() == "AVI" || fileExt.toUpperCase() == "JSP") {
+				alert("이미지파일만 업로드할 수 있습니다. 다시 확인해주세요.");
 				return false;
 			} else if (!$("#artistType").val()) {
 				alert("타입을 선택해주세요.");
@@ -34,7 +39,7 @@
 				alert("장르를 선택해주세요.");
 				return false;
 			} else {
-				alert("등록되었습니다.");
+				alert("아티스트가 등록되었습니다.");
 				$("#artist").submit();
 			}
 		});
@@ -88,7 +93,7 @@
 						<div class="col-md-2 col-md-offset-1">
 							<br /> <img src="resources/image/upload/album/album_image.PNG"
 								width="120%"><br /> <br /> <input type="file"
-								name="artistImg" id="artistImg" />
+								name="artistImg" id="artistImg" accept=".gif, .jpg, .png"/>
 						</div>
 						<!-- end -->
 						<br />

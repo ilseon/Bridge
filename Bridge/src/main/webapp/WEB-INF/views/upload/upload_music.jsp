@@ -25,10 +25,10 @@
 				//업로드시 빠지는 항목을 체크하는 jquery 
 				$("#regist").click(
 						function() {
-							alert( $("#counter").val());
-							alert( $("#albumName").val());
-							alert( $("#albumNumber").val());
-							
+							alert($("#counter").val());
+							alert($("#albumName").val());
+							alert($("#albumNumber").val());
+
 							var cnt = $("#counter").val();
 							for (var i = 0; i < cnt; i++) {
 								if (!$("#musicFile" + i).val()) {
@@ -45,50 +45,14 @@
 							$("#music").submit();
 						});
 
-				//클릭시 색 변화로 체크된 것을 확인하는 jquery 
-				$(function() {
-					var cnt = $("#counter").val();
-					for (var i = 0; i < cnt; i++) {
-						$("#musicTitle" + i).mousedown(function(event) { //클릭하고 있으면 
-							$(event.target).css('Color', 'blue');
-						});
-						$("#musicTitle" + i).mouseup(function(event) { //클릭을 떼는 순간
-							$(event.target).css('Color', 'white');
-						});
+				//체크박스 (타이틀) 하나만 체크하는 jquery
+				$('input[type="checkbox"]').click(function() {
+					if ($(this).prop('checked')) {
+						$('input[type="checkbox"]').prop('checked', false);
+						$(this).prop('checked', true);
 					}
 				});
-				
-		//확장자 제한
-			function CheckuploadFile(objFile)
-				{
-				 var strFilePath = objFile.value;
-				 
-				 // 정규식
-				 var RegExtFilter = /\.(zip)$/i;
-				 if (strFilePath.match(RegExtFilter) == null) alert("허용하지 않는 확장자 (1)");
-				 
-				 if (RegExtFilter.test(strFilePath) == false) alert("허용하지 않는 확장자 (2)");
-				 
-				 // inArray
-				 var strExt = strFilePath.split('.').pop().toLowerCase();
-				 if ($.inArray(strExt, ["zip"]) == -1)
-				 {
-				  alert("허용하지 않는 확장자 (3)");
-				  objFile.outerHTML = objFile.outerHTML;
-				 }
-				}
-				
-	//업로드할 음원 개수 
-	$(function() {
-		var cnt = $("#counter").val();
-		for (var i = 0; i < cnt; i++) {
-			$("[id^=text]").hide();
-
-			$(".button").click(function() {
-				$("#text" + $(this).data("rel")).toggle();
-			});
-		}
-	});
+	});	
 </script>
 <style>
 #tab {
@@ -96,17 +60,17 @@
 	background-color: #DF6E76;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: white;
-	margin-top:35px;
+	margin-top: 35px;
 }
 
-#album{
+#album {
 	border: none;
 	background-color: white;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: #DF6E76;
 }
 
-#albumsub{
+#albumsub {
 	border: none;
 	background-color: #DF6E76;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
@@ -120,7 +84,7 @@
 }
 
 #before {
-	border-color:orange;
+	border-color: orange;
 	background-color: orange;
 }
 
@@ -129,7 +93,7 @@
 }
 
 #cencle {
-	border-color:gray;
+	border-color: gray;
 	background-color: gray;
 }
 
@@ -154,13 +118,12 @@
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
 	<!-- end -->
 	<div class="container">
-			<div class="panel-heading col-md-2" id="tab">
-				<h3 class="panel-title">
-					<img src='resources/image/upload/album/three.png'>&nbsp;음원 정보
-					입력
-				</h3>
+		<div class="panel-heading col-md-2" id="tab">
+			<h3 class="panel-title">
+				<img src='resources/image/upload/album/three.png'>&nbsp;음원 정보
+				입력
+			</h3>
 		</div>
-
 		<!-- 음원  업로드 -->
 		<div class="col-md-12">
 			<br /> <br />
@@ -168,29 +131,29 @@
 				<form class="form-horizontal" id="music" action="upload3"
 					method="post" enctype="multipart/form-data">
 					<!-- 앨범 정보 start -->
-					 <input type="hidden" name="albumName" id="albumName"
-						value="${albumVO.albumName}" /> <input
-						type="hidden" name="albumNumber" id="albumNumber"
-						value="${albumVO.albumNumber}" /> <input
-						type="hidden" name="artistNumber" id="artistNumber"
-						value="${album.artistNumber}" /> 
+					<input type="hidden" name="albumName" id="albumName"
+						value="${albumVO.albumName}" /> <input type="hidden"
+						name="albumNumber" id="albumNumber" value="${albumVO.albumNumber}" />
+					<input type="hidden" name="artistNumber" id="artistNumber"
+						value="${album.artistNumber}" />
 					<!-- end -->
-					<input type="hidden"
-						id="counter" name="counter" value="${album.counter}"/>
+					<input type="hidden" id="counter" name="counter"
+						value="${album.counter}" />
 
 					<div>
 						<div class="btn btn-primary" id="album">
-								<strong>앨범</strong>
-						</div>&nbsp;&nbsp;
-							<div class="btn btn-primary" id="albumsub">
-								<strong>앨범명${albumVO.albumName}</strong>	
+							<strong>앨범</strong>
 						</div>
-					<br />									
+						&nbsp;&nbsp;
+						<div class="btn btn-primary" id="albumsub">
+							<strong>앨범명${albumVO.albumName}</strong>
+						</div>
+						<br />
 					</div>
-					<br /><br />	
+					<br /> <br />
 					<table class="table">
 						<tr>
-							<th width="8%">트랙</th>
+							<th width="14%">트랙</th>
 							<th width="20%">음원 파일</th>
 							<th width="8%">타이틀</th>
 							<th width="30%">곡</th>
@@ -206,16 +169,14 @@
 							<tr>
 								<td><strong><%=i + 1%></strong></td>
 								<td><input type="file" name="musicFile<%=i%>"
-									id="musicFile<%=i%>" onclick="CheckuploadFile" /></td>
-								<td><input type="radio" name="musicTitle<%=i%>" id="musicTitle<%=i%>">
-								</td>
+									id="musicFile<%=i%>" accept="audio/*"/></td>
+								<td><input type="checkbox" name="musicTitle<%=i%>"
+									id="musicTitle<%=i%>"></td>
 								<td><input type="text" name="musicSubject<%=i%>"
 									id="musicSubject<%=i%>" class="form-control" width="20%" /></td>
-								<td><button type="submit" class="btn btn-md"
-										name="musicVideo<%=i%>" id="musicVideo<%=i%>"
-										onclick="check()">클릭</button> <!-- <input type="text" name="musicvideo"
-										id="musicvideo" class="form-control" width="15%" /> --></td>
-
+								<td><input type="text"
+										name="musicVideo<%=i%>" id="musicVideo<%=i%>" class="form-control"/></td>
+		
 							</tr>
 							<%
 								}

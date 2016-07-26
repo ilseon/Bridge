@@ -100,9 +100,9 @@ public class MusicDAOImpl implements MusicDAO {
 	          }
 		
 	          MusicVO music = new  MusicVO();
-	          music.setMusicSubject(multiReq.getParameter("musicsubject"));
-	          music.setMusicFile(multiReq.getParameter("musicfile"));
-	          music.setMusicVideo(multiReq.getParameter("musicvideo"));
+	          music.setMusicSubject(multiReq.getParameter("musicSubject"));
+	          music.setMusicFile(multiReq.getParameter("musicFile"));
+	          music.setMusicVideo(multiReq.getParameter("musicVideo"));
 	          
 	          logger.info(music.toString());
 	          

@@ -70,16 +70,13 @@ public class AlbumDAOImpl implements AlbumDAO {
         album.setAlbumDate(multiReq.getParameter("albumDate"));
         album.setAlbumGenre(multiReq.getParameter("albumGenre"));
         album.setArtistNumber(9);
-        album.setAlbumImg(albumImg);
-        
-        logger.info(multiReq.getParameter("albumName")+multiReq.getParameter("albumType")+multiReq.getParameter("albumDate")
-        +multiReq.getParameter("albumGenre")+albumImg+"카운터 : "+multiReq.getParameter("counter"));
-        
-        
-        album.setAgeLimit(1);
+        album.setAlbumImg(albumImg);            
+        album.setAgeLimit(Integer.parseInt(multiReq.getParameter("ageLimit")));
         album.setAlbumContent(multiReq.getParameter("albumContent"));
            
-        logger.info(multiReq.getParameter("ageLimit")+multiReq.getParameter("albumContent"));
+        logger.info(multiReq.getParameter("albumName")+"/"+multiReq.getParameter("albumType")+"/"+multiReq.getParameter("albumDate")
+        			+"/"+multiReq.getParameter("albumGenre")+"/"+albumImg+"/"+multiReq.getParameter("counter")+"/"+multiReq.getParameter("ageLimit")
+        			+"/"+multiReq.getParameter("albumContent"));
         logger.info(album.toString());
 		
 		sqlSession.insert(NAMESPACE + ".regist", album);
