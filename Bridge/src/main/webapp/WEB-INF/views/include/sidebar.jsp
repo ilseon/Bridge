@@ -19,9 +19,11 @@
       var userId = '${userid}';
       if (userId.length == 0) {
          alert("로그인을 해주세요 !");
-      }else{
-         
-         location.href("/Bridge/src/main/java/com/bridge/app/controller/MyPageController.java"); 
+      }else{    
+    	  $.ajax({
+				type : "GET",	 
+				url : "like_song"				
+			}); 
       }
    }
 </script>
