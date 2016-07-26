@@ -45,10 +45,12 @@ public class MusicDAOImpl implements MusicDAO {
 	@Override
 	public void regist(HttpServletRequest req) throws Exception {
 		
-		 int postMaxSize = 10 * 1024 * 1024;
+		 int postMaxSize =  10 * 1024 * 1024 * 1024;
          String folderPath = req.getSession().getServletContext().getRealPath("/"); //realPath
-         String folder_p=folderPath+"upload"+File.separator+"estimate"+File.separator;
+         String folder_p=folderPath+"upload"+File.separator+"music"+File.separator;
         
+         System.out.println(folder_p);
+         
          File file = null;
          file = new File(folder_p);
          if(!file.exists()) {
