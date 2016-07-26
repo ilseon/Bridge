@@ -27,14 +27,14 @@
 						function() {
 							var cnt = $("#counter").val();
 							for (var i = 0; i < cnt; i++) {
-								if (!$("#musicfile" + i).val()) {
+								if (!$("#musicFile" + i).val()) {
 									alert((i + 1) + "번째 음원이 업로드되지 않았습니다.");
 									return false;
-								} else if (!$("#musicsubject" + i).val()) {
+								} else if (!$("#musicSubject" + i).val()) {
 									alert((i + 1) + "번째 곡 명이 입력되지 않았습니다.");
 									return false;
-								} else if ($("#musicfile" + i).val()
-										&& $("#musicsubject" + i).val()) {
+								} else if ($("#musicFile" + i).val()
+										&& $("#musicSubject" + i).val()) {
 								}
 							}
 							alert("업로드되었습니다.");
@@ -45,10 +45,10 @@
 				$(function() {
 					var cnt = $("#counter").val();
 					for (var i = 0; i < cnt; i++) {
-						$("#musictitle" + i).mousedown(function(event) { //클릭하고 있으면 
+						$("#musicTitle" + i).mousedown(function(event) { //클릭하고 있으면 
 							$(event.target).css('Color', 'blue');
 						});
-						$("#musictitle" + i).mouseup(function(event) { //클릭을 떼는 순간
+						$("#musicTitle" + i).mouseup(function(event) { //클릭을 떼는 순간
 							$(event.target).css('Color', 'white');
 						});
 					}
@@ -180,14 +180,14 @@
 						<tbody>
 							<tr>
 								<td><strong><%=i + 1%></strong></td>
-								<td><input type="file" name="musicfile<%=i%>"
-									id="musicfile<%=i%>" /></td>
-								<td><input type="radio" name="title<%=i%>" id="title<%=i%>">
+								<td><input type="file" name="musicFile<%=i%>"
+									id="musicFile<%=i%>" /></td>
+								<td><input type="radio" name="musicTitle<%=i%>" id="musicTitle<%=i%>">
 								</td>
-								<td><input type="text" name="musicsubject<%=i%>"
-									id="musicsubject<%=i%>" class="form-control" width="20%" /></td>
+								<td><input type="text" name="musicSubject<%=i%>"
+									id="musicSubject<%=i%>" class="form-control" width="20%" /></td>
 								<td><button type="submit" class="btn btn-md"
-										name="musicvideo<%=i%>" id="musicvideo<%=i%>"
+										name="musicVideo<%=i%>" id="musicVideo<%=i%>"
 										onclick="check()">클릭</button> <!-- <input type="text" name="musicvideo"
 										id="musicvideo" class="form-control" width="15%" /> --></td>
 
