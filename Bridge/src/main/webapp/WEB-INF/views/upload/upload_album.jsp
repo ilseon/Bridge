@@ -2,7 +2,7 @@
 작성자 - 이주연
 내용 - 업로드 1단계 페이지
 시작날짜 - 2016/07/17
-수정날짜 - 2016/07/22
+수정날짜 - 2016/07/26
 변경내용 - 
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -19,7 +19,6 @@
 <title>Upload1_Album</title>
 <script>
 	$(document).ready(function() {
-
 		//숫자만 입력하는 jquery 
 		$(function() {
 			$("#counter").keyup(function() {
@@ -76,31 +75,26 @@
 	background-color: #DF6E76;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: white;
-	margin-top:35px
+	margin-top:30px
 }
-
 #upload_main {
 	margin-left: 100px;
 }
-
 #pom {
 	border-radius: 17px;
 	background-color: #EDE6E6;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 }
-
 #song_table {
 	border-radius: 17px;
 	background-color: white;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 }
-
 #artist_regist {
 	border: none;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	background-color: #F6C4BC;
 }
-
 #add {
 	border: none;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;

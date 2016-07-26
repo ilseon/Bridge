@@ -1,19 +1,20 @@
 /*
- ÀÛ¼ºÀÚ - Á¤È¿Áø
-³»¿ë - ³»¾Ù¹ü dao ±¸Çö Å¬·¡½º
-½ÃÀÛ³¯Â¥ - 2016-07-20
-¼öÁ¤³¯Â¥ - 2016-07-22
-º¯°æ³»¿ë - ³»¾Ù¹ü dao impl
+ ï¿½Û¼ï¿½ï¿½ï¿½ - ï¿½ï¿½È¿ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½Ù¹ï¿½ dao ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½Û³ï¿½Â¥ - 2016-07-20
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥ - 2016-07-22
+ï¿½ï¿½ï¿½æ³»ï¿½ï¿½ - ï¿½ï¿½ï¿½Ù¹ï¿½ dao impl
  */
 package com.bridge.app.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.bridge.app.domain.PlaylistVO;
 
 public interface PlaylistDAO {
 	public void regist(PlaylistVO playlist) throws Exception;
-	public void registAll(List<PlaylistVO> playlists) throws Exception;
+	public void registAll(Map playListAll) throws Exception;
 	public void remove(List<PlaylistVO> playlists) throws Exception;
 	public List<PlaylistVO> searchAll(Integer userNumber) throws Exception;
 }

@@ -1,15 +1,9 @@
 package com.bridge.app.domain;
 
 public class LikeVO {
-	private int likeNumber;
 	private int userNumber;
 	private int musicNumber;
-	public int getLikeNumber() {
-		return likeNumber;
-	}
-	public void setLikeNumber(int likeNumber) {
-		this.likeNumber = likeNumber;
-	}
+	
 	public int getUserNumber() {
 		return userNumber;
 	}

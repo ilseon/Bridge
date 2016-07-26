@@ -1,13 +1,5 @@
 package com.bridge.app.domain;
 
-import java.io.IOException;
-import java.util.Enumeration;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.cglib.core.DefaultNamingPolicy;
-import org.springframework.web.multipart.MultipartRequest;
-
 public class AlbumVO {
 	private int albumNumber;
 	private String albumName;

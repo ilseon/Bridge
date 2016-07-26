@@ -1,9 +1,9 @@
 /*
- ì‘ì„±ì - ì •íš¨ì§„
-ë‚´ìš© - ì¢‹ì•„ìš” Service implement í´ë˜ìŠ¤
-ì‹œì‘ë‚ ì§œ - 2016-07-20
-ìˆ˜ì •ë‚ ì§œ - 2016-07-20
-ë³€ê²½ë‚´ìš© - ê¸°ë³¸ ë©”ì„œë“œ ì‘ì„±
+ ÀÛ¼ºÀÚ - Á¤È¿Áø
+³»¿ë - ÁÁ¾Æ¿ä Service implement Å¬·¡½º
+½ÃÀÛ³¯Â¥ - 2016-07-20
+¼öÁ¤³¯Â¥ - 2016-07-20
+º¯°æ³»¿ë - ±âº» ¸Ş¼­µå ÀÛ¼º
  */
 
 package com.bridge.app.service;
@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.bridge.app.domain.LikeVO;

@@ -29,6 +29,15 @@
 		});
 	});
 </script>
+<style>
+#tab {
+	border: none;
+	background-color: #DF6E76;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+	color: white;
+	margin-top: 30px
+}
+</style>
 <body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
@@ -37,69 +46,67 @@
 
 	<!-- 상단 tab start -->
 	<div class="container" style="margin-bottom: 150px">
-		<br /> <br />
-		<div class="col-md-12">
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="like_song">좋아하는 곡</a></li>
-				<li><a href="myalbum">내 앨범</a></li>
-				<li><a href="download">다운로드함</a></li>
-			</ul>
+		<div class="panel-heading col-md-2" >
+			<h3 class="panel-title">좋아하는 앨범</h3>
 		</div>
 		<!-- end -->
 		<!-- 좋아하는 곡 or 앨범인지 표시 start -->
-		<div class="col-xs-2">
-			<br /> <br />
-			<ul class="breadcrumb">
+		<div class="col-md-12">
+		<br/><br/>
+			<ul class="nav nav-tabs">
 				<li><a href="like_song">곡</a></li>
-				<li class="active">앨범</li>
+				<li class="active"><a href="like_album">앨범</a></li>
 			</ul>
+			<br/><br/>	
 		</div>
-		<div class="col-md-12" style="margin-top: -40px" align="right">
-			<button class="btn btn-default btn-md" id="del">
-				<span class="glyphicon glyphicon-trash"></span>&nbsp;삭제
-			</button>
-			<hr />
-			<br />
-		</div>
-		<!-- end -->
-		<br />
-		<!-- 앨범 정보 start -->
-		<c:forEach begin="1" end="4" step="1">
-			<div class="col-sm-3">
-				<div class="form-group">
-					<c:forEach begin="1" end="1">
-						<input type="checkbox" name="check" id="check${j}" />&nbsp;&nbsp;
-					&nbsp;&nbsp;<a href="test2"><img
-							src="resources/image/like/like_album.jpg" width="65%"></a>
-					</c:forEach>
-				</div>
+
+		<div class="col-md-12">	
+			<div class="col-md-12" style="margin-top: -90px" align="right">
+				<button class="btn btn-default btn-md" id="del">
+					<span class="glyphicon glyphicon-trash"></span>&nbsp;삭제
+				</button>
+				<br />
 			</div>
-			<form class="form-horizontal">
+			<!-- end -->
+			<br />
+			<!-- 앨범 정보 start -->
+			<c:forEach begin="1" end="4" step="1">
 				<div class="col-sm-3">
 					<div class="form-group">
-						<br />
-						<table class="table">
-							<tr>
-								<td>아티스트</td>
-								<td>태연</td>
-							</tr>
-							<tr>
-								<td>앨범 종류</td>
-								<td>미니</td>
-							</tr>
-							<tr>
-								<td>발매일</td>
-								<td>2016.06.27</td>
-							</tr>
-							<tr>
-								<td>장르</td>
-								<td>발라드</td>
-							</tr>
-						</table>
+						<c:forEach begin="1" end="1">
+							<input type="checkbox" name="check" id="check${j}" />&nbsp;&nbsp;
+					&nbsp;&nbsp;<a href="test2"><img
+								src="resources/image/like/like_album.jpg" width="65%"></a>
+						</c:forEach>
 					</div>
 				</div>
-			</form>
-		</c:forEach>
+				<form class="form-horizontal">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<br />
+							<table class="table">
+								<tr>
+									<td>아티스트</td>
+									<td>태연</td>
+								</tr>
+								<tr>
+									<td>앨범 종류</td>
+									<td>미니</td>
+								</tr>
+								<tr>
+									<td>발매일</td>
+									<td>2016.06.27</td>
+								</tr>
+								<tr>
+									<td>장르</td>
+									<td>발라드</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+			</c:forEach>
+		</div>
 	</div>
 	<!-- end -->
 	<!--  footer start -->

@@ -22,6 +22,7 @@ public class UserController {
 
 	@RequestMapping(value="/user.add", method=RequestMethod.GET)
 	public String user_add_get() {
+		System.out.println("ㅇ????");
 		return "/user/user";
 	}
 	@RequestMapping(value="/user.add", method=RequestMethod.POST)
