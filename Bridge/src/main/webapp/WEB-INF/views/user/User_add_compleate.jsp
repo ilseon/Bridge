@@ -18,7 +18,7 @@
 <jsp:include page="../include/header.jsp" />
 <jsp:include page="../include/sidebar.jsp" />
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-<body>
+<body style="margin-top: 4%;">
 <div class="container" align="center">
 	<div class="row">
 		<div class="col-md-12">
