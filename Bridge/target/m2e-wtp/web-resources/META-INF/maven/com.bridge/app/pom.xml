@@ -149,8 +149,13 @@
 			<version>1.1.0.Final</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/servlets.com/cos -->
+		<dependency>
+		    <groupId>servlets.com</groupId>
+		    <artifactId>cos</artifactId>
+		    <version>05Nov2002</version>
+		</dependency>
 		
-
 	</dependencies>
 	<build>
 		<plugins>

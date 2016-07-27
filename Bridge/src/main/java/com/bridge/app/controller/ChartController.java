@@ -7,6 +7,7 @@
  */
 package com.bridge.app.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,11 +15,14 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServlet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -232,6 +236,19 @@ public class ChartController {
 	public String pay_success(List<Integer> musicnumbers, Model view) throws Exception{
 		view.addAttribute("musicnumbers", musicnumbers);
 		return "/chart/modal/pay_modal";
+	}
+	
+	@RequestMapping("/file_name")
+	public String realPath(String fileName, HttpServletRequest req){
+		req.setAttribute("fileName", fileName);
+		return "yes";
+	}
+	
+	@RequestMapping("/upload/music")
+	public void download_file(HttpServletRequest req){
+		String folderPath =req.getSession().getServletContext().getRealPath("/upload/music/");
+		logger.info(folderPath);
+		
 	}
 	
 
