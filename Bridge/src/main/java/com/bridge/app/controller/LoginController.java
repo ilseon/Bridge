@@ -2,8 +2,8 @@
 작성자 - 김민정
 내용 - 로그인/로그아웃
 시작날짜 - 2016/07/17
-수정날짜 - 2016/07/25
-변경내용 - 아이디 및 비밀번호 찾기 예외처리 완성
+수정날짜 - 2016/07/27
+변경내용 - 로그인시 화면 깨지는것 해결 및 로그인 실패시 이동 페이지
 */
 
 package com.bridge.app.controller;
@@ -49,7 +49,7 @@ public class LoginController {
 
 		if (result.hasErrors()) {
 			logger.info("login error ");
-			return "home";
+			return "redirect:/";
 		}
 
 		try {
@@ -59,13 +59,15 @@ public class LoginController {
 
 			model.addAttribute("userid", vo.getUserId());
 			model.addAttribute("usernumber", vo.getUserNumber());
+			model.addAttribute("loginmsg",2);
 			logger.info("login se :  ");
 
 		} catch (Exception e) { // 로그인실패시
 			logger.info("login fail ");
-			return "home";
+			model.addAttribute("loginmsg",1);
+			return "/login/loginfail";
 		}
-		return "home";
+		return "redirect:/";
 	}
 
 	// 아이디 및 비밀번호 찾기 페이지로 이동
@@ -74,6 +76,14 @@ public class LoginController {
 		logger.info("It is loginsearch");
 		return "/login/loginsearch";
 	}
+	
+	// 로그인 실패시 이동 페이지
+	@RequestMapping(value = "loginfail")
+	public String loginfail() {
+		logger.info("It is loginfail");
+		return "/login/loginfail";
+	}
+	
 
 	// 로그아웃 메서드
 	@RequestMapping("logout")
