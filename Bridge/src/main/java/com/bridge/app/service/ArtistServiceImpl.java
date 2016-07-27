@@ -15,8 +15,8 @@ public class ArtistServiceImpl implements ArtistService{
 	
 
 	@Override
-	public void regist(HttpServletRequest req) throws Exception {
-		dao.regist(req);
+	public void regist(HttpServletRequest req, Integer userNumber) throws Exception {
+		dao.regist(req, userNumber);
 	}	
 	@Override
 	public ArtistVO getArtistOne() throws Exception {

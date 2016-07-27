@@ -36,7 +36,7 @@ public class AlbumDAOImpl implements AlbumDAO {
 	}
 
 	@Override
-	public AlbumVO AlbumInsert(HttpServletRequest req, AlbumVO album) throws Exception {
+	public AlbumVO AlbumInsert(HttpServletRequest req, AlbumVO album, Integer userNumber) throws Exception {
 		
 		int postMaxSize = 10 * 1024 * 1024;
 		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
@@ -62,7 +62,7 @@ public class AlbumDAOImpl implements AlbumDAO {
             String name = (String)enumer.nextElement();
             albumImg = multiReq.getFilesystemName(name);
          }
-         
+       
         album = new  AlbumVO();
          
         album.setAlbumName(multiReq.getParameter("albumName"));

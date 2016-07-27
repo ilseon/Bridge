@@ -105,6 +105,7 @@
 			<div class="col-md-12">
 				<!-- end -->
 				<br> <br>
+
 				<!-- 내 앨범에 추가된 곡 정보 start -->
 				&nbsp;&nbsp;<input type="checkbox" id="allCheck"> &nbsp;
 				<button class="btn btn-default btn-md" id="listen">

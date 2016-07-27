@@ -52,4 +52,10 @@ public class DownloadServiceImpl implements DownloadService {
 		return downloadDAO.search_sev(playlistAll);
 	}
 
+	@Override
+	public List<DownloadVO> searchDownload(Integer userNumber) throws Exception {
+		// TODO Auto-generated method stub
+		return downloadDAO.searchDownload(userNumber);
+	}
+
 }

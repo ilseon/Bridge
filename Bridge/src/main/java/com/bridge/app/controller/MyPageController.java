@@ -14,16 +14,23 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 import com.bridge.app.domain.AlbumVO;
 import com.bridge.app.domain.MusicVO;
+import com.bridge.app.domain.PlaylistVO;
+import com.bridge.app.persistence.DownloadDAO;
 import com.bridge.app.service.AlbumService;
 import com.bridge.app.service.ArtistService;
+import com.bridge.app.service.DownloadService;
+import com.bridge.app.service.LikeService;
 import com.bridge.app.service.MusicService;
+import com.bridge.app.service.PlaylistService;
 
 @Controller
 public class MyPageController {
@@ -34,6 +41,12 @@ public class MyPageController {
 	private AlbumService albumservice;
 	@Inject
 	private MusicService musicservice;
+	@Inject
+	private PlaylistService playservice;
+	@Inject
+	private LikeService likeservice;
+	@Inject
+	private DownloadService downservice;
 
 	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
 
@@ -44,17 +57,18 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
-	public String Upload_Artist(HttpServletRequest req) throws Exception {
-
-		logger.info("아티스트 등록 ");
-		artistservice.regist(req);
+	public String Upload_Artist(HttpServletRequest req, Integer userNumber) throws Exception {
+		logger.info("아티스트 등록  페이지");
+		//userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+		artistservice.regist(req, userNumber);
 		return "/upload/upload_album";		
 	}
 	@RequestMapping(value = "upload2", method = RequestMethod.POST)
 	public String Upload_Album(HttpServletRequest req, AlbumVO album) throws Exception {
 
-	logger.info("앨범 등록");
-
+	logger.info("앨범 등록 페이지");
+	int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+	albumservice.regist(req, album, userNumber);
 	logger.info("앨범 등록 완료");
 	return "/upload/upload_music";
 	}
@@ -62,8 +76,8 @@ public class MyPageController {
 	@RequestMapping(value = "upload3", method = RequestMethod.POST)
 	public String Upload_Music(HttpServletRequest req, AlbumVO album, MusicVO music) throws Exception {
 
-	logger.info("뮤직등록");
-	albumservice.regist(req, album);
+	logger.info("뮤직 등록 페이지");
+	int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 	musicservice.regist(req, music);
 	logger.info("뮤직 등록 완료");
 	return "/upload/mytrack";
@@ -124,29 +138,37 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "like_song")
-	public String LikeSong() {
+	public String LikeSong(HttpServletRequest req, Model view) throws Exception {
 
+		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+		view.addAttribute("like_song", likeservice.searchMusic(userNumber));
 		logger.info("It is like_song");
 		return "/mypage/like_song";
 	}
 
 	@RequestMapping(value = "like_album")
-	public String LikeAlbum() {
+	public String LikeAlbum(HttpServletRequest req, Model view) throws Exception {
 
+		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+		view.addAttribute("like_album", likeservice.searchAlbum(userNumber));
 		logger.info("It is like_album");
 		return "/mypage/like_album";
 	}
 
 	@RequestMapping(value = "my_album")
-	public String myAlbum() {
-
+	public String myAlbum(HttpServletRequest req, Model view) throws Exception {
+		
+		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+		view.addAttribute("playlist", playservice.searchAll(userNumber));
 		logger.info("It is myalbum");
 		return "/mypage/myalbum";
 	}
 
 	@RequestMapping(value = "download")
-	public String Download() {
+	public String Download(HttpServletRequest req, Model view) throws Exception {
 
+		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+		view.addAttribute("download", downservice.searchDownload(userNumber));
 		logger.info("It is download");
 		return "/mypage/download";
 	}

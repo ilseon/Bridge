@@ -60,7 +60,6 @@ $(document).ready(function() {
 					<h4>인기 차트 (실시간 시간)</h4>
 				</div>
 				<br />
-
 				<!-- 인기차트 테이블 -->
 				<table class="table">
 					<c:forEach begin="0" end="9" var="music" items="${musicList}" step="1">

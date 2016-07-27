@@ -29,4 +29,8 @@
 	<delete id="remove">
 		delete from download where musicnumber=#{musicNumber} and usernumber=#{userNumber}
 	</delete>
+		<select id="searchDownload" resultType="com.bridge.app.domain.DownloadVO">
+		select * from download where usernumber=#{userNumber}
+	</select>
+	
 </mapper>

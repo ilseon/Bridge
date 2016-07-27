@@ -16,4 +16,12 @@
 		delete from bridgedb.like where musicnumber=#{musicNumber} and usernumber=#{userNumber}
 	</delete>
 
+	<select id="selectMusic" resultType="LikeVO">
+		select musicnumber from bridgedb.like where usernumber=#{userNumber}
+	</select>
+	
+	<select id="selectAlbum" resultType="LikeVO">
+		select music_album_albumnumber from bridgedb.like where usernumber=#{userNumber}
+	</select>
+
 </mapper>

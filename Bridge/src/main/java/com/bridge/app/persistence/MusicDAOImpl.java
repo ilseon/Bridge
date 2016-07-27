@@ -76,14 +76,7 @@ public class MusicDAOImpl implements MusicDAO {
 	@Override
 	public void regist(HttpServletRequest req, MusicVO music) throws Exception {	
 
-			/*		  
-			 * List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-		    	Map<String, Object> listMap = null; 
-		     
-		    	String boardIdx = (String)map.get("IDX");
-			 */	    
-		
-			 int postMaxSize = 10 * 1024 * 1024;
+		int postMaxSize = 10 * 1024 * 1024;
 	         String folderPath = req.getSession().getServletContext().getRealPath("/"); //realPath
 	         String folder_p=folderPath+"upload"+File.separator+"music"+File.separator;
 	        
@@ -94,23 +87,32 @@ public class MusicDAOImpl implements MusicDAO {
 	         }
 	         
 	         String encoding = "UTF-8";
+	         
 	         ArrayList filePath = new ArrayList();
 	         
 	         
 	         Enumeration enumer=null;
-	          MultipartRequest multiReq = new MultipartRequest(req, folder_p,
+	         MultipartRequest multiReq = new MultipartRequest(req, folder_p,
 	        		  							postMaxSize, encoding, new DefaultFileRenamePolicy());
 	          
 	          enumer=multiReq.getFileNames();
 	          
-	          //ArrayList fileNameList = new ArrayList();//파일 이름 저장
-	          String musicFile = "";    
+	          ArrayList fileNameList = new ArrayList();//파일 이름 저장
+	          
 	          while(enumer.hasMoreElements()){
 	             String name = (String)enumer.nextElement();
 	             //fileNameList.add(multiReq.getFilesystemName(name));
-	             musicFile = multiReq.getFilesystemName(name);
+	             fileNameList.add(multiReq.getFilesystemName(name));
 	          }
-		
+	          
+	          
+	          ArrayList musicList = new ArrayList();//파일 이름 저장
+	          
+	          musicList.add(fileNameList); 
+	          //musicList.add();
+	          
+	          
+	          
 	          music = new  MusicVO();
 	          music.setMusicSubject(multiReq.getParameter("musicSubject"));
 	          music.setMusicFile(multiReq.getParameter("musicFile"));

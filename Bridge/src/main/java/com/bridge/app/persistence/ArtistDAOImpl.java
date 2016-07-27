@@ -10,6 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.util.WebUtils;
+
 import com.bridge.app.controller.MyPageController;
 import com.bridge.app.domain.ArtistVO;
 import com.oreilly.servlet.MultipartRequest;
@@ -26,7 +28,7 @@ public class ArtistDAOImpl implements ArtistDAO {
 	private static final String NAMESPACE = "com.bridge.mappers.artistMapper";
 
 	@Override
-	public void regist(HttpServletRequest req) throws Exception {
+	public void regist(HttpServletRequest req, Integer userNumber) throws Exception {
 
 		int postMaxSize = 10 * 1024 * 1024;
 		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
@@ -58,10 +60,11 @@ public class ArtistDAOImpl implements ArtistDAO {
          artist.setArtistGenre(multiReq.getParameter("artistGenre"));
          artist.setArtistType(multiReq.getParameter("artistType"));
          artist.setArtistImg(artistImg);
-         artist.setUserNumber(Integer.parseInt(multiReq.getParameter("userNumber")));
+ 		 userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+         artist.setUserNumber(userNumber);
             
         logger.info("multiReq :"+multiReq.getParameter("artistName")+" / "+multiReq.getParameter("artistGenre")+" / "+multiReq.getParameter("artistType")
-        +" / "+artistImg+multiReq.getParameter("userNumber")); 
+        +" / "+userNumber); 
         logger.info(artist.toString());
        
         sqlSession.insert(NAMESPACE + ".regist", artist);

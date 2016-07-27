@@ -42,8 +42,6 @@ public class PlaylistDAOImpl implements PlaylistDAO {
 
 	@Override
 	public List<PlaylistVO> searchAll(Integer userNumber) throws Exception {
-
-		return null;
+		return sqlSession.selectList(NAMESPACE+".searchAll", userNumber);
 	}
-
 }

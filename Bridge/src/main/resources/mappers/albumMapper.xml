@@ -10,6 +10,7 @@
 	<insert id="regist">
 		insert into album(albumname, albumtype, albumdate, albumgenre, artist_artistnumber, albumimg, 19check, albumcontent)
 		values(#{albumName}, #{albumType}, #{albumDate}, #{albumGenre}, #{artistNumber},  #{albumImg}, #{ageLimit}, #{albumContent})
+		where usernumber=#{userNumber}
 	</insert>	
 	
 	<select id="getAlbumOne" resultType="AlbumVO">

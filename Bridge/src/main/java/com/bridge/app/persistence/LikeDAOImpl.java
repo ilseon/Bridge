@@ -38,7 +38,16 @@ public class LikeDAOImpl implements LikeDAO {
 	@Override
 	public List<Integer> searchAll(Integer userNumber) throws Exception {
 		return sqlSession.selectList(NAMESPACE+".searchAll", userNumber);
+	}
+	
+	@Override
+	public List<LikeVO> searchMusic(Integer userNumber) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".selectMusic", userNumber);
+	}
 
+	@Override
+	public List<LikeVO> searchAlbum(Integer userNumber) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".selectAlbum", userNumber);
 	}
 
 }

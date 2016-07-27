@@ -5,11 +5,11 @@
 
 <mapper namespace="com.bridge.mappers.playlistMapper">	
 	<select id="searchAll" resultType="com.bridge.app.domain.PlaylistVO">
-		select * from music
+		select * from playlist where usernumber=#{userNumber} 
 	</select>	
 
 	<insert id="regist" parameterType="com.bridge.app.domain.PlaylistVO">
-		<!-- insert into playlist(musicnumber, usernumber) values(#{musicNumber}, #{userNumber}) -->
+		 insert into playlist(musicnumber, usernumber) values(#{musicNumber}, #{userNumber}) 
 	</insert>
 	
 	<insert id="registAll">
