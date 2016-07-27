@@ -21,7 +21,7 @@
 			var userId = '${userid}';
 			var checkId = $(this).attr('id');
 
-			if (checkId == "quick" || checkId.length == 0 || checkId == "userId" || checkId == "userPassword") {
+			if (checkId == "quick" || checkId.length == 0 || checkId == "userId" || checkId == "userPassword" || checkId == "userIdTest" || checkId == "userPasswordTest") {
 			} else if (userId.length == 0) {
 				alert("로그인을 해주세요 !");
 			}
