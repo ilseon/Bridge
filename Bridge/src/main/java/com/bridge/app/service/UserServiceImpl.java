@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void insertUser(UserVO vo) throws Exception {
-		// TODO Auto-generated method stub
+		dao.insertUser(vo);
 		
 	}
 

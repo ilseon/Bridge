@@ -28,8 +28,10 @@ public class ArtistDAOImpl implements ArtistDAO {
 	private static final String NAMESPACE = "com.bridge.mappers.artistMapper";
 
 	@Override
-	public void regist(HttpServletRequest req, Integer userNumber) throws Exception {
+	public void regist(HttpServletRequest req) throws Exception {
 
+		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+		
 		int postMaxSize = 10 * 1024 * 1024;
 		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
         String folder_p=folderPath+"upload"+File.separator+"artist"+File.separator;
@@ -60,18 +62,25 @@ public class ArtistDAOImpl implements ArtistDAO {
          artist.setArtistGenre(multiReq.getParameter("artistGenre"));
          artist.setArtistType(multiReq.getParameter("artistType"));
          artist.setArtistImg(artistImg);
- 		 userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
-         artist.setUserNumber(userNumber);
+         artist.setUserNumber(usernumber);
             
         logger.info("multiReq :"+multiReq.getParameter("artistName")+" / "+multiReq.getParameter("artistGenre")+" / "+multiReq.getParameter("artistType")
-        +" / "+userNumber); 
+        +" / "+usernumber); 
         logger.info(artist.toString());
        
         sqlSession.insert(NAMESPACE + ".regist", artist);
+             
 	}
 	
 	@Override
 	public ArtistVO getArtistOne() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getArtistOne");
 	}
+
+	@Override
+	public int selectAritstNumber(int userNumber) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE + ".selectAristNumber", userNumber);
+	}
+
 }

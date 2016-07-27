@@ -36,6 +36,7 @@ public class UserController {
 		Service.insertUser(vo);
 		ModelAndView mav = new ModelAndView("/user/User_add_compleate");
 		mav.addObject("username", vo.getUserName());
+		logger.info(vo.getUserBirthday());
 		
 		return mav;
 	};

@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.WebUtils;
 
 import com.bridge.app.controller.MyPageController;
 import com.bridge.app.domain.AlbumVO;
@@ -27,6 +29,7 @@ public class AlbumDAOImpl implements AlbumDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
 	private static final String NAMESPACE = "com.bridge.mappers.albumMapper";
+	private static final String NAMESPACE2 = "com.bridge.mappers.artistMapper";
 
 	@Override
 	public AlbumVO test() {
@@ -36,7 +39,7 @@ public class AlbumDAOImpl implements AlbumDAO {
 	}
 
 	@Override
-	public AlbumVO AlbumInsert(HttpServletRequest req, AlbumVO album, Integer userNumber) throws Exception {
+	public AlbumVO AlbumInsert(HttpServletRequest req, AlbumVO album, @RequestParam int artistNumber) throws Exception {
 		
 		int postMaxSize = 10 * 1024 * 1024;
 		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
@@ -46,8 +49,8 @@ public class AlbumDAOImpl implements AlbumDAO {
         file = new File(folder_p);
         if(!file.exists()) {
            file.mkdirs();
-        }
-       		
+        }    		
+
         
         String encoding = "UTF-8";
         Enumeration enumer = null;
@@ -69,7 +72,7 @@ public class AlbumDAOImpl implements AlbumDAO {
         album.setAlbumType(multiReq.getParameter("albumType"));
         album.setAlbumDate(multiReq.getParameter("albumDate"));
         album.setAlbumGenre(multiReq.getParameter("albumGenre"));
-        album.setArtistNumber(9);
+        album.setArtistNumber(artistNumber);
         album.setAlbumImg(albumImg);            
         album.setAgeLimit(Integer.parseInt(multiReq.getParameter("ageLimit")));
         album.setAlbumContent(multiReq.getParameter("albumContent"));

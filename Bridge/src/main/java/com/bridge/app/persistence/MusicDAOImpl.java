@@ -87,9 +87,9 @@ public class MusicDAOImpl implements MusicDAO {
 	         }
 	         
 	         String encoding = "UTF-8";
+	     
 	         
-	         ArrayList filePath = new ArrayList();
-	         
+	         //ArrayList filePath = new ArrayList();   
 	         
 	         Enumeration enumer=null;
 	         MultipartRequest multiReq = new MultipartRequest(req, folder_p,
@@ -97,29 +97,33 @@ public class MusicDAOImpl implements MusicDAO {
 	          
 	          enumer=multiReq.getFileNames();
 	          
+	          ArrayList musicList = new ArrayList<ArrayList<String>>();//파일 이름 저장
 	          ArrayList fileNameList = new ArrayList();//파일 이름 저장
 	          
 	          while(enumer.hasMoreElements()){
 	             String name = (String)enumer.nextElement();
-	             //fileNameList.add(multiReq.getFilesystemName(name));
 	             fileNameList.add(multiReq.getFilesystemName(name));
 	          }
 	          
+	          musicList.add(multiReq.getParameter("musicSubject"));
+	          musicList.add(multiReq.getParameter("musicFile"));
+	          musicList.add(multiReq.getParameter("musicVideo"));
+	          musicList.add(fileNameList);       
 	          
-	          ArrayList musicList = new ArrayList();//파일 이름 저장
+	          for(int i=0; i < fileNameList.size(); i++){	        	  
+	        	  fileNameList.get(i);	        	  
+	        	  for(int j=0; j < musicList.size(); j++){	        	  
+	        		  musicList.get(i);	        	  
+	        	  }
+	          }
 	          
-	          musicList.add(fileNameList); 
-	          //musicList.add();
+	          logger.info(musicList.toString());
 	          
-	          
-	          
-	          music = new  MusicVO();
-	          music.setMusicSubject(multiReq.getParameter("musicSubject"));
-	          music.setMusicFile(multiReq.getParameter("musicFile"));
-	          music.setMusicVideo(multiReq.getParameter("musicVideo"));
-	          	          
-	          
-	          logger.info(music.toString());
+	          //music = new  MusicVO();
+	          //music.setMusicSubject(multiReq.getParameter("musicSubject"));
+	          //music.setMusicFile(multiReq.getParameter("musicFile"));
+	          //music.setMusicVideo(multiReq.getParameter("musicVideo"));
+	          //logger.info(music.toString());
 		    
 	          sqlSession.insert(NAMESPACE + ".regist", music);
 	} 	

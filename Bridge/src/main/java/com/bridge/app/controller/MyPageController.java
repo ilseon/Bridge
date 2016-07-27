@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
 import com.bridge.app.domain.AlbumVO;
+import com.bridge.app.domain.ArtistVO;
 import com.bridge.app.domain.MusicVO;
 import com.bridge.app.domain.PlaylistVO;
 import com.bridge.app.persistence.DownloadDAO;
@@ -57,18 +58,23 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
-	public String Upload_Artist(HttpServletRequest req, Integer userNumber) throws Exception {
+	public String Upload_Artist(HttpServletRequest req) throws Exception {
 		logger.info("아티스트 등록  페이지");
-		//userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
-		artistservice.regist(req, userNumber);
+		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+		artistservice.regist(req);
 		return "/upload/upload_album";		
 	}
 	@RequestMapping(value = "upload2", method = RequestMethod.POST)
-	public String Upload_Album(HttpServletRequest req, AlbumVO album) throws Exception {
-
+	public String Upload_Album(HttpServletRequest req, AlbumVO album, Model model, int artistNumber) throws Exception {
+		
+	int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");	
+	
+	//artistNumber = artistservice.selectAritstNumber(userNumber);	
+	logger.info(artistNumber+"");
+	model.addAttribute(artistNumber);
+	
 	logger.info("앨범 등록 페이지");
-	int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
-	albumservice.regist(req, album, userNumber);
+	albumservice.regist(req, album, artistNumber);
 	logger.info("앨범 등록 완료");
 	return "/upload/upload_music";
 	}
@@ -77,7 +83,6 @@ public class MyPageController {
 	public String Upload_Music(HttpServletRequest req, AlbumVO album, MusicVO music) throws Exception {
 
 	logger.info("뮤직 등록 페이지");
-	int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 	musicservice.regist(req, music);
 	logger.info("뮤직 등록 완료");
 	return "/upload/mytrack";

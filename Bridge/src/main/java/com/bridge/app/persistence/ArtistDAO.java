@@ -11,6 +11,8 @@ import com.bridge.app.domain.ArtistVO;
 
 public interface ArtistDAO {
 	
-	public void regist(HttpServletRequest req, Integer userNumber) throws Exception;
+	public void regist(HttpServletRequest req) throws Exception;
 	public ArtistVO getArtistOne() throws Exception;
+	public int selectAritstNumber(int userNumber) throws Exception;
+
 }

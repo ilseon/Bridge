@@ -112,7 +112,7 @@ public class ChartController {
 	
 	@RequestMapping(value="/myalbum", method=RequestMethod.GET)
 	public String registPlaylist(@RequestParam("musicnumber") int musicnumber, HttpServletRequest req, Model view) throws Exception{
-		int usernumber = 3;// (int) WebUtils.getSessionAttribute(req, "usernumber");
+		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 		PlaylistVO plist = new PlaylistVO();
 		plist.setMusicNumber(musicnumber);
 		plist.setUserNumber(usernumber);

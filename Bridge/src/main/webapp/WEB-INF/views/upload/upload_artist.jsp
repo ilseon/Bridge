@@ -89,6 +89,8 @@
 				<form id="artist" action="upload" method="post" accept-charset="UTF-8" enctype="multipart/form-data" >
 					<div id="upload_main">
 						<div class="col-md-2 col-md-offset-1">
+						<input type="hidden" name="userNumber" id="userNumber"
+						value="${userNumber}" />
 							<br /> <img src="resources/image/upload/album/album_image.PNG"
 								width="120%"><br /> <br /> <input type="file"
 								name="artistImg" id="artistImg" accept=".gif, .jpg, .png"/>

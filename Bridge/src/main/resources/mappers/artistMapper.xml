@@ -5,11 +5,13 @@
 
 <mapper namespace="com.bridge.mappers.artistMapper">	
 	<insert id="regist">
-		insert into artist(artistname, artisttype, artistgenre, artistimg, usernumber)
+		insert into artist(artistname, artisttype, artistgenre, artistimg, userNumber) 
 		values(#{artistName}, #{artistType}, #{artistGenre}, #{artistImg}, #{userNumber})
-		where usernumber=#{userNumber}
 	</insert>	
 	<select id="getArtistOne" resultType="ArtistVO">
 		select * from artist where artistnumber=1
+	</select>	
+	<select id="selectAristNumber" resultType="int">
+		select artistnumber from artist where userNumber=#{userNumber}
 	</select>	
 </mapper>

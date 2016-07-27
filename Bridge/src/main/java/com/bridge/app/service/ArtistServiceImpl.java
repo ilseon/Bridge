@@ -12,15 +12,19 @@ import com.bridge.app.persistence.ArtistDAO;
 public class ArtistServiceImpl implements ArtistService{
 	@Autowired
 	private ArtistDAO dao;	
-	
 
 	@Override
-	public void regist(HttpServletRequest req, Integer userNumber) throws Exception {
-		dao.regist(req, userNumber);
+	public void regist(HttpServletRequest req) throws Exception {
+		dao.regist(req);
 	}	
 	@Override
 	public ArtistVO getArtistOne() throws Exception {
 		return dao.getArtistOne();
+	}
+	
+	@Override
+	public int selectAritstNumber(int userNumber) throws Exception {
+		return dao.selectAritstNumber(userNumber);
 	}
 
 }
