@@ -2,8 +2,8 @@
 작성자 - 김민정
 내용 - 페이지 옆 노출
 시작날짜 - 2016/07/19
-수정날짜 - 2016/07/26
-변경내용 - 로그인이 안되있을경우 팝업창 노출!test
+수정날짜 - 2016/07/27
+변경내용 - 로그인이 안되있을경우 팝업창 노출 완료
  --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,19 +15,32 @@
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 
 <script>
-   function showAlert() {
-      var userId = '${userid}';
-      if (userId.length == 0) {
-         alert("로그인을 해주세요 !");
-      }else{    
-    	  $.ajax({
-				type : "GET",	 
-				url : "like_song"				
-			}); 
-      }
-   }
+
+	$(function() {
+		$('input').click(function(e) {
+			var userId = '${userid}';
+			var checkId = $(this).attr('id');
+
+			if (checkId == "quick" || checkId.length == 0 || checkId == "userId" || checkId == "userPassword") {
+			} else if (userId.length == 0) {
+				alert("로그인을 해주세요 !");
+			}
+			else {
+				if (checkId == "like_song") {
+					location.href = 'like_song';
+				} else if (checkId == "myalbum") {
+					location.href = 'myalbum';
+				} else if (checkId == "download") {
+					location.href = 'download';
+				} else if (checkId == "upload") {
+					location.href = 'upload';
+				} else if (checkId == "mytrack") {
+					location.href = 'mytrack';
+				}
+			}
+		});
+	});
 </script>
-<!--location.href("like_song");   -->
 
 
 <!-- 사이드바 전체-->
@@ -45,19 +58,18 @@
 
 <!-- 중간 메뉴 -->
 <div>
-
-              <input type="image" src="/resources/image/mainlike.PNG"  onclick="showAlert();" />
+<input type="image" src="/resources/image/mainlike.PNG"   id="like_song" />
 <br/>
-<a href="myalbum"><input type="image" src="/resources/image/mainmyalbum.PNG"  /></a>
+<input type="image" src="/resources/image/mainmyalbum.PNG"  id="myalbum" />
 <br/>
-<a href="download" ><input type="image" src="/resources/image/maindown.PNG"  /></a>
+<input type="image" src="/resources/image/maindown.PNG"  id="download" />
 </div>
 <hr/>
 
 <!-- 아래 메뉴 -->
 <div>
-<a href="upload" ><input type="image" src="/resources/image/mainup.PNG"  /></a>
+<input type="image" src="/resources/image/mainup.PNG"  id="upload" />
 <br/>
-<a href="mytrack"><input type="image" src="/resources/image/maintrack.PNG"  /></a>
+<input type="image" src="/resources/image/maintrack.PNG"  id="mytrack" />
 </div>
 </div>
