@@ -9,9 +9,9 @@
 import java.sql.SQLException;
 import java.util.List;
 
-import com.bridge.app.domain.MusicVO;
 import com.bridge.app.domain.Paging;
 import com.bridge.app.domain.VideoVO;
+import com.bridge.app.domain.MusicVO;
 
 
 public interface SearchService {
