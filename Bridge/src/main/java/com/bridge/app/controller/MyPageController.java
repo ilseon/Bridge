@@ -49,9 +49,10 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "upload2", method = RequestMethod.POST)
-	public String Upload_Album() throws Exception {
+	public String Upload_Album(HttpServletRequest req) throws Exception {
 
 	logger.info("앨범 등록");
+	albumservice.regist(req);
 	return "/upload/upload_music";
 	}
 	
@@ -59,8 +60,6 @@ public class MyPageController {
 	public String Upload_Music(HttpServletRequest req) throws Exception {
 
 	logger.info("뮤직등록");
-
-	albumservice.regist(req);
 	musicservice.regist(req);
 	return "/upload/mytrack";
 	}
