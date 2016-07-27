@@ -101,6 +101,11 @@ $(function(){
 	})
 });
 
+function PopupWindow(){
+	 
+	 window.open("/player","new","width=500, height=700, resizable=no, scrollbars=no, status=no, location=no, directories=no;");
+	}
+
 </script>
 
 	<!-- 차트 시작 -->

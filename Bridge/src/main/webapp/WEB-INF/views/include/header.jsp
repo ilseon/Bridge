@@ -52,7 +52,7 @@ $(function(){
 
 </script>
 
-<body>
+<body style="margin-top: 4%;">
 	<nav class="navbar navbar-default" id="fixed">
 		<div class="container-fluid">
 		

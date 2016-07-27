@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.brige.mappers.searchMapper">	
+	<select id="videotest" resultType="VideoVO" parameterType="Paging"><!-- 페이지마다10개씩 데이터를 뽑아온다 -->
+		select m.musicsubject,a.artistname,a.albumdate,m.musicvideo from music as m,(select * from album as a,artist as t where a.artist_artistnumber=t.artistnumber) as a where m.albumnumber=a.albumnumber 
+		<if test="searchType!=''">
+			<if test='searchType=="제목"'>
+			AND m.musicsubject like '%${search}%'
+			</if>
+			<if test='searchType=="가수"'>
+				AND a.artistname like '%${search}%'
+			</if>
+		</if>
+		ORDER BY m.musicnumber desc limit #{start},#{end};
+
+
+
+	</select>
+	
+		
+	<select id="totalvideo" resultType="VideoVO" parameterType="Paging"><!-- music게시물 총갯수 -->
+		
+		select m.musicsubject,a.artistname,a.albumdate,m.musicvideo from music as m,(select * from album as a,artist as t where a.artist_artistnumber=t.artistnumber) as a where m.albumnumber=a.albumnumber
+		ORDER BY m.musicnumber desc limit #{start},#{end};
+	</select>
+	
+	<select id="totalvideo1" resultType="VideoVO">
+		select * from music
+	</select>
+</mapper>
+
+	
