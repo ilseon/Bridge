@@ -32,7 +32,7 @@
 
 <a href="like_song"><input type="image" src="/resources/image/mainlike.PNG"  /></a>
 <br/>
-<a href="myalbum"><input type="image" src="/resources/image/mainmyalbum.PNG"  /></a>
+<a href="my_album"><input type="image" src="/resources/image/mainmyalbum.PNG"  /></a>
 <br/>
 <a href="download" ><input type="image" src="/resources/image/maindown.PNG"  /></a>
 </div>

@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bridge.app.domain.AlbumVO;
@@ -136,8 +137,8 @@ public class MyPageController {
 		return "/mypage/like_album";
 	}
 
-	@RequestMapping(value = "myalbum")
-	public String Myalbum() {
+	@RequestMapping(value = "my_album")
+	public String myAlbum() {
 
 		logger.info("It is myalbum");
 		return "/mypage/myalbum";
