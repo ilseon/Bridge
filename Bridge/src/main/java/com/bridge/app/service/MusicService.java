@@ -29,4 +29,8 @@ public interface MusicService {
 	public void regist(HttpServletRequest req) throws Exception;
 	public void update(MusicVO music) throws Exception;		
 	
+	// 일선 추가
+	public List<MusicVO> getArtistMusic(int artistNumber) throws Exception;
+	public List<MusicVO> getAlbumMusic(int albumNumber) throws Exception;
+	
 }

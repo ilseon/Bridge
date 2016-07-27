@@ -26,8 +26,8 @@ public class AlbumServiceImpl implements AlbumService {
 		dao.AlbumInsert(req);	
 	}
 	@Override
-	public AlbumVO getAlbumOne() throws Exception {
-		return dao.getAlbumOne();
+	public AlbumVO getAlbumOne(int albumNumber) throws Exception {
+		return dao.getAlbumOne(albumNumber);
 	}
 		
 	@Override

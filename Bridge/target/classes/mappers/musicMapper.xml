@@ -23,4 +23,12 @@
 	<delete id="remove">
 		delete from playlist where musicnumber=#{musicnumber}
 	</delete>
+	
+	<!-- 일선 추가 -->
+	<select id="getArtistMusic" parameterType="int" resultType="com.bridge.app.domain.MusicVO"> 
+		select * from music where artistnumber=#{artistNumber}; 
+	</select>
+	<select id="getAlbumMusic" parameterType="int" resultType="com.bridge.app.domain.MusicVO"> 
+		select * from music where albumnumber=#{albumNumber};
+	</select>
 </mapper>

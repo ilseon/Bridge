@@ -85,4 +85,19 @@ public class MusicServiceImpl implements MusicService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
+	// 일선 추가
+	@Override
+	public List<MusicVO> getArtistMusic(int artistNumber) throws Exception {
+		return musicDAO.getArtistMusic(artistNumber);
+	}
+
+	@Override
+	public List<MusicVO> getAlbumMusic(int albumNumber) throws Exception {
+		return musicDAO.getAlbumMusic(albumNumber);
+	}
+	
+
+	
 }

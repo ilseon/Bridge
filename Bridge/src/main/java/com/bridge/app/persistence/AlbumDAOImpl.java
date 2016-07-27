@@ -85,8 +85,8 @@ public class AlbumDAOImpl implements AlbumDAO {
 		sqlSession.insert(NAMESPACE + ".regist", album);
 	}
 	@Override
-	public AlbumVO getAlbumOne() throws Exception {
-		return sqlSession.selectOne(NAMESPACE + ".getAlbumOne");
+	public AlbumVO getAlbumOne(int albumNumber) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getAlbumOne", albumNumber);
 	}
 	@Override
 	public List<AlbumVO> searchAll(int limit) throws Exception {

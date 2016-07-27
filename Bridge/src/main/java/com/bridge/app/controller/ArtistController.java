@@ -11,21 +11,29 @@ package com.bridge.app.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.bridge.app.domain.ArtistReplyVO;
 import com.bridge.app.service.ArtistReplyService;
 import com.bridge.app.service.ArtistService;
+import com.bridge.app.service.MusicService;
 
 @Controller
 public class ArtistController {
 	@Autowired
 	private ArtistService service;
-
+	
+	@Autowired
+	private MusicService musicService;
+	
+	@Autowired
+	private ArtistReplyService artistService;
+	
 	@RequestMapping(value="artist_detail")
-	public String artistDetail(Model model) throws Exception{
-		model.addAttribute(service.getArtistOne());
+	public String artistDetail(Model model, @RequestParam int artistNumber) throws Exception{
+		model.addAttribute(service.getArtistOne(artistNumber));		
+		model.addAttribute("musicList", musicService.getArtistMusic(artistNumber));		
+		model.addAttribute("replyCnt", artistService.countArtist(artistNumber));		
 		return "/artist/artist_detail";
 	}
 	

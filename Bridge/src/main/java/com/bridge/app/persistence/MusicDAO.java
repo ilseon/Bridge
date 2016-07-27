@@ -18,4 +18,8 @@ public interface MusicDAO {
 	public MusicVO searchMusic(int musicnumber) throws Exception;
 	public List<MusicVO> searchGenre(Map map) throws Exception;
 	public MusicVO search() throws Exception;
+	
+	// 일선 추가
+	public List<MusicVO> getArtistMusic(int artistNumber) throws Exception;
+	public List<MusicVO> getAlbumMusic(int albumNumber) throws Exception;
 }

@@ -109,4 +109,16 @@ public class MusicDAOImpl implements MusicDAO {
 			sqlSession.insert(NAMESPACE + ".regist", req);
 		}
 	
+		// 일선 추가
+		@Override
+		public List<MusicVO> getArtistMusic(int artistNumber) throws Exception {			
+			return sqlSession.selectList(NAMESPACE + ".getArtistMusic", artistNumber);
+		}
+	
+		@Override
+		public List<MusicVO> getAlbumMusic(int albumNumber) throws Exception {
+			return sqlSession.selectList(NAMESPACE + ".getAlbumMusic", albumNumber);
+
+		}
+	
 }
