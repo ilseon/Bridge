@@ -24,9 +24,9 @@
 		from music as m inner join album as a on m.albumnumber=a.albumnumber inner join artist as ar on m.artistnumber=ar.artistnumber AND albumgenre=#{genre} AND musicrank<![CDATA[<=]]>#{limit} ORDER BY musicrank asc
 	</select>
 	
-	<insert id="regist">
+	<insert id="regist" parameterType="map">
 		insert into music (musicsubject, musicfile, musicvideo, musictitle)
-		 <foreach collection="list" item="item" separator=" , ">
+		 <foreach collection="MusicRegist" item="" separator=" , ">
 		values(#{musicsubject}, #{musicfile}, #{musicvideo}, #{musictitle})
 		  </foreach>
 	</insert>

@@ -21,7 +21,7 @@
 	</select>
 	
 	<select id="selectAlbum" resultType="LikeVO">
-		select music_album_albumnumber from bridgedb.like where usernumber=#{userNumber}
+		select albumnumber from bridgedb.like as l INNER JOIN album as a on l.usernumber = a.usernumber where usernumber=#{userNumber}
 	</select>
 
 </mapper>

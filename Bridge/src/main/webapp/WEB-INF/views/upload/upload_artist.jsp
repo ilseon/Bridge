@@ -91,6 +91,8 @@
 						<div class="col-md-2 col-md-offset-1">
 						<input type="hidden" name="userNumber" id="userNumber"
 						value="${userNumber}" />
+								<input type="hidden" name="artistNumber" id="artistNumber"
+						value="${artistNumber}" />
 							<br /> <img src="resources/image/upload/album/album_image.PNG"
 								width="120%"><br /> <br /> <input type="file"
 								name="artistImg" id="artistImg" accept=".gif, .jpg, .png"/>

@@ -26,12 +26,12 @@
 				$("#regist").click(
 						function() {
 							var cnt = $("#counter").val();
-							for (var i = 0; i < cnt; i++) {
+							for (var i = 1; i < cnt; i++) {
 								if (!$("#musicFile" + i).val()) {
-									alert((i + 1) + " 트랙 음원이 업로드되지 않았습니다.");
+									alert(i + " 트랙 음원이 업로드되지 않았습니다.");
 									return false;
 								} else if (!$("#musicSubject" + i).val()) {
-									alert((i + 1) + " 트랙 곡 명이 입력되지 않았습니다.");
+									alert(i + " 트랙 곡 명이 입력되지 않았습니다.");
 									return false;
 								} else if ($("#musicFile" + i).val()
 										&& $("#musicSubject" + i).val()) {
@@ -145,30 +145,32 @@
 						</div>
 						&nbsp;&nbsp;
 						<div class="btn btn-primary" id="albumsub">
-							<strong>앨범명${albumVO.albumName}</strong>
+							<strong>${albumName}</strong>
 						</div>
 						<br />
 					</div>
 					<br /> <br />
 					<table class="table">
 						<tr>
-							<th width="14%">트랙</th>
-							<th width="20%">음원 파일</th>
+							<th width="10%">트랙</th>
+							<th width="10%">음원 파일</th>
 							<th width="8%">타이틀</th>
 							<th width="30%">곡</th>
-							<th width="20%">뮤비</th>
+							<th width="3%"></th>
+							<th width="15%">뮤비</th>
 						</tr>
 				<!-- 음원파일, 곡, 타이틀, 뮤비 등록 -->
-					<c:forEach begin="1" end="${albumVO.counter}" var="i">
+					<c:forEach begin="1" end="${counter}" var="i">
 						<tbody>
 							<tr>
-								<td><strong>${i}+1</strong></td>
+								<td><strong>${i}</strong></td>
 								<td><input type="file" name="musicFile${i}"
 									id="musicFile${i}" accept="audio/*" /></td>
 								<td><input type="checkbox" name="musicTitle${i}"
 									id="musicTitle${i}"></td>
 								<td><input type="text" name="musicSubject${i}"
 									id="musicSubject${i}" class="form-control" width="20%" /></td>
+									<td></td>
 								<td><input type="text" name="musicVideo${i}"
 									id="musicVideo${i}" class="form-control" /></td>
 

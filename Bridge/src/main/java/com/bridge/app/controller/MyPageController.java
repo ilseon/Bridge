@@ -8,6 +8,11 @@
 
 package com.bridge.app.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -58,32 +63,35 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
-	public String Upload_Artist(HttpServletRequest req) throws Exception {
+	public ModelAndView Upload_Artist(HttpServletRequest req, Model model) throws Exception {
+		
 		logger.info("아티스트 등록  페이지");
 		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
-		artistservice.regist(req);
-		return "/upload/upload_album";		
+		ModelAndView mav = new ModelAndView("/upload/upload_album");
+		//artistservice.regist(req);		
+		int artistNumber = artistservice.selectAritstNumber(userNumber);
+		//req.setAttribute("artistNumber", artistNumber);
+		model.addAttribute("artistNumber", artistNumber);
+		return mav;		
 	}
 	@RequestMapping(value = "upload2", method = RequestMethod.POST)
-	public String Upload_Album(HttpServletRequest req, AlbumVO album, Model model, int artistNumber) throws Exception {
+	public String Upload_Album(HttpServletRequest req, AlbumVO album) throws Exception {
 		
-	int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");	
-	
-	//artistNumber = artistservice.selectAritstNumber(userNumber);	
-	logger.info(artistNumber+"");
-	model.addAttribute(artistNumber);
-	
 	logger.info("앨범 등록 페이지");
-	albumservice.regist(req, album, artistNumber);
+	albumservice.regist(req, album);
 	logger.info("앨범 등록 완료");
 	return "/upload/upload_music";
 	}
 	
 	@RequestMapping(value = "upload3", method = RequestMethod.POST)
-	public String Upload_Music(HttpServletRequest req, AlbumVO album, MusicVO music) throws Exception {
+	public String Upload_Music(HttpServletRequest req, MusicVO music, @RequestParam int counter) throws Exception {
 
+	List<Integer> MusicRegist = new ArrayList();
+	Map MusicList = new HashMap();	
+	MusicList.put("MusicRegist", MusicRegist);
+		
 	logger.info("뮤직 등록 페이지");
-	musicservice.regist(req, music);
+	musicservice.regist(req, music, counter);
 	logger.info("뮤직 등록 완료");
 	return "/upload/mytrack";
 	}	

@@ -74,7 +74,7 @@ public class MusicDAOImpl implements MusicDAO {
 	}
 
 	@Override
-	public void regist(HttpServletRequest req, MusicVO music) throws Exception {	
+	public void regist(HttpServletRequest req, MusicVO music, int counter) throws Exception {	
 
 		int postMaxSize = 10 * 1024 * 1024;
 	         String folderPath = req.getSession().getServletContext().getRealPath("/"); //realPath
@@ -88,7 +88,7 @@ public class MusicDAOImpl implements MusicDAO {
 	         
 	         String encoding = "UTF-8";
 	     
-	         
+	         req.getAttribute("counter");	         
 	         //ArrayList filePath = new ArrayList();   
 	         
 	         Enumeration enumer=null;

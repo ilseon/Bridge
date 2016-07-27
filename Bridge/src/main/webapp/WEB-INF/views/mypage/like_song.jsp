@@ -102,7 +102,7 @@
 			<h3 class="panel-title">좋아하는 곡</h3>
 		</div>
 		<!-- end -->
-		<!-- 좋아하는 곡 or 앨범인지 표시 start -->
+		<!-- 좋아하는 곡 or 앨범인지 표시 start
 		<div class="col-md-12">
 		<br/><br/>
 			<ul class="nav nav-tabs">
@@ -110,11 +110,12 @@
 				<li><a href="like_album">앨범</a></li>
 			</ul>
 			<br/>
-		</div>
+		</div>  -->
 
 		<!-- end -->
 		<!-- 곡에 대한 정보 -->
 		<div class="col-md-12">
+		<br/><br/>
 			<br> &nbsp;&nbsp;<input type="checkbox" id="allCheck">
 			&nbsp;<button class="btn btn-default btn-md" id="listen">
 				<span class="glyphicon glyphicon-play" style="color: red"></span>듣기

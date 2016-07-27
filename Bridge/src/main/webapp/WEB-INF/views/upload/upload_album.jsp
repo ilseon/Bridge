@@ -135,6 +135,8 @@
 				<form id="album" name="album" action="upload2" method="post"
 					enctype="multipart/form-data" accept-charset="UTF-8">
 					<!-- 아티스트 항목 값 -->
+					<input type="hidden" name="artistNnumber" id="artistNnumber"
+						value="${artistNumber}" /> 
 					<input type="hidden" name="artistName" id="artistName"
 						value="${artistVO.artistName}" /> <input type="hidden"
 						name="artistImg" id="artistImg" value="${artistVO.artistImg}" />

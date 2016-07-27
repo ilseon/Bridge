@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.util.WebUtils;
 
 import com.bridge.app.controller.MyPageController;
@@ -29,7 +30,6 @@ public class AlbumDAOImpl implements AlbumDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
 	private static final String NAMESPACE = "com.bridge.mappers.albumMapper";
-	private static final String NAMESPACE2 = "com.bridge.mappers.artistMapper";
 
 	@Override
 	public AlbumVO test() {
@@ -39,7 +39,7 @@ public class AlbumDAOImpl implements AlbumDAO {
 	}
 
 	@Override
-	public AlbumVO AlbumInsert(HttpServletRequest req, AlbumVO album, @RequestParam int artistNumber) throws Exception {
+	public AlbumVO AlbumInsert(HttpServletRequest req, AlbumVO album) throws Exception {
 		
 		int postMaxSize = 10 * 1024 * 1024;
 		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
@@ -51,6 +51,7 @@ public class AlbumDAOImpl implements AlbumDAO {
            file.mkdirs();
         }    		
 
+        int artistNumber = Integer.parseInt(req.getParameter("artistNumber"));	
         
         String encoding = "UTF-8";
         Enumeration enumer = null;
@@ -76,10 +77,20 @@ public class AlbumDAOImpl implements AlbumDAO {
         album.setAlbumImg(albumImg);            
         album.setAgeLimit(Integer.parseInt(multiReq.getParameter("ageLimit")));
         album.setAlbumContent(multiReq.getParameter("albumContent"));
-           
+        
+        String albumName = multiReq.getParameter("albumName");
+        req.setAttribute("albumName", albumName);     
+        int counter = Integer.parseInt(multiReq.getParameter("counter"));
+        logger.info(counter+"");
+        
+        req.setAttribute("counter", counter);
+        album.setCounter(counter);  
+        
+        
+        
         logger.info(multiReq.getParameter("albumName")+"/"+multiReq.getParameter("albumType")+"/"+multiReq.getParameter("albumDate")
         			+"/"+multiReq.getParameter("albumGenre")+"/"+albumImg+"/"+multiReq.getParameter("counter")+"/"+multiReq.getParameter("ageLimit")
-        			+"/"+multiReq.getParameter("albumContent"));
+        			+"/"+multiReq.getParameter("albumContent")+"/"+multiReq.getParameter("counter"));
         
         logger.info(album.toString());
 		

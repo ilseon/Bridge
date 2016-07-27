@@ -22,8 +22,8 @@ public class AlbumServiceImpl implements AlbumService {
 	@Inject
 	private AlbumDAO dao;
 	@Override
-	public AlbumVO regist(HttpServletRequest req, AlbumVO album, int artistNumber) throws Exception {
-		return dao.AlbumInsert(req, album, artistNumber);	
+	public AlbumVO regist(HttpServletRequest req, AlbumVO album) throws Exception {
+		return dao.AlbumInsert(req, album);	
 	}
 	@Override
 	public AlbumVO getAlbumOne() throws Exception {
