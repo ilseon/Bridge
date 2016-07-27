@@ -56,4 +56,9 @@ public class DownloadServiceImpl implements DownloadService {
 		return downloadDAO.searchDownload(playlistAll);
 	}
 
+	@Override
+	public List<Integer> music_already(Map download_check) throws Exception {
+		return downloadDAO.music_already(download_check);
+	}
+
 }

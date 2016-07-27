@@ -19,17 +19,25 @@
 	</select>
 	
 	<insert id="regist">
-		insert into download(musicnumber, usernumber, user_usernumber, downloaddate) values(#{musicNumber}, #{userNumber}, #{userNumber}, now())
+		insert into download(musicnumber, usernumber, downloaddate) values(#{musicNumber}, #{userNumber}, now())
 	</insert>
 	
 	<insert id="registSeveral" parameterType="map">
-		insert into download(musicnumber, usernumber, user_usernumber, downloaddate) values
+		insert into download(musicnumber, usernumber, downloaddate) values
 		<foreach collection="playListAll" item="playlist" separator=",">
-			(#{playlist.value}, #{userNumber}, #{userNumber}, now())
+			(#{playlist.value}, #{userNumber}, now())
 		</foreach>
 	</insert>
 	
 	<delete id="remove">
 		delete from download where musicnumber=#{musicNumber} and usernumber=#{userNumber}
 	</delete>
+	
+	<select id="music_already" parameterType="map" resultType="int">
+		select musicnumber from bridgedb.download where 
+		<foreach collection="musicNumbers" item="musicnumber" separator=",">
+			musicnumber=#{musicnumber.value} and usernumber=#{userNumber}
+		</foreach>
+	</select>
+	
 </mapper>

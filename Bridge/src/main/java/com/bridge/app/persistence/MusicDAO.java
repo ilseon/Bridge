@@ -22,5 +22,6 @@ public interface MusicDAO {
 	public MusicVO searchMusic(int musicnumber) throws Exception;
 	public List<MusicVO> searchGenre(Map map) throws Exception;
 	public MusicVO search() throws Exception;
+	public void download_update(Map musicnumbers) throws Exception;
  	
 }

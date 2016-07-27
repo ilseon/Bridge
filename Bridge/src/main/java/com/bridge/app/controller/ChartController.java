@@ -150,32 +150,116 @@ public class ChartController {
 		return "redirect:/chart";
 	}
 	
+	public String real_path(HttpServletRequest req){
+		String realpath=null;
+		String folderPath =req.getSession().getServletContext().getRealPath("/upload/music/");
+		
+		realpath=folderPath+"\\";
+		/*String[] paths=folderPath.split("\\");
+		for(int i =0;i<paths.length;i++){//javascript 내에서도 활용할 수 있도록 절대 경로 변경.
+			logger.info(paths[i]+i+"번째");
+			realpath+=paths[i]+"/";
+		}
+		logger.info(realpath+"real_path메서드");*/
+		return realpath;
+	}
+	
 	@RequestMapping("/download_modal")
-	public String download_modal(@RequestParam("musicnumber") int musicnumber, Model view) throws Exception{
-		view.addAttribute("music", music.searchMusic(musicnumber));
-		return "/chart/modal/download_modal";
+	public String download_modal(@RequestParam("musicnumber") int musicnumber, Model view, HttpServletRequest req) throws Exception{
+		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+		Map download_check = new HashMap();//이전에 다운받은 기록이 있는지 체크.
+		download_check.put("userNumber", usernumber);
+		
+		List<Integer> musicnumbers = new ArrayList();
+		musicnumbers.add(musicnumber);
+		download_check.put("musicNumbers", musicnumbers);
+		
+		List<Integer> already = download.music_already(download_check);
+		
+		MusicVO music_check = music.searchMusic(musicnumber);
+		
+		if(already.isEmpty()){		
+			view.addAttribute("music", music_check);
+			return "/chart/modal/download_modal";
+		}else{
+			List<String> musicfiles = new ArrayList();
+			musicfiles.add(music_check.getMusicFile());
+			req.setAttribute("musicfiles", musicfiles);
+
+			req.setAttribute("realpath", real_path(req));
+			return "/chart/modal/download_all";
+		}
 	}
 	
 	@RequestMapping("/download_modal_sev")
 	public ModelAndView download_modal_sev(@RequestParam("playlistAll") List<Integer> playlistAll, HttpServletRequest req) throws Exception{
-		HashMap map = new HashMap();
-		map.put("playlistAll", playlistAll);
-		List<MusicVO> music = download.search_sev(map);
-		ModelAndView view = new ModelAndView("/chart/modal/download_modal");
-		view.addObject("playlistAll", music);
-		return view;
+		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+		Map download_check = new HashMap();//이전에 다운받은 기록이 있는지 체크.
+		download_check.put("userNumber", usernumber);
+	
+		download_check.put("musicNumbers", playlistAll);
+		
+		List<Integer> already = download.music_already(download_check);
+		
+		//MusicVO music_check = music.searchMusic(musicnumber);
+		
+		if(already.isEmpty()){
+			HashMap map = new HashMap();
+			map.put("playlistAll", playlistAll);
+			List<MusicVO> music = download.search_sev(map);
+			ModelAndView view = new ModelAndView("/chart/modal/download_modal");
+			view.addObject("playlistAll", music);
+			return view;
+		}else{
+			/*List<String> musicfiles = new ArrayList();
+			musicfiles.add(music_check.getMusicFile());
+			req.setAttribute("musicfiles", musicfiles);*/
+
+			req.setAttribute("realpath", real_path(req));
+			ModelAndView view = new ModelAndView("/chart/modal/download_all");
+			return view;
+		}
+		
 	}
 	
 	@RequestMapping("/download_music")
 	public String downloadMusic(@RequestParam("musicnumber") int musicnumber, HttpServletRequest req, Model view) throws Exception{
 		
 		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
-		DownloadVO dlist = new DownloadVO();
+		
+		/*Map download_check = new HashMap();//이전에 다운받은 기록이 있는지 체크.
+		download_check.put("userNumber", usernumber);*/
+		
+		Map musicnumbers = new HashMap();
+		List<Integer> music_n = new ArrayList();
+		music_n.add(musicnumber);
+		musicnumbers.put("musicnumbers", music_n);
+		logger.info("11");
+		/*download_check.put("musicNumbers", musicnumbers);
+		
+		List<Integer> already = download.music_already(download_check);*/
+		
+		DownloadVO dlist = new DownloadVO();//받은 값을 VO에 넣는다.
 		dlist.setMusicNumber(musicnumber);
 		dlist.setUserNumber(usernumber);
 		
-		//download.registOne(dlist);
-		view.addAttribute("music", music.searchMusic(musicnumber));
+		//if(already.isEmpty()){//이전에 다운로드 받은 기록이 있으면 새롭게 download관련 필드를 update하지 않도록 조건 설정.
+			download.registOne(dlist);
+			logger.info("22");
+			music.download_update(musicnumbers);
+			logger.info("33");
+		//}
+		
+		MusicVO vo = music.searchMusic(musicnumber);//음원의 실제 파일 정보 받아오기.
+		List<String> musicfiles = new ArrayList();
+		musicfiles.add(vo.getMusicFile());
+		req.setAttribute("musicfiles", musicfiles);
+		
+		String realpath=real_path(req);
+		
+		req.setAttribute("realpath", realpath);
+		
+		view.addAttribute("music", vo);
 		
 		return "/chart/modal/pay_success";
 	}
@@ -184,19 +268,61 @@ public class ChartController {
 	public String downloadMusicSev(String musicnumbers, HttpServletRequest req, Model view) throws Exception{
 		
 		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+		
 		Map dlist = new HashMap();
 		dlist.put("usernumber", usernumber);
+		
 		List<Integer> playListAll = new ArrayList();
+		List<Integer> new_download = new ArrayList();
 		String[] play = musicnumbers.split(",");
 		for(int i=1;i<play.length;i++){
 			playListAll.add(Integer.parseInt(play[i]));
-			logger.info(play[i]);
+			new_download.add(Integer.parseInt(play[i]));
+			logger.info(play[i]+"downloadmusicsev");
+		}
+		
+		Map download_check = new HashMap();//이전에 다운받은 기록이 있는지 체크.
+		download_check.put("userNumber", usernumber);
+		
+		download_check.put("musicNumbers", playListAll);
+		
+		List<Integer> already = download.music_already(download_check);
+		
+		if(!already.isEmpty()){
+			for(int i=0;i<already.size();i++){
+				new_download.remove(already.get(i));
+			}
+			dlist.put("playlistAll", new_download);
+			Map musicnumbers_update = new HashMap();
+			musicnumbers_update.put("musicnumbers", new_download);
+			
+			download.registSeveral(dlist);
+			music.download_update(musicnumbers_update);
+			dlist.remove("playlistAll");
+			
 		}
 		
 		dlist.put("playlistAll", playListAll);
+		
+		String folderPath =req.getSession().getServletContext().getRealPath("/upload/music/");
+		logger.info(folderPath);
+		String realpath=null;
+		realpath=folderPath+"\\";
+		
+		req.setAttribute("realpath", realpath);
 
-		//download.registSeveral(dlist);
-		view.addAttribute("download_list", download.search_sev(dlist));
+		
+		
+		List<MusicVO> vo = download.search_sev(dlist);
+		
+		List<String> musicfiles = new ArrayList<String>();
+		for(int i=0;i<vo.size();i++){
+			musicfiles.add(vo.get(i).getMusicFile());
+		}
+		logger.info(musicfiles.get(0)+"musicfile");
+		req.setAttribute("musicfiles", musicfiles);
+		
+		view.addAttribute("download_list", vo);
 		return "/chart/modal/pay_success";
 	}
 	
@@ -238,17 +364,19 @@ public class ChartController {
 		return "/chart/modal/pay_modal";
 	}
 	
-	@RequestMapping("/file_name")
-	public String realPath(String fileName, HttpServletRequest req){
-		req.setAttribute("fileName", fileName);
-		return "yes";
-	}
-	
-	@RequestMapping("/upload/music")
-	public void download_file(HttpServletRequest req){
-		String folderPath =req.getSession().getServletContext().getRealPath("/upload/music/");
-		logger.info(folderPath);
-		
+	@RequestMapping("/download_all")
+	public String download_file(@RequestParam("musicfiles") String musicfile, @RequestParam("realpath") String realpath, HttpServletRequest req){
+		String music_f = musicfile.replace("[","");
+		music_f=music_f.replace("]", "");
+		String[] music_f_name=music_f.split(",");
+		List<String> musicfiles = new ArrayList();
+		for(int i=0;i<music_f_name.length;i++){
+			musicfiles.add(music_f_name[i].trim());
+			logger.info(music_f_name+"download_all");
+		}
+		req.setAttribute("musicfiles", musicfiles);
+		req.setAttribute("realpath", realpath);
+		return "/chart/modal/download_all";
 	}
 	
 

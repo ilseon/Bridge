@@ -58,5 +58,10 @@ public class DownloadDAOImpl implements DownloadDAO {
 	public List<DownloadVO> searchDownload(Map playlistAll) throws Exception {
 		return sqlSession.selectList(NAMESPACE+".searchDownload", playlistAll);
 	}
+
+	@Override
+	public List<Integer> music_already(Map download_check) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".music_already", download_check);
+	}
 	
 }

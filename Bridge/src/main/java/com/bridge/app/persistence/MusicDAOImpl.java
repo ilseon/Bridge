@@ -71,4 +71,9 @@ public class MusicDAOImpl implements MusicDAO {
 		return sqlSession.selectList(NAMESPACE+".searchGenre", map);
 	}
 
+	@Override
+	public void download_update(Map musicnumbers) throws Exception {
+		sqlSession.update(NAMESPACE+".download_update", musicnumbers);
+	}
+
 }

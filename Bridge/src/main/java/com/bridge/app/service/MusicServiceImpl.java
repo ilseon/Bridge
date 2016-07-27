@@ -76,4 +76,10 @@ public class MusicServiceImpl implements MusicService {
 	public List<MusicVO> searchGenre(Map map) throws Exception {
 		return musicDAO.searchGenre(map);
 	}
+
+	@Override
+	public void download_update(Map musicnumbers) throws Exception {
+		musicDAO.download_update(musicnumbers);
+		
+	}
 }
