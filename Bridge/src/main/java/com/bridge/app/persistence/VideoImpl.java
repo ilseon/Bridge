@@ -33,8 +33,13 @@ public class VideoImpl implements VideoDAO{
 	}
 
 	@Override
-	public List<VideoVO> getVideoTotal() throws SQLException {
+	public List<VideoVO> getVideoTotal(Paging pg) throws SQLException {
 		return sqlSession.selectList(NAMESPACE+".totalvideo");
+	}
+
+	@Override
+	public List<VideoVO> getVideoTotal() throws SQLException {
+		return sqlSession.selectList(NAMESPACE+".totalvideo1");
 	}
 
 

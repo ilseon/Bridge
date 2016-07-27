@@ -23,7 +23,7 @@
 <br/>
 <a href="new_album" ><input type="image" src="/resources/image/mainalbum.PNG"  /></a>
 <br/>
-<a href="video?bno=1" ><input type="image" src="/resources/image/mainmv.PNG"  /></a>
+<a href="video?bno=1&searchType=&search=" ><input type="image" src="/resources/image/mainmv.PNG"  /></a>
 </div>
 
 
