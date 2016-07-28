@@ -33,6 +33,13 @@ public class AlbumServiceImpl implements AlbumService {
 	@Override
 	public List<AlbumVO> searchAll(int limit) throws Exception{
 		return dao.searchAll(limit);
+	}
+	
+	
+	// 일선 추가
+	@Override
+	public List<AlbumVO> getArtistAlbum(int artistNumber) throws Exception {
+		return dao.getArtistAlbum(artistNumber);
 	};
 
 }

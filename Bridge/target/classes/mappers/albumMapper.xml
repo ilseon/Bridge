@@ -21,4 +21,9 @@
 		order by albumdate asc
 		Limit #{limit}
 	</select>
+	
+	<!-- 일선 추가 -->
+	<select id="getArtistAlbum" parameterType="int" resultType="AlbumVO">
+		select * from album where artist_artistnumber=#{artistNumber}
+	</select>
 </mapper>

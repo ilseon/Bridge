@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bridge.app.domain.MusicVO;
+import com.bridge.app.domain.VideoVO;
 import com.bridge.app.persistence.MusicDAO;
 
 @Repository
@@ -96,6 +97,16 @@ public class MusicServiceImpl implements MusicService {
 	@Override
 	public List<MusicVO> getAlbumMusic(int albumNumber) throws Exception {
 		return musicDAO.getAlbumMusic(albumNumber);
+	}
+
+	@Override
+	public List<VideoVO> getArtistMusicVideo(int artistNumber) throws Exception {
+		return musicDAO.getArtistMusicVideo(artistNumber);
+	}
+
+	@Override
+	public List<VideoVO> getAlbumMusicVideo(int albumNumber) throws Exception {
+		return musicDAO.getAlbumMusicVideo(albumNumber);
 	}
 	
 

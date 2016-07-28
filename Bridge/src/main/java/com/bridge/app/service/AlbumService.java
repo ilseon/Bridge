@@ -12,4 +12,6 @@ public interface AlbumService {
 	public AlbumVO getAlbumOne(int albumNumber) throws Exception;
 	public List<AlbumVO> searchAll(int limit) throws Exception;
 
+	// 일선 추가
+	public List<AlbumVO> getArtistAlbum(int artistNumber) throws Exception;
 }

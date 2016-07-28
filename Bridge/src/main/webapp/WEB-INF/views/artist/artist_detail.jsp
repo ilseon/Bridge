@@ -243,19 +243,24 @@
 	<br><br>
 	<!-- ----------------------------------  -->
 	<div class="container"><!-- 세 번째 블럭(앨범) start -->
-		<h3>앨범</h3>
-		<div class="row">
-			<c:forEach begin="1" end="5" var="k">			
-				<div class="col-md-3">
-					<img src="/resources/image/album${k}.png" width="70%">
-					<div>
-						<h5>앨범제목</h5>
-						<h5>태연</h5>
-						<h5>발행일</h5>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
+		<h3>앨범</h3> 
+			<div class="row">
+				<c:forEach var="albumVO" items="${albumList}">
+					<div class="col-xs-6 col-md-3">   
+			   			 <a href="/album_detail?albumNumber=${albumVO.albumNumber}">
+				   			 <div class="thumbnail">
+				     			 <img src="/resources/image/album.PNG" width="200px">
+				     				 <div class="caption">
+				       					 <p>${albumVO.albumName}</p>
+				       					 <p>${albumVO.artistName}</p>
+				       					 <p>${albumVO.albumDate}</p>
+				      				</div>
+				      		</div>
+			       		</a>
+			   		 </div>     	
+				</c:forEach>
+			</div>
+
 	</div><!-- 세 번째 블럭(앨범) end -->
 	
 	<!-- ----------------------------------  -->
@@ -263,11 +268,20 @@
 	<div class="container"><!-- 네 번째 블럭(뮤직비디오) start -->		
 		<h3>이 앨범의 뮤직비디오</h3>
 		<div>
-			<c:forEach begin="1" end="3" var="q">
-				<div class="col-md-3">
-					<img src="/resources/image/mv${q}.png" width="80%">
-				</div>
-			</c:forEach>
+			<c:forEach var="videoVO" items="${videoList}" >				
+				<div class="col-xs-6 col-md-4">
+					<a href="https://www.youtube.com/watch?v=${videoVO.musicVideo}">
+						<div class="thumbnail" style="width: 80%">
+							<img src="https://img.youtube.com/vi/${videoVO.musicVideo}/0.jpg">
+							<div class="caption">
+								<p>제목 : ${videoVO.musicSubject}</p>
+								<p>가수 : ${videoVO.artistName}</p>
+								<p>발매일 : ${videoVO.albumDate}</p>
+							</div>
+						</div>
+					</a>
+				</div>					
+			</c:forEach>			
 		</div>
 	</div><!-- 네 번째 블럭(뮤직비디오) end -->
 	

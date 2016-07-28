@@ -273,7 +273,20 @@
 		
 		<h3>이 앨범의 뮤직비디오</h3>
 		<div>
-			<img src="/resources/image/mv.PNG">
+			<c:forEach var="videoVO" items="${videoList}" >				
+				<div class="col-xs-6 col-md-4">
+					<a href="https://www.youtube.com/watch?v=${videoVO.musicVideo}">
+						<div class="thumbnail" style="width: 80%">
+							<img src="https://img.youtube.com/vi/${videoVO.musicVideo}/0.jpg">
+							<div class="caption">
+								<p>제목 : ${videoVO.musicSubject}</p>
+								<p>가수 : ${videoVO.artistName}</p>
+								<p>발매일 : ${videoVO.albumDate}</p>
+							</div>
+						</div>
+					</a>
+				</div>					
+			</c:forEach>			
 		</div>
 	</div><!-- 네 번째 블럭(뮤직비디오) end -->
 	

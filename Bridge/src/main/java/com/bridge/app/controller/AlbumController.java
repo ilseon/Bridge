@@ -35,6 +35,7 @@ public class AlbumController {
 	public String albumDetail(Model model, @RequestParam int albumNumber) throws Exception{
 		model.addAttribute(service.getAlbumOne(albumNumber));
 		model.addAttribute("musicList", musicService.getArtistMusic(albumNumber));		
+		model.addAttribute("videoList", musicService.getAlbumMusicVideo(albumNumber));		
 		model.addAttribute("replyCnt", replyService.countAlbum(albumNumber));
 		return "/album/album_detail";
 	}	

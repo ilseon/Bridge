@@ -94,4 +94,12 @@ public class AlbumDAOImpl implements AlbumDAO {
 	public List<AlbumVO> searchAll(int limit) throws Exception {
 		return sqlSession.selectList(NAMESPACE+".searchAll", limit);
 	}
+
+	// 일선 추가
+	@Override
+	public List<AlbumVO> getArtistAlbum(int artistNumber) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getArtistAlbum", artistNumber);
+	}
+	
+	
 }

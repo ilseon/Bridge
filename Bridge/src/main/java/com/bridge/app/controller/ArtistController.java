@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bridge.app.service.AlbumService;
 import com.bridge.app.service.ArtistReplyService;
 import com.bridge.app.service.ArtistService;
 import com.bridge.app.service.MusicService;
@@ -28,12 +29,17 @@ public class ArtistController {
 	
 	@Autowired
 	private ArtistReplyService artistService;
+
+	@Autowired
+	private AlbumService albumService;
 	
 	@RequestMapping(value="artist_detail")
 	public String artistDetail(Model model, @RequestParam int artistNumber) throws Exception{
 		model.addAttribute(service.getArtistOne(artistNumber));		
 		model.addAttribute("musicList", musicService.getArtistMusic(artistNumber));		
+		model.addAttribute("videoList", musicService.getArtistMusicVideo(artistNumber));	
 		model.addAttribute("replyCnt", artistService.countArtist(artistNumber));		
+		model.addAttribute("albumList", albumService.getArtistAlbum(artistNumber));		
 		return "/artist/artist_detail";
 	}
 	

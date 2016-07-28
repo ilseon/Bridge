@@ -31,4 +31,14 @@
 	<select id="getAlbumMusic" parameterType="int" resultType="com.bridge.app.domain.MusicVO"> 
 		select * from music where albumnumber=#{albumNumber};
 	</select>
+	<select id="getArtistMusicVideo" parameterType="int" resultType="VideoVO">
+		select m.musicsubject,a.artistname,a.albumdate,m.musicvideo 
+		from music as m,(select * from album as a,artist as t where a.artist_artistnumber=t.artistnumber) as a 
+		where m.artistnumber=#{artistNumber} and m.albumnumber=a.albumnumber		
+	</select>
+	<select id="getAlbumMusicVideo" parameterType="int" resultType="VideoVO">
+		select m.musicsubject,a.artistname,a.albumdate,m.musicvideo 
+		from music as m,(select * from album as a,artist as t where a.artist_artistnumber=t.artistnumber) as a 
+		where m.albumnumber=#{albumNumber} and m.albumnumber=a.albumnumber
+	</select>
 </mapper>
