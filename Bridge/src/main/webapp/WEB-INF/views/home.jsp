@@ -85,7 +85,7 @@ $(document).ready(function() {
 
 			<!-- 옆에 퀵메뉴 -->
 			<div class="col-sm-1  " 
-			style="position: fixed;  bottom: 20px; height: auto; right: 20px; margin-bottom:3%;" >
+			style="position: fixed;  bottom: 20px; height: auto; right: 20px; margin-bottom:1%;" >
 				<a href="#top">
 				<input type="image" src="/resources/image/maintop.PNG" id="quick" />
 				</a>
