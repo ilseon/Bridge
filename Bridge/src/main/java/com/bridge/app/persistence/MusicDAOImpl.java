@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -73,58 +74,57 @@ public class MusicDAOImpl implements MusicDAO {
 		return sqlSession.selectList(NAMESPACE+".searchGenre", map);
 	}
 
-	@Override
+	/*	@Override
 	public void regist(HttpServletRequest req, MusicVO music, int counter) throws Exception {	
-
-		int postMaxSize = 10 * 1024 * 1024;
-	         String folderPath = req.getSession().getServletContext().getRealPath("/"); //realPath
-	         String folder_p=folderPath+"upload"+File.separator+"music"+File.separator;
-	        
-	         File file = null;
-	         file = new File(folder_p);
-	         if(!file.exists()) {
-	            file.mkdirs();
-	         }
-	         
-	         String encoding = "UTF-8";
-	     
-	         req.getAttribute("counter");	         
-	         //ArrayList filePath = new ArrayList();   
-	         
-	         Enumeration enumer=null;
-	         MultipartRequest multiReq = new MultipartRequest(req, folder_p,
-	        		  							postMaxSize, encoding, new DefaultFileRenamePolicy());
-	          
-	          enumer=multiReq.getFileNames();
-	          
-	          ArrayList musicList = new ArrayList<ArrayList<String>>();//파일 이름 저장
-	          ArrayList fileNameList = new ArrayList();//파일 이름 저장
-	          
-	          while(enumer.hasMoreElements()){
-	             String name = (String)enumer.nextElement();
-	             fileNameList.add(multiReq.getFilesystemName(name));
-	          }
-	          
-	          musicList.add(multiReq.getParameter("musicSubject"));
-	          musicList.add(multiReq.getParameter("musicFile"));
-	          musicList.add(multiReq.getParameter("musicVideo"));
-	          musicList.add(fileNameList);       
-	          
-	          for(int i=0; i < fileNameList.size(); i++){	        	  
-	        	  fileNameList.get(i);	        	  
-	        	  for(int j=0; j < musicList.size(); j++){	        	  
-	        		  musicList.get(i);	        	  
-	        	  }
-	          }
-	          
-	          logger.info(musicList.toString());
-	          
-	          //music = new  MusicVO();
-	          //music.setMusicSubject(multiReq.getParameter("musicSubject"));
-	          //music.setMusicFile(multiReq.getParameter("musicFile"));
-	          //music.setMusicVideo(multiReq.getParameter("musicVideo"));
-	          //logger.info(music.toString());
 		    
 	          sqlSession.insert(NAMESPACE + ".regist", music);
+	}
+*/
+	@Override
+	public List<MusicVO> registSeveral(HttpServletRequest req, int counter, String albumName) throws IOException {
+		
+		int postMaxSize = 10 * 1024 * 1024;
+        String folderPath = req.getSession().getServletContext().getRealPath("/"); //realPath
+        String folder_p=folderPath+"upload"+File.separator+"music"+File.separator;
+       
+        File file = null;
+        file = new File(folder_p);
+        if(!file.exists()) {
+           file.mkdirs();
+        }
+        
+        String encoding = "UTF-8";
+    
+        req.getAttribute("counter");	         
+        //ArrayList filePath = new ArrayList();   
+        
+        Enumeration enumer=null;
+        MultipartRequest multiReq = new MultipartRequest(req, folder_p,
+       		  							postMaxSize, encoding, new DefaultFileRenamePolicy());
+         
+         enumer=multiReq.getFileNames();
+         
+         ArrayList musicList = new ArrayList<ArrayList<String>>();//파일 이름 저장
+         ArrayList fileNameList = new ArrayList();//파일 이름 저장
+         
+         while(enumer.hasMoreElements()){
+            String name = (String)enumer.nextElement();
+            fileNameList.add(multiReq.getFilesystemName(name));
+         }
+         
+         musicList.add(multiReq.getParameter("musicSubject"));
+         musicList.add(multiReq.getParameter("musicFile"));
+         musicList.add(multiReq.getParameter("musicVideo"));
+         musicList.add(fileNameList);       
+         
+         for(int i=0; i < fileNameList.size(); i++){	        	  
+       	  fileNameList.get(i);	        	  
+       	  for(int j=0; j < musicList.size(); j++){	        	  
+       		  musicList.get(i);	        	  
+       	  }
+         }
+         
+         logger.info(musicList.toString());		
+		return null;
 	} 	
 }

@@ -8,6 +8,7 @@
 
 package com.bridge.app.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -70,19 +71,14 @@ public class MusicServiceImpl implements MusicService {
 		return musicDAO.searchGenre(map);
 	}
 
-
-
-	@Override
-	public void regist(HttpServletRequest req, MusicVO music, int counter) throws Exception {
-		// TODO Auto-generated method stub
-		musicDAO.regist(req, music, counter);
-	}
-
-
-
 	@Override
 	public void update(MusicVO music) throws Exception {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<MusicVO> registSeveral(HttpServletRequest req, int counter, String albumName) throws IOException {
+		return musicDAO.registSeveral(req, counter, albumName);
 	}
 }

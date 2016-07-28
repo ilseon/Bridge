@@ -17,4 +17,5 @@ public interface PlaylistService {
 	public void registAll(Map playListAll) throws Exception;
 	public void remove(List<PlaylistVO> playlists) throws Exception;
 	public List<PlaylistVO> searchAll(Integer userNumber) throws Exception;
+	public List<PlaylistVO> searchAlbum(Integer userNumber) throws Exception;
 }

@@ -43,4 +43,9 @@ public class PlaylistServiceImpl implements PlaylistService {
 		
 	}
 
+	@Override
+	public List<PlaylistVO> searchAlbum(Integer userNumber) throws Exception {
+		return playlistdao.searchAlbum(userNumber);
+	}
+
 }

@@ -1,5 +1,7 @@
 package com.bridge.app.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +28,8 @@ public class ArtistServiceImpl implements ArtistService{
 	public int selectAritstNumber(int userNumber) throws Exception {
 		return dao.selectAritstNumber(userNumber);
 	}
-
+	@Override
+	public List<ArtistVO> selectAritst(int userNumber) throws Exception {
+		return dao.selectAritst(userNumber);
+	}
 }

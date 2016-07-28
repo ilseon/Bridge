@@ -54,8 +54,12 @@ public class DownloadServiceImpl implements DownloadService {
 
 	@Override
 	public List<DownloadVO> searchDownload(Integer userNumber) throws Exception {
-		// TODO Auto-generated method stub
 		return downloadDAO.searchDownload(userNumber);
+	}
+
+	@Override
+	public List<DownloadVO> searchList(Integer userNumber) throws Exception {
+		return downloadDAO.searchList(userNumber);
 	}
 
 }

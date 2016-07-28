@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.util.WebUtils;
@@ -39,8 +41,8 @@ public class AlbumDAOImpl implements AlbumDAO {
 	}
 
 	@Override
-	public AlbumVO AlbumInsert(HttpServletRequest req, AlbumVO album) throws Exception {
-		
+	public AlbumVO AlbumInsert(HttpServletRequest req, AlbumVO album,@RequestParam int artistnumber) throws Exception {
+			
 		int postMaxSize = 10 * 1024 * 1024;
 		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
         String folder_p=folderPath+"upload"+File.separator+"album"+File.separator;
@@ -50,8 +52,6 @@ public class AlbumDAOImpl implements AlbumDAO {
         if(!file.exists()) {
            file.mkdirs();
         }    		
-
-        int artistNumber = Integer.parseInt(req.getParameter("artistNumber"));	
         
         String encoding = "UTF-8";
         Enumeration enumer = null;
@@ -73,20 +73,22 @@ public class AlbumDAOImpl implements AlbumDAO {
         album.setAlbumType(multiReq.getParameter("albumType"));
         album.setAlbumDate(multiReq.getParameter("albumDate"));
         album.setAlbumGenre(multiReq.getParameter("albumGenre"));
-        album.setArtistNumber(artistNumber);
         album.setAlbumImg(albumImg);            
         album.setAgeLimit(Integer.parseInt(multiReq.getParameter("ageLimit")));
         album.setAlbumContent(multiReq.getParameter("albumContent"));
         
-        String albumName = multiReq.getParameter("albumName");
-        req.setAttribute("albumName", albumName);     
-        int counter = Integer.parseInt(multiReq.getParameter("counter"));
-        logger.info(counter+"");
+        logger.info(artistnumber+"");       
+        //album.setArtistNumber(artistnumber);               
+        album.setArtistNumber(99);
         
+        //String albumName = multiReq.getParameter("albumName");
+        //req.setAttribute("albumName", albumName);     
+        int counter = Integer.parseInt(multiReq.getParameter("counter"));
         req.setAttribute("counter", counter);
         album.setCounter(counter);  
         
-        
+        String albumName = multiReq.getParameter("albumName");
+        req.setAttribute("albumName", albumName);        
         
         logger.info(multiReq.getParameter("albumName")+"/"+multiReq.getParameter("albumType")+"/"+multiReq.getParameter("albumDate")
         			+"/"+multiReq.getParameter("albumGenre")+"/"+albumImg+"/"+multiReq.getParameter("counter")+"/"+multiReq.getParameter("ageLimit")

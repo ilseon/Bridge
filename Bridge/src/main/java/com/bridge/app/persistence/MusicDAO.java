@@ -1,5 +1,6 @@
 package com.bridge.app.persistence;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,7 @@ import com.bridge.app.domain.MusicVO;
 
 public interface MusicDAO {
 
-	public void regist(HttpServletRequest req, MusicVO music, int counter) throws Exception;
+	//public void regist(HttpServletRequest req, MusicVO music, int counter) throws Exception;
 	public void remove(Integer musicnumber) throws Exception;
 	public void modifyStreaming(MusicVO music) throws Exception;
 	public void modifyDownload(MusicVO music) throws Exception;
@@ -20,4 +21,7 @@ public interface MusicDAO {
 	public MusicVO searchMusic(int musicnumber) throws Exception;
 	public List<MusicVO> searchGenre(Map map) throws Exception;
 	public MusicVO search() throws Exception;
+	public List<MusicVO> registSeveral(HttpServletRequest req, int counter, String albumName) throws IOException;	
+
 }
+

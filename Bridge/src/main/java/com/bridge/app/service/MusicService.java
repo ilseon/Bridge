@@ -8,6 +8,7 @@
 
 package com.bridge.app.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public interface MusicService {
 	public List<MusicVO> searchGenre(Map map) throws Exception;
 	public MusicVO search() throws Exception;
 	
-	public void regist(HttpServletRequest req, MusicVO music, int counter) throws Exception;
-	public void update(MusicVO music) throws Exception;		
+	public void update(MusicVO music) throws Exception;
+	public List<MusicVO> registSeveral(HttpServletRequest req, int counter, String albumName) throws IOException;		
 	
 }

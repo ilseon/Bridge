@@ -21,4 +21,5 @@ public interface DownloadDAO {
 	public List<DownloadVO> searchAll(Integer userNumber) throws Exception;
 	public List<MusicVO> search_sev(Map playlistAll) throws Exception;
 	public List<DownloadVO> searchDownload(Integer userNumber) throws Exception;
+	public List<DownloadVO> searchList(Integer userNumber) throws Exception;
 }

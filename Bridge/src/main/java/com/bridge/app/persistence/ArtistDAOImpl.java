@@ -83,4 +83,9 @@ public class ArtistDAOImpl implements ArtistDAO {
 		return sqlSession.selectOne(NAMESPACE + ".selectAristNumber", userNumber);
 	}
 
+	@Override
+	public List<ArtistVO> selectAritst(int userNumber) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".selectArist", userNumber);
+	}
+
 }
