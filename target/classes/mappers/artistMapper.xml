@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bridge.mappers.artistMapper">	
+	<insert id="regist">
+		insert into artist(artistname, artisttype, artistgenre, artistimg, userNumber) 
+		values(#{artistName}, #{artistType}, #{artistGenre}, #{artistImg}, #{userNumber})
+	</insert>	
+	<select id="getArtistOne" resultType="ArtistVO">
+		select * from artist where artistnumber=1
+	</select>	
+	<select id="selectAristNumber" resultType="int">
+		select artistnumber from artist where userNumber=#{userNumber}
+	</select>	
+	<select id="selectArist" parameterType="map" resultType="ArtistVO">
+		select artistnumber, artistname, artisttype, artistgenre 
+		from artist where userNumber=#{userNumber}
+	</select>	
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bridge.mappers.playlistMapper">	
+	<select id="searchAll" resultType="com.bridge.app.domain.PlaylistVO">
+		select * from playlist where usernumber=#{userNumber} 
+	</select>	
+
+	<insert id="regist" parameterType="com.bridge.app.domain.PlaylistVO">
+		 insert into playlist(musicnumber, usernumber) values(#{musicNumber}, #{userNumber}) 
+	</insert>
+
+	<insert id="registAll">
+	
+	</insert>
+	
+	<delete id="remove">
+
+	</delete>
+	<select id="selectAlbum"  parameterType="map" resultType="com.bridge.app.domain.PlaylistVO">
+		select m.musicnumber as musicnumber, m.musicsubject as musicsubject, a.albumimg as albumimg, t.artistname as artistname, a.albumname as albumname 
+		from music as m inner join playlist as p inner join album as a inner join artist as t
+		where m.musicnumber = p.musicnumber and a.albumnumber = m.albumnumber and t.artistnumber = m.artistnumber and p.usernumber=#{userNumber}
+	</select>
+
+
+</mapper>
