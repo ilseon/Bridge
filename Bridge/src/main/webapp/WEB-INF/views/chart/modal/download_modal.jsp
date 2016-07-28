@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,6 +19,13 @@ function paycheck(){
 	 frm.submit();
 }
 
+<%
+	if(request.getAttribute("playlist_all")!=null){
+		List playlist_all = (List)request.getAttribute("playlist_all");
+		System.out.println(playlist_all.get(0)+"playlist_all");
+	}
+%>
+
 
 </script>
 
@@ -36,28 +44,30 @@ function paycheck(){
 					<br/>${playlist.musicSubject}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;${playlist.artistName}<br/><br/><hr/><br/>					
 					<c:set var="playlistall" value="${playlistall},${playlist.musicNumber}"/>
 				</c:forEach>
-				<c:set var="href" value="/download_music_sev?musicnumbers=${playlistall}"/>
+				<c:set var="href" value="/download_music_sev?musicnumbers=${playlistall}&playlist_all=${requestScope.playlist_all}"/>
 				다운 곡 수 : ${i}곡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1곡 당 금액 : 2$<br/><br/>
 			</c:if>			
           	<c:if test="${music!=null}">
 			${music.musicSubject}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;${music.artistName}<br/><br/><hr/><br/>
 			 
 			다운 곡 수 : 1곡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1곡 당 금액 : 2$<br/><br/>
+			
 			<c:set var="i" value="1"/>
 			<c:set var="href" value="/download_music?musicnumber=${music.musicNumber}"/>
 			</c:if>
+			총 금액 : ${i*2}$
 		<span id="order_container">
 		<form id="pay" name="pay" method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr">
-			            구매요청 : <input type="hidden" name="cmd" value="_xclick" size="50" /><br />
-			            상점계정 : <input type="index" name="business" value="muhj89-facilitator@naver.com" size="50" /><br />
-			            총 금액 : <input type="index" name="amount" value="${i*2}" size="50" /><br />
-			            상품이름 : <input type="index" name="item_name" value="music" size="50" /><br />
-			            결제후 이동되는 페이지 : <input type="index" name="return" value="http://localhost:8080${href}" size="50" /><br />
-			        IPN메세지 받을 페이지 : <input type="hidden" name="notify_url" value="http://localhost:8080/chart/modal/pay_modal_fail" size="50" /><br />
-			            결제 취소 페이지 : <input type="hidden" name="cancel_return" value="http://localhost:8080/chart/modal/pay_modal_cancel" size="50" /><br />
-			            인코딩 : <input type="hidden" name="charset" value="UTF-8" size="50" /><br />
-	            <input type="index" name="currency_type" value="USD" size="50" /><br />
-            <input type="submit" value="pay" size="50" />
+			            <input type="hidden" name="cmd" value="_xclick" size="50" /><br />
+			            <input type="hidden" name="business" value="muhj89-facilitator@naver.com" size="50" /><br />
+			            <input type="index" name="amount" value="${i*2}" size="50" /><br />
+			            <input type="hidden" name="item_name" value="music" size="50" /><br />
+			            <input type="hidden" name="return" value="http://localhost:8080${href}" size="50" /><br />
+			            <input type="hidden" name="notify_url" value="http://localhost:8080/chart/modal/pay_modal_fail" size="50" /><br />
+			            <input type="hidden" name="cancel_return" value="http://localhost:8080/chart/modal/pay_modal_cancel" size="50" /><br />
+			            <input type="hidden" name="charset" value="UTF-8" size="50" /><br />
+	            <input type="hidden" name="currency_type" value="USD" size="50" /><br />
+            <!-- <input type="submit" value="pay" size="50" /> -->
         </form>
 		</span>
 	</div>

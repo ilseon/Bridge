@@ -144,7 +144,7 @@ $(function(){
 						<c:set var="rank" value="${rank+1}"/>
 						    <tr>
 							    <td width="3%"><input type="checkbox" value="${music.musicNumber}"/></td>
-							    <td width="7%">${rank} &nbsp;<a href="/test"><img src="/Bridge/upload/music/${music.albumImg}" style="height: 60px; width:60px;"></a></td>
+							    <td width="7%">${rank} &nbsp;<a href="/test"><img src="upload\album\<c:out value="${music.albumImg}"/>" style="height: 60px; width:60px;"></a></td>
 							    <td width="23%">${music.musicSubject}</td>
 							    <td width="20%"><a href="/test2"></a>${music.artistName}</td>
 							    <td width="7%">${music.albumName}</td>

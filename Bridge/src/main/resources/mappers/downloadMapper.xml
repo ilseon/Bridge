@@ -9,7 +9,7 @@
 	</select>
 	<select id="search_sev" parameterType="map" resultType="com.bridge.app.domain.MusicVO">
 		select m.musicsubject as musicsubject, a.artistname as artistname, m.musicnumber as musicnumber, m.musicfile as musicfile from music as m inner join artist as a on m.artistnumber=a.artistnumber and
-	<foreach collection="playlistAll" item="playlist" open="(" close=")" separator="or">
+	<foreach collection="playListAll" item="playlist" open="(" close=")" separator="or">
 		musicnumber=#{playlist.value}
 	</foreach>
 	</select>
@@ -25,7 +25,7 @@
 	<insert id="registSeveral" parameterType="map">
 		insert into download(musicnumber, usernumber, downloaddate) values
 		<foreach collection="playListAll" item="playlist" separator=",">
-			(#{playlist.value}, #{userNumber}, now())
+			(#{playlist.value}, #{usernumber}, now())
 		</foreach>
 	</insert>
 	
@@ -35,7 +35,7 @@
 	
 	<select id="music_already" parameterType="map" resultType="int">
 		select musicnumber from bridgedb.download where 
-		<foreach collection="musicNumbers" item="musicnumber" separator=",">
+		<foreach collection="musicNumbers" item="musicnumber" separator="or">
 			musicnumber=#{musicnumber.value} and usernumber=#{userNumber}
 		</foreach>
 	</select>

@@ -34,7 +34,6 @@
           	<c:if test="${music!=null}">
           		<c:set var="musicnumbers" value="${musicnumbers} ${music.musicNumber}"/>
 				${music.musicSubject}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;${music.artistName}<br/><br/><hr/><br/>
-				 ${music.musicFile}
 				´Ù¿î °î ¼ö : 1°î&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1°î ´ç ±Ý¾× : 2$<br/><br/>
 				<c:set var="i" value="1"/>
 			</c:if>

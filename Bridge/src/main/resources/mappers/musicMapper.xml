@@ -6,7 +6,7 @@
 <mapper namespace="com.bridge.mappers.musicMapper">	
 	<select id="searchAll" parameterType="int" resultType="com.bridge.app.domain.MusicVO">
 		select m.musicrank as musicrank, m.musicsubject as musicsubject, m.musicvideo as musicvideo, a.albumimg as albumimg, ar.artistname as artistname, a.albumname as albumname, m.musicnumber as musicnumber
-		from music as m inner join album as a on m.albumnumber=a.albumnumber inner join artist as ar on m.artistnumber=ar.artistnumber AND musicrank<![CDATA[<=]]>#{limit} ORDER BY musicrank asc
+		from music as m inner join album as a on m.albumnumber=a.albumnumber inner join artist as ar on m.artistnumber=ar.artistnumber AND musicrank<![CDATA[<=]]>#{limit} ORDER BY musicdownload+musicplay desc
 	</select>
 	
 	<select id="searchPlaylist" resultType="int">
@@ -36,9 +36,16 @@
 		insert into bridgedb.like(usernumber, musicnumber) values(#{userNumber}, #{musicNumber})	
 	</insert>
 	
-	<update id="download_update" parameterType="List">
+	<update id="download_update" parameterType="map">
 		update music set musicdownload=musicdownload+1 where 
-		<foreach collection="musicnumbers" item="musicnumber" separator=",">
+		<foreach collection="musicnumbers" item="musicnumber" separator="AND">
+			musicnumber=#{musicnumber.value}
+		</foreach>
+	</update>
+	
+	<update id="play_update" parameterType="map">
+		update music set musicplay=musicplay+1 where 
+		<foreach collection="musicnumbers" item="musicnumber" separator="AND">
 			musicnumber=#{musicnumber.value}
 		</foreach>
 	</update>
