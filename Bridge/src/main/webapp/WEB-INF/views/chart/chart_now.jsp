@@ -100,12 +100,63 @@ $(function(){
 		}
 	})
 });
-
-function PopupWindow(){
-	 
-	 window.open("/player","new","width=500, height=700, resizable=no, scrollbars=no, status=no, location=no, directories=no;");
-	}
-
+/* 
+	$(function(){
+		$("button[id^=musicNumber]").click(function(){
+		var tmp=false;
+			 if (!tmp){       //최초 클릭이면 팝업을 띄운다
+				  
+			 $.ajax({
+					  type: 'get',
+					  url: 'player',
+					  data: val,
+					  success: alert("성공"),
+					  dataType: String
+					});
+				  tmp = true;
+				 Clip =window.open("/player","new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;");
+				var val="111";	 
+				 }
+				 else{           //최초 클릭이 아니면
+				  if(!Clip.closed && Clip){
+					  $.ajax({
+						  type: 'POST',
+						  url: "player",
+						  data: val,
+					  
+						  success: alert("성공"),
+						  dataType: String
+						});
+				   Clip.focus();                         
+				  }
+				  else{
+					  $.ajax({
+						  type: 'POST',
+						  url: "player",
+						  data: val,
+					  
+						  success: alert("성공"),
+						  dataType: String
+						});
+					  tmp = true;
+					 }//없으면 팝업을 다시 띄울 수 있게 한다
+				   Clip =window.open("/player","new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;");
+				   tmp = true;
+				  
+				 }
+		})
+	}); */
+	$(function(){
+		$("button[id^=musicNumber]").click(function(){
+			 $.ajax({
+				  type: 'get',
+				  url: 'player',
+				  data: {"val":1123123},
+				  dataType: String,
+				  success: window.open("/player","new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;")
+				});
+		})
+	}); 
 </script>
 
 	<!-- 차트 시작 -->
@@ -145,13 +196,13 @@ function PopupWindow(){
 				    	<c:forEach begin="0" end="100" var="music" items="${musicList}">
 
 						    <tr>
-							    <td width="3%"><input type="checkbox" value="${music.musicNumber}"/></td>
+							    <td width="3%"><input type="checkbox" id="val" value="${music.musicNumber}"/></td>
 							    <td width="7%">${music.musicRank} &nbsp;<a href="/test"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;">${music.albumImg}</td>
 							    <td width="23%">${music.musicSubject}</td>
 							    <td width="20%"><a href="/test2"></a>${music.artistName}</td>
 							    <td width="7%">${music.albumName}</td>
-							    <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="PopupWindow()"></span></button></td>
-							    <td width="7%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
+							    <td width="7%"><button class="btn btn-default btn-xs" id="musicNumber" name="musicNumber"><span class="glyphicon glyphicon-play" style="color:red"></span></button></td>
+							    <td width="7%"><button class="btn btn-d	efault btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
 							    <td width="7%"><a href="/myalbum?musicnumber=${music.musicNumber}"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>
 							    <td width="7%"><a href="/download_modal?musicnumber=${music.musicNumber}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span></a></td>
 							    <td width="7%"><a href="https://www.youtube.com/?gl=KR&hl=ko"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></a></td>

@@ -263,10 +263,5 @@ public class ChartController {
 		return "/chart/modal/pay_modal";
 	}
 	
-	@RequestMapping("/player")
-	public String showPlayer() throws Exception{	
-		return "/player/playertest";
-	}
-	
 
 }
