@@ -2,8 +2,8 @@
 작성자 - 김민정
 내용 - 페이지 옆 노출
 시작날짜 - 2016/07/19
-수정날짜 - 2016/07/27
-변경내용 - 로그인이 안되있을경우 팝업창 노출 완료 , 지금 수정
+수정날짜 - 2016/07/28
+변경내용 - 로그인이 안되있을경우 팝업창 노출 에러 해결
  --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -16,60 +16,61 @@
 
 <script>
 
-	$(function() {
-		$('input').click(function(e) {
-			var userId = '${userid}';
-			var checkId = $(this).attr('id');
+   $(function() {
+      $('input').click(function(e) {
+         var userId = '${userid}';
+         var checkId = $(this).attr('id');
 
-			if (checkId == "quick" || checkId.length == 0 || checkId == "userId" || checkId == "userPassword" || checkId == "userIdTest" || checkId == "userPasswordTest") {
-			} else if (userId.length == 0) {
-				alert("로그인을 해주세요 !");
-			}
-			else {
-				if (checkId == "like_song") {
-					location.href = 'like_song';
-				} else if (checkId == "myalbum") {
-					location.href = 'myalbum';
-				} else if (checkId == "download") {
-					location.href = 'download';
-				} else if (checkId == "upload") {
-					location.href = 'upload';
-				} else if (checkId == "mytrack") {
-					location.href = 'mytrack';
-				}
-			}
-		});
-	});
+         
+   
+   if (checkId == "like_song" || checkId == "myalbum"
+                     || checkId == "download" || checkId == "upload"
+                     || checkId == "mytrack") {
+
+                  if (userId.length == 0) {
+                     alert("로그인을 해주세요 !");
+                  }
+
+                  else if (checkId == "like_song") {
+                     location.href = 'like_song';
+                  } else if (checkId == "myalbum") {
+                     location.href = 'myalbum';
+                  } else if (checkId == "download") {
+                     location.href = 'download';
+                  } else if (checkId == "upload") {
+                     location.href = 'upload';
+                  } else if (checkId == "mytrack") {
+                     location.href = 'mytrack';
+                  }
+
+               }
+
+            });
+   });
 </script>
 
 
 <!-- 사이드바 전체-->
-<div class="col-xs-12 col-sm-2" style="height: 150%;  border-right:1px solid #BDBDBD; border-top: 1px solid #BDBDBD; " >
+<div class="col-xs-12 col-sm-2" style="border-right:1px solid #BDBDBD;" >
 
 <!-- 위쪽 메뉴 -->
-<div style="margin-bottom: 250px; margin-top: 10px;" >
-<a href="chart" ><input type="image" src="/resources/image/mainchart.PNG"  /></a>
-<br/>
-<a href="new_album" ><input type="image" src="/resources/image/mainalbum.PNG"   /></a>
-<br/>
-<a href="video?bno=1&searchType=&search=" ><input type="image" src="/resources/image/mainmv.PNG"  /></a>
-</div>
+<div class="list-group col-xs-12 col-sm-2" style="position: fixed; " >
 
-
+  <a href="chart" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/mainchart.PNG"  /></a>
+  <a href="new_album" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/mainalbum.PNG"   /></a>
+  <a href="video" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/mainmv.PNG"  /></a>
+  <br/><br/><br/><br/><br/><hr/>
+  
 <!-- 중간 메뉴 -->
-<div>
-<input type="image" src="/resources/image/mainlike.PNG"   id="like_song" />
-<br/>
-<input type="image" src="/resources/image/mainmyalbum.PNG"  id="myalbum" />
-<br/>
-<input type="image" src="/resources/image/maindown.PNG"  id="download" />
-</div>
+<a href="#" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/mainlike.PNG"   id="like_song" /></a>
+<a href="#" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/mainmyalbum.PNG"  id="myalbum" /></a>
+<a href="#" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/maindown.PNG"  id="download" /></a>
 <hr/>
-
+ 
 <!-- 아래 메뉴 -->
-<div>
-<input type="image" src="/resources/image/mainup.PNG"  id="upload" />
-<br/>
-<input type="image" src="/resources/image/maintrack.PNG"  id="mytrack" />
+<a href="#" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/mainup.PNG"  id="upload" /></a>
+<a href="#" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/maintrack.PNG"  id="mytrack" /></a>
+<br/><br/><br/><br/><br/>
+
 </div>
 </div>

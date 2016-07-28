@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import com.bridge.app.domain.MusicVO;
+import com.bridge.app.domain.Paging;
 import com.bridge.app.domain.VideoVO;
 
 public interface MusicService {
@@ -35,4 +36,8 @@ public interface MusicService {
 	public List<MusicVO> getAlbumMusic(int albumNumber) throws Exception;
 	public List<VideoVO> getArtistMusicVideo(int artistNumber) throws Exception;
 	public List<VideoVO> getAlbumMusicVideo(int albumNumber) throws Exception;
+	public List<MusicVO> searchHeader(Paging paging) throws Exception;
+	public int searchCount(Paging paging) throws Exception;
+
+
 }

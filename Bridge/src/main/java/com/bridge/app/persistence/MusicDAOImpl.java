@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bridge.app.controller.MyPageController;
 import com.bridge.app.domain.MusicVO;
+import com.bridge.app.domain.Paging;
 import com.bridge.app.domain.VideoVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -130,6 +131,16 @@ public class MusicDAOImpl implements MusicDAO {
 		@Override
 		public List<VideoVO> getAlbumMusicVideo(int albumNumber) throws Exception {
 			return sqlSession.selectList(NAMESPACE + ".getAlbumMusicVideo", albumNumber);
+		}
+
+		@Override
+		public List<MusicVO> searchHeader(Paging paging) throws Exception {
+			return sqlSession.selectList(NAMESPACE + ".searchHeader", paging);
+		}
+
+		@Override
+		public int searchCount(Paging paging) throws Exception {
+			return sqlSession.selectOne(NAMESPACE + ".searchCount", paging);
 		}
 	
 }

@@ -30,6 +30,8 @@
 	<select id="totalvideo1" resultType="VideoVO">
 		select * from music
 	</select>
+	
+
 </mapper>
 
 	

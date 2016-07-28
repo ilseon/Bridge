@@ -41,4 +41,38 @@
 		from music as m,(select * from album as a,artist as t where a.artist_artistnumber=t.artistnumber) as a 
 		where m.albumnumber=#{albumNumber} and m.albumnumber=a.albumnumber
 	</select>
+	<select id="searchHeader" parameterType="Paging" resultType="MusicVO">
+		<!-- select m.musicsubject as musicsubject, m.musicvideo as musicvideo, a.albumimg as albumimg, ar.artistname as artistname, 
+		a.albumname as albumname, m.musicnumber as musicnumber
+		from music as m inner join album as a on m.albumnumber=a.albumnumber inner join artist as ar on m.artistnumber=ar.artistnumber
+		where m.musicsubject like CONCAT('%', #{search}, '%') or ar.artistname like CONCAT('%', #{search}, '%') or a.albumname like CONCAT('%', #{search}, '%') -->
+		
+		SELECT 
+		    tableC.*
+		FROM
+		    (SELECT 
+		        @RNUM:=@RNUM + 1 AS rnum,
+		            m.musicsubject AS musicsubject,
+		            m.musicvideo AS musicvideo,
+		            a.albumimg AS albumimg,
+		            ar.artistname AS artistname,
+		            a.albumname AS albumname,
+		            m.musicnumber AS musicnumber
+		    FROM
+		        music AS m
+		    INNER JOIN album AS a ON m.albumnumber = a.albumnumber
+		    INNER JOIN artist AS ar ON m.artistnumber = ar.artistnumber, (SELECT @RNUM:=0) b
+		    WHERE
+		        m.musicsubject LIKE CONCAT('%', #{search}, '%')
+		            OR ar.artistname LIKE CONCAT('%', #{search}, '%')
+		            OR a.albumname LIKE CONCAT('%', #{search}, '%')) tableC
+		WHERE
+		    tableC.rnum <![CDATA[>=]]> #{start} and tableC.rnum <![CDATA[<=]]> #{end}
+	</select>
+	<select id="searchCount" parameterType="Paging" resultType="int">
+		select count(*)
+		from music as m inner join album as a on m.albumnumber=a.albumnumber inner join artist as ar on m.artistnumber=ar.artistnumber
+		where m.musicsubject like CONCAT('%', #{search}, '%') or ar.artistname like CONCAT('%', #{search}, '%') or a.albumname like CONCAT('%', #{search}, '%') 
+	</select>
+	
 </mapper>

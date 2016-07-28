@@ -1,10 +1,9 @@
 <!-- 
-	최초 작성일 : 
-	작성자 : 
-	수정일 : 
-	내용 : 
+	최초 작성일 : 20160728
+	작성자 : 조일선
+	수정일 : 2016/07/28
+	내용 : 헤더의 검색어로 검색
  -->
-
 <%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -124,7 +123,7 @@ $(function(){
                    <thead>
                    
                    <th width="3%"></th>
-                   <th width="7%">순위</th>
+                   <th width="7%"></th>
                    <th width="23%">곡</th>
                    <th width="20%">아티스트</th>
                    <th width="7%">앨범</th>
@@ -135,13 +134,12 @@ $(function(){
                    <th width="7%">뮤비</th>
                    <th width="7%">좋아</th>
                    </thead>
-                   
 				    <tbody> 
-				    	<c:forEach begin="0" end="100" var="music" items="${musicList}">
+				    	<c:forEach begin="0" end="100" var="music" items="${searchList}">
 
 						    <tr>
 							    <td width="3%"><input type="checkbox" value="${music.musicNumber}"/></td>
-							    <td width="7%">${music.musicRank} &nbsp;<a href="/test"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;">${music.albumImg}</td>
+							    <td width="7%"><a href="/test"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;">${music.albumImg}</td>
 							    <td width="23%">${music.musicSubject}</td>
 							    <td width="20%"><a href="/test2"></a>${music.artistName}</td>
 							    <td width="7%">${music.albumName}</td>
@@ -207,4 +205,24 @@ $(function(){
   </div>
       <!-- /.modal-dialog --> 
     </div>
+    
+    <!-- 페이징 -->
+  <div class="col-xs-5 col-xs-offset-5">
+		 <nav>
+		<ul class="pagination">
+		    <li><a href="headersearch?bno=${paging.firstPageNo}&headersearch=${paging.search}" class="first">처음 페이지</a></li>
+		   <li> <a href="headersearch?bno=${paging.prevPageNo}&headersearch=${paging.search}" class="prev">이전 페이지</a></li>
+		    <li>
+		        <c:forEach var="i" begin="${paging.startPageNo}" end="${paging.endPageNo}" step="1">
+		            <c:choose>
+		                <c:when test="${i eq paging.pageNo}"><a href="headersearch?bno=${i}&headersearch=${paging.search}" class="choice">${i}</a></c:when>
+		                <c:otherwise><a href="headersearch?bno=${i}&headersearch=${paging.search}">${i}</a></c:otherwise>
+		            </c:choose>
+		        </c:forEach>
+		    <li>
+		   <li> <a href="headersearch?bno=${paging.nextPageNo}&headersearch=${paging.search}" class="next">다음 페이지</a></li>
+		    <li><a href="headersearch?bno=${paging.finalPageNo}&headersearch=${paging.search}" class="last">마지막 페이지</a></li>
+		</ul>
+		</nav>
+	</div>
 <!-- 내 앨범 추가 모달 끝 -->

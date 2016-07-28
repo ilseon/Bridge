@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bridge.app.domain.MusicVO;
+import com.bridge.app.domain.Paging;
 import com.bridge.app.domain.VideoVO;
 import com.bridge.app.persistence.MusicDAO;
 
@@ -107,6 +108,16 @@ public class MusicServiceImpl implements MusicService {
 	@Override
 	public List<VideoVO> getAlbumMusicVideo(int albumNumber) throws Exception {
 		return musicDAO.getAlbumMusicVideo(albumNumber);
+	}
+
+	@Override
+	public List<MusicVO> searchHeader(Paging paging) throws Exception {
+		return musicDAO.searchHeader(paging);
+	}
+
+	@Override
+	public int searchCount(Paging paging) throws Exception {
+		return musicDAO.searchCount(paging);
 	}
 	
 
