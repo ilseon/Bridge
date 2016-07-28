@@ -74,9 +74,10 @@ $(function(){
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			
 			<!-- 헤더 검색창부분 -->
-				<form class="navbar-form  navbar-left " role="search" style="margin-left: 10%">
+				<form class="navbar-form  navbar-left " role="search" style="margin-left: 10%" action="headersearch" method="get">
 					<div class="form-group">
-						<input type="text" class="btn search" style="border: 3px solid red; border-radius: 50px;">
+						<input type="text" class="btn search" style="border: 3px solid red; border-radius: 50px;" 
+						name="headersearch" id="headersearch">
 					</div>
 					<input type="image" src="/resources/image/search.PNG" style="vertical-align: middle;" />
 				</form>
