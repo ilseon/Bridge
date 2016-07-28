@@ -135,19 +135,8 @@
 				<form id="album" name="album" action="upload2" method="post"
 					enctype="multipart/form-data" accept-charset="UTF-8">
 					<!-- 아티스트 항목 값 -->
-					<input type="hidden" name="artistNnumber" id="artistNnumber"
+					<input type="hidden" name="artistNumber" id="artistNumber"
 						value="${artistNumber}" /> 
-					<input type="hidden" name="artistName" id="artistName"
-						value="${artistVO.artistName}" /> <input type="hidden"
-						name="artistImg" id="artistImg" value="${artistVO.artistImg}" />
-					<input type="hidden" name="artistType" id="artistType"
-						value="${artistVO.artistType}" /> <input type="hidden"
-						name="artistGenre" id="artistGenre"
-						value="${artistVO.artistGenre}" /> <input type="hidden"
-						name="artistNumber" id="artistNumber"
-						value="${artistVO.artistNumber}" /> <input type="hidden"
-						name="userNumber" id="userNumber" value="${artistVO.userNumber}" />
-
 					<div id="upload_main">
 						<!-- 앨범(이미지, 날짜, 아티스트 정보) 입력 start -->
 						<div class="col-md-2 col-md-offset-1">

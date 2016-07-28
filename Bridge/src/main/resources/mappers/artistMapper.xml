@@ -14,7 +14,7 @@
 	<select id="selectAristNumber" resultType="int">
 		select artistnumber from artist where userNumber=#{userNumber}
 	</select>	
-	<select id="selectArist" parameterType="map" resultType="ArtistVO">
+	<select id="selectArist" resultType="ArtistVO">
 		select artistnumber, artistname, artisttype, artistgenre 
 		from artist where userNumber=#{userNumber}
 	</select>	

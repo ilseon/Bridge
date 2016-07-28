@@ -147,9 +147,9 @@
 							<td>${j}</td>
 							<td><a href="test"><img
 									src="resources/image/like/like_album.jpg" width="70px" /></a></td>
-							<td>Why</td>
-							<td><a href="test2">태연</a></td>
-							<td><a href="test">Why</a></td>
+							<td>${playlistVO.musicSubject}</td>
+							<td><a href="test2">${playlistVO.artistName}</a></td>
+							<td><a href="test">${playlistVO.albumName}</a></td>
 							<td width="7%"><button class="btn btn-default btn-xs">
 									<span class="glyphicon glyphicon-play" style="color: red"
 										onclick="PopupWindow()"></span>

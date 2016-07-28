@@ -18,8 +18,7 @@
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 </head>
 <script>
-	$(document).ready(
-			function() {
+	$(document).ready(function() {
 				// 체크박스 전체 선택/해제를 위한 jquery
 				$("#allCheck").click(
 						function() {
@@ -135,7 +134,8 @@
 				듣기
 			</button>
 			<br> <br>
-			<table class="table">
+			<input type="hidden" id="counter" name="counter" value="${likeVO.musicNumber}"/>
+			<table class="table">			
 				<tr>
 					<th width="3%"></th>
 					<th width="4%">번호</th>
@@ -148,15 +148,16 @@
 					<th width="7%">다운</th>
 					<th width="7%">뮤비</th>
 				</tr>
-
 				<c:forEach begin="1" end="2" var="j">
+							<input type="hidden" id="counter" name="counter" value="${likeVO.musicNumber}"/>
 					<tr>
 						<td><input type="checkbox" name="check" id="check${j}"></td>
 						<td>${j}</td>
 						<td><a href="test"><img
-								src="resources/image/like/like_album.jpg" width="70px" /></a></td>
-						<td>Why</td>
-						<td><a href="test2">태연</a></td>
+						src="resources/image/like/like_album.jpg" width="70px" />
+							<!-- src="${likeVO.albumImg}" width="70px" /> --></a></td>
+						<td>${likeVO.musicSubject}</td>
+						<td><a href="">${likeVO.artistName}</a></td>
 						<td width="7%"><button class="btn btn-default btn-xs">
 								<span class="glyphicon glyphicon-play" style="color: red"
 									onclick="PopupWindow()"></span>

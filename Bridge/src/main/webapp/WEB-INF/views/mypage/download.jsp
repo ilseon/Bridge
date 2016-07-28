@@ -88,15 +88,19 @@
 		<!-- end -->
 		<!-- 좋아하는 곡 or 앨범인지 표시 start -->
 		<div class="col-md-12">
-	<br/><br/>
+			<br />
+			<br />
 			<!-- 다운로드함에 추가된 음원 정보 start -->
-			 &nbsp;&nbsp;<input type="checkbox" id="allCheck">
-			 &nbsp;<button class="btn btn-default btn-md" id="listen">
+			&nbsp;&nbsp;<input type="checkbox" id="allCheck"> &nbsp;
+			<button class="btn btn-default btn-md" id="listen">
 				<span class="glyphicon glyphicon-play" style="color: red"></span>듣기
 			</button>
 			<button class="btn btn-default btn-md" id="add">
 				<span class="glyphicon glyphicon-plus" style="color: green"></span>재생
 				목록에 추가
+			</button>
+			<button class="btn btn-default btn-md" id="down">
+				<span class="glyphicon glyphicon-download-alt"></span>다운로드
 			</button>
 			<button class="btn btn-default btn-md" id="del">
 				<span class="glyphicon glyphicon-trash"></span>&nbsp;삭제
@@ -107,16 +111,18 @@
 			</button>
 
 			<br> <br>
+			<input type="checkbox" name="check" id="check${j}">
 			<table class="table">
 				<tr>
 					<th width="3%"></th>
 					<th width="6%">번호</th>
 					<th width="18%"></th>
-					<th width="18%">곡</th>
-					<th width="18%">아티스트</th>
+					<th width="15%">곡</th>
+					<th width="15%">아티스트</th>
 					<th width="17%">앨범</th>
 					<th width="7%">듣기</th>
 					<th width="8%">재생목록</th>
+					<th width="7%">다운</th>
 					<th width="7%">뮤비</th>
 				</tr>
 				<c:forEach begin="1" end="1" var="j">
@@ -125,15 +131,20 @@
 						<td>${j}</td>
 						<td><a href="test"><img
 								src="resources/image/like/like_album.jpg" width="70px" /></a></td>
-						<td>Why</td>
-						<td><a href="test">태연</a></td>
-						<td><a href="test2">Why</a></td>
+						<td>${downloadVO.musicSubject}</td>
+						<td><a href="test">${downloadVO.artistName}</a></td>
+						<td><a href="test2">${downloadVO.albumName}</a></td>
 						<td width="7%"><button class="btn btn-default btn-xs">
 								<span class="glyphicon glyphicon-play" style="color: red"
 									onclick="PopupWindow()"></span>
 							</button></td>
 						<td width="7%"><button class="btn btn-default btn-xs">
 								<span class="glyphicon glyphicon-plus" style="color: green"></span>
+							</button></td>
+						<td width="7%"><button class="btn btn-default btn-xs"
+								data-title="Download" data-toggle="modal"
+								data-target="#Download">
+								<span class="glyphicon glyphicon-download-alt"></span>
 							</button></td>
 						<td width="7%"><button class="btn btn-default btn-xs">
 								<span class="glyphicon glyphicon-play-circle"></span>
@@ -142,13 +153,39 @@
 				</c:forEach>
 			</table>
 		</div>
-		</div>
+	</div>
 	<!-- end -->
 	<br />
 	<br />
-
 	<!--  footer start -->
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<!--  end -->
+	<!-- 다운로드 모달창 시작  -->
+	<div class="modal fade" id="Download" tabindex="-1" role="dialog"
+		aria-labelledby="edit" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+					<h4 class="modal-title custom_align" id="Heading">다운로드</h4>
+				</div>
+				<div class="modal-body">다운받으시겠습니까?</div>
+				<div class="modal-footer ">
+					<button type="button" class="btn btn-success">
+						<span class="glyphicon glyphicon-ok-sign"></span> Yes
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"></span> No
+					</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- 다운로드 모달창  끝 -->
 </body>
 </html>

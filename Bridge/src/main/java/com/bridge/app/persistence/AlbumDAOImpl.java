@@ -41,8 +41,9 @@ public class AlbumDAOImpl implements AlbumDAO {
 	}
 
 	@Override
-	public AlbumVO AlbumInsert(HttpServletRequest req, AlbumVO album,@RequestParam int artistnumber) throws Exception {
-			
+	public AlbumVO regist(HttpServletRequest req) throws Exception {
+	
+		
 		int postMaxSize = 10 * 1024 * 1024;
 		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
         String folder_p=folderPath+"upload"+File.separator+"album"+File.separator;
@@ -66,39 +67,30 @@ public class AlbumDAOImpl implements AlbumDAO {
             String name = (String)enumer.nextElement();
             albumImg = multiReq.getFilesystemName(name);
          }
-       
-        album = new  AlbumVO();
+        
+         AlbumVO album = new AlbumVO();
          
-        album.setAlbumName(multiReq.getParameter("albumName"));
-        album.setAlbumType(multiReq.getParameter("albumType"));
-        album.setAlbumDate(multiReq.getParameter("albumDate"));
-        album.setAlbumGenre(multiReq.getParameter("albumGenre"));
-        album.setAlbumImg(albumImg);            
-        album.setAgeLimit(Integer.parseInt(multiReq.getParameter("ageLimit")));
-        album.setAlbumContent(multiReq.getParameter("albumContent"));
-        
-        logger.info(artistnumber+"");       
-        //album.setArtistNumber(artistnumber);               
-        album.setArtistNumber(99);
-        
-        //String albumName = multiReq.getParameter("albumName");
-        //req.setAttribute("albumName", albumName);     
-        int counter = Integer.parseInt(multiReq.getParameter("counter"));
-        req.setAttribute("counter", counter);
-        album.setCounter(counter);  
-        
-        String albumName = multiReq.getParameter("albumName");
-        req.setAttribute("albumName", albumName);        
-        
-        logger.info(multiReq.getParameter("albumName")+"/"+multiReq.getParameter("albumType")+"/"+multiReq.getParameter("albumDate")
-        			+"/"+multiReq.getParameter("albumGenre")+"/"+albumImg+"/"+multiReq.getParameter("counter")+"/"+multiReq.getParameter("ageLimit")
-        			+"/"+multiReq.getParameter("albumContent")+"/"+multiReq.getParameter("counter"));
-        
-        logger.info(album.toString());
-		
-		sqlSession.insert(NAMESPACE + ".regist", album);
-		
-		return album;
+         logger.info(multiReq.getParameter("artistNumber"));
+         
+         int ArtistNumber = Integer.parseInt(multiReq.getParameter("artistNumber"));
+         
+         album.setArtistNumber(ArtistNumber);
+         album.setAlbumName(multiReq.getParameter("albumName"));
+         album.setAlbumType(multiReq.getParameter("albumType"));
+         album.setAlbumDate(multiReq.getParameter("albumDate"));
+         album.setAlbumGenre(multiReq.getParameter("albumGenre")); 
+         album.setAlbumImg(albumImg);
+         album.setAgeLimit(Integer.parseInt(multiReq.getParameter("ageLimit")));
+         album.setAlbumContent(multiReq.getParameter("albumContent"));      
+         
+         int counter = Integer.parseInt(multiReq.getParameter("counter"));
+         req.setAttribute("counter", counter);
+         album.setCounter(counter);  
+
+         logger.info(album.toString());         
+         
+		sqlSession.insert(NAMESPACE + ".regist");
+		return null;
 	}
 	@Override
 	public AlbumVO getAlbumOne() throws Exception {

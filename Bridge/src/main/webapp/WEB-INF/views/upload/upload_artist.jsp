@@ -85,6 +85,10 @@
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	background-color: gray;
 }
+
+.table td {
+	background-color: white;
+}
 </style>
 <body style="margin-top: 4%;">
 	<!-- header, sideber start -->
@@ -92,46 +96,58 @@
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
 	<!-- end -->
 	<div class="container">
-		<div class="panel-heading col-md-2" id="tab">
+		<div class="panel-heading col-md-3" id="tab">
 			<h3 class="panel-title">
-				<img src='resources/image/upload/album/one.png'>&nbsp;아티스트 등록
+				<img src='resources/image/upload/album/one.png'>&nbsp;&nbsp;아티스트
+				정보 & 등록
 			</h3>
 		</div>
 		<div class="col-md-12">
 			<br /> <br />
 			<div class="row">
-		<div class="jumbotron" id="pom">	
-				<form id="artistList" accept-charset="UTF-8">
-					<table class="table">
-						<thead class="thead-inverse">
+				<div class="jumbotron" id="pom">
+					<form id="artistList" accept-charset="UTF-8">
+						<table class="table">
 							<tr>
-								<th width="4%"></th>
 								<th width="4%">번호</th>
 								<th width="18%">아티스트</th>
 								<th width="20%">타입</th>
 								<th width="20%">장르</th>
+								<th width="7%">등록</th>
 								<th width="7%">수정</th>
 								<th width="7%">삭제</th>
 							</tr>
-						</thead>
-						<c:forEach var="list" items="artistList" >
-						<tbody>
-							<tr>
-								<td width="4%"><!-- <input type="checkbox" /> --></td>
-								<td width="4%">${artistVO.artistNumber}</td>
-								<td width="18%">${artistVO.artstName}</td>
-								<td width="20%">${artistVO.artistType}</td>
-								<td width="20%">${artistVO.artistGenre}</td>
-								<td width="7%"><!--<button type="button"
-										class="btn btn-primary btn-xs">수정</button> --></td>
-								<td width="7%"><!--<button type="button"
-										class="btn btn-primary btn-xs">삭제</button> --></td>
-							</tr>
-						</tbody>
-						</c:forEach>
-					</table>
-				</form>
-			</div><hr/>
+							<tbody>
+								<tr>
+									<c:forEach var="list" items="artistList">
+										<c:if test="${ null ne artistList }">
+											<td width="4%"><input type="checkbox" /></td>
+											<td width="4%">${artistVO.artistNumber}</td>
+											<td width="18%">${artistVO.artistName}</td>
+											<td width="20%">${artistVO.artistType}</td>
+											<td width="20%">${artistVO.artistGenre}</td>
+											<td width="7%"><button type="button" class="btn btn-xs">
+													<span class="glyphicon glyphicon-save"></span>
+												</button></td>
+											<td width="7%"><button type="button" class="btn btn-xs">
+													<span class="glyphicon glyphicon-pencil"></span>
+												</button></td>
+											<td width="7%"><button type="button" class="btn btn-xs">
+													<span class="glyphicon glyphicon-trash"></span>
+												</button></td>
+										</c:if>
+										<c:if test="${ empty artistList }">
+											<h5>
+												<strong>현재 등록된 아티스트가 없습니다.</strong>
+											</h5>
+										</c:if>
+									</c:forEach>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<hr />
 				<br />
 				<div class="jumbotron" id="pom2">
 					<div id="upload_main">
@@ -176,15 +192,7 @@
 								</div>
 							</div>
 						</form>
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-						<br />
+						<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 						<br />
 					</div>
 				</div>
@@ -192,7 +200,7 @@
 		</div>
 	</div>
 	<!-- 버튼 start -->
-	<div align="center" style="margin-top: 90px">
+	<div align="center" style="margin-top: 40px">
 		<div class="form-group">
 			<button type="submit" class="btn btn-primary" id="regist">등록</button>
 			<button type="reset" class="btn btn-primary" id="cencle">취소</button>

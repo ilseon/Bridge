@@ -63,8 +63,7 @@ public class MyPageController {
 	public String Upload(HttpServletRequest req, Model model) throws Exception {
 		logger.info("업로드 시작");
 		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");			
-		//List<ArtistVO> artistList = new ArrayList();
-		artistservice.selectAritst(userNumber);
+		model.addAllAttributes(artistservice.selectAritst(userNumber));
 		if(artistservice.selectAritst(userNumber) == null){
 			return "/upload/upload_artist";
 		}else{		
@@ -77,23 +76,23 @@ public class MyPageController {
 
 		logger.info("아티스트 등록  페이지");
 		ModelAndView mav = new ModelAndView("/upload/upload_album");
-		//artistservice.regist(req);
+		artistservice.regist(req);
 		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
-		//int artistNumber = artistservice.selectAritstNumber(userNumber);
-		int artistNumber = 99;
-		model.addAttribute("artistnumber", artistNumber);
+		int artistNumber = artistservice.selectAritstNumber(userNumber);
+		model.addAttribute("artistNumber", artistNumber);
+		logger.info("아티스트 번호"+artistNumber+"");
 		return mav;
 	}
 
 	@RequestMapping(value = "upload2", method = RequestMethod.POST)
-	public String Upload_Album(HttpServletRequest req, AlbumVO album, @ModelAttribute Model view, int artistnumber) throws Exception {
-			
-		logger.info("앨범 등록 페이지");
-		//albumservice.regist(req, album, artistnumber);
-		logger.info("앨범 등록 완료");
-		return "/upload/upload_music";
-	}
-
+    public String Upload_Album(HttpServletRequest req) throws Exception {
+          
+       logger.info("앨범 등록 페이지");
+       albumservice.regist(req);
+       logger.info("앨범 등록 완료");
+       return "/upload/upload_music";
+    }
+	
 	@RequestMapping(value = "upload3", method = RequestMethod.POST)
 	public String Upload_Music(HttpServletRequest req, @RequestParam int counter,  @RequestParam String albumName, Model model) throws Exception {
 
