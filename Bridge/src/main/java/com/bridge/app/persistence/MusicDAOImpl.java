@@ -68,8 +68,14 @@ public class MusicDAOImpl implements MusicDAO {
 	}
 
 		@Override
-	public MusicVO regist(HttpServletRequest req, int counter, String albumName) throws Exception {	
+	public void regist(HttpServletRequest req, int counter, String albumName) throws Exception {	
 		    
+	        req.getAttribute(counter+"");	         
+	        req.getAttribute(albumName);
+	        
+	        logger.info("음원 수"+counter);
+	        logger.info("앨범명"+albumName);
+			
 			int postMaxSize = 10 * 1024 * 1024;
 	        String folderPath = req.getSession().getServletContext().getRealPath("/"); //realPath
 	        String folder_p=folderPath+"upload"+File.separator+"music"+File.separator;
@@ -80,11 +86,7 @@ public class MusicDAOImpl implements MusicDAO {
 	           file.mkdirs();
 	        }
 	        
-	        String encoding = "UTF-8";
-	    
-	        req.getAttribute(counter+"");	         
-	        req.getAttribute(albumName);
-	        
+	        String encoding = "UTF-8";	        
 	        Enumeration enumer=null;
 	        MultipartRequest multiReq = new MultipartRequest(req, folder_p,
 	       		  							postMaxSize, encoding, new DefaultFileRenamePolicy());
@@ -98,6 +100,10 @@ public class MusicDAOImpl implements MusicDAO {
 	            musicfile = multiReq.getFilesystemName(name);
 	         }
 	         
+	        logger.info(multiReq.getParameter("albumName")); 
+	        logger.info(multiReq.getParameter("counter")); 
+	     	logger.info(multiReq.getParameter("musicSubject")+multiReq.getParameter("musicFile")+multiReq.getParameter("musicVideo"));      	
+	        	         
 	        MusicVO music = new MusicVO();
 	         
 	      	music.setMusicSubject(multiReq.getParameter("musicSubject"));
@@ -110,24 +116,15 @@ public class MusicDAOImpl implements MusicDAO {
 				musicList.add(e);
 				}
 	      	*/
-	      	logger.info(multiReq.getParameter("musicSubject")+multiReq.getParameter("musicFile")+multiReq.getParameter("musicVideo"));      	
-	      	logger.info(music.toString());
-	      	
+	      
+	      	logger.info(music.toString());      	
 	      	sqlSession.insert(NAMESPACE + ".regist");
-			return  music;
 		}
-
-		@Override
-		public void registSeveral(HttpServletRequest req, int counter, String albumName) throws IOException {
-			// TODO Auto-generated method stub
-			
-		}
-			
 	
-	/*@Override
+	@Override
 	public void registSeveral(HttpServletRequest req, int counter, String albumName) throws IOException {
 		
-		int postMaxSize = 10 * 1024 * 1024;
+		/*int postMaxSize = 10 * 1024 * 1024;
         String folderPath = req.getSession().getServletContext().getRealPath("/"); //realPath
         String folder_p=folderPath+"upload"+File.separator+"music"+File.separator;
        
@@ -173,9 +170,8 @@ public class MusicDAOImpl implements MusicDAO {
          		for(int j=0; j < musicList.size(); j++){	        	  
          			musicList.get(i);	        	  
          		}	
-         	}
-        
-      	sqlSession.insert(NAMESPACE + ".registSeveral");
-	}
-	 */
+         	}      
+      		sqlSession.insert(NAMESPACE + ".registSeveral");
+      */
+	}	
 }

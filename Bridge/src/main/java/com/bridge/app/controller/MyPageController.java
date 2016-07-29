@@ -8,7 +8,6 @@
 
 package com.bridge.app.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,7 +26,6 @@ import org.springframework.web.util.WebUtils;
 
 import com.bridge.app.domain.DownloadVO;
 import com.bridge.app.domain.LikeVO;
-import com.bridge.app.domain.MusicVO;
 import com.bridge.app.domain.PlaylistVO;
 import com.bridge.app.service.AlbumService;
 import com.bridge.app.service.ArtistService;
@@ -80,8 +78,7 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "upload2", method = RequestMethod.POST)
-    public String Upload_Album(HttpServletRequest req) throws Exception {
-          
+    public String Upload_Album(HttpServletRequest req) throws Exception {       
        logger.info("앨범 등록 페이지");
        albumservice.regist(req);
        logger.info("앨범 등록 완료");
@@ -89,13 +86,11 @@ public class MyPageController {
     }
 	
 	@RequestMapping(value = "upload3", method = RequestMethod.POST)
-	public String Upload_Music(HttpServletRequest req, 
-			@RequestParam int counter,  @RequestParam String albumName, Model model) throws Exception {
-
+	public String Upload_Music(HttpServletRequest req) throws Exception {
 		logger.info("뮤직 등록 페이지");
-		musicservice.regist(req, counter, albumName);		
+		//musicservice.regist(req, counter, albumName);		
 		logger.info("뮤직 등록 완료");
-		return "/upload/mytrack";
+		return "/upload/mytrack_detail";
 	}
 
 	@RequestMapping(value = "mytrack", method = RequestMethod.GET)
@@ -155,9 +150,6 @@ public class MyPageController {
 	public String LikeSong(HttpServletRequest req, Model view) throws Exception {
 
 		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
-		// List<LikeVO> LikeList = new ArrayList();
-		// LikeList = likeservice.searchMusic(userNumber);
-
 		List<LikeVO> like = likeservice.searchMusic(userNumber);
 		view.addAllAttributes(like);
 		logger.info("It is like_song");

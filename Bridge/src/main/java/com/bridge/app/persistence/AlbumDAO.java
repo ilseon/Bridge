@@ -14,6 +14,4 @@ public interface AlbumDAO {
 	public void regist(HttpServletRequest req) throws Exception;
 	public AlbumVO getAlbumOne() throws Exception;
 	public List<AlbumVO> searchAll(int limit) throws Exception;
-
-
 }

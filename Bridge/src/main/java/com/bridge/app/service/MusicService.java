@@ -18,7 +18,7 @@ import com.bridge.app.domain.MusicVO;
 
 public interface MusicService {
 
-	public MusicVO regist(HttpServletRequest req, int counter, String albumName) throws Exception;
+	public void regist(HttpServletRequest req, int counter, String albumName) throws Exception;
 	public void remove(Integer musicnumber) throws Exception;
 	public void modifyStreaming(MusicVO music) throws Exception;
 	public void modifyDownload(MusicVO music) throws Exception;

@@ -27,10 +27,9 @@ public class MusicServiceImpl implements MusicService {
 	@Inject
 	private MusicDAO musicDAO;
 	
-
 	@Override
-	public MusicVO regist(HttpServletRequest req, int counter, String albumName) throws Exception {
-		return musicDAO.regist(req, counter, albumName);		
+	public void regist(HttpServletRequest req, int counter, String albumName) throws Exception {
+		musicDAO.regist(req, counter, albumName);		
 	}
 	
 	@Override

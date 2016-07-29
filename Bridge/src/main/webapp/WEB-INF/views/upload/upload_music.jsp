@@ -121,6 +121,8 @@
 				입력
 			</h3>
 		</div>
+		<input type="hidden" name="counter" id="counter"
+						value="${counter}" /> 
 		<!-- 음원  업로드 -->
 		<div class="col-md-12">
 			<br /> <br />
