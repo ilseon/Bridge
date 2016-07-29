@@ -27,6 +27,12 @@ public class MusicServiceImpl implements MusicService {
 	@Inject
 	private MusicDAO musicDAO;
 	
+
+	@Override
+	public MusicVO regist(HttpServletRequest req, int counter, String albumName) throws Exception {
+		return musicDAO.regist(req, counter, albumName);		
+	}
+	
 	@Override
 	public List<MusicVO> searchAll(@RequestParam("limit") int limit) throws Exception {
 		return musicDAO.searchAll(limit);
@@ -78,7 +84,8 @@ public class MusicServiceImpl implements MusicService {
 	}
 
 	@Override
-	public List<MusicVO> registSeveral(HttpServletRequest req, int counter, String albumName) throws IOException {
-		return musicDAO.registSeveral(req, counter, albumName);
+	public void registSeveral(HttpServletRequest req, int counter, String albumName) throws IOException {
+		musicDAO.registSeveral(req, counter, albumName);
 	}
+
 }

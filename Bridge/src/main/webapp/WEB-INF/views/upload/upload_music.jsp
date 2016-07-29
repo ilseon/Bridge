@@ -26,7 +26,8 @@
 				$("#regist").click(
 						function() {
 							var cnt = $("#counter").val();
-							for (var i = 1; i < cnt; i++) {
+							alert(cnt);
+							for (var i = 1; i <= cnt; i++) {
 								if (!$("#musicFile" + i).val()) {
 									alert(i + " 트랙 음원이 업로드되지 않았습니다.");
 									return false;
@@ -35,11 +36,10 @@
 									return false;
 								} else if ($("#musicFile" + i).val()
 										&& $("#musicSubject" + i).val()) {
-
-									alert("업로드되었습니다.");
-									$("#music").submit();
 								}
 							}
+							alert("업로드되었습니다.");
+							$("#music").submit();
 						});
 
 				//체크박스 (타이틀) 하나만 체크하는 jquery
@@ -127,19 +127,6 @@
 			<div class="jumbotron" id="pom">
 				<form class="form-horizontal" id="music" action="upload3"
 					method="post" enctype="multipart/form-data">
-					<!-- 앨범 정보 start -->
-					<input type="hidden" name="artistName" id="artistName"
-						value="${artistVO.artistName}" /> <input type="hidden"
-						name="albumNumber" id="albumNumber" value="${albumVO.albumNumber}" />
-					<input type="hidden" name="albumGenre" id="albumGenre"
-						value="${albumVO.albumGenre}" />
-					<!-- end -->
-					<input type="hidden" id="counter" name="counter"
-						value="3" />
-					<input type="hidden" id="counter" name="counter"
-						value="3" />	
-
-					<div>
 						<div class="btn btn-primary" id="album">
 							<strong>앨범</strong>
 						</div>
@@ -148,7 +135,6 @@
 							<strong>${albumName}</strong>
 						</div>
 						<br />
-					</div>
 					<br /> <br />
 					<table class="table">
 						<tr>
@@ -184,7 +170,6 @@
 			<!-- 버튼 start -->
 			<div align="center" style="margin-top: 90px">
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary" id="before">뒤로</button>
 					<button type="submit" class="btn btn-primary" id="regist">업로드</button>
 					<button type="reset" class="btn btn-primary" id="cencle">취소</button>
 				</div>

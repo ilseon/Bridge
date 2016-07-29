@@ -154,8 +154,7 @@
 						<td><input type="checkbox" name="check" id="check${j}"></td>
 						<td>${j}</td>
 						<td><a href="test"><img
-						src="resources/image/like/like_album.jpg" width="70px" />
-							<!-- src="${likeVO.albumImg}" width="70px" /> --></a></td>
+						src="resources/image/like/like_album.jpg" width="70px" /></a></td>
 						<td>${likeVO.musicSubject}</td>
 						<td><a href="">${likeVO.artistName}</a></td>
 						<td width="7%"><button class="btn btn-default btn-xs">

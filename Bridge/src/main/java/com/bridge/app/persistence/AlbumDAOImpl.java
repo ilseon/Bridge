@@ -41,7 +41,7 @@ public class AlbumDAOImpl implements AlbumDAO {
 	}
 
 	@Override
-	public AlbumVO regist(HttpServletRequest req) throws Exception {
+	public void regist(HttpServletRequest req) throws Exception {
 	
 		
 		int postMaxSize = 10 * 1024 * 1024;
@@ -74,6 +74,7 @@ public class AlbumDAOImpl implements AlbumDAO {
          
          int ArtistNumber = Integer.parseInt(multiReq.getParameter("artistNumber"));
          
+         //album.setArtistNumber(100);
          album.setArtistNumber(ArtistNumber);
          album.setAlbumName(multiReq.getParameter("albumName"));
          album.setAlbumType(multiReq.getParameter("albumType"));
@@ -88,9 +89,8 @@ public class AlbumDAOImpl implements AlbumDAO {
          album.setCounter(counter);  
 
          logger.info(album.toString());         
-         
-		sqlSession.insert(NAMESPACE + ".regist");
-		return null;
+         	
+         sqlSession.insert(NAMESPACE + ".regist", album);
 	}
 	@Override
 	public AlbumVO getAlbumOne() throws Exception {
