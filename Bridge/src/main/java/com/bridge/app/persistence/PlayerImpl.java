@@ -24,12 +24,12 @@ public class PlayerImpl implements PlayerDAO{
 	@Inject
 	private SqlSession sqlSession;
 	
-	private static final String NAMESPACE="com.brige.mappers.searchMapper";
+	private static final String NAMESPACE="com.bridge.mappers.musicMapper";
 
 	@Override
-	public List<MusicVO> getMusic() throws SQLException {
+	public MusicVO getMusic(MusicVO val) throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(NAMESPACE+".music",val);
 	}
 
 	@Override
@@ -37,6 +37,8 @@ public class PlayerImpl implements PlayerDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 
 	

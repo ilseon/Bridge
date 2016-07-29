@@ -17,6 +17,6 @@ import com.bridge.app.domain.VideoVO;
 import com.bridge.app.domain.VideoVO;
 
 public interface PlayerDAO {
-	public List<MusicVO> getMusic() throws SQLException;//한페이지에 게시물 10개씩가져온다
-	public List<MusicVO> getMusicTotal() throws SQLException;//게시물을 총갯수를 가져온다
+	public MusicVO getMusic(MusicVO val) throws SQLException;
+	public List<MusicVO> getMusicTotal() throws SQLException;
 }

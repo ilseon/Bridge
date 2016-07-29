@@ -15,7 +15,7 @@ import com.bridge.app.domain.MusicVO;
 
 
 public interface PlayerService {
-	  public List<MusicVO> getMusic() throws Exception;//게시물조회 과 페이징처리
+	  public MusicVO getMusic(MusicVO val) throws Exception;//게시물조회 과 페이징처리
 	  public List<MusicVO> getMusicTotal() throws SQLException;//총페이징 갯수
 	  
 }

@@ -24,7 +24,7 @@ public class VideoImpl implements VideoDAO{
 	@Inject
 	private SqlSession sqlSession;
 	
-	private static final String NAMESPACE="com.brige.mappers.searchMapper";
+	private static final String NAMESPACE="com.bridge.mappers.searchMapper";
 	
 	@Override
 	public List<VideoVO> getVideoList(Paging pg) throws SQLException {

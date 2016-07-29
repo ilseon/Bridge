@@ -1,4 +1,11 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"  />
+<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
+<script src="/resources/bootstrap/js/bootstrap.min.js"></script> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +13,6 @@
     <link rel="stylesheet" href="/resources/css/style.css" media="screen">
     
  <script>
-
  </script>
 </head>
 <body>
@@ -37,20 +43,30 @@
 			<span id="duration"></span>
 		 </div>
 		 <div class="clearfix"></div>
-		 <ul id="playlist" class="hidden">
+		 <ul class="nav nav-tabs" role="tablist">
+    		<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><p style="color: black;font: bolder;">재생목록</p></a></li>
+    		<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">가사</a></li>
+    		<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">내앨범</a></li>
+    		
+  		</ul>
+  		
+  		 <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+     <div class="clearfix"></div>
+		 <ul id="playlist">
 			<li song="로꼬, GRAY (그레이) - GOOD (Feat. ELO).mp3" cover="MOuzcBERbsc/0.jpg" artist="로꼬, GRAY (그레이)">GOOD(Feat. ELO)</li>
-			<li song="비프리 (B-Free) - NEW WAVE (Feat. Double K, Paloalto).mp3" cover="uPLpgROuB0c/0.jpg" artist="Linkin Park">One Step Closer.mp3</li>
-			<li song="헤이즈 (Heize) - And July (Feat. DEAN, DJ Friz).mp3" cover="aLSefFxpW-Y/0.jpg" artist="Linkin Park">With You.mp3</li>
-			<li song="Don Mills (던밀스) - 미래 (MEERAE).mp3" cover="cover1.jpg" artist="Linkin Park">Points Of Authority.mp3</li>
-			<li song="Sik-K (식케이) - 랑데뷰.mp3" cover="cover1.jpg" artist="Linkin Park">Crawling.mp3</li>
-			<li song="Linkin Park - Runaway.mp3" cover="cover1.jpg" artist="Linkin Park">Runaway.mp3</li>
-			<li song="Linkin Park - By Myself.mp3" cover="cover1.jpg" artist="Linkin Park">By Myself.mp3</li>
-			<li song="Linkin Park - In The End.mp3" cover="cover1.jpg" artist="Linkin Park">In The End.mp3</li>
-			<li song="Linkin Park - A Place For My Head.mp3" cover="cover1.jpg" artist="Linkin Park">A Place For My Head.mp3</li>
-			<li song="Linkin Park - Forgotten.mp3" cover="cover1.jpg" artist="Linkin Park">Forgotten.mp3</li>
-			<li song="Linkin Park - Cure For The Itch.mp3" cover="cover1.jpg" artist="Linkin Park">Cure For The Itch.mp3</li>
-			<li song="Linkin Park - Pushing Me Away.mp3" cover="cover1.jpg" artist="Linkin Park">Pushing Me Away.mp3</li>
+			<li song="비프리 (B-Free) - NEW WAVE (Feat. Double K, Paloalto).mp3" cover="uPLpgROuB0c/0.jpg" artist="비프리 (B-Free)">NEW WAVE (Feat. Double K, Paloalto)</li>
+			<li song="헤이즈 (Heize) - And July (Feat. DEAN, DJ Friz).mp3" cover="aLSefFxpW-Y/0.jpg" artist="헤이즈 (Heize)">And July (Feat. DEAN, DJ Friz)</li>
+			<li song="Don Mills (던밀스) - 미래 (MEERAE).mp3" cover="cover1.jpg" artist="Don Mills (던밀스)">미래 (MEERAE).mp3</li>
+			<li song="Sik-K (식케이) - 랑데뷰.mp3" cover="cover1.jpg" artist="Sik-K (식케이)">랑데뷰</li>
+			<li song="Linkin Park - Pushing Me Away.mp3" cover="${music.musicVideo }/0.jpg" artist="${music.artistName }" id="val">${music.musicSubject }</li>
+			${val }
 		</ul>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">${music.musicLyrics }</div>
+    <div role="tabpanel" class="tab-pane" id="messages">...</div>
+    
+  </div>
 		<button>삭제</button>
 	</div>
 

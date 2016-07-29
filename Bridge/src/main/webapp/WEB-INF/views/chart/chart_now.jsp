@@ -146,17 +146,70 @@ $(function(){
 				 }
 		})
 	}); */
-	$(function(){
+	/* function player(num){
 		$("button[id^=musicNumber]").click(function(){
 			 $.ajax({
 				  type: 'get',
 				  url: 'player',
-				  data: {"val":1123123},
-				  dataType: String,
-				  success: window.open("/player","new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;")
+				  data: {"val":num},
+				  success: 
+					  window.open("/player","new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;")
 				});
 		})
-	}); 
+	};  */
+	
+/*  	function player(num){
+			 $.ajax({
+				  type: "get",
+				  url: 'player',
+				  data: {"val":num} 
+				});		 
+	};  */ 
+	
+	 function player(num){
+	
+			var tmp=false;
+			 if (!tmp){       //최초 클릭이면 팝업을 띄운다
+				  
+				 $.ajax({
+					  type: 'get',
+					  data: {"val":num},
+
+					});
+			 
+				  tmp = true;
+				 Clip =	window.open("player?val="+num,"new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;")
+				   //Clip.close();                         
+	 				Clip.focus();
+	 				
+				 }
+				 else{           //최초 클릭이 아니면
+				  if(!Clip.close()){
+					  $.ajax({
+						  type: "post",
+						  url: 'player',
+						  data: {"val":num} ,
+					  success:alert("POST")
+						});	
+				   Clip.close();                         
+				  }
+				  else{
+					  $.ajax({
+						  type: 'get',
+						  data: {"val":num},
+						  success:alert("POST아님")
+
+						});
+					  tmp = true;
+					 }//없으면 팝업을 다시 띄울 수 있게 한다
+					 Clip =	window.open("player?val="+num,"new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;")
+				   tmp = true;
+				  
+				 }
+		 
+		 
+		 
+};  
 </script>
 
 	<!-- 차트 시작 -->
@@ -201,7 +254,7 @@ $(function(){
 							    <td width="23%">${music.musicSubject}</td>
 							    <td width="20%"><a href="/test2"></a>${music.artistName}</td>
 							    <td width="7%">${music.albumName}</td>
-							    <td width="7%"><button class="btn btn-default btn-xs" id="musicNumber" name="musicNumber"><span class="glyphicon glyphicon-play" style="color:red"></span></button></td>
+							    <td width="7%"><button class="btn btn-default btn-xs" id="musicNumber" name="musicNumber" onclick="player(${music.musicNumber})"><span class="glyphicon glyphicon-play" style="color:red"></span></button></td>
 							    <td width="7%"><button class="btn btn-d	efault btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
 							    <td width="7%"><a href="/myalbum?musicnumber=${music.musicNumber}"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>
 							    <td width="7%"><a href="/download_modal?musicnumber=${music.musicNumber}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span></a></td>

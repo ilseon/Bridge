@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.brige.mappers.searchMapper">	
+<mapper namespace="com.bridge.mappers.searchMapper">	
 	<select id="videotest" resultType="VideoVO" parameterType="Paging"><!-- 페이지마다10개씩 데이터를 뽑아온다 -->
 		select m.musicsubject,a.artistname,a.albumdate,m.musicvideo from music as m,(select * from album as a,artist as t where a.artist_artistnumber=t.artistnumber) as a where m.albumnumber=a.albumnumber 
 		<if test="searchType!=''">

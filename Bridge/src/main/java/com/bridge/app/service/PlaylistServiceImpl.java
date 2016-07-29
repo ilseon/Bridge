@@ -15,21 +15,30 @@ import com.bridge.app.persistence.PlayerDAO;
 import com.bridge.app.persistence.PlaylistDAO;
 
 @Repository
-public class PlaylistServiceImpl implements PlayerService {
+public class PlaylistServiceImpl implements PlaylistService {
 	
 	@Inject
-	private PlayerDAO playerdao;
+	private PlaylistDAO playlistdao;
 
 	@Override
-	public List<MusicVO> getMusic() throws Exception {
-		// TODO Auto-generated method stub
+	public void regist(PlaylistVO playlist) throws Exception {
+		playlistdao.regist(playlist);
+	}
+
+	@Override
+	public void registAll(Map playListAll) throws Exception {
+		playlistdao.registAll(playListAll);
+	}
+
+	@Override
+	public List<PlaylistVO> searchAll(Integer userNumber) throws Exception {
+
 		return null;
 	}
 
 	@Override
-	public List<MusicVO> getMusicTotal() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public void remove(List<PlaylistVO> playlists) throws Exception {
+		
 	}
 
 
