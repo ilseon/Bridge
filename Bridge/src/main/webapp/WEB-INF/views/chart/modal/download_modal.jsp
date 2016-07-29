@@ -60,13 +60,13 @@ function paycheck(){
 		<form id="pay" name="pay" method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr">
 			            <input type="hidden" name="cmd" value="_xclick" size="50" /><br />
 			            <input type="hidden" name="business" value="muhj89-facilitator@naver.com" size="50" /><br />
-			            <input type="index" name="amount" value="${i*2}" size="50" /><br />
+			            <input type="hidden" name="amount" value="${i*2}" size="50" /><br />
 			            <input type="hidden" name="item_name" value="music" size="50" /><br />
 			            <input type="hidden" name="return" value="http://localhost:8080${href}" size="50" /><br />
 			            <input type="hidden" name="notify_url" value="http://localhost:8080/chart/modal/pay_modal_fail" size="50" /><br />
 			            <input type="hidden" name="cancel_return" value="http://localhost:8080/chart/modal/pay_modal_cancel" size="50" /><br />
 			            <input type="hidden" name="charset" value="UTF-8" size="50" /><br />
-	            <input type="hidden" name="currency_type" value="USD" size="50" /><br />
+	           			<input type="hidden" name="currency_type" value="USD" size="50" /><br />
             <!-- <input type="submit" value="pay" size="50" /> -->
         </form>
 		</span>

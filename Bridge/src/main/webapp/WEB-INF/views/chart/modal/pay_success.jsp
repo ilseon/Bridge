@@ -38,6 +38,6 @@
 				<c:set var="i" value="1"/>
 			</c:if>
 			<hr/>
-			<a type="button" class="btn btn-success" id="download_now" href="/download_all?musicfiles=<%=request.getAttribute("musicfiles")%>&realpath=<%=request.getAttribute("realpath")%>">결제 완료</a>
+			<a type="button" class="btn btn-success" id="download_now" href="/download_all?musicfiles=<%=request.getAttribute("musicfiles")%>&realpath=<%=request.getAttribute("realpath")%>">다운로드</a>
 </body>
 </html>

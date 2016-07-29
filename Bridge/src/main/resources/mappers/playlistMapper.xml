@@ -15,9 +15,16 @@
 	<insert id="registAll" parameterType="map">
 		insert into playlist(musicnumber, usernumber) values
 		<foreach collection="playListAll" item="playlist" separator=",">
-			(#{playlist.value}, #{userNumber})
+			(#{playlist.value}, #{usernumber})
 		</foreach>
 	</insert>
+	
+	<select id="search_myalbum" resultType="com.bridge.app.domain.PlaylistVO">
+		select * from playlist where
+		<foreach collection="playListAll" item="playlist" separator="or">
+			musicnumber=#{playlist.value} and usernumber=#{usernumber}
+		</foreach>
+	</select>
 	
 	<delete id="remove">
 

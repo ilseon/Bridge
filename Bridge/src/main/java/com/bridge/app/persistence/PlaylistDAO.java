@@ -17,4 +17,5 @@ public interface PlaylistDAO {
 	public void registAll(Map playListAll) throws Exception;
 	public void remove(List<PlaylistVO> playlists) throws Exception;
 	public List<PlaylistVO> searchAll(Integer userNumber) throws Exception;
+	public List<PlaylistVO> search_myalbum(Map playListAll) throws Exception;
 }

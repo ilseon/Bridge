@@ -46,4 +46,9 @@ public class PlaylistDAOImpl implements PlaylistDAO {
 		return null;
 	}
 
+	@Override
+	public List<PlaylistVO> search_myalbum(Map playListAll) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".search_myalbum",playListAll);
+	}
+
 }

@@ -107,18 +107,58 @@ public class ChartController {
 	}
 	
 	@RequestMapping("/myalbum_modal")
-	public String myalbum_modal(@RequestParam("musicnumber") int musicnumber, Model view) throws Exception{
+	public String myalbum_modal(@RequestParam("musicnumber") int musicnumber, Model view, HttpServletRequest req) throws Exception{
+		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+		Map map = new HashMap();
+		map.put("usernumber", usernumber);
+		List playListAll = new ArrayList();
+		playListAll.add(musicnumber);
+		map.put("playListAll", playListAll);
+		
+		List list = playlist.search_myalbum(map);
+		if(list!=null){
+			return "chart/modal/myalbum_already";
+		}
+		
 		view.addAttribute("music", music.searchMusic(musicnumber));
 		return "/chart/modal/myalbum_modal";
 	}
 	
 	@RequestMapping("/myalbum_modal_sev")
-	public String myalbum_modal_sev(@RequestParam("playlistAll") List<Integer> playlistAll, Model view) throws Exception{
+	public String myalbum_modal_sev(@RequestParam("playlistAll") List<Integer> playlistAll, Model view, HttpServletRequest req) throws Exception{
+		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 		HashMap map = new HashMap();
-		map.put("playlistAll", playlistAll);
-		List<MusicVO> music = download.search_sev(map);
-		view.addAttribute("playlistAll", music);
-		return "/chart/modal/myalbum_modal";
+		
+		map.put("usernumber", usernumber);
+	/*	List playListAll = new ArrayList();
+		playListAll.add(musicnumber);*/
+		map.put("playListAll", playlistAll);
+		
+		List<PlaylistVO> list = playlist.search_myalbum(map);
+		if(list.size()==playlistAll.size()){//선택한 곡들이 모두 내 앨범에 있는 곡들일 때
+			return "chart/modal/myalbum_already";
+		}else if(list.size()==0){//선택한 곡들이 모두 새롭게 추가하는 곡일 때
+			map.put("playListAll", playlistAll);
+			List<MusicVO> music = download.search_sev(map);
+			view.addAttribute("playlistAll", music);
+			return "/chart/modal/myalbum_modal";
+		}else{//곡의 일부만이 새로 추가되는 상황
+			logger.info(playlistAll.size()+"playlistAll의 size");
+			for(int i =0; i<playlistAll.size();i++){
+				for(int j = 0 ; j<list.size();j++){
+					if(playlistAll.get(i).equals(list.get(j).getMusicNumber())){
+						playlistAll.remove(i);
+					}
+				}
+			}
+			map.remove("playListAll");
+			map.put("playListAll",playlistAll);
+			
+			List<MusicVO> listAll = download.search_sev(map);
+			view.addAttribute("playlistAll", listAll);			
+			return "/chart/modal/myalbum_modal";
+		}
+		
 	}
 	
 	@RequestMapping(value="/myalbum", method=RequestMethod.GET)
@@ -172,12 +212,15 @@ public class ChartController {
 			view.addAttribute("music", music_check);
 			return "/chart/modal/download_modal";
 		}else{
+			logger.info("이미 다운로드 받은 기록이 있는 하나의 음원");
+		
+			view.addAttribute("music",music_check);
 			List<String> musicfiles = new ArrayList();
 			musicfiles.add(music_check.getMusicFile());
 			req.setAttribute("musicfiles", musicfiles);
 
 			req.setAttribute("realpath", real_path(req));
-			return "/chart/modal/download_all";
+			return "/chart/modal/pay_success";
 		}
 	}
 	
@@ -222,8 +265,9 @@ public class ChartController {
 				}
 			}
 			
-			if(cnt.size()==playlistAll.size()){//모든 노래를 다시 다운받는 경우
+			if(cnt.size()==0){//모든 노래를 다시 다운받는 경우
 				ModelAndView view = new ModelAndView("/chart/modal/pay_success");
+				logger.info("모든 노래를 다시 다운받는 경우");
 				logger.info("download.search_sev(dlist)");
 				HashMap map = new HashMap();
 				map.put("playListAll", playlistAll);
@@ -235,7 +279,7 @@ public class ChartController {
 					logger.info(musicfiles.get(i)+"musicfile");
 				}
 				
-				req.setAttribute("musicfiles", musicfiles);
+				/*req.setAttribute("musicfiles", musicfiles);*/
 				
 				view.addObject("download_list", vo);
 				req.setAttribute("musicfiles", musicfiles);
@@ -421,6 +465,8 @@ public class ChartController {
 	
 	@RequestMapping("/download_all")
 	public String download_file(@RequestParam("musicfiles") String musicfile, @RequestParam("realpath") String realpath, HttpServletRequest req){
+		logger.info("여기까지오는지");
+
 		String music_f = musicfile.replace("[","");
 		music_f=music_f.replace("]", "");
 		String[] music_f_name=music_f.split(",");
@@ -429,7 +475,7 @@ public class ChartController {
 			musicfiles.add(music_f_name[i].trim());
 			logger.info(music_f_name[i]+"download_all");
 		}
-		req.setAttribute("musicfiles", musicfiles);
+		req.setAttribute("musicfile", musicfile);
 		req.setAttribute("realpath", realpath);
 		return "/chart/modal/download_all";
 	}

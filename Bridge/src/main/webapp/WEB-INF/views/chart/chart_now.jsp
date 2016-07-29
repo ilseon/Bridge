@@ -12,17 +12,6 @@
 <script>
 var user="${usernumber}";
 
-/*
-$(document).ready(function() {
-	$("#Download").on("show.bs.modal", function (event) {
-	var button = $(event.relatedTarget); // Button that triggered the modal
-	var musicnumber = button.data("musicnumber"); // Extract info from data-* attributes
-	var modal = $(this);
-
-	modal.find(".modal-body a").href("/download_music?musicnumber="+musicnumber);
-	});
-});*/
-
 //checkbox 전체 선택
 $(document).ready(function(){
 	$("#checkall").click(function () {
@@ -40,6 +29,24 @@ $(document).ready(function(){
 	});
 	
 var playlistAll = new Array();
+
+/* $(document).ready(function(){
+	if($("#mytable input[type=checkbox]").is(":checked")){
+		var list=$("#mytable input[type=checkbox]");
+			for(var i = 0 ; i<list.length; i++){
+				if(list[i].checked==true){
+					playlistAll.push(list[i].value);
+				}
+			}
+	}else if($("#mytable input[type=checkbox]:not(checked)")){
+		var list=$("#mytable input[type=checkbox]");
+		for(var i = 0 ; i<list.length; i++){
+			if(list[i].checked==true){
+				playlistAll.push(list[i].value);
+			}
+		}
+	}
+}); */
 	
 //여러 곡을 선택한 경우
 $(function(){
@@ -56,7 +63,7 @@ $(function(){
 					if(list[i].checked==true){
 						playlistAll.push(list[i].value);
 					}
-				}
+				} 
 				
 			var this_name=$(this).attr('id');
 			
@@ -64,7 +71,7 @@ $(function(){
 				$('#Download').modal({
 			        remote: '/download_modal_sev?playlistAll='+playlistAll
 				});
-			}else if(this_name="myalbum"){
+			}else if(this_name=="myalbum"){
 				$('#MyAlbum').modal({
 			        remote: '/myalbum_modal_sev?playlistAll='+playlistAll
 				});
@@ -144,7 +151,7 @@ $(function(){
 						<c:set var="rank" value="${rank+1}"/>
 						    <tr>
 							    <td width="3%"><input type="checkbox" value="${music.musicNumber}"/></td>
-							    <td width="7%">${rank} &nbsp;<a href="/test"><img src="upload\album\<c:out value="${music.albumImg}"/>" style="height: 60px; width:60px;"></a></td>
+							    <td width="7%">${rank} &nbsp;<a href="/test"><img src="/upload/album/<c:out value="${music.albumImg}"/>" style="height: 60px; width:60px;"></a></td>
 							    <td width="23%">${music.musicSubject}</td>
 							    <td width="20%"><a href="/test2"></a>${music.artistName}</td>
 							    <td width="7%">${music.albumName}</td>

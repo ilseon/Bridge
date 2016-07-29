@@ -83,19 +83,18 @@
 	 <% 
 		  response.reset();
 		  // 다운받을 파일의 이름을 가져옴
-		  List<String> fileName =(List)request.getAttribute("musicfiles");
+		   List<String> fileName =(List)request.getAttribute("musicfiles");
 		  String realpath = request.getAttribute("realpath")+"";
-		  System.out.println(realpath);
 		  String filePath=null;
 		  
 		  ServletOutputStream out2=null;
 		  FileInputStream in=null;
 		  MultipartFile multipartFile = null;
 		  try{
-			  for(int i=0;i<fileName.size();i++){
+			 	for(int i=0;i<fileName.size();i++){
 				  System.out.println(fileName.size()+"download_all_fileName.size()");
 				  System.out.println(fileName.get(i));
-				  filePath=realpath+fileName.get(i);
+				  filePath=realpath+fileName;
 				  
 				   File file = new File(filePath);
 				   byte b[] = new byte[4096];
@@ -119,10 +118,12 @@
 				   while((numRead = in.read(b, 0, b.length)) != -1){
 				    out2.write(b, 0, numRead);				    
 				   }
-				} 
+				}
 			  out2.flush();
 			  out2.close();
 			  in.close();
-			 }catch(Exception e){				 
+			 }catch(Exception e){	
+				
 		  }
+		 
 		 %> 
