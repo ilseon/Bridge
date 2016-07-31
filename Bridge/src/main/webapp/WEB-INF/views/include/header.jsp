@@ -13,6 +13,9 @@
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+<head>
+<title>BRIDGE</title>
+<link rel="shortcut icon" type="image/x-icon" href="/resources/image/favicon.ico" />
 
 <style>
 #fixed {
@@ -51,7 +54,7 @@ $(function(){
 
 
 </script>
-
+</head>
 <body style="margin-top: 4%;">
 	<nav class="navbar navbar-default" id="fixed">
 		<div class="container-fluid">
@@ -59,8 +62,8 @@ $(function(){
 		<!-- 로고를 클릭시 메인으로 이동 -->
 			<div class="navbar-header">	
 				<a href="/">
-				<img src="/resources/image/sample.PNG"
-					style="margin-top: 5px;" />
+				<img src="/resources/image/bridge.jpg"
+					style="margin-top: 5px;"/>
 					</a>
 			</div>
 
