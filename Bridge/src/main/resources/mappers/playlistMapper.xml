@@ -21,7 +21,7 @@
 	
 	<select id="search_myalbum" resultType="com.bridge.app.domain.PlaylistVO">
 		select * from playlist where
-		<foreach collection="playListAll" item="playlist" separator="or">
+		<foreach collection="playListAll" item="playlist" separator="AND">
 			musicnumber=#{playlist.value} and usernumber=#{usernumber}
 		</foreach>
 	</select>

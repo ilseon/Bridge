@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,9 +33,9 @@ public class MusicServiceImpl implements MusicService {
 
 
 	@Override
-	public void regist() throws Exception {
+	public void regist(HttpServletRequest req) throws Exception {
 		// TODO Auto-generated method stub
-		
+		musicDAO.regist(req);
 	}
 
 

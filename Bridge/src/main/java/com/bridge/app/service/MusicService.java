@@ -11,10 +11,12 @@ package com.bridge.app.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.bridge.app.domain.MusicVO;
 
 public interface MusicService {
-	public void regist() throws Exception;
+	public void regist(HttpServletRequest req) throws Exception;
 	public void remove(Integer musicnumber) throws Exception;
 	public void modifyStreaming(MusicVO music) throws Exception;
 	public void modifyDownload(MusicVO music) throws Exception;

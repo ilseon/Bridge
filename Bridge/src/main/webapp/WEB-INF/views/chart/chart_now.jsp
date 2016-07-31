@@ -28,7 +28,7 @@ $(document).ready(function(){
 	    });
 	});
 	
-var playlistAll = new Array();
+
 
 /* $(document).ready(function(){
 	if($("#mytable input[type=checkbox]").is(":checked")){
@@ -57,6 +57,7 @@ $(function(){
          	});	
 		}
 		if($("#mytable input[type=checkbox]").is(":checked")){
+			var playlistAll = new Array();
 			if(user!=""){
 			var list=$("#mytable input[type=checkbox]");
 				for(var i = 0 ; i<list.length; i++){

@@ -115,13 +115,16 @@ public class ChartController {
 		playListAll.add(musicnumber);
 		map.put("playListAll", playListAll);
 		
-		List list = playlist.search_myalbum(map);
-		if(list!=null){
+		List<PlaylistVO> list = playlist.search_myalbum(map);
+		if(list.size()>0){
+			logger.info(list.get(0).getMusicNumber()+"이미존재하는음원번호");
+			logger.info("이미존재"+usernumber);
+			logger.info("이미존재"+musicnumber);
 			return "chart/modal/myalbum_already";
+		}else{
+			view.addAttribute("music", music.searchMusic(musicnumber));
+			return "/chart/modal/myalbum_modal";
 		}
-		
-		view.addAttribute("music", music.searchMusic(musicnumber));
-		return "/chart/modal/myalbum_modal";
 	}
 	
 	@RequestMapping("/myalbum_modal_sev")
@@ -253,7 +256,7 @@ public class ChartController {
 			}
 
 			logger.info(playlistAll.size()+"playlistAll의 크기 비교전");
-			logger.info(cnt.get(1)+"cnt");
+			//logger.info(cnt.get(1)+"cnt");
 			for(int i=0;i<playlistAll.size();i++){
 				for(int j=0;j<already.size();j++){
 					if(playlistAll.get(i).equals(already.get(j))){
@@ -475,7 +478,7 @@ public class ChartController {
 			musicfiles.add(music_f_name[i].trim());
 			logger.info(music_f_name[i]+"download_all");
 		}
-		req.setAttribute("musicfile", musicfile);
+		req.setAttribute("musicfiles", musicfiles);
 		req.setAttribute("realpath", realpath);
 		return "/chart/modal/download_all";
 	}

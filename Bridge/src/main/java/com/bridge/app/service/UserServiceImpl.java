@@ -1,7 +1,16 @@
+/*
+ì‘ì„±ì - ê¹€ë¯¼ì •
+ë‚´ìš© - ë¡œê·¸ì¸ê´€ë ¨ ì„œë¹„ìŠ¤
+ì‹œì‘ë‚ ì§œ - 2016/07/18
+ìˆ˜ì •ë‚ ì§œ - 2016/07/25
+ë³€ê²½ë‚´ìš© - id ë° password ì°¾ê¸°
+*/
+
 package com.bridge.app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import com.bridge.app.domain.UserVO;
 import com.bridge.app.persistence.UserDAO;
@@ -15,17 +24,37 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserVO readLogin(String userid, String userpw) throws Exception {
-		// ÄÁÆ®·Ñ·¯¿Í dao¸¦ ¿¬°áÇØÁÜ
-		System.out.println("¼­ºñ½º");
+		// ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ daoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		System.out.println("ï¿½ï¿½ï¿½ï¿½");
 		return (UserVO)dao.readLogin(userid, userpw);
 	}
 
 
 	@Override
 	public UserVO searchId(String username, String userbirthday) throws Exception {
-		// ¾ÆÀÌµğ¸¦ Ã£À½
-		System.out.println("id Ã£À½");
+		// ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
+		System.out.println("id Ã£ï¿½ï¿½");
 		return dao.searchId(username, userbirthday);
+	}
+
+
+	@Override
+	public UserVO searchPassword(String userid, String useremail) throws Exception {
+		System.out.println("password service");
+		return dao.searchPassword(userid, useremail);
+	}
+
+
+	@Override
+	public void insertUser(UserVO vo) throws Exception {
+		dao.insertUser(vo);
+		
+	}
+
+
+	@Override
+	public UserVO readUser(String userId, BindingResult result) throws Exception {
+		return dao.readUser(userId,null);
 	}
 
 

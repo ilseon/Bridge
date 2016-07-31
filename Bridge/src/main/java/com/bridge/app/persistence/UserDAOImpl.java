@@ -1,3 +1,12 @@
+/*
+ì‘ì„±ì - ê¹€ë¯¼ì •
+ë‚´ìš© - ë¡œê·¸ì¸ê´€ë ¨ ì„œë¹„ìŠ¤
+ì‹œì‘ë‚ ì§œ - 2016/07/18
+ìˆ˜ì •ë‚ ì§œ - 2016/07/25
+ë³€ê²½ë‚´ìš© - id ë° password ì°¾ê¸°
+*/
+
+
 package com.bridge.app.persistence;
 
 import java.util.HashMap;
@@ -7,8 +16,13 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 
 import com.bridge.app.domain.UserVO;
+import com.bridge.app.utill.UserValidation;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -17,14 +31,15 @@ public class UserDAOImpl implements UserDAO {
 	@Inject
 	private SqlSession sqlSession;
 
-	private static final String namespace = "com.brige.mappers.loginMapper";
+	private static final String namespace = "com.bridge.mappers.loginMapper";
+	private static final String NAMESPACE="com.bridge.mappers.UserMapper";
 	
 
+	// ì•„ì´ë””ì™€ ë¹„ë°€ë²ˆí˜¸ë¡œ ë¡œê·¸ì¸ í•˜ëŠ” ë©”ì„œë“œ
 	@Override
 	public UserVO readLogin(String userid, String userpw) throws Exception {
-		// ÀÔ·Â¹ŞÀº userid¿Í pw¸¦ ºñ±³ÇÏ¿© ·Î±×ÀÎÀ» ÇØÁÖ´Â ¸Ş¼­µå
 		
-		System.out.println("dao±îÁö ¿ÔÀ½");
+		System.out.println("dao");
 		Map<String, Object> loginMap = new HashMap<String, Object>();
 		loginMap.put("userid", userid);
 		loginMap.put("userpw", userpw);
@@ -32,16 +47,59 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne(namespace+".readLogin", loginMap);
 	}
 
+	//ì•„ì´ë””ë¥¼ ì°¾ëŠ” ë©”ì„œë“œ
 	@Override
 	public UserVO searchId(String username, String userbirthday) throws Exception {
-		// ÀÌ¸§°ú »ı³â¿ùÀÏÀ¸·Î ¾ÆÀÌµğ Ã£±â
 		
-		System.out.println("dao±îÁö ¿ÔÀ½");
+		System.out.println("dao");
 		Map<String, Object> idsearchMap = new HashMap<String, Object>();
 		idsearchMap.put("username", username);
 		idsearchMap.put("userbirthday", userbirthday);
 		
 		return sqlSession.selectOne(namespace+".searchId", idsearchMap);
+	}
+	
+	//ì•„ì´ë””ë¥¼ ì°¾ëŠ” ë©”ì„œë“œ
+	@Override
+	public UserVO searchPassword(String userid, String useremail) throws Exception {
+		
+		System.out.println("dao");
+		Map<String, Object> passwordsearchMap = new HashMap<String, Object>();
+		passwordsearchMap.put("userid", userid);
+		passwordsearchMap.put("useremail", useremail);
+		System.out.println("ë˜ë‚˜ìš”?");
+		
+		return sqlSession.selectOne(namespace+".searchPassword", passwordsearchMap);
+	}
+	//ì•„ì´ë””ë¥¼ ì¶”ê°€í•˜ëŠ” ë©”ì„œë“œ
+	@Override
+	public void insertUser(UserVO vo) throws Exception {
+		sqlSession.insert(NAMESPACE + ".insertUser", vo);
+
+		
+	}
+	//ì•„ì´ë””ë¥¼ ì½ì–´ì˜¤ëŠ” ë©”ì„œë“œ
+	@Override
+	public UserVO readUser(@Validated String userId, BindingResult result) throws Exception {
+		System.out.println("dao");
+		Map<String, String> loginMap = new HashMap<String, String>();
+		loginMap.put("userId", userId);
+		try{
+			UserVO vo1=sqlSession.selectOne(NAMESPACE + ".readUser", loginMap);
+			System.out.println(vo1.getUserId()+"1111");
+			/*if(vo1.getUserId()!=null){
+				result.rejectValue("userId", "regist");
+			}*/
+		}catch(Exception e){
+			System.out.println(""+e);
+			
+		}
+		return sqlSession.selectOne(NAMESPACE + ".readUser", loginMap);
+	}
+	
+	@InitBinder
+	private void initBinder(WebDataBinder binder){
+		binder.setValidator(new UserValidation());
 	}
 
 }
