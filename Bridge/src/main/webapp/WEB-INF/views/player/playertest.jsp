@@ -24,7 +24,7 @@
 		<div id="audio-info">
 			<span class="artist"></span> - <span class="title"></span>
 		</div>
-		 <input id="volume" type="range" min="0" max="100" value="50" />
+		 <input id="volume" type="range" min="0" max="10" value="5" />
 		 <br>
 		 <div id="buttons">
 		 <span>
@@ -61,6 +61,7 @@
 			<li song="Sik-K (식케이) - 랑데뷰.mp3" cover="cover1.jpg" artist="Sik-K (식케이)">랑데뷰</li>
 			<li song="Linkin Park - Pushing Me Away.mp3" cover="${music.musicVideo }/0.jpg" artist="${music.artistName }" id="val">${music.musicSubject }</li>
 			${val }
+			${music.musicVideo }입니다 
 		</ul>
     </div>
     <div role="tabpanel" class="tab-pane" id="profile">${music.musicLyrics }</div>

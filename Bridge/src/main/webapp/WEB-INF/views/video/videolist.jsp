@@ -30,7 +30,7 @@
 
 </style>
 <!-- 게시물  -->
-<div class="row">
+<div class="row" style="padding-left: 20%">
    <c:forEach items="${list }" var="VideoVO">
      
         <div class="col-xs-6 col-md-2">   
@@ -50,8 +50,8 @@
  </div>
  
  <!-- 페이징 -->
- <div class="row">
- <div class="col-xs-4 col-xs-offset-6">
+ <div class="row" style="padding-left: 180px">
+ <div class="col-xs-4 col-xs-offset-5"">
  <nav>
 <ul class="pagination">
     <li><a href="video?bno=${paging.firstPageNo}&searchType=&search=" class="first">처음 페이지</a></li>
@@ -69,13 +69,13 @@
 </ul>
 </nav>
 <form method="get" action="video?bno=1">
-<div style="pa">
+<div style="padding-left: 30px" >
 <input type="hidden" name="bno" value="1"/>
 		<select  name="searchType" id="searchType">
   			<option>제목</option>
   			<option>가수</option>
 		</select>
-			<input type="text" class="btn search" name="search" style="border: 3px solid red; border-radius:50px;"/>
+			<input type="text" class="btn search" name="search" style="border: 3px solid red; border-radius:50px;" size="30"/>
 			<input type="image" src="/resources/image/search.PNG"  style="vertical-align: middle; " />
 </div>
 </form>			

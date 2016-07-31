@@ -169,22 +169,23 @@ $(function(){
 	 function player(num){
 	
 			var tmp=false;
-			 if (!tmp){       //최초 클릭이면 팝업을 띄운다
+			 if (tmp==false){       //최초 클릭이면 팝업을 띄운다
 				  
 				 $.ajax({
 					  type: 'get',
-					  data: {"val":num},
+					  data: {"value":num},
 
 					});
 			 
 				  tmp = true;
+				 // alert(tmp);
 				 Clip =	window.open("player?val="+num,"new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;")
 				   //Clip.close();                         
 	 				Clip.focus();
 	 				
 				 }
 				 else{           //최초 클릭이 아니면
-				  if(!Clip.close()){
+				  if(tmp){
 					  $.ajax({
 						  type: "post",
 						  url: 'player',
