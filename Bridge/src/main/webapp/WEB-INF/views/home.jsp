@@ -14,8 +14,9 @@
 <head>
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
 	type="text/css" />
-<title>Home</title>
-</head>
+
+<title>BRIDGE</title>
+<link rel="shortcut icon" type="image/x-icon" href="/resources/image/favicon.ico" />
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -26,7 +27,7 @@ $(document).ready(function() {
  });
 });
 </script>
-
+</head>
 
 <body style="margin-top: 4%;">
 

@@ -13,6 +13,20 @@
     <link rel="stylesheet" href="/resources/css/style.css" media="screen">
     
  <script>
+if(!window.closed){
+	alert(window.onUnload());
+	  $.ajax({
+		  type: 'get',
+		  url:"delplayer",
+		  success:
+		  alert("Awdasdawd")
+
+		});
+	
+}else{
+}
+$("")
+
  </script>
 </head>
 <body>
@@ -54,21 +68,24 @@
     <div role="tabpanel" class="tab-pane active" id="home">
      <div class="clearfix"></div>
 		 <ul id="playlist">
-			<li song="로꼬, GRAY (그레이) - GOOD (Feat. ELO).mp3" cover="MOuzcBERbsc/0.jpg" artist="로꼬, GRAY (그레이)">GOOD(Feat. ELO)</li>
+<%-- 			<li song="로꼬, GRAY (그레이) - GOOD (Feat. ELO).mp3" cover="MOuzcBERbsc/0.jpg" artist="로꼬, GRAY (그레이)">GOOD(Feat. ELO)</li>
 			<li song="비프리 (B-Free) - NEW WAVE (Feat. Double K, Paloalto).mp3" cover="uPLpgROuB0c/0.jpg" artist="비프리 (B-Free)">NEW WAVE (Feat. Double K, Paloalto)</li>
 			<li song="헤이즈 (Heize) - And July (Feat. DEAN, DJ Friz).mp3" cover="aLSefFxpW-Y/0.jpg" artist="헤이즈 (Heize)">And July (Feat. DEAN, DJ Friz)</li>
 			<li song="Don Mills (던밀스) - 미래 (MEERAE).mp3" cover="cover1.jpg" artist="Don Mills (던밀스)">미래 (MEERAE).mp3</li>
 			<li song="Sik-K (식케이) - 랑데뷰.mp3" cover="cover1.jpg" artist="Sik-K (식케이)">랑데뷰</li>
-			<li song="Linkin Park - Pushing Me Away.mp3" cover="${music.musicVideo }/0.jpg" artist="${music.artistName }" id="val">${music.musicSubject }</li>
-			${val }
-			${music.musicVideo }입니다 
+			<li song="Linkin Park - Pushing Me Away.mp3" cover="${music.musicVideo }/0.jpg" artist="${music.artistName }" id="val">${music.musicSubject }</li> --%>
+		<%-- 	${val }
+			${music.musicVideo }입니다  --%>
+			   <c:forEach items="${list }" var="MusicVO">
+     				<li song="로꼬, GRAY (그레이) - GOOD (Feat. ELO).mp3" musicnumber="${MusicVO.musicNumber}" cover="${MusicVO.musicVideo }/0.jpg" artist="${MusicVO.artistName }" id="val">${MusicVO.artistName } - ${MusicVO.musicSubject }</li>
+   				</c:forEach>
 		</ul>
     </div>
-    <div role="tabpanel" class="tab-pane" id="profile">${music.musicLyrics }</div>
+    <div role="tabpanel" class="tab-pane" id="profile"></div>
     <div role="tabpanel" class="tab-pane" id="messages">...</div>
     
   </div>
-		<button>삭제</button>
+		<button type="button">삭제</button>
 	</div>
 
 </div>

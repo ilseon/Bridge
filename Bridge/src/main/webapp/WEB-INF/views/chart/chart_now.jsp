@@ -167,50 +167,35 @@ $(function(){
 	};  */ 
 	
 	 function player(num){
-	
+			var Clip;
 			var tmp=false;
 			 if (tmp==false){       //최초 클릭이면 팝업을 띄운다
-				  
-				 $.ajax({
-					  type: 'get',
-					  data: {"value":num},
-
-					});
-			 
+				 
 				  tmp = true;
-				 // alert(tmp);
-				 Clip =	window.open("player?val="+num,"new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;")
-				   //Clip.close();                         
-	 				Clip.focus();
-	 				
-				 }
-				 else{           //최초 클릭이 아니면
-				  if(tmp){
-					  $.ajax({
-						  type: "post",
-						  url: 'player',
-						  data: {"val":num} ,
-					  success:alert("POST")
-						});	
-				   Clip.close();                         
-				  }
-				  else{
+				  Clip =window.open("player?val="+num,"new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;");
+				  if(Clip.closed){
 					  $.ajax({
 						  type: 'get',
-						  data: {"val":num},
-						  success:alert("POST아님")
-
-						});
-					  tmp = true;
-					 }//없으면 팝업을 다시 띄울 수 있게 한다
-					 Clip =	window.open("player?val="+num,"new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;")
-				   tmp = true;
-				  
+						  url:"delplayer",
+						  success:
+							  alert("Awdasdawd")
+						});                    
+				  }
 				 }
+			 if(Clip.closed){
+				  $.ajax({
+					  type: 'get',
+					  url:"delplayer",
+					  success:
+						  alert("Awdasdawd")
+					});                 
+			  }
 		 
 		 
 		 
-};  
+}; 
+
+
 </script>
 
 	<!-- 차트 시작 -->

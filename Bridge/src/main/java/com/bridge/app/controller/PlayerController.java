@@ -1,6 +1,7 @@
 
 package com.bridge.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -30,8 +31,8 @@ public class PlayerController {
 
 	@Autowired
 	private PlayerService service;
+	ArrayList<MusicVO> list=new ArrayList<>();
 	
-	List<MusicVO> list;
 	int cnt=0;
 	@RequestMapping(value = "player", method = RequestMethod.GET)
 	public ModelAndView showPlayer(@RequestParam(required = false) String val,Model model) throws Exception {
@@ -41,13 +42,13 @@ public class PlayerController {
 		vo.setMusicNumber(Integer.parseInt(val));
 		MusicVO music = service.getMusic(vo);
 		list.add(music);
-		cnt+=1;
-		System.out.println(cnt+"호출횟수");
+		System.out.println(list.size()+"호출횟수");
 		model.addAttribute("val", val);
 		String tag = "<li>여기여기" + val + "," + music.getMusicVideo() + "</li>";
 		ModelAndView mav = new ModelAndView("/player/playertest");
 		mav.addObject("val", tag);
 		mav.addObject("music", music);
+		mav.addObject("list",list);
 		return mav;
 	}
 	
@@ -65,5 +66,10 @@ public class PlayerController {
 		mav.addObject("val", tag);
 		mav.addObject("music", music);
 		return mav;
+	}
+	
+	@RequestMapping("delplayer")
+	public void delPlayer(){
+		System.out.println("awdawwdaadad");
 	}
 }
