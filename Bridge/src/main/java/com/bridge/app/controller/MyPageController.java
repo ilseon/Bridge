@@ -119,7 +119,7 @@ public class MyPageController {
 		return "/modify/confirm";
 	}
 
-	@RequestMapping(value = "like_song")
+	@RequestMapping(value = "like_song", method=RequestMethod.GET)
 	public String LikeSong() {
 
 		logger.info("It is like_song");

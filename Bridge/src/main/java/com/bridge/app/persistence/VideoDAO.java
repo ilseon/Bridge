@@ -17,5 +17,6 @@ import com.bridge.app.domain.VideoVO;
 
 public interface VideoDAO {
 	public List<VideoVO> getVideoList(Paging pg) throws SQLException;//한페이지에 게시물 10개씩가져온다
-	public List<VideoVO> getVideoTotal() throws SQLException;//게시물을 총갯수를 가져온다
+	public List<VideoVO> getVideoTotal(Paging pg) throws SQLException;//게시물을 총갯수를 가져온다
+	public List<VideoVO> getVideoTotal() throws SQLException;
 }

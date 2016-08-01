@@ -10,7 +10,10 @@ public interface AlbumDAO {
 	
 	public AlbumVO test();
 	public void AlbumInsert(HttpServletRequest req) throws Exception;
-	public AlbumVO getAlbumOne() throws Exception;
+	public AlbumVO getAlbumOne(int albumNumber) throws Exception;
 	public List<AlbumVO> searchAll(int limit) throws Exception;
+
+	// 일선 추가
+	public List<AlbumVO> getArtistAlbum(int artistNumber) throws Exception;
 
 }

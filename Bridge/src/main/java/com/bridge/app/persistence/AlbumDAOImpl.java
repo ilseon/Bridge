@@ -37,11 +37,13 @@ public class AlbumDAOImpl implements AlbumDAO {
 
 	@Override
 	public void AlbumInsert(HttpServletRequest req) throws Exception {
-		
+		System.out.println("awdadasdasasd경로");
 		int postMaxSize = 10 * 1024 * 1024;
 		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
         String folder_p=folderPath+"upload"+File.separator+"album"+File.separator;
                  
+        
+        System.out.println(folder_p+"경로");
         File file = null;
         file = new File(folder_p);
         if(!file.exists()) {
@@ -83,11 +85,19 @@ public class AlbumDAOImpl implements AlbumDAO {
  		sqlSession.insert(NAMESPACE + ".regist", album);
 	}
 	@Override
-	public AlbumVO getAlbumOne() throws Exception {
-		return sqlSession.selectOne(NAMESPACE + ".getAlbumOne");
+	public AlbumVO getAlbumOne(int albumNumber) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getAlbumOne", albumNumber);
 	}
 	@Override
 	public List<AlbumVO> searchAll(int limit) throws Exception {
 		return sqlSession.selectList(NAMESPACE+".searchAll", limit);
 	}
+
+	// 일선 추가
+	@Override
+	public List<AlbumVO> getArtistAlbum(int artistNumber) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getArtistAlbum", artistNumber);
+	}
+	
+	
 }

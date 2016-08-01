@@ -3,12 +3,16 @@
 내용 - 가수 정보 페이지
 시작날짜 - 2016/07/19
 수정날짜 - 2016/07/20
+		2016/07/27
 변경내용 - 07/20 : 가수내용출력, 댓글
 		07/21 : 댓글 출력, 입력, 삭제, 더 보기
+		07/27 : 곡 출력, 가수 번호로 실제 DB 출력, 한마디 갯수, 더보기 세부사항
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false" session="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,10 +34,12 @@
 				type : "POST",			 
 				url : "getReplyList",			
 				data : {"start" : start,
-					"end" : end},		
+						"end" : end,
+						"artistNumber" : '${artistVO.artistNumber}'},		
 				dataType : "json",
 				success : function(data){
-					if(data.length < 10) // 가져온 댓글 갯수가 10보다 작으면 마지막 페이지!
+					replyLast = false;
+					if(data.length != 10) // 가져온 댓글 갯수가 10이 아니면 마지막 페이지!
 						replyLast = true;		
 					
 					var sessionUserNumber = '${usernumber}';					
@@ -41,7 +47,7 @@
 						var artistReplyVO = data[i];				
 						if(artistReplyVO.replyDept == 0){ // 기본 댓글
 							$("#replyTable").append('<tr>' +
-									'<th rowspan="2" width="20%">' + artistReplyVO.userNumber + '</th>' +
+									'<th rowspan="2" width="20%">' + artistReplyVO.userId + '</th>' +
 									'<td>' + artistReplyVO.replyContext + '</td>' +
 								'</tr>' +
 								'<tr>' +
@@ -58,7 +64,7 @@
 								'</tr>');
 						}else{ // 리댓글
 							$("#replyTable").append('<tr>' +
-									'<th rowspan="2" width="20%">&nbsp;└─&nbsp;&nbsp;  ' + artistReplyVO.userNumber + '</th>' +
+									'<th rowspan="2" width="20%">&nbsp;└─&nbsp;&nbsp;  ' + artistReplyVO.userId + '</th>' +
 									'<td>' + artistReplyVO.replyContext + '</td>' +							
 								'</tr>' +
 								'<tr>' +
@@ -69,8 +75,11 @@
 					if(!replyFirst)
 						firstReadyReply();
 					readyReply(); // 댓글의 창이 모두 만들어진 후에 실행되게 하기 위해서
-					if(replyLast) // 마지막 페이지일때 더보기 버튼 숨기기
+					if(replyLast == true){ // 마지막 페이지일때 더보기 버튼 숨기기
 						$("#moreView").hide();
+					}else{
+						$("#moreView").show();
+					}
 				}			
 			});
 	}
@@ -89,19 +98,26 @@
 	}
 	
 	function ajaxWriteReply(replyNumber, replyContext, artistNumber){
-		 $.ajax({
-				type : "POST",	 
-				url : "replyWrite",
-				data : {"replyNumber" : replyNumber,
-						"replyContext" : replyContext,
-						"artistNumber" : artistNumber},		
-				dataType : "text",
-				success : function(data){						
-					$("#DefaultReplyContent").val("");
-					$("#replyTable").empty(); // 초기화
-					getReply(1, replyCnt);
-				},				
-			}); 
+		if('${empty usernumber}' == true){ // 세션이 없으면 댓글 달 수 없음!
+			alert("회원만 댓글을 달 수 있습니다.");			
+		}else{
+			 $.ajax({
+					type : "POST",	 
+					url : "replyWrite",
+					data : {"replyNumber" : replyNumber,
+							"replyContext" : replyContext,
+							"artistNumber" : artistNumber},		
+					dataType : "text",
+					success : function(data){						
+						$("#DefaultReplyContent").val("");
+						$("#replyTable").empty(); // 초기화
+						getReply(1, replyCnt);
+						
+						var cnt = Number($("#replyCnt").text()) + 1;// 댓글 갯수 초기화
+						$("#replyCnt").text(cnt);
+					},				
+				}); 
+		}
 	}
 	
 	function readyReply(){ // 댓글의 창이 모두 만들어진 후에 실행되게 하기 위해서
@@ -126,6 +142,9 @@
 					success : function(data){	
 						$("#replyTable").empty(); // 초기화
 						getReply(1, replyCnt);
+						
+						var cnt = Number($("#replyCnt").text()) - 1; // 댓글 갯수 초기화
+						$("#replyCnt").text(cnt);
 					},				
 				});
 			}
@@ -178,7 +197,7 @@
 	
 	<div class="container">
 	<!-- 두 번째 블럭(곡) start -->
-		<h3>수록곡(3)</h3>
+		<h3>수록곡(${fn:length(musicList)})</h3>
 		<div><!-- 버튼들 -->
 			<input type="checkbox" id="allCheck">
 			<button class="btn">듣기</button>
@@ -201,13 +220,14 @@
 				<th width="7%">뮤비</th>
 				<th width="7%">좋아</th>				
 			</tr>
-			
-			<c:forEach begin="1" end="7" var="j">
+					
+			<c:set var="cnt" value="1"/>
+			<c:forEach var="musicVO" items="${musicList}" >				
 				<tr>
-					<td><input type="checkbox" id="check${j}"></td>
-					<td>${j}</td>
-					<td>Why</td>
-					<td>태연</td>
+					<td><input type="checkbox" id="check${musicVO.musicNumber}"></td>
+					<td>${cnt}</td>
+					<td>${musicVO.musicSubject}</td>
+					<td>${artistVO.artistName}	</td>
 					<td>듣기</td>
 					<td>재생목록</td>
 					<td>내앨범</td>
@@ -215,6 +235,7 @@
 					<td>뮤비</td>
 					<td>좋아</td>				
 				</tr>
+				<c:set var="cnt" value="${cnt+1}"/>
 			</c:forEach>
 		</table>
 		
@@ -222,19 +243,24 @@
 	<br><br>
 	<!-- ----------------------------------  -->
 	<div class="container"><!-- 세 번째 블럭(앨범) start -->
-		<h3>앨범</h3>
-		<div class="row">
-			<c:forEach begin="1" end="5" var="k">			
-				<div class="col-md-3">
-					<img src="/resources/image/album${k}.png" width="70%">
-					<div>
-						<h5>앨범제목</h5>
-						<h5>태연</h5>
-						<h5>발행일</h5>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
+		<h3>앨범</h3> 
+			<div class="row">
+				<c:forEach var="albumVO" items="${albumList}">
+					<div class="col-xs-6 col-md-3">   
+			   			 <a href="/album_detail?albumNumber=${albumVO.albumNumber}">
+				   			 <div class="thumbnail">
+				     			 <img src="/resources/image/album.PNG" width="200px">
+				     				 <div class="caption">
+				       					 <p>${albumVO.albumName}</p>
+				       					 <p>${albumVO.artistName}</p>
+				       					 <p>${albumVO.albumDate}</p>
+				      				</div>
+				      		</div>
+			       		</a>
+			   		 </div>     	
+				</c:forEach>
+			</div>
+
 	</div><!-- 세 번째 블럭(앨범) end -->
 	
 	<!-- ----------------------------------  -->
@@ -242,11 +268,20 @@
 	<div class="container"><!-- 네 번째 블럭(뮤직비디오) start -->		
 		<h3>이 앨범의 뮤직비디오</h3>
 		<div>
-			<c:forEach begin="1" end="3" var="q">
-				<div class="col-md-3">
-					<img src="/resources/image/mv${q}.png" width="80%">
-				</div>
-			</c:forEach>
+			<c:forEach var="videoVO" items="${videoList}" >				
+				<div class="col-xs-6 col-md-4">
+					<a href="https://www.youtube.com/watch?v=${videoVO.musicVideo}">
+						<div class="thumbnail" style="width: 80%">
+							<img src="https://img.youtube.com/vi/${videoVO.musicVideo}/0.jpg">
+							<div class="caption">
+								<p>제목 : ${videoVO.musicSubject}</p>
+								<p>가수 : ${videoVO.artistName}</p>
+								<p>발매일 : ${videoVO.albumDate}</p>
+							</div>
+						</div>
+					</a>
+				</div>					
+			</c:forEach>			
 		</div>
 	</div><!-- 네 번째 블럭(뮤직비디오) end -->
 	
@@ -254,7 +289,7 @@
 	<br><br>
 	
 	<div class="container"><!-- 다섯 번째 블럭(한마디) start -->
-		<h3>한마디(12)</h3>
+		<h3>한마디(<label id="replyCnt">${replyCnt}</label>)</h3>
 		<div><!-- 텍스트박스와 입력 버튼-->
 			<div class="col-md-11">
 				<textarea rows="5" style="width: 100%; height: 100%; resize: none;" id="DefaultReplyContent"></textarea>
@@ -267,8 +302,9 @@
 		<div><!-- 한마디 테이블 start -->
 			<table class="table" id="replyTable">				
 			</table>			
-			<center><a onclick="getReply(replyCnt+1, replyCnt+10);reGetReply();" id="moreView">10개 더 보기</a></center>
+			<center><a onclick="getReply(replyCnt+1, replyCnt+10);reGetReply();" id="moreView">더 보기</a></center>
 		</div><!-- 한마디 테이블  end -->
 	</div><!-- 다섯 번째 블럭(한마디) end -->
+	<%@include file="../include/footer.jsp"%>
 </body>
 </html>

@@ -34,7 +34,7 @@ public class VideoController {
 	
 //게시물조회과 페이징 담당하는 메소드
 	@RequestMapping(value="/video", method=RequestMethod.GET)
-	public ModelAndView list(@RequestParam String bno) throws Exception {
+	public ModelAndView list(@RequestParam String bno,@RequestParam String searchType,@RequestParam String search) throws Exception {
 		ModelAndView mav = new ModelAndView("/video/videolist");
 		System.out.println(bno+"번호");
 	    try {
@@ -48,15 +48,30 @@ public class VideoController {
 	        		);
 	        paging.setStart(( Integer.parseInt(bno)- 1) * paging.getPageSize());
 	        paging.setEnd( Integer.parseInt(bno)*paging.getPageSize());
+	        paging.setSearchType(searchType);
+	        paging.setSearch(search);
 	        
 	        System.out.println(paging.getStart()+"시작");
 	        System.out.println(paging.getEnd()+"끝");
+	        
+	        System.out.println(searchType+"타입");
+	        System.out.println(search+"검색");
 
-			List<VideoVO> list=service.getVideoList(paging);
-			List<VideoVO> listtotal=service.getVideoTotal();
-			paging.setTotalCount(listtotal.size());
+	        List<VideoVO> listtotal1=service.getVideoTotal();
+	        System.out.println(listtotal1.size()+"크기");
+	        
+			
+			paging.setTotalCount(listtotal1.size());
 			mav.addObject("paging",paging);
+			if(searchType.equals(null)&&search.equals(null)){
+				
+				List<VideoVO> listtotal=service.getVideoTotal(paging);
+				mav.addObject("list",listtotal);
+			}else{
+				List<VideoVO> list=service.getVideoList(paging);
 			mav.addObject("list",list);
+			}
+			//System.out.println(list.get(0).getMusicVideo()+"뮤지비디오");
 			return mav;
 	    } catch (Exception e) {
 	    	System.out.println(e);

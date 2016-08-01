@@ -31,15 +31,6 @@
 		});
 	});
 </script>
-<style>
-#tab {
-	border: none;
-	background-color: #DF6E76;
-	box-shadow: 2px 2px 2px 2px #E0E0E0;
-	color: white;
-	margin-top: 30px
-}
-</style>
 <body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
@@ -47,49 +38,48 @@
 	<!-- end -->
 	<!-- 상단 tab start -->
 	<div class="container">
-		<!-- 상단 tab start -->
-		<div class="container" style="margin-bottom: 150px">
-			<div class="panel-heading col-md-2" id="tab">
-				<h3 class="panel-title">내 트랙</h3>
-			</div>
-			
+		<br /> <br />
+		<div class="col-md-12">
+			<ul class="nav nav-tabs">
+				<li><a href="upload">업로드하기</a></li>
+				<li class="active"><a href="mytrack">내 트랙</a></li>
+			</ul>
 			<!-- end -->
-			<div class="col-md-12"><br/><br/>
-				<!-- 앨범 정보 start -->
-				<c:forEach begin="1" end="4" step="1">
-					<div class="col-sm-3">
-						<div class="form-group">
+			<br> <br>
+			<!-- 앨범 정보 start -->
+			<c:forEach begin="1" end="4" step="1">
+				<div class="col-sm-3">
+					<div class="form-group">
 							<a href="mytrack_detail"><img
 								src="resources/image/upload/album/album_art.jpg" width="65%"></a>
-						</div>
 					</div>
-					<form class="form-horizontal">
-						<div class="col-sm-3">
-							<div class="form-group">
-								<table class="table">
-									<tr>
-										<th>아티스트</th>
-										<td>${albumVO.artistName}</td>
-									</tr>
-									<tr>
-										<th>앨범 종류</th>
-										<td>${albumVO.albumType}</td>
-									</tr>
-									<tr>
-										<th>발매일</th>
-										<td>${albumVO.albumDate}</td>
-									</tr>
-									<tr>
-										<th>장르</th>
-										<td>${albumVO.albumGenre}</td>
-									</tr>
-								</table>
-							</div>
-							<br />
+				</div>
+				<form class="form-horizontal">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<table class="table">
+								<tr>
+									<th>아티스트</th>
+									<td>${albumVO.artistName}</td>
+								</tr>
+								<tr>
+									<th>앨범 종류</th>
+									<td>${albumVO.albumType}</td>
+								</tr>
+								<tr>
+									<th>발매일</th>
+									<td>${albumVO.albumDate}</td>
+								</tr>
+								<tr>
+									<th>장르</th>
+									<td>${albumVO.albumGenre}</td>
+								</tr>
+							</table>
 						</div>
-					</form>
-				</c:forEach>
-			</div>
+						<br/>
+					</div>
+				</form>
+			</c:forEach>
 		</div>
 	</div>
 	<!-- end -->

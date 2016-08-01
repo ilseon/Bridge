@@ -8,7 +8,7 @@
 		insert into artist(artistname, artisttype, artistgenre, artistimg, usernumber)
 		values(#{artistName}, #{artistType}, #{artistGenre}, #{artistImg}, #{userNumber})
 	</insert>	
-	<select id="getArtistOne" resultType="ArtistVO">
-		select * from artist where artistnumber=1
+	<select id="getArtistOne" parameterType="int" resultType="ArtistVO">
+		select * from artist where artistnumber=#{artistNumber}
 	</select>	
 </mapper>

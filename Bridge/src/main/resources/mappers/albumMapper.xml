@@ -12,13 +12,18 @@
 		values(#{albumName}, #{albumType}, #{albumDate}, #{albumGenre}, #{artistNumber},  #{albumImg}, #{ageLimit}, #{albumContent})
 	</insert>	
 	
-	<select id="getAlbumOne" resultType="AlbumVO">
-		select * from album where albumnumber=1
+	<select id="getAlbumOne" parameterType="int" resultType="AlbumVO">
+		select * from album where albumnumber=#{albumNumber}
 	</select>	
 	<select id="searchAll" parameterType="int" resultType="com.bridge.app.domain.AlbumVO">
 		select a.albumname as albumname, ar.artistname as artistname, a.albumdate as albumdate 
 		from album as a inner join artist as ar on a.artist_artistnumber=ar.artistnumber 
 		order by albumdate asc
 		Limit #{limit}
+	</select>
+	
+	<!-- 일선 추가 -->
+	<select id="getArtistAlbum" parameterType="int" resultType="AlbumVO">
+		select * from album where artist_artistnumber=#{artistNumber}
 	</select>
 </mapper>

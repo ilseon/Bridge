@@ -26,13 +26,20 @@ public class AlbumServiceImpl implements AlbumService {
 		dao.AlbumInsert(req);	
 	}
 	@Override
-	public AlbumVO getAlbumOne() throws Exception {
-		return dao.getAlbumOne();
+	public AlbumVO getAlbumOne(int albumNumber) throws Exception {
+		return dao.getAlbumOne(albumNumber);
 	}
 		
 	@Override
 	public List<AlbumVO> searchAll(int limit) throws Exception{
 		return dao.searchAll(limit);
+	}
+	
+	
+	// 일선 추가
+	@Override
+	public List<AlbumVO> getArtistAlbum(int artistNumber) throws Exception {
+		return dao.getArtistAlbum(artistNumber);
 	};
 
 }

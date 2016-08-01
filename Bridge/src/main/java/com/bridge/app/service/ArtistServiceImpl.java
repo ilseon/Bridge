@@ -19,8 +19,8 @@ public class ArtistServiceImpl implements ArtistService{
 		dao.regist(req);
 	}	
 	@Override
-	public ArtistVO getArtistOne() throws Exception {
-		return dao.getArtistOne();
+	public ArtistVO getArtistOne(int artistNumber) throws Exception {
+		return dao.getArtistOne(artistNumber);
 	}
 
 }
