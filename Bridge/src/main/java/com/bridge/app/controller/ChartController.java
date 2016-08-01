@@ -103,6 +103,7 @@ public class ChartController {
 		}
 		
 		view.addAttribute("page","main");
+		req.setAttribute("realpath", req.getSession().getServletContext().getRealPath("/upload/album/")+"\\");
 		return "/chart/chart_main";
 	}
 	
