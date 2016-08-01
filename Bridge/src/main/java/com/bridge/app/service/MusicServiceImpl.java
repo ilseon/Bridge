@@ -89,4 +89,17 @@ public class MusicServiceImpl implements MusicService {
 	public void play_update(Map musicnumbers) throws Exception {
 		musicDAO.play_update(musicnumbers);	
 	}
+
+
+	@Override
+	public void like_update(int musicNumber) throws Exception {
+		musicDAO.like_update(musicNumber);
+		
+	}
+
+
+	@Override
+	public void like_remove(int musicNumber) throws Exception {
+		musicDAO.like_remove(musicNumber);
+	}
 }

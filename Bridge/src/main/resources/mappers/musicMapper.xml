@@ -39,6 +39,14 @@
 		insert into bridgedb.like(usernumber, musicnumber) values(#{userNumber}, #{musicNumber})	
 	</insert>
 	
+	<update id="like_update">
+		update music set musiclike=musiclike+1 where musicnumber=#{musicNumber}
+	</update>
+	
+	<update id="like_remove">
+		update music set musiclike=musiclike-1 where musicnumber=#{musicNumber}
+	</update>
+	
 	<update id="download_update" parameterType="map">
 		update music set musicdownload=musicdownload+1 where 
 		<foreach collection="musicnumbers" item="musicnumber" separator="AND">

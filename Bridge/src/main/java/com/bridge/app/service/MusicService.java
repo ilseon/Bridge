@@ -27,4 +27,6 @@ public interface MusicService {
 	public MusicVO search() throws Exception;
 	public void download_update(Map musicnumbers) throws Exception;
 	public void play_update(Map musicnumbers) throws Exception;
+	public void like_update(int musicNumber) throws Exception;
+	public void like_remove(int musicNumber) throws Exception;
 }

@@ -436,6 +436,7 @@ public class ChartController {
 		lList.setUserNumber(usernumber);
 
 		like.regist(lList);
+		music.like_update(musicnumber);
 		
 		return "redirect:/chart";
 	}
@@ -448,6 +449,7 @@ public class ChartController {
 		lList.setUserNumber(usernumber);
 
 		like.remove(lList);
+		music.like_remove(musicnumber);
 		
 		return "redirect:/chart";
 	}

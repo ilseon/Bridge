@@ -126,4 +126,14 @@ public class MusicDAOImpl implements MusicDAO {
 		sqlSession.update(NAMESPACE+".play_update", musicnumbers);	
 	}
 
+	@Override
+	public void like_update(int musicNumber) throws Exception {
+		sqlSession.update(NAMESPACE+".like_update", musicNumber);		
+	}
+
+	@Override
+	public void like_remove(int musicNumber) throws Exception {
+		sqlSession.update(NAMESPACE+".like_remove", musicNumber);
+	}
+
 }

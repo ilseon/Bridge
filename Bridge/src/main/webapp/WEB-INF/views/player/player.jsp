@@ -16,7 +16,6 @@
     <script type="text/javascript">
         $(document).ready(function(){
             var description = '플레이어';
-
             $('body').ttwMusicPlayer(myPlaylist, {
                 autoPlay:false, 
                 description:description,
