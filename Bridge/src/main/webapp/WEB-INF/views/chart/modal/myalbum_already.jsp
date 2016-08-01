@@ -1,3 +1,11 @@
+<!-- 
+	최초 작성일 : 2016-07-27
+	작성자 : 정효진
+	수정일 : 2016-07-27
+	수정 내용 : 내 앨범에 존재할 경우 출력될 구문 작성
+	내용 : 내 앨범에 존재하는 음원일 경우 열리는 모달
+ -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

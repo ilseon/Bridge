@@ -1,8 +1,9 @@
 <!-- 
 	최초 작성일 : 2016-07-17
 	작성자 : 정효진
-	수정일 : 2016-07-19
-	내용 : 실시간 차트 페이지
+	수정일 : 2016-08-01
+	수정 내용 : 뮤직 비디오 페이지 출력
+	내용 : 실시간 차트 페이지 헤더
  -->
 <%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>

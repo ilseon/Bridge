@@ -1,3 +1,11 @@
+<!-- 
+	최초 작성일 : 2016-07-17
+	작성자 : 정효진
+	수정일 : 2016-07-30
+	수정 내용 : 다운로드 실행 수정
+	내용 : 결제 완료 페이지 및 다운로드 실행 페이지
+ -->
+
 <%@page import="java.util.List"%>
 <%@page import="java.io.Console"%>
 <%@page import="java.io.FileInputStream"%>

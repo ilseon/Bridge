@@ -1,7 +1,8 @@
 <!-- 
 	최초 작성일 : 2016-07-17
 	작성자 : 정효진
-	수정일 : 2016-07-19
+	수정일 : 2016-08-01
+	수정 내용 : 앨범 이미지 출력
 	내용 : 실시간 차트 페이지
  -->
 
@@ -194,7 +195,7 @@ function player(num){
 						<c:set var="rank" value="${rank+1}"/>
 						    <tr>
 							    <td width="3%"><input type="checkbox" value="${music.musicNumber}"/></td>
-							    <td width="7%">${rank} &nbsp;<a href="/test"><img src="${pageContext.request.contextPath}/upload/album/<c:out value="${music.albumImg}"/>" style="height: 60px; width:60px;"></a></td>
+							    <td width="7%">${rank} &nbsp;<a href="/test"><img src="<%=request.getContextPath()%>/upload/album/<c:out value="${music.albumImg}"/>" style="height: 60px; width:60px;"></a>/upload/album/<c:out value="${music.albumImg}"/></td>
 							    <td width="23%">${music.musicSubject}</td>
 							    <td width="20%"><a href="/test2"></a>${music.artistName}</td>
 							    <td width="7%">${music.albumName}</td>

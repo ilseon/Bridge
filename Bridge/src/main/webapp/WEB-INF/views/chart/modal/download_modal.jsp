@@ -1,3 +1,11 @@
+<!-- 
+	최초 작성일 : 2016-07-17
+	작성자 : 정효진
+	수정일 : 2016-07-30
+	수정 내용 : 넘길 결제 정보 작성
+	내용 : 결제 사항 확인 페이지
+ -->
+
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
