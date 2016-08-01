@@ -44,4 +44,9 @@ public class PlaylistServiceImpl implements PlaylistService {
 		
 	}
 
+	@Override
+	public List<PlaylistVO> search_myalbum(Map playListAll) throws Exception {
+		return playlistdao.search_myalbum(playListAll);
+	}
+
 }

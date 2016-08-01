@@ -19,6 +19,7 @@ import com.bridge.app.domain.VideoVO;
 
 public interface MusicService {
 
+	public void regist(HttpServletRequest req) throws Exception;
 	public void remove(Integer musicnumber) throws Exception;
 	public void modifyStreaming(MusicVO music) throws Exception;
 	public void modifyDownload(MusicVO music) throws Exception;
@@ -27,9 +28,10 @@ public interface MusicService {
 	public MusicVO searchMusic(int musicnumber) throws Exception;
 	public List<MusicVO> searchGenre(Map map) throws Exception;
 	public MusicVO search() throws Exception;
-	
-	public void regist(HttpServletRequest req) throws Exception;
-	public void update(MusicVO music) throws Exception;		
+	public void download_update(Map musicnumbers) throws Exception;
+	public void play_update(Map musicnumbers) throws Exception;
+	public void like_update(int musicNumber) throws Exception;
+	public void like_remove(int musicNumber) throws Exception;
 	
 	// 일선 추가
 	public List<MusicVO> getArtistMusic(int artistNumber) throws Exception;

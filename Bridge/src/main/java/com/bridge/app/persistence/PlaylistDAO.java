@@ -1,9 +1,9 @@
 /*
- �ۼ��� - ��ȿ��
-���� - ���ٹ� dao ���� Ŭ����
-���۳�¥ - 2016-07-20
-������¥ - 2016-07-22
-���泻�� - ���ٹ� dao impl
+	최초 작성일 : 2016-07-20
+	작성자 : 정효진
+	수정일 : 2016-07-30
+	수정 내용 : 내 앨범에 넣을 때 이미 있는 앨범인지 아닌지 검색
+	내용 :내 앨범 관련 DAO
  */
 package com.bridge.app.persistence;
 
@@ -17,4 +17,5 @@ public interface PlaylistDAO {
 	public void registAll(Map playListAll) throws Exception;
 	public void remove(List<PlaylistVO> playlists) throws Exception;
 	public List<PlaylistVO> searchAll(Integer userNumber) throws Exception;
+	public List<PlaylistVO> search_myalbum(Map playListAll) throws Exception;
 }

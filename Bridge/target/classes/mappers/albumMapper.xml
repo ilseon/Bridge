@@ -4,9 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bridge.mappers.albumMapper">	
-	<select id="test" resultType="com.bridge.app.domain.UserVO">
-		select * from user
-	</select>	
+	
 	<insert id="regist">
 		insert into album(albumname, albumtype, albumdate, albumgenre, artist_artistnumber, albumimg, 19check, albumcontent)
 		values(#{albumName}, #{albumType}, #{albumDate}, #{albumGenre}, #{artistNumber},  #{albumImg}, #{ageLimit}, #{albumContent})

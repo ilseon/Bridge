@@ -30,7 +30,7 @@
                   else if (checkId == "like_song") {
                      location.href = 'like_song';
                   } else if (checkId == "myalbum") {
-                     location.href = 'myalbum';
+                     location.href = 'my_album';
                   } else if (checkId == "download") {
                      location.href = 'download';
                   } else if (checkId == "upload") {
@@ -52,7 +52,7 @@
 
   <a href="chart" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/mainchart.PNG"  /></a>
   <a href="new_album" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/mainalbum.PNG"   /></a>
-  <a href="video" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/mainmv.PNG"  /></a>
+  <a href="video?bno=1&searchType=&search=" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/mainmv.PNG"  /></a>
   <br/><br/><br/><br/><br/><hr/>
   
 <!-- 중간 메뉴 -->
