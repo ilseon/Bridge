@@ -6,12 +6,12 @@
 
 <mapper namespace="com.bridge.mappers.UserMapper">
 	<insert id="insertUser"><!-- 파라미터 생략하고 작성 -->
-		insert into user(username, userbirthday, userid, userpassword, userphone, usertype, useremail)
+		insert into bridgedb.user(username, userbirthday, userid, userpassword, userphone, usertype, useremail)
 		values(#{userName}, #{userBirthday}, #{userId}, #{userPassword}, #{userPhone}, #{userType}, #{userEmail})
 	</insert>
 	
 	<select id="selectUser" resultType="UserVO">
-		select * from user
+		select * from tbl_member
 		where userId = #{userId}
 	</select>
 	

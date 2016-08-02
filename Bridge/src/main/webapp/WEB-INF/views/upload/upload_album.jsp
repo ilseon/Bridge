@@ -50,6 +50,12 @@
 							} else if (!$("#albumDate").val()) {
 								alert("날짜를 입력해주세요.");
 								return false;
+							} else if ($("#albumType").val() == "선택") {
+								alert("앨범 종류를 선택해주세요.");
+								return false;
+							} else if ($("#albumGenre").val() == "선택") {
+								alert("앨범 장르를 선택해주세요.");
+								return false;
 							} else if (!age) {
 								alert("앨범 이용 가능 연령을 체크해주세요.");
 								return false;
@@ -90,13 +96,20 @@
 }
 
 #upload_main {
-	margin-left: 100px;
+	margin-left: 90px;
 }
 
 #pom {
 	border-radius: 17px;
 	background-color: #EDE6E6;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
+}
+
+#artistsub {
+	border: none;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+	background-color: gray;
+	color: white;
 }
 
 #song_table {
@@ -135,21 +148,25 @@
 				<form id="album" name="album" action="upload2" method="post"
 					enctype="multipart/form-data" accept-charset="UTF-8">
 					<!-- 아티스트 항목 값 -->
-					<input type="hidden" name="artistNumber" id="artistNumber"
-						value="${artistNumber}" /> 
 					<div id="upload_main">
 						<!-- 앨범(이미지, 날짜, 아티스트 정보) 입력 start -->
 						<div class="col-md-2 col-md-offset-1">
 							<img src='resources/image/upload/album/album_image.PNG'
 								width="150%"><br /> <br /> <input type="file"
-								name="albumImg" id="albumImg" accept=".gif, .jpg, .png" /><br />
+								name="albumImg" id="albumImg" accept="image/*" /><br />
 							<input type="date" class="form-control" name="albumDate"
-								id="albumDate" style="width: 148%;"><br /> <br />
+								id="albumDate" style="width: 148%;"><br />
+					<c:forEach var="list" items="${artistList}">	
+						<input type="hidden" id="artistNumber" name="artistNumber" value="${list.artistNumber}"/>
+												<div class="btn btn-primary" id="artistsub"> 아티스트 </div><br/>
+						<br/><input type="text" class="form-control" id="artistName"
+						name="artistName" value="${list.artistName}" style="width: 148%;" readonly="readonly"> <br />
+					</c:forEach>	
 						</div>
 						<!-- end -->
 						<!-- 앨범(앨범명, 앨범종류, 장르, 설명, 곡 수 ) 입력 start  -->
 						<div class="row">
-							<div class="col-md-5 col-md-offset-1">
+							<div class="col-md-5 col-md-offset-2">
 								<!-- 앨범명 입력  -->
 								<label for="albumName" class="col-lg-4 control-label">앨범명</label>
 								<div class="col-md-8">
@@ -161,6 +178,7 @@
 									종류</label>
 								<div class="col-md-8">
 									<select class="form-control" id="albumType" name="albumType">
+										<option>선택</option>
 										<option>싱글</option>
 										<option>미니</option>
 										<option>정규</option>
@@ -170,6 +188,7 @@
 								<label for="albumGenre" class="col-lg-4 control-label">장르</label>
 								<div class="col-md-8">
 									<select class="form-control" id="albumGenre" name="albumGenre">
+										<option>선택</option>
 										<option>발라드/댄스/팝</option>
 										<option>일렉트로닉</option>
 										<option>알앤비</option>
@@ -186,7 +205,7 @@
 									&nbsp;모든 연령&nbsp;&nbsp;<input type="radio" id="ageLimit"
 										name="ageLimit" value="0" />&nbsp;&nbsp; 19세 이상&nbsp;&nbsp;<input
 										type="radio" id="ageLimit" name="ageLimit" value="1" / />
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								</div>
 								<br />
 								<!-- 앨범에 대한 설명 입력 -->

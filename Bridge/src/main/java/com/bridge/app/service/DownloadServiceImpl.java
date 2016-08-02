@@ -5,7 +5,6 @@
 ������¥ - 2016-07-21
 ���泻�� - �⺻ �޼��� �ۼ�
  */
-
 package com.bridge.app.service;
 
 import java.util.HashMap;
@@ -53,13 +52,17 @@ public class DownloadServiceImpl implements DownloadService {
 	}
 
 	@Override
-	public List<DownloadVO> searchDownload(Integer userNumber) throws Exception {
-		return downloadDAO.searchDownload(userNumber);
+	public List<DownloadVO> searchDownload(Map playlistAll) throws Exception {
+		return downloadDAO.searchDownload(playlistAll);
 	}
 
 	@Override
-	public List<DownloadVO> searchList(Integer userNumber) throws Exception {
-		return downloadDAO.searchList(userNumber);
+	public List<Integer> music_already(Map download_check) throws Exception {
+		return downloadDAO.music_already(download_check);
+	}
+	@Override
+	public List<DownloadVO> searchList(Integer userNumber, int limit) throws Exception {
+		return downloadDAO.searchList(userNumber, limit);
 	}
 
 }

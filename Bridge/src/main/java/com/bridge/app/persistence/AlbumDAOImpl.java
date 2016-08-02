@@ -12,10 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.util.WebUtils;
 
 import com.bridge.app.controller.MyPageController;
 import com.bridge.app.domain.AlbumVO;
@@ -27,11 +23,13 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Repository
 public class AlbumDAOImpl implements AlbumDAO {
+
 	@Inject
 	private SqlSession sqlSession;
 
 	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
 	private static final String NAMESPACE = "com.bridge.mappers.albumMapper";
+	private static final String NAMESPACE2 = "com.bridge.mappers.artistMapper";
 
 	@Override
 	public AlbumVO test() {
@@ -41,10 +39,10 @@ public class AlbumDAOImpl implements AlbumDAO {
 	}
 
 	@Override
-	public void regist(HttpServletRequest req) throws Exception {
+	public void regist(HttpServletRequest req, Model view) throws Exception {
 	
 		
-		int postMaxSize = 10 * 1024 * 1024;
+		int postMaxSize = 1024 * 1024 * 1024;
 		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
         String folder_p=folderPath+"upload"+File.separator+"album"+File.separator;
                  
@@ -68,14 +66,11 @@ public class AlbumDAOImpl implements AlbumDAO {
             albumImg = multiReq.getFilesystemName(name);
          }
         
-         AlbumVO album = new AlbumVO();
-         
          logger.info(multiReq.getParameter("artistNumber"));
          
-         int ArtistNumber = Integer.parseInt(multiReq.getParameter("artistNumber"));
+         AlbumVO album = new AlbumVO();
          
-         //album.setArtistNumber(100);
-         album.setArtistNumber(ArtistNumber);
+         album.setArtistNumber(Integer.parseInt(multiReq.getParameter("artistNumber")));
          album.setAlbumName(multiReq.getParameter("albumName"));
          album.setAlbumType(multiReq.getParameter("albumType"));
          album.setAlbumDate(multiReq.getParameter("albumDate"));
@@ -89,15 +84,41 @@ public class AlbumDAOImpl implements AlbumDAO {
          album.setCounter(counter);  
 
          logger.info(album.toString());         
-         	
-         sqlSession.insert(NAMESPACE + ".regist", album);
+         sqlSession.insert(NAMESPACE + ".regist", album); 
+         
+         String albumName = multiReq.getParameter("albumName");          
+         view.addAttribute("albumList", sqlSession.selectOne(NAMESPACE+".selectAlbum", albumName));        
+         
+         int artistNumber = Integer.parseInt(multiReq.getParameter("artistNumber"));
+         view.addAttribute("artistList", sqlSession.selectOne(NAMESPACE2+".selectArtistOne", artistNumber));
+         
 	}
 	@Override
-	public AlbumVO getAlbumOne() throws Exception {
-		return sqlSession.selectOne(NAMESPACE + ".getAlbumOne");
+	public AlbumVO getAlbumOne(int albumNumber) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getAlbumOne", albumNumber);
 	}
 	@Override
 	public List<AlbumVO> searchAll(int limit) throws Exception {
 		return sqlSession.selectList(NAMESPACE+".searchAll", limit);
 	}
+
+	@Override
+	public List<AlbumVO> searchMytrack(int usernumber, int limit) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".searchMytrack", usernumber);
+	}
+
+	@Override
+	public List<AlbumVO> MytrackDetail(int albumNumber) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+".MytrackDetail", albumNumber);
+	}
+	
+
+	// 일선 추가
+	@Override
+	public List<AlbumVO> getArtistAlbum(int artistNumber) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getArtistAlbum", artistNumber);
+	}
+	
+	
 }

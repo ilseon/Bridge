@@ -69,16 +69,11 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void insertUser(UserVO vo) throws Exception {
-		sqlSession.insert(NAMESPACE + ".insertUser", vo);
-
-		
+		sqlSession.insert(NAMESPACE + ".insertUser", vo);	
 	}
 
 	@Override
 	public UserVO readUser(String userId) throws Exception {
-
-		// TODO Auto-generated method stub
-		
 		return (UserVO)sqlSession.selectOne(NAMESPACE + ".readUser");
 	}
 

@@ -88,8 +88,7 @@
 		<!-- end -->
 		<!-- 좋아하는 곡 or 앨범인지 표시 start -->
 		<div class="col-md-12">
-			<br />
-			<br />
+			<br /> <br />
 			<!-- 다운로드함에 추가된 음원 정보 start -->
 			&nbsp;&nbsp;<input type="checkbox" id="allCheck"> &nbsp;
 			<button class="btn btn-default btn-md" id="listen">
@@ -111,7 +110,6 @@
 			</button>
 
 			<br> <br>
-			<input type="checkbox" name="check" id="check${j}">
 			<table class="table">
 				<tr>
 					<th width="3%"></th>
@@ -125,15 +123,16 @@
 					<th width="7%">다운</th>
 					<th width="7%">뮤비</th>
 				</tr>
-				<c:forEach begin="1" end="1" var="j">
+				<c:set var="j" value="1"></c:set>
+				<c:forEach var="list" items="${DownloadList}">
 					<tr>
 						<td><input type="checkbox" name="check" id="check${j}"></td>
 						<td>${j}</td>
-						<td><a href="test"><img
-								src="resources/image/like/like_album.jpg" width="70px" /></a></td>
-						<td>${downloadVO.musicSubject}</td>
-						<td><a href="test">${downloadVO.artistName}</a></td>
-						<td><a href="test2">${downloadVO.albumName}</a></td>
+						<td><a href="album_detail"><img
+								src="/upload/album/${list.albumImg}" width="70px" /></a></td>
+						<td>${list.musicSubject}</td>
+						<td><a href="artist_detail">${list.artistName}</a></td>
+						<td><a href="album_detail">${list.albumName}</a></td>
 						<td width="7%"><button class="btn btn-default btn-xs">
 								<span class="glyphicon glyphicon-play" style="color: red"
 									onclick="PopupWindow()"></span>
@@ -151,6 +150,7 @@
 							</button></td>
 					</tr>
 				</c:forEach>
+				<c:set var="j" value="${j+1}"></c:set>
 			</table>
 		</div>
 	</div>

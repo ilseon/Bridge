@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bridge.mappers.likeMapper">	
-	<select id="searchAll" parameterType="int" resultType="int">
+	<select id="searchAll" parameterType="int" resultType="LikeVO">
 		select musicnumber as musicNumber from bridgedb.like where usernumber=#{userNumber}
 	</select>
 	
@@ -19,7 +19,7 @@
 	<select id="selectMusic"  parameterType="map" resultType="LikeVO">
 	select m.musicnumber as musicnumber, m.musicsubject as musicsubject, a.albumimg as albumimg, t.artistname as artistname 
 	from music as m inner join bridgedb.like as l inner join album as a inner join artist as t
-	where m.musicnumber = l.musicnumber and a.albumnumber = m.albumnumber and t.artistnumber = m.artistnumber and l.usernumber=#{userNumber}
+	where m.musicnumber = l.musicnumber and a.albumnumber = m.albumnumber and t.artistnumber = m.artistnumber and l.usernumber=#{userNumber} Limit #{limit}
 	</select>
 	
 	<select id="selectAlbum" resultType="LikeVO">

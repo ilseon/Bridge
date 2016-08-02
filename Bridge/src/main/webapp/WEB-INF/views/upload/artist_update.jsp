@@ -1,12 +1,12 @@
 <%--
-ÀÛ¼ºÀÚ - ÀÌÁÖ¿¬
-³»¿ë - ¾ÆÆ¼½ºÆ® Á¤º¸È®ÀÎ ¹× ¼öÁ¤ ÆäÀÌÁö
-½ÃÀÛ³¯Â¥ - 2016/07/26
-¼öÁ¤³¯Â¥ - 
-º¯°æ³»¿ë - 
+ì‘ì„±ì - ì´ì£¼ì—°
+ë‚´ìš© - ì•„í‹°ìŠ¤íŠ¸ ìˆ˜ì •
+ì‹œì‘ë‚ ì§œ - 2016/07/30
+ìˆ˜ì •ë‚ ì§œ - 2016/07/30
+ë³€ê²½ë‚´ìš© - 
  --%>
-<%@ page contentType="text/html; charset=EUC-KR"%>
-<%@page import="java.util.Vector"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,23 +16,43 @@
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 </head>
+<title>Upload1_Artist</title>
 <script>
-	$(document).ready(function() {
-		// ¾ÆÆ¼½ºÆ® Á¤º¸¿¡ ´ëÇÑ Ç×¸ñ ÀÔ·ÂÀ» È®ÀÎÇÏ´Â jquery 
-		$("#save").on("click", function() {
-			if (!$("#artist").val()) {
-				alert("¾ÆÆ¼½ºÆ®¸íÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
-				return false;
-			} else if (!$("#upFile").val()) {
-				alert("ÀÌ¹ÌÁö¸¦ ¾÷·ÎµåÇØÁÖ¼¼¿ä.");
-				return false;
-			} else {
-				alert("µî·ÏµÇ¾ú½À´Ï´Ù.");
-				$("#f").submit();
-				window.close();
-			}
-		});
-	});
+	$(document).ready(
+			function() {
+				/*var type = $("#TypeValue").val();
+				
+				var genre = $("#GenreValue").val();
+				if ($("artistType").val() == type) {
+					$("#artistType option").prop("selected", "selected");
+				}
+				if ($("artistGenre").val() == "ì„ íƒ") {
+					$("#artistType option").prop("selected", false);
+				}
+				 */
+				// ì •ë³´ ìˆ˜ì • jquery 
+				$("#update").click(
+						function() {
+							var file = artist.artistImg.value;
+							var fileExt = file
+									.substring(file.lastIndexOf('.') + 1); //íŒŒì¼í™•ì¥ì
+							if ($("#artistType").val() == "ì„ íƒ") {
+								alert("ì•„í‹°ìŠ¤íŠ¸ íƒ€ì…ì„ ì„ íƒí•´ì£¼ì„¸ìš”.");
+								return false;
+							} else if ($("#artistGenre").val() == "ì„ íƒ") {
+								alert("ì•„í‹°ìŠ¤íŠ¸ ì¥ë¥´ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”.");
+								return false;
+							} else if (fileExt.toUpperCase() == "MP3"
+									|| fileExt.toUpperCase() == "AVI"
+									|| fileExt.toUpperCase() == "JSP") {
+								alert("ì´ë¯¸ì§€ íŒŒì¼ë§Œ ì—…ë¡œë“œí•  ìˆ˜ ìˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”.");
+								return false;
+							} else {
+								alert("ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
+								$("#artist").submit();
+							}
+						});
+			});
 </script>
 <style>
 #tab {
@@ -40,74 +60,123 @@
 	background-color: #DF6E76;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: white;
+	margin-top: 30px;
+}
+
+#upload_main {
+	margin-left: 100px;
+}
+
+#pom {
+	border-radius: 17px;
+	background-color: #E0E0E0;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+}
+
+#regist {
+	border: none;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+}
+
+#cencle {
+	border: none;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+	background-color: gray;
+}
+
+.table th {
+	text-align: center;
+}
+
+.table td {
+	background-color: white;
+	text-align: center;
 }
 </style>
-<body>
-	<br />
+<body style="margin-top: 4%;">
+	<!-- header, sideber start -->
+	<%@include file="/WEB-INF/views/include/header.jsp"%>
+	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
+	<!-- end -->
+
 	<div class="container">
-		<div class="panel-heading col-xs-5" id="tab">
-			<h3 class="panel-title">¾ÆÆ¼½ºÆ® Á¤º¸ ÀÔ·Â</h3>
+		<div class="panel-heading col-md-3" id="tab">
+			<h3 class="panel-title">
+				<img src='resources/image/upload/album/one.png'>&nbsp;&nbsp;ì•„í‹°ìŠ¤íŠ¸
+				ìˆ˜ì •
+			</h3>
 		</div>
-		<br /><br /><br />
-		
 		<div class="col-md-12">
-			<div class="col-xs-4">
-				<!-- ¾ÆÆ¼½ºÆ® ÀÌ¹ÌÁö µî·Ï -->
-				<br />
-				<img src="resources/image/upload/album/artist.jpg" width="120%"><br />
-				<br /> <input type="file" name="upFile" id="upFile" />
+			<br /> <br /> <br /> <br />
+			<div class="jumbotron" id="pom">
+				<div id="upload_main">
+					<form id="artist" accept-charset="UTF-8" method="post"
+						enctype="multipart/form-data" action="artistUpdateCom">
+						<c:forEach var="list" items="${artistList}">
+							<div class="col-md-2 col-md-offset-1">
+								<input type="hidden" name="userNumber" id="userNumber"
+									value="${userNumber}" /> <input type="text"
+									name="artistNumber" id="artistNumber" value="${list.artistNumber}" />
+								<br /> <img src="/upload/artist/${list.artistImg}" width="120%"><br />
+								<br /> <input type="file" name="artistImg" id="artistImg"
+									accept="image/*" />
+							</div>
+							<div class="col-md-5 col-md-offset-1">
+								<br /> <label for="artistName" class="col-xs-4 control-label">ì•„í‹°ìŠ¤íŠ¸</label>
+								<div class="col-xs-8">
+									<input type="text" id="artistName" value="${list.artistName}"
+										class="form-control" /><br />
+								</div>
+								<!-- ì•„í‹°ìŠ¤íŠ¸ íƒ€ì… ë“±ë¡ -->
+								<label for="artistType" class="col-xs-4 control-label">íƒ€ì…</label>
+								<div class="col-xs-8">
+									<input type="hidden" id="TypeValue" value="${list.artistType}" />
+									<select class="form-control" id="artistType" name="artistType">
+										<option>ì„ íƒ</option>
+										<option>ì†”ë¡œ</option>
+										<option>ê·¸ë£¹</option>
+										<option>ë°´ë“œ</option>
+									</select><br />
+								</div>
+								<label for="artistGenre" class="col-xs-4 control-label">ì¥ë¥´</label>
+								<div class="col-xs-8">
+									<!-- ì•„í‹°ìŠ¤íŠ¸ ì¥ë¥´ ë“±ë¡ -->
+									<input type="hidden" id="GenreValue"
+										value="${list.artistGenre}" /> <select class="form-control"
+										id="artistGenre" name="artistGenre">
+										<option>ì„ íƒ</option>
+										<option>ë°œë¼ë“œ/ëŒ„ìŠ¤/íŒ</option>
+										<option>ì¼ë ‰íŠ¸ë¡œë‹‰</option>
+										<option>ì•Œì•¤ë¹„</option>
+										<option>ë½/ë©”íƒˆ</option>
+										<option>ì¬ì¦ˆ</option>
+										<option>í™í•©</option>
+										<option>ì¸ë””</option>
+									</select><br />
+								</div>
+							</div>
+						</c:forEach>
+					</form>
+					<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+					<br />
+				</div>
 			</div>
-			<form class="form-horizontal">
-				<fieldset>
-					<div class="col-xs-10 col-xs-offset-1">
-						<br />
-						<div class="form-group">
-							<!-- ¾ÆÆ¼½ºÆ®¸í ÀÔ·Â -->
-							<label for="artist" class="col-xs-4 control-label">¾ÆÆ¼½ºÆ®</label>
-							<div class="col-xs-8">
-								<input type="text" class="form-control" id="artist">
-							</div>
-						</div>
-						<div class="form-group">
-							<!-- ¾ÆÆ¼½ºÆ® Å¸ÀÔ µî·Ï -->
-							<label for="type" class="col-xs-4 control-label">Å¸ÀÔ</label>
-							<div class="col-xs-8">
-								<select class="form-control" id="type">
-									<option>¼Ö·Î</option>
-									<option>±×·ì</option>
-									<option>¹êµå</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="genre" class="col-xs-4 control-label">Àå¸£</label>
-							<div class="col-xs-8">
-								<!-- ¾ÆÆ¼½ºÆ® Àå¸£ µî·Ï -->
-								<select class="form-control" id="genre">
-									<option>¹ß¶óµå/´í½º/ÆË</option>
-									<option>ÀÏ·ºÆ®·Î´Ğ</option>
-									<option>¾Ë¾Øºñ</option>
-									<option>¶ô/¸ŞÅ»</option>
-									<option>ÀçÁî</option>
-									<option>ÈüÇÕ</option>
-									<option>ÀÎµğ</option>
-								</select>
-							</div>
-						</div>
-					</div>
-				</fieldset>
-			</form>
+			<!-- ë²„íŠ¼ start -->
+			<div align="center" style="margin-top: 60px">
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary" id="update">ìˆ˜ì •
+					</button>
+					<button type="reset" class="btn btn-primary" id="cencle">ì·¨ì†Œ</button>
+				</div>
+			</div>
 		</div>
 	</div>
+
 	<!-- end -->
-	<!-- ¹öÆ° start -->
-	<div align="center" style="margin-top: 50px">
-		<div class="form-group">
-			<button type="submit" class="btn btn-primary" id="save">¼öÁ¤</button>
-			<button type="reset" class="btn btn-default"
-				onclick="window.close();">´İ±â</button>
-		</div>
-	</div>
-	<!-- end -->
+	<br />
+	<br />
+	<!--  footer start -->
+	<%@include file="/WEB-INF/views/include/footer.jsp"%>
+	<!--  end -->
 </body>
 </html>

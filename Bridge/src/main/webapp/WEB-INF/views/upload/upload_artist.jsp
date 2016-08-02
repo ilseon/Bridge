@@ -20,31 +20,43 @@
 <script>
 	$(document).ready(
 			function() {
+				//등록된 아티스트 등록, 수정, 삭제하는 jquery
+				var name = $("#artistName").val();
+				$("#artistRegist").click(function() {
+					alert(name + " 아티스트로 등록합니다.");
+					$("#artistList").submit();
+				});
+				$("#artistDelete").click(function() {
+					alert(name + " 아티스트를 삭제합니다.");
+					$("#artistList").submit();
+				});
+
 				// 아티스트 정보에 대한 항목 입력을 확인하는 jquery 
 				$("#regist").click(
 						function() {
-							var file = artist.artistImg.value;
+							var name = $("#artist").find("#artistName");
+							var file = $("#artist").find("#artistImg").val();
+							var type = $("#artist").find("#artistType");
+							var genre = $("#artist").find("#artistGenre");
 							var fileExt = file
 									.substring(file.lastIndexOf('.') + 1); //파일확장자 
-							if (!$("#artistName").val()) {
+
+							if (!name.val()) {
 								alert("아티스트명을 입력해주세요.");
-								return false;
-							} else if (!$("#artistImg").val()) {
-								alert("이미지를 업로드해주세요.");
 								return false;
 							} else if (fileExt.toUpperCase() == "MP3"
 									|| fileExt.toUpperCase() == "AVI"
 									|| fileExt.toUpperCase() == "JSP") {
-								alert("이미지파일만 업로드할 수 있습니다. 다시 확인해주세요.");
+								alert("이미지 파일만 업로드할 수 있습니다. 다시 확인해주세요.");
 								return false;
-							} else if (!$("#artistType").val()) {
-								alert("타입을 선택해주세요.");
+							} else if (type.val() == "선택") {
+								alert("아티스트 타입을 선택해주세요.");
 								return false;
-							} else if (!$("#artistGenre").val()) {
-								alert("장르를 선택해주세요.");
+							} else if (genre.val() == "선택") {
+								alert("아티스트 장르를 선택해주세요.");
 								return false;
 							} else {
-								alert("아티스트가 등록되었습니다.");
+								alert("등록되었습니다.");
 								$("#artist").submit();
 							}
 						});
@@ -86,8 +98,13 @@
 	background-color: gray;
 }
 
+.table th {
+	text-align: center;
+}
+
 .table td {
 	background-color: white;
+	text-align: center;
 }
 </style>
 <body style="margin-top: 4%;">
@@ -99,50 +116,61 @@
 		<div class="panel-heading col-md-3" id="tab">
 			<h3 class="panel-title">
 				<img src='resources/image/upload/album/one.png'>&nbsp;&nbsp;아티스트
-				정보 & 등록
+				정보 및 등록
 			</h3>
 		</div>
 		<div class="col-md-12">
 			<br /> <br />
 			<div class="row">
 				<div class="jumbotron" id="pom">
-					<form id="artistList" accept-charset="UTF-8">
+					<form id="artistList" accept-charset="UTF-8" method="get">
 						<table class="table">
 							<tr>
-								<th width="4%">번호</th>
-								<th width="18%">아티스트</th>
-								<th width="20%">타입</th>
-								<th width="20%">장르</th>
-								<th width="7%">등록</th>
-								<th width="7%">수정</th>
-								<th width="7%">삭제</th>
+								<th width="10%">번호</th>
+								<th width="25%">아티스트</th>
+								<th width="18%">타입</th>
+								<th width="18%">장르</th>
+								<th width="10%">등록</th>
+								<th width="10%">수정</th>
+								<th width="10%">삭제</th>
 							</tr>
 							<tbody>
-								<tr>
-									<c:forEach var="list" items="artistList">
-										<c:if test="${ null ne artistList }">
-											<td width="4%"><input type="checkbox" /></td>
-											<td width="4%">${artistVO.artistNumber}</td>
-											<td width="18%">${artistVO.artistName}</td>
-											<td width="20%">${artistVO.artistType}</td>
-											<td width="20%">${artistVO.artistGenre}</td>
-											<td width="7%"><button type="button" class="btn btn-xs">
-													<span class="glyphicon glyphicon-save"></span>
-												</button></td>
-											<td width="7%"><button type="button" class="btn btn-xs">
-													<span class="glyphicon glyphicon-pencil"></span>
-												</button></td>
-											<td width="7%"><button type="button" class="btn btn-xs">
-													<span class="glyphicon glyphicon-trash"></span>
-												</button></td>
-										</c:if>
-										<c:if test="${ empty artistList }">
-											<h5>
-												<strong>현재 등록된 아티스트가 없습니다.</strong>
-											</h5>
-										</c:if>
+								<c:if test="${null ne artistList }">
+									<c:forEach var="list" items="${artistList}">
+										<tr>
+											<td width="10%">${list.artistNumber}<input type="hidden"
+												id="artistNumber" value="${list.artistNumber}" /></td>
+											<td width="25%"><input type="hidden"
+												src="/upload/artist/${list.artistImg}" id="artistImg" /> <input
+												type="hidden" id="artistName" value="${list.artistName}" />${list.artistName}</td>
+											<td width="18%"><input type="hidden" id="artistType"
+												value="${list.artistType}" />${list.artistType}</td>
+											<td width="18%"><input type="hidden" id="artistGenre"
+												value="${list.artistGenre}" />${list.artistGenre}</td>
+											<td width="10%"><a
+												href="artistRegist?artistNumber=${list.artistNumber}"
+												class="btn btn-xs"> <span
+													class="glyphicon glyphicon-save" id="artistRegist"></span>
+											</a></td>
+											<td width="10%"><a
+												href="artistUpdate?artistNumber=${list.artistNumber}"
+												class="btn btn-xs"> <span
+													class="glyphicon glyphicon-pencil" id="artistUpdate"></span>
+											</a></td>
+											<td width="10%"><a
+												href="artistDel?artistNumber=${list.artistNumber}"
+												class="btn btn-xs"> <span
+													class="glyphicon glyphicon-trash" id="artistDelete"></span>
+											</a></td>
+										</tr>
 									</c:forEach>
-								</tr>
+								</c:if>
+								<tr>
+									<c:if test="${ empty artistList }">
+										<h5>
+											<strong>현재 등록된 아티스트가 없습니다.</strong>
+										</h5>
+									</c:if>
 							</tbody>
 						</table>
 					</form>
@@ -159,7 +187,7 @@
 									name="artistNumber" id="artistNumber" value="${artistNumber}" />
 								<br /> <img src="resources/image/upload/album/album_image.PNG"
 									width="120%"><br /> <br /> <input type="file"
-									name="artistImg" id="artistImg" accept=".gif, .jpg, .png" />
+									name="artistImg" id="artistImg" accept="image/*" />
 							</div>
 							<div class="col-md-5 col-md-offset-1">
 								<label for="artistName" class="col-xs-4 control-label">아티스트</label>
@@ -171,6 +199,7 @@
 								<label for="artistType" class="col-xs-4 control-label">타입</label>
 								<div class="col-xs-8">
 									<select class="form-control" id="artistType" name="artistType">
+										<option>선택</option>
 										<option>솔로</option>
 										<option>그룹</option>
 										<option>밴드</option>
@@ -181,6 +210,7 @@
 									<!-- 아티스트 장르 등록 -->
 									<select class="form-control" id="artistGenre"
 										name="artistGenre">
+										<option>선택</option>
 										<option>발라드/댄스/팝</option>
 										<option>일렉트로닉</option>
 										<option>알앤비</option>

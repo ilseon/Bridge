@@ -1,3 +1,10 @@
+/*
+	최초 작성일 : 2016-07-20
+	작성자 : 정효진
+	수정일 : 2016-07-30
+	수정 내용 : 이미 다운받은 음원인지 검색
+	내용 : 다운로드 관련 DAOImpl
+ */
 package com.bridge.app.persistence;
 
 import java.util.HashMap;
@@ -48,12 +55,17 @@ public class DownloadDAOImpl implements DownloadDAO {
 	}
 
 	@Override
-	public List<DownloadVO> searchDownload(Integer userNumber) throws Exception {
-		return sqlSession.selectList(NAMESPACE+".searchDownload", userNumber);
+	public List<DownloadVO> searchDownload(Map playlistAll) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".searchDownload", playlistAll);
 	}
 
 	@Override
-	public List<DownloadVO> searchList(Integer userNumber) throws Exception {
+	public List<Integer> music_already(Map download_check) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".music_already", download_check);
+	}
+	@Override
+	public List<DownloadVO> searchList(Integer userNumber, int limit) throws Exception {
 		return sqlSession.selectList(NAMESPACE+".selectList", userNumber);
 	}	
+	
 }

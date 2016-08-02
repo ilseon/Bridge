@@ -15,6 +15,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.bridge.app.domain.LikeVO;
+import com.bridge.app.domain.MusicVO;
 
 @Repository
 public class LikeDAOImpl implements LikeDAO {
@@ -41,7 +42,7 @@ public class LikeDAOImpl implements LikeDAO {
 	}
 	
 	@Override
-	public List<LikeVO> searchMusic(Integer userNumber) throws Exception {
+	public List<LikeVO> searchMusic(Integer userNumber, int limit) throws Exception {
 		return sqlSession.selectList(NAMESPACE+".selectMusic", userNumber);
 	}
 
@@ -49,5 +50,4 @@ public class LikeDAOImpl implements LikeDAO {
 	public List<LikeVO> searchAlbum(Integer userNumber) throws Exception {
 		return sqlSession.selectList(NAMESPACE+".selectAlbum", userNumber);
 	}
-
 }

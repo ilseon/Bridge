@@ -12,6 +12,7 @@ public class VideoVO {
 	private String musicSubject;//노래 제목
 	private String artistName;//가수 이름
 	private String albumDate;//앨범 발매일
+	private String musicVideo;//노래 뮤직비디오
 	
 	
 	public String getMusicSubject() {
@@ -32,6 +33,13 @@ public class VideoVO {
 	public void setAlbumDate(String albumDate) {
 		this.albumDate = albumDate;
 	}
+	public String getMusicVideo() {
+		return musicVideo;
+	}
+	public void setMusicVideo(String musicVideo) {
+		this.musicVideo = musicVideo;
+	}
+	
 	
 	
 	

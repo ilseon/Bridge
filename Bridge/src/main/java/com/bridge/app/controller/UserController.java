@@ -22,7 +22,7 @@ public class UserController {
 
 	@RequestMapping(value="/user.add", method=RequestMethod.GET)
 	public String user_add_get() {
-		
+		System.out.println("ㅇ????");
 		return "/user/user";
 	}
 	@RequestMapping(value="/user.add", method=RequestMethod.POST)
@@ -36,7 +36,6 @@ public class UserController {
 		Service.insertUser(vo);
 		ModelAndView mav = new ModelAndView("/user/User_add_compleate");
 		mav.addObject("username", vo.getUserName());
-		logger.info(vo.getUserBirthday());
 		
 		return mav;
 	};

@@ -15,6 +15,7 @@ import org.springframework.web.util.WebUtils;
 
 import com.bridge.app.controller.MyPageController;
 import com.bridge.app.domain.ArtistVO;
+import com.bridge.app.domain.LikeVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -33,7 +34,7 @@ public class ArtistDAOImpl implements ArtistDAO {
 
 		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 		
-		int postMaxSize = 10 * 1024 * 1024;
+		int postMaxSize =  1024 * 1024 * 1024;
 		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
         String folder_p=folderPath+"upload"+File.separator+"artist"+File.separator;
            
@@ -66,26 +67,54 @@ public class ArtistDAOImpl implements ArtistDAO {
          artist.setUserNumber(usernumber);
             
         logger.info("multiReq :"+multiReq.getParameter("artistName")+" / "+multiReq.getParameter("artistGenre")+" / "+multiReq.getParameter("artistType")
-        +" / "+usernumber); 
+        +" / "+artistImg+usernumber); 
         logger.info(artist.toString());
        
         sqlSession.insert(NAMESPACE + ".regist", artist);
-             
+        
+        String artistName = multiReq.getParameter("artistName");      
+        sqlSession.selectOne(NAMESPACE + ".selectAristNum", artistName);
+            
 	}
 	
 	@Override
-	public ArtistVO getArtistOne() throws Exception {
-		return sqlSession.selectOne(NAMESPACE + ".getArtistOne");
+	public ArtistVO getArtistOne(int artistNumber) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getArtistOne", artistNumber);
+	}
+	
+	@Override
+	public List<ArtistVO> selectArtist(int userNumber) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".selectArist", userNumber);
 	}
 
 	@Override
-	public int selectAritstNumber(int userNumber) throws Exception {		
-		return sqlSession.selectOne(NAMESPACE + ".selectAristNumber", userNumber);
+	public void remove(int artistNumber) throws Exception {
+				
+		int artistNum = sqlSession.delete(NAMESPACE+".selectAlbum", artistNumber);
+
+		if(artistNum == 0){
+			sqlSession.delete(NAMESPACE+".remove", artistNumber);
+		}
+	}
+	
+	public void update(HttpServletRequest req) throws Exception {
+		
+		String artistName = req.getParameter("artistName");
+		String artistType =req.getParameter("artistType");
+		String artistGenre =req.getParameter("artistGenre");
+		
+		ArtistVO artist = new ArtistVO();
+		
+		artist.setArtistName(artistName);
+		artist.setArtistType(artistType);
+		artist.setArtistGenre(artistGenre);
+			
+		sqlSession.update(NAMESPACE+".update", artist);
 	}
 
 	@Override
-	public List<ArtistVO> selectAritst(int userNumber) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".selectArist", userNumber);
+	public List<ArtistVO> selectArtistOne(int artistNumber) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".selectArtistOne", artistNumber);
 	}
 
 }

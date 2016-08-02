@@ -40,8 +40,8 @@ public class LikeServiceImpl implements LikeService {
 	}
 
 	@Override
-	public List<LikeVO> searchMusic(Integer userNumber) throws Exception {
-		return likeDAO.searchMusic(userNumber);
+	public List<LikeVO> searchMusic(Integer userNumber, int limit) throws Exception {
+		return likeDAO.searchMusic(userNumber, limit);
 	}
 
 	@Override

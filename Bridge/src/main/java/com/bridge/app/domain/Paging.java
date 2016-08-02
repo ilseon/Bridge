@@ -12,18 +12,20 @@ public class Paging {
     private int firstPageNo; // 첫 번째 페이지 번호
     private int prevPageNo; // 이전 페이지 번호
     private int startPageNo; // 시작 페이지 (페이징 네비 기준)
+    
     private int pageNo; // 페이지 번호
     private int endPageNo; // 끝 페이지 (페이징 네비 기준)
     private int nextPageNo; // 다음 페이지 번호
     private int finalPageNo; // 마지막 페이지 번호
+    
     private int totalCount; // 게시 글 전체 수
     private int start;//각 게시물 시작 번호
     private int end;//각 게시물 끝번호
+    
+    private String searchType;
+    private String search;
 
-    /**
-     * @return the pageSize
-     */
-    public int getPageSize() {
+	public int getPageSize() {
         return pageSize;
     }
 
@@ -153,6 +155,8 @@ public class Paging {
     
     
     
+    
+    
     private void makePaging() {
         if (this.totalCount == 0) return; // 게시 글 전체 수가 없는 경우
         if (this.pageNo == 0) this.setPageNo(1); // 기본 값 설정
@@ -194,6 +198,22 @@ public class Paging {
      
         
     }
+
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
 
 	public int getStart() {
 		return start;

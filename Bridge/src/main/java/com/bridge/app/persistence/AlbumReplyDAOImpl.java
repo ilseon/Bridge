@@ -17,7 +17,6 @@ public class AlbumReplyDAOImpl implements AlbumReplyDAO {
 	 
 	@Override
 	public List<AlbumReplyVO> getReplyList(HashMap<String, Integer> map) throws Exception {
-		System.out.println("DAO 까지 옴");
 		return sqlsession.selectList(NAMESPACE + ".getReplyList", map);
 
 	}
@@ -37,6 +36,12 @@ public class AlbumReplyDAOImpl implements AlbumReplyDAO {
 	@Override
 	public void deleteReply(int replyNumber) throws Exception {
 		sqlsession.delete(NAMESPACE + ".deleteReply", replyNumber);
+
+	}
+
+	@Override
+	public int countAlbum(int albumNumber) throws Exception {
+		return sqlsession.selectOne(NAMESPACE + ".countAlbum", albumNumber);
 
 	}
 

@@ -141,15 +141,16 @@
 						<th width="7%">뮤비</th>
 					</tr>
 
-					<c:forEach begin="1" end="1" var="j">
+					<c:forEach var="list" items="${MyalbumList}" >
+					<c:set var="j" value="1"></c:set>
 						<tr>
 							<td><input type="checkbox" name="check" id="check${j}"></td>
 							<td>${j}</td>
-							<td><a href="test"><img
-									src="resources/image/like/like_album.jpg" width="70px" /></a></td>
-							<td>${playlistVO.musicSubject}</td>
-							<td><a href="test2">${playlistVO.artistName}</a></td>
-							<td><a href="test">${playlistVO.albumName}</a></td>
+							<td><a href="album_detail"><img
+									src="/upload/album/${list.albumImg}" width="70px" /></a></td>
+							<td>${list.musicSubject}</td>
+							<td><a href="artist_detail">${list.artistName}</a></td>
+							<td><a href="album_detail">${list.albumName}</a></td>
 							<td width="7%"><button class="btn btn-default btn-xs">
 									<span class="glyphicon glyphicon-play" style="color: red"
 										onclick="PopupWindow()"></span>
@@ -166,6 +167,7 @@
 									<span class="glyphicon glyphicon-play-circle"></span>
 								</button></td>
 						</tr>
+						<c:set var="j" value="${j+1}"></c:set>
 					</c:forEach>
 				</table>
 			</div>

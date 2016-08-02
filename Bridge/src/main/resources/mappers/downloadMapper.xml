@@ -3,40 +3,51 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
 <mapper namespace="com.bridge.mappers.downloadMapper">
 	<select id="searchAll" resultType="com.bridge.app.domain.DownloadVO">
 		select * from download where usernumber=#{userNumber}
 	</select>
 	<select id="search_sev" parameterType="map" resultType="com.bridge.app.domain.MusicVO">
-	
-		select m.musicsubject as musicsubject, a.artistname as artistname, m.musicnumber as musicnumber
-		 from music as m inner join artist as a on m.artistnumber=a.artistnumber and
-	<foreach collection="playlistAll" item="playlist" open="(" close=")" separator="or">
+		select m.musicsubject as musicsubject, a.artistname as artistname, m.musicnumber as musicnumber, m.musicfile as musicfile from music as m inner join artist as a on m.artistnumber=a.artistnumber and
+	<foreach collection="playListAll" item="playlist" open="(" close=")" separator="or">
 		musicnumber=#{playlist.value}
 	</foreach>
 	</select>
 	
+	<select id="searchDownload" resultType="DownloadVO">
+		select * from download where usernumber=#{userNumber} and musicnumber=#{musicNumber}
+	</select>
+	
 	<insert id="regist">
-		insert into download(musicnumber, usernumber, user_usernumber, downloaddate) values(#{musicNumber}, #{userNumber}, #{userNumber}, now())
+		insert into download(musicnumber, usernumber, downloaddate) values(#{musicNumber}, #{userNumber}, now())
 	</insert>
 	
 	<insert id="registSeveral" parameterType="map">
-		insert into download(musicnumber, usernumber, user_usernumber, downloaddate) values
+		insert into download(musicnumber, usernumber, downloaddate) values
 		<foreach collection="playListAll" item="playlist" separator=",">
-			(#{playlist.value}, #{userNumber}, #{userNumber}, now())
+			(#{playlist.value}, #{usernumber}, now())
 		</foreach>
 	</insert>
 	
 	<delete id="remove">
 		delete from download where musicnumber=#{musicNumber} and usernumber=#{userNumber}
 	</delete>
-		<select id="searchDownload" resultType="com.bridge.app.domain.DownloadVO">
-		select * from download where usernumber=#{userNumber}
-	</select>
-	<select id="selectList"  parameterType="map" resultType="com.bridge.app.domain.DownloadVO">
+	
+   <select id="music_already" parameterType="map" resultType="int">
+      select musicnumber from bridgedb.download where 
+      <foreach collection="musicNumbers" item="musicnumber" separator="or">
+         musicnumber=#{musicnumber.value} and usernumber=#{userNumber}
+      </foreach>
+   </select>
+
+
+	
+		<select id="selectList"  parameterType="map" resultType="com.bridge.app.domain.DownloadVO">
 		select m.musicnumber as musicnumber, m.musicsubject as musicsubject, a.albumimg as albumimg, t.artistname as artistname, a.albumname as albumname 
 		from music as m inner join download d inner join album as a inner join artist as t
-		where m.musicnumber = d.musicnumber and a.albumnumber = m.albumnumber and t.artistnumber = m.artistnumber and d.usernumber=#{userNumber}
+		where m.musicnumber = d.musicnumber and a.albumnumber = m.albumnumber and t.artistnumber = m.artistnumber and d.usernumber=#{userNumber} Limit #{limit} 
 	</select>
+	
 	
 </mapper>
