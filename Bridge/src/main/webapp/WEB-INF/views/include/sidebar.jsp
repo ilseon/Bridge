@@ -53,7 +53,7 @@
   <a href="chart" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/mainchart.PNG"  /></a>
   <a href="new_album" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/mainalbum.PNG"   /></a>
   <a href="video?bno=1&searchType=&search=" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/mainmv.PNG"  /></a>
-  <br/><br/><br/><br/><br/><hr/>
+  <br/><br/><br/><hr/>
   
 <!-- 중간 메뉴 -->
 <a href="#" class="list-group-item" style="border-color: white;"><input type="image" src="/resources/image/mainlike.PNG"   id="like_song" /></a>

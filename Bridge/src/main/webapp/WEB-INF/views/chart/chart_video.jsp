@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <div class="row">
 	
    <c:forEach begin="0" end="20" step="1">

@@ -12,8 +12,7 @@
 
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
-	type="text/css" />
+<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <title>Home</title>
 </head>
 
@@ -78,9 +77,9 @@ function player(num){
 
 	<div class="container">
 		<!-- 최신앨범 -->
-		<div class="row">
-			<div class="col-sm-11"
-				style="border: 1px solid #BDBDBD; margin-bottom: 50px;">
+		
+			<div class="col-sm-12"
+				style="border: 1px solid #BDBDBD; margin-bottom: 50px; margin-left: 5%;">
 				<h4>최신앨범</h4> 
 				
 				
@@ -98,7 +97,7 @@ function player(num){
 
 
 			<!-- 인기차트 -->
-			<div class="col-sm-11" style="border: 1px solid #BDBDBD">
+			<div class="col-sm-12" style="border: 1px solid #BDBDBD;margin-left: 5%;">
 				<div>
 					<h4>인기 차트 (실시간 시간)</h4>
 				</div>
@@ -108,13 +107,14 @@ function player(num){
 				<table class="table">
 					<c:forEach begin="0" end="9" var="music" items="${musicList}" step="1">
 						<tr style="height: 70px;">
-						<td width="7%">${music.musicNumber}</td>
-							<td width="7%">${rank} &nbsp;<a href="/test"><img src="<%=request.getAttribute("realpath")%><c:out value="${music.albumImg}"/>" style="height:60px; width:60px;"/></a></td>
-                         <td width="23%">${music.musicSubject}</td>
+						 <c:set var="rank" value="${rank+1}"/>
+						<td width="5%">${rank}</td>
+						<td width="10"><a href="/test"><img src="<%=request.getAttribute("realpath")%><c:out value="${music.albumImg}"/>" style="height:60px; width:60px;"/></a></td>
+                         <td width="20%">${music.musicSubject}</td>
                          <td width="20%"><a href="/artist_detail?artistNumber=${music.artistNumber}">${music.artistName}</a></td>
-                         <td width="7%"><a href="/album_detail?albumNumber=${music.albumNumber}">${music.albumName}</a></td>
-                         <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="player(${music.musicNumber})"></span></button></td>
-                         <td width="7%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
+                         <td width="20%"><a href="/album_detail?albumNumber=${music.albumNumber}">${music.albumName}</a></td>
+                         <td width="5%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="player(${music.musicNumber})"></span></button></td>
+                         <td width="5%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -132,7 +132,7 @@ function player(num){
 			</div>
 			<!-- 옆에 퀵메뉴 끝 -->
 
-		</div>
+		
 	</div>
 	<%@include file="include/footer.jsp"%>
 </body>

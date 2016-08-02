@@ -13,9 +13,9 @@
 <head>
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
 	type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
+<!-- <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
+<script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script> -->
 </head>
 <script>
 	$(document).ready(function() {

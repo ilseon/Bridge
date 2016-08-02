@@ -12,7 +12,7 @@
 <html>
 <head>
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
+<!-- <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script> -->
 <script>
 
 function PopupWindow()
@@ -279,7 +279,7 @@ border: none;
 				<%@include file="/WEB-INF/views/artist/artist_detail.jsp"%>
 			</c:if>
 			<c:if test="${page=='video'}">
-				<%@include file="/WEB-INF/views/video/video.jsp"%>
+				<%@include file="/WEB-INF/views/video/videolist.jsp"%>
 			</c:if>
 
 	</div>
