@@ -26,6 +26,30 @@ $(document).ready(function() {
   $(".quick").animate( { "top": $(document).scrollTop() + 20 + "px" }, 1000 );
  });
 });
+function player(num){
+	var Clip;
+	var tmp=false;
+	
+	 if (tmp==false){       //최초 클릭이면 팝업을 띄운다
+		 
+		  Clip =window.open("player?val="+num,"new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;");
+		  tmp = true;
+		 }else{
+	 			if(tmp==true){
+		 alert(tmp);
+		/*   $.ajax({
+			  type: 'get',
+			  url:"delplayer",
+			  success:
+				  alert("Awdasdawd")
+			}); */
+			alert("awdsdawd");
+	 		 }
+		 }
+ 
+ 
+ 
+}; 
 </script>
 </head>
 
@@ -70,7 +94,7 @@ $(document).ready(function() {
 							<td width="20%">-</td>
 							<td width="20%">${music.musicSubject}</td>
 							<td width="7%">${music.artistName}</td>
-							<td width="10%"><button class="btn btn-default btn-xs">
+							<td width="10%"><button class="btn btn-default btn-xs" onclick="player(${music.musicNumber})">
 									<span class="glyphicon glyphicon-play" style="color: red"></span>
 								</button></td>
 							<td width="10%"><button class="btn btn-default btn-xs">

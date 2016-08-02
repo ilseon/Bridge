@@ -42,6 +42,11 @@ public class VideoImpl implements VideoDAO{
 		return sqlSession.selectList(NAMESPACE+".totalvideo1");
 	}
 
+	@Override
+	public List<VideoVO> getChartVideoTotal() throws SQLException {
+		return sqlSession.selectList(NAMESPACE+".chartvideo");
+	}
+
 
 	
 	

@@ -29,7 +29,6 @@ $(document).ready(function(){
 	            $("#mytable input[type=checkbox]").each(function () {
 	                $(this).prop("checked", true);
 	            });
-
 	        } else {
 	            $("#mytable input[type=checkbox]").each(function () {
 	                $(this).prop("checked", false);
@@ -38,7 +37,23 @@ $(document).ready(function(){
 	    });
 	});
 	
-var playlistAll = new Array();
+/* $(document).ready(function(){
+	if($("#mytable input[type=checkbox]").is(":checked")){
+		var list=$("#mytable input[type=checkbox]");
+			for(var i = 0 ; i<list.length; i++){
+				if(list[i].checked==true){
+					playlistAll.push(list[i].value);
+				}
+			}
+	}else if($("#mytable input[type=checkbox]:not(checked)")){
+		var list=$("#mytable input[type=checkbox]");
+		for(var i = 0 ; i<list.length; i++){
+			if(list[i].checked==true){
+				playlistAll.push(list[i].value);
+			}
+		}
+	}
+}); */
 	
 //여러 곡을 선택한 경우
 $(function(){
@@ -49,28 +64,30 @@ $(function(){
          	});	
 		}
 		if($("#mytable input[type=checkbox]").is(":checked")){
+			var playlistAll = new Array();
 			if(user!=""){
-			alert("곡을 선택하셨습니다.");
 			var list=$("#mytable input[type=checkbox]");
 				for(var i = 0 ; i<list.length; i++){
 					if(list[i].checked==true){
 						playlistAll.push(list[i].value);
+						alert(list.leghth);
 					}
-				}
+				} 
 				
 			var this_name=$(this).attr('id');
 			
 			if(this_name=="download"){
-				$("#Download").on("show.bs.modal", function (event) {
-					var button = $(event.relatedTarget); // Button that triggered the modal
-					var modal = $(this);
-
-					modal.find(".modal-body a").href("/download_music_sev?musicnumber="+playlistAll);
-					});
+				$('#Download').modal({
+			        remote: '/download_modal_sev?playlistAll='+playlistAll
+				});
+			}else if(this_name=="myalbum"){
+				$('#MyAlbum').modal({
+			        remote: '/myalbum_modal_sev?playlistAll='+playlistAll
+				});
 			}
 				
 			}else{
-				alert("로그인을 해 주세요!");	
+				alert("로그인 후 이용하실 수 있는 서비스입니다!");	
 			}
 		}else if($("#mytable input[type=checkbox]:not(checked)")){
 			alert("곡을 선택해 주세요!");
@@ -100,96 +117,21 @@ $(function(){
 		}
 	})
 });
-/* 
-	$(function(){
-		$("button[id^=musicNumber]").click(function(){
-		var tmp=false;
-			 if (!tmp){       //최초 클릭이면 팝업을 띄운다
-				  
-			 $.ajax({
-					  type: 'get',
-					  url: 'player',
-					  data: val,
-					  success: alert("성공"),
-					  dataType: String
-					});
-				  tmp = true;
-				 Clip =window.open("/player","new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;");
-				var val="111";	 
-				 }
-				 else{           //최초 클릭이 아니면
-				  if(!Clip.closed && Clip){
-					  $.ajax({
-						  type: 'POST',
-						  url: "player",
-						  data: val,
-					  
-						  success: alert("성공"),
-						  dataType: String
-						});
-				   Clip.focus();                         
-				  }
-				  else{
-					  $.ajax({
-						  type: 'POST',
-						  url: "player",
-						  data: val,
-					  
-						  success: alert("성공"),
-						  dataType: String
-						});
-					  tmp = true;
-					 }//없으면 팝업을 다시 띄울 수 있게 한다
-				   Clip =window.open("/player","new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;");
-				   tmp = true;
-				  
-				 }
-		})
-	}); */
-	/* function player(num){
-		$("button[id^=musicNumber]").click(function(){
-			 $.ajax({
-				  type: 'get',
-				  url: 'player',
-				  data: {"val":num},
-				  success: 
-					  window.open("/player","new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;")
-				});
-		})
-	};  */
-	
-/*  	function player(num){
-			 $.ajax({
-				  type: "get",
-				  url: 'player',
-				  data: {"val":num} 
-				});		 
-	};  */ 
+
 	
 	 function player(num){
 			var Clip;
 			var tmp=false;
+			
 			 if (tmp==false){       //최초 클릭이면 팝업을 띄운다
 				 
-				  tmp = true;
 				  Clip =window.open("player?val="+num,"new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;");
-				  if(Clip.closed){
-					  $.ajax({
-						  type: 'get',
-						  url:"delplayer",
-						  success:
-							  alert("Awdasdawd")
-						});                    
-				  }
+				  tmp = true;
+				 }else{
+			 			if(tmp==true){
+			
+			 		 }
 				 }
-			 if(Clip.closed){
-				  $.ajax({
-					  type: 'get',
-					  url:"delplayer",
-					  success:
-						  alert("Awdasdawd")
-					});                 
-			  }
 		 
 		 
 		 
@@ -241,7 +183,7 @@ $(function(){
 							    <td width="20%"><a href="/test2"></a>${music.artistName}</td>
 							    <td width="7%">${music.albumName}</td>
 							    <td width="7%"><button class="btn btn-default btn-xs" id="musicNumber" name="musicNumber" onclick="player(${music.musicNumber})"><span class="glyphicon glyphicon-play" style="color:red"></span></button></td>
-							    <td width="7%"><button class="btn btn-d	efault btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
+							    <td width="7%"><button class="btn btn-d	efault btn-xs" id="playlist" onclick="player(${music.musicNumber})"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
 							    <td width="7%"><a href="/myalbum?musicnumber=${music.musicNumber}"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>
 							    <td width="7%"><a href="/download_modal?musicnumber=${music.musicNumber}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span></a></td>
 							    <td width="7%"><a href="https://www.youtube.com/?gl=KR&hl=ko"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></a></td>

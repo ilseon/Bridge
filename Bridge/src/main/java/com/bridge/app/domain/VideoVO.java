@@ -13,6 +13,8 @@ public class VideoVO {
 	private String artistName;//가수 이름
 	private String albumDate;//앨범 발매일
 	private String musicVideo;//노래 뮤직비디오
+	private String albumType;
+	private String musicNumber;
 	
 	
 	public String getMusicSubject() {
@@ -38,6 +40,18 @@ public class VideoVO {
 	}
 	public void setMusicVideo(String musicVideo) {
 		this.musicVideo = musicVideo;
+	}
+	public String getAlbumType() {
+		return albumType;
+	}
+	public void setAlbumType(String albumType) {
+		this.albumType = albumType;
+	}
+	public String getMusicNumber() {
+		return musicNumber;
+	}
+	public void setMusicNumber(String musicNumber) {
+		this.musicNumber = musicNumber;
 	}
 	
 	

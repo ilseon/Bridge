@@ -14,6 +14,8 @@
 	session.setAttribute("userNumber","3");
 	session.setAttribute("userId", "test1");
 %>
+<title>BRIDGE</title>
+<link rel="shortcut icon" type="image/x-icon" href="/resources/image/favicon.ico" />
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <script>
@@ -130,7 +132,7 @@ border: none;
 	                    	<c:set var="active2" value="active"/>
 	                    </c:if>
 	                    <li class="${active1}"><a href="chart" class="">곡 차트</a></li>
-	                    <li class="${active2}"><a href="chart.video">뮤직비디오 차트</a></li>
+	                    <li class="${active2}"><a href="chart_video">뮤직비디오 차트</a></li>
 	                </ul>
 	            </div>
 	    </nav>
@@ -146,7 +148,7 @@ border: none;
 				<%@include file="/WEB-INF/views/artist/artist_detail.jsp"%>
 			</c:if>
 			<c:if test="${page=='video'}">
-				<%@include file="/WEB-INF/views/chart/chart_video.jsp"%>
+				<%@include file="/WEB-INF/views/video/chart_video.jsp"%>
 			</c:if>
 
 	</div>

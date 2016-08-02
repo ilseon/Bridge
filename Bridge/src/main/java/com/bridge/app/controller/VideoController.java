@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,12 +71,29 @@ public class VideoController {
 			}else{
 				List<VideoVO> list=service.getVideoList(paging);
 			mav.addObject("list",list);
+			System.out.println(list.get(0).getMusicSubject()+"뮤지비디오");
 			}
-			//System.out.println(list.get(0).getMusicVideo()+"뮤지비디오");
 			return mav;
 	    } catch (Exception e) {
 	    	System.out.println(e);
 	    	return mav;
 	    }
+	}
+	
+	@RequestMapping("chart_video")
+	public String showChartVideo(Model model) throws SQLException{
+		ModelAndView mav=new ModelAndView("/video/chart_video");
+		System.out.println("asdawdawd");
+		
+		model.addAttribute("list",service.getChartVideoTotal());
+		model.addAttribute("page","video");
+		return "/chart/chart_main";
+	}
+	
+	@RequestMapping("iframe")
+	public String showIframe(@RequestParam String video,Model model){
+		System.out.println(video);
+		model.addAttribute("video",video);
+		return "/video/iframe";
 	}
 }

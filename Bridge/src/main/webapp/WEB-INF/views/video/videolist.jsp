@@ -17,9 +17,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 <%@include file="/WEB-INF/views/include/header.jsp" %>
 <%@include file="/WEB-INF/views/include/sidebar.jsp" %>
@@ -27,28 +25,51 @@
 	.col-md-2{
 		width:7%;
 	}
+	
+	.sub{
+		color: #8C8C8C
+	}
+	.box {width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 
 </style>
+
 <!-- 게시물  -->
+<c:if test="${list.size() gt 1}">
 <div class="row" style="padding-left: 20%">
    <c:forEach items="${list }" var="VideoVO">
      
         <div class="col-xs-6 col-md-2">   
-   			 <a href="https://www.youtube.com/watch?v=${VideoVO.musicVideo}">
-   			 <div class="thumbnail" style="width: 80%">
+        	
+   			 <a href="iframe?video=${VideoVO.musicVideo}" data-toggle="modal" data-target="#iframe${Video.VO.musicNumber}">
+   			  <div class="modal fade" id="iframe${Video.VO.musicNumber}">
+                  <div class="modal-dialog">
+                     <div class="modal-content"></div>
+                  </div>
+               </div> 
+   			 <div class="thumbnail box" style="width: 80%; height: 250px">
      			 <img src="https://img.youtube.com/vi/${VideoVO.musicVideo}/0.jpg">
      				 <div class="caption">
-       					 <p>제목 : ${VideoVO.musicSubject}</p>
-       					 <p>가수 : ${VideoVO.artistName}</p>
-       					 <p>발매일 : ${VideoVO.albumDate}</p>
+ 		      
+       					 <p>${VideoVO.musicSubject}</p>
+       					 <p class="sub">${VideoVO.artistName}</p>
+       					 <p class="sub">${VideoVO.albumDate} | ${VideoVO.albumType}</p>
       				</div>
        		</a>
     		</div>
- 		 </div>       
+ 		 </div>
+ 		 
    </c:forEach>
    
  </div>
+ </c:if>
  
+ <c:if test="${list.size() eq 0}">
+               <ul>
+                  <li>모든 단어의 철자가 정확한지 확인해 보세요.</li>
+                  <li>두 단어 이상일 경우 띄어쓰기를 확인하거나 단어 수를 줄여보세요.</li>
+                  <li>아직 발매되지 않은 곡/앨범을 검색했을 수 있습니다.</li>
+               </ul>
+ </c:if>
  <!-- 페이징 -->
  <div class="row" style="padding-left: 180px">
  <div class="col-xs-4 col-xs-offset-5"">

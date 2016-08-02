@@ -13,19 +13,36 @@
     <link rel="stylesheet" href="/resources/css/style.css" media="screen">
     
  <script>
-if(!window.closed){
-	alert(window.onUnload());
-	  $.ajax({
+ $(function(){
+	 var check=0;
+	$("li a[aria-controls^=Lyrics]").click(function(){
+		var musicLyrics=$("#playlist li.active").attr('musicLyrics');
+		if(check==0){
+		$("div[id^=Lyrics]").append('<p>'+musicLyrics+'</p>');
+		check=1;
+		}
+		
+	})
+	$("li a[aria-controls^=home]").click(function(){		
+		$("div[id^=Lyrics]").empty();
+		check=0;
+	})
+	
+});
+
+ function deleteAll(){
+	 $.ajax({
 		  type: 'get',
 		  url:"delplayer",
 		  success:
-		  alert("Awdasdawd")
-
+			
+				$("li a[aria-controls^=home]").ready(function(){		
+					$("#playlist li").empty();
+				}) 
+			  
 		});
-	
-}else{
+	 
 }
-$("")
 
  </script>
 </head>
@@ -36,7 +53,7 @@ $("")
 	</div>
 	<div id="audio-player">
 		<div id="audio-info">
-			<span class="artist"></span> - <span class="title"></span>
+			<span class="artist"></span>  <span class="title"></span>
 		</div>
 		 <input id="volume" type="range" min="0" max="10" value="5" />
 		 <br>
@@ -47,6 +64,7 @@ $("")
 			<button id="pause"></button>
 			<button id="stop"></button>
 			<button id="next"></button>
+			
 			</span>
 		 </div>
 		 <div class="clearfix"></div>
@@ -59,8 +77,8 @@ $("")
 		 <div class="clearfix"></div>
 		 <ul class="nav nav-tabs" role="tablist">
     		<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><p style="color: black;font: bolder;">재생목록</p></a></li>
-    		<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">가사</a></li>
-    		<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">내앨범</a></li>
+<li role="presentation"><a href="#Lyrics" aria-controls="Lyrics" role="tab" data-toggle="tab">가사</a></li>    		
+<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">내앨범</a></li>
     		
   		</ul>
   		
@@ -76,16 +94,17 @@ $("")
 			<li song="Linkin Park - Pushing Me Away.mp3" cover="${music.musicVideo }/0.jpg" artist="${music.artistName }" id="val">${music.musicSubject }</li> --%>
 		<%-- 	${val }
 			${music.musicVideo }입니다  --%>
-			   <c:forEach items="${list }" var="MusicVO">
-     				<li song="로꼬, GRAY (그레이) - GOOD (Feat. ELO).mp3" musicnumber="${MusicVO.musicNumber}" cover="${MusicVO.musicVideo }/0.jpg" artist="${MusicVO.artistName }" id="val">${MusicVO.artistName } - ${MusicVO.musicSubject }</li>
+			   <c:forEach items="${list}" var="MusicVO">
+     				<li song="로꼬, GRAY (그레이) - GOOD (Feat. ELO).mp3" musicLyrics="${MusicVO.musicLyrics}" cover="${MusicVO.musicVideo }/0.jpg" artist="${MusicVO.artistName }" id="val"><input type="checkbox">${MusicVO.artistName } - ${MusicVO.musicSubject } </li>
    				</c:forEach>
 		</ul>
+		
+		<button onclick="deleteAll()" type="button" class="btn btn-default">목록삭제</button>
     </div>
-    <div role="tabpanel" class="tab-pane" id="profile"></div>
+    <div role="tabpanel" class="tab-pane" id="Lyrics"></div>
     <div role="tabpanel" class="tab-pane" id="messages">...</div>
     
   </div>
-		<button type="button">삭제</button>
 	</div>
 
 </div>

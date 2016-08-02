@@ -5,7 +5,7 @@
 
 <mapper namespace="com.bridge.mappers.searchMapper">	
 	<select id="videotest" resultType="VideoVO" parameterType="Paging"><!-- 페이지마다10개씩 데이터를 뽑아온다 -->
-		select m.musicsubject,a.artistname,a.albumdate,m.musicvideo from music as m,(select * from album as a,artist as t where a.artist_artistnumber=t.artistnumber) as a where m.albumnumber=a.albumnumber 
+		select m.musicsubject,a.artistname,a.albumdate,m.musicvideo,a.albumtype,m.musicNumber from music as m,(select * from album as a,artist as t where a.artist_artistnumber=t.artistnumber) as a where m.albumnumber=a.albumnumber 
 		<if test="searchType!=''">
 			<if test='searchType=="제목"'>
 			AND m.musicsubject like '%${search}%'
@@ -29,6 +29,12 @@
 	
 	<select id="totalvideo1" resultType="VideoVO">
 		select * from music
+	</select>
+	
+	<select id="chartvideo" resultType="VideoVO"><!-- music게시물 총갯수 -->
+		
+		select m.musicsubject,a.artistname,a.albumdate,m.musicvideo,a.albumtype from music as m,(select * from album as a,artist as t where a.artist_artistnumber=t.artistnumber) as a where m.albumnumber=a.albumnumber
+		ORDER BY m.musicnumber desc limit 1,100;
 	</select>
 </mapper>
 

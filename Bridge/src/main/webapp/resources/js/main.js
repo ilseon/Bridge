@@ -4,7 +4,7 @@ var audio;
 $('#pause').hide();
 	
 //Initializer - Play First Song
-initAudio($('#playlist li:first-child'));
+initAudio($('#playlist li:last-child'));
 	
 function initAudio(element){
 	var song = element.attr('song');
@@ -20,13 +20,14 @@ function initAudio(element){
 	}
 
 	$('#audio-player .title').text(title);
-    $('#audio-player .artist').text(artist);
+   // $('#audio-player .artist').text(artist);
 	
 	//Insert Cover Image
 	$('img.cover').attr('src','https://img.youtube.com/vi/' + cover);
 	
 	$('#playlist li').removeClass('active');
     element.addClass('active');
+    audio.play();
 }
 
 

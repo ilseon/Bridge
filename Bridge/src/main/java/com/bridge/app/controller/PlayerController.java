@@ -52,6 +52,8 @@ public class PlayerController {
 		return mav;
 	}
 	
+
+	
 	@RequestMapping(value = "player", method = RequestMethod.POST)
 	public ModelAndView showPlayerTag(@RequestParam(required = false) String val,Model model) throws Exception {
 		logger.info("It is playertest");
@@ -71,5 +73,6 @@ public class PlayerController {
 	@RequestMapping("delplayer")
 	public void delPlayer(){
 		System.out.println("awdawwdaadad");
+		list.removeAll(list);
 	}
 }
