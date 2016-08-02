@@ -12,17 +12,12 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<!DOCTYPE html>
-<html>
-<head>
+
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-<!-- <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
- -->
+<!-- <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script> -->
+<!-- <script src="/resources/bootstrap/js/bootstrap.min.js"></script> -->
 
-</head>
 
-<body style="margin-top: 4%;">
 <script>
 	var replyCnt = 10; // 더보기를 위한
 	var replyFirst = false; // 초기화를 위한
@@ -162,7 +157,7 @@
 	
 	
 	
-	// 체크박스 전체 선택/해제를 위한 jquery
+	/* // 체크박스 전체 선택/해제를 위한 jquery
 	$(function(){
 		$("#allCheck").click(function(){
 			if($(this).is(":checked")){ // 전체체크
@@ -171,7 +166,7 @@
 				$("input[id^=check]").prop("checked", false);
 			}
 		});	
-	});		
+	});	 */	
 	
 </script>	
 
@@ -182,7 +177,7 @@
 			<img src="<%=request.getContextPath()%>/upload/album/${albumVO.albumImg}" width="60%">
 		</div>
 		<div class="col-md-7" style="vertical-align: middle;">
-			<table class="table" style="vertical-align: middle;">
+			<table class="table"  style="vertical-align: middle;">
 				<tr>
 					<td>아티스트</td>
 					<td>${albumVO.artistName}</td>
@@ -207,16 +202,16 @@
 	
 	<div class="container"><!-- 두 번째 블럭(수록곡) start -->
 		<h3>수록곡(${fn:length(musicList)})</h3>
-		<div><!-- 버튼들 -->
-			<input type="checkbox" id="allCheck">
-			<button class="btn">듣기</button>
-			<button class="btn">재생목록에 추가</button>
-			<button class="btn">내 앨범에 담기</button>
-			<button class="btn">다운로드</button>
-			<button class="btn">전체듣기</button>
-		</div>
+		 <div id="check_all">
+              &nbsp;&nbsp;<input type="checkbox" id="checkall" name="checkall"/>
+              <a><button class="btn btn-default btn-xs" id="listen" onclick="PopupWindow()"><span class="glyphicon glyphicon-play" style="color:red"></span>듣기</button></a>
+              <button class="btn btn-default btn-xs" id="add_listen"><span class="glyphicon glyphicon-plus" style="color:green"></span>재생 목록에 추가</button>
+              <button class="btn btn-default btn-xs" id="myalbum"  data-toggle="modal"><span class="glyphicon glyphicon-paste"></span>내 앨범에 담기</button>
+              <button class="btn btn-default btn-xs" data-toggle="modal" id="download"><span class="glyphicon glyphicon-download-alt"></span>다운로드</button>
+              <button class="btn btn-default btn-xs" id="all_listen" onclick="PopupWindow()"><span class="glyphicon glyphicon-play" style="color:red"></span>전체 듣기</button>
+        </div>
 		<br>
-		<table class="table">
+		<table class="table" id="mytable">
 			<tr>
 				<th width="3%"></th><!-- 체크박스열 -->
 				<th width="5%">번호</th>
@@ -233,16 +228,28 @@
 			<c:set var="cnt" value="1"/>
 			<c:forEach var="musicVO" items="${musicList}" >				
 				<tr>
-					<td><input type="checkbox" id="check${musicVO.musicNumber}"></td>
+					<td width="3%"><input type="checkbox" value="${musicVO.musicNumber}"/></td>
 					<td>${cnt}</td>
 					<td>${musicVO.musicSubject} &nbsp; <c:if test="${musicVO.musicTitle == 1}"><img src="/resources/images/musicTitle.png" width="15%"/></c:if></td>
-					<td>${musicVO.artistName}</td>
-					<td>듣기</td>
-					<td>재생목록</td>
-					<td>내앨범</td>
-					<td>다운</td>
-					<td>뮤비</td>
-					<td>좋아</td>				
+					<td><a href="/artist_detail?artistNumber=${musicVO.artistNumber}">${musicVO.artistName}</a></td>					
+					 <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="player(${musicVO.musicNumber})"></span></button></td>
+                         <td width="7%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
+                         <td width="7%"><a href="/myalbum_modal?musicnumber=${musicVO.musicNumber}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>
+                         <td width="7%"><a href="/download_modal?musicnumber=${musicVO.musicNumber}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#Download" id="download"><span class="glyphicon glyphicon-download-alt"></span></a></td>
+                         <td width="7%"><a href="https://www.youtube.com/?gl=KR&hl=ko"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play-circle"></span></button></a></td>
+                         <td width="7%">
+                            <button class="btn btn-default btn-xs" id="like">
+                            <c:set var="like_is" value="no"/>
+                            <c:forEach var="like" items="${likeList}">
+                               <c:if test="${like.musicNumber eq musicVO.musicNumber}">
+                                  <span class="glyphicon glyphicon-heart" style="color:red" id="${musicVO.musicNumber}"></span>
+                                  <c:set var="like_is" value="yes"/>
+                               </c:if>
+                            </c:forEach>
+                           <c:if test="${like_is eq 'no'}">
+                              <span class="glyphicon glyphicon-heart" id="${musicVO.musicNumber}"></span>
+                           </c:if>
+                            </button><!-- </a> --></td>			
 				</tr>
 				<c:set var="cnt" value="${cnt+1}"/>
 			</c:forEach>

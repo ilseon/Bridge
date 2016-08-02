@@ -139,10 +139,10 @@ $(function(){
 
                       <tr>
                          <td width="3%"><input type="checkbox" value="${music.musicNumber}"/></td>
-                         <td width="7%"><a href="/test"> <img src="/resources/image/shinhwa.PNG" style="height: 60px; width:60px;">${music.albumImg}</td>
+                         <td width="7%"><a href="/album_detail?albumNumber=${music.albumNumber}"><img src="<%=request.getContextPath()%>/upload/album/${music.albumImg}" style="height: 60px; width:60px;"></a></td>
                          <td width="23%">${music.musicSubject}</td>
-                         <td width="20%"><a href="/test2"></a>${music.artistName}</td>
-                         <td width="7%">${music.albumName}</td>
+                         <td width="20%"><a href="/artist_detail?artistNumber=${music.artistNumber}">${music.artistName}</a></td>
+                         <td width="7%"><a href="/album_detail?albumNumber=${music.albumNumber}">${music.albumName}</a></td>
                          <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="PopupWindow()"></span></button></td>
                          <td width="7%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
                          <td width="7%"><a href="/myalbum?musicnumber=${music.musicNumber}"><button class="btn btn-default btn-xs" data-title="MyAlbum" data-toggle="modal" data-target="#MyAlbum" id="myalbum"><span class="glyphicon glyphicon-paste"></span></button></a></td>

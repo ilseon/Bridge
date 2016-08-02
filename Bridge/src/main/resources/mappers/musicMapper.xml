@@ -94,7 +94,9 @@
                   a.albumimg AS albumimg,
                   ar.artistname AS artistname,
                   a.albumname AS albumname,
-                  m.musicnumber AS musicnumber
+                  m.musicnumber AS musicnumber,
+                  m.albumnumber AS albumnumber,
+                  m.artistnumber AS artistnumber
           FROM
               music AS m
           INNER JOIN album AS a ON m.albumnumber = a.albumnumber
