@@ -31,7 +31,7 @@ public class LikeServiceImpl implements LikeService {
 
 	@Override
 	public void remove(LikeVO like) throws Exception {
-		// TODO Auto-generated method stub
+		likeDAO.remove(like);
 	}
 
 	@Override
