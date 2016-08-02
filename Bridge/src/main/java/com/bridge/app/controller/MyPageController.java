@@ -157,7 +157,8 @@ public class MyPageController {
 	 * @throws Exception */
 	@RequestMapping(value = "mytrack_detail", method = RequestMethod.GET)
 	public ModelAndView MyTrack_Detail(@RequestParam int albumNumber, Model view) throws Exception {		
-		view.addAttribute("MytrackList",albumservice.MytrackDetail(albumNumber));
+		view.addAttribute("albumList",albumservice.MytrackAlbum(albumNumber));
+		view.addAttribute("musicList",musicservice.MytrackMusic(albumNumber));
 		logger.info("It is mytrack_datail");
 		ModelAndView mav = new ModelAndView("/upload/mytrack_detail");
 		return mav;

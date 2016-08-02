@@ -128,4 +128,10 @@ public class MusicServiceImpl implements MusicService {
 	   public int searchCount(Paging paging) throws Exception {
 	      return musicDAO.searchCount(paging);
 	   }
+
+
+	@Override
+	public List<MusicVO> MytrackMusic(int albumNumber) throws Exception {
+		return musicDAO.MytrackMusic(albumNumber);
+	}
 }

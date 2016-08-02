@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.bridge.app.domain.AlbumVO;
 import com.bridge.app.domain.MusicVO;
 import com.bridge.app.domain.Paging;
 import com.bridge.app.domain.VideoVO;
@@ -41,6 +42,8 @@ public interface MusicDAO {
 	public void like_update(int musicNumber) throws Exception;
 
 	public void like_remove(int musicNumber) throws Exception;
+	
+	public List<MusicVO> MytrackMusic(int albumNumber) throws Exception;
 
 	// 일선 추가
 	public List<MusicVO> getArtistMusic(int artistNumber) throws Exception;

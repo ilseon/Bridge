@@ -32,6 +32,7 @@ public interface MusicService {
 	public void play_update(Map musicnumbers) throws Exception;
 	public void like_update(int musicNumber) throws Exception;
 	public void like_remove(int musicNumber) throws Exception;
+	public List<MusicVO> MytrackMusic(int albumNumber) throws Exception;
 	
 	// 일선 추가
 	public List<MusicVO> getArtistMusic(int artistNumber) throws Exception;

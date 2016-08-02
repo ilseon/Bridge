@@ -108,9 +108,8 @@ public class AlbumDAOImpl implements AlbumDAO {
 	}
 
 	@Override
-	public List<AlbumVO> MytrackDetail(int albumNumber) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+".MytrackDetail", albumNumber);
+	public List<AlbumVO> MytrackAlbum(int albumNumber) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".MytrackAlbum", albumNumber);
 	}
 	
 

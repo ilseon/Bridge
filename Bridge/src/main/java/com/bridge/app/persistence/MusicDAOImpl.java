@@ -201,6 +201,10 @@ public class MusicDAOImpl implements MusicDAO {
     public int searchCount(Paging paging) throws Exception {
        return sqlSession.selectOne(NAMESPACE + ".searchCount", paging);
     }
-	
+
+	@Override
+	public List<MusicVO> MytrackMusic(int albumNumber) throws Exception {		
+		return sqlSession.selectList(NAMESPACE + ".MytrackMusic", albumNumber);
+	}
 
 }

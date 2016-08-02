@@ -39,11 +39,9 @@ public class AlbumServiceImpl implements AlbumService {
 		return dao.searchMytrack(usernumber, limit);
 	}
 	@Override
-	public List<AlbumVO> MytrackDetail(int albumNumber) throws Exception {
-		return dao.MytrackDetail(albumNumber);
+	public List<AlbumVO> MytrackAlbum(int albumNumber) throws Exception {
+		return dao.MytrackAlbum(albumNumber);
 	}
-
-	
 	
 	// 일선 추가
 	@Override

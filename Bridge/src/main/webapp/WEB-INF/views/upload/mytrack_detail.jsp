@@ -27,7 +27,7 @@
 				});
 			}
 			alert("업로드되었습니다.");
-			//$("f").submit();
+			$("f").submit();
 		});
 		// 삭제를 위한 jquery	
 		$("#delete").click(function() {
@@ -59,6 +59,7 @@
 #chp {
 	margin-left: 80px;
 }
+
 #pom {
 	border-radius: 17px;
 	background-color: #EDE6E6;
@@ -117,11 +118,12 @@
 				<h3 class="panel-title">내 트랙</h3>
 			</div>
 			<!-- end -->
-			<form class="form-horizontal" id="f" method="post"
-				enctype="multipart/form-data">
-				<c:forEach var="list" items="${MytrackList}">
-					<div class="col-md-12">
-						<br /> <br />
+			<div class="col-md-12">
+				<form class="form-horizontal" id="album" method="post"
+					enctype="multipart/form-data">
+					<c:forEach var="list" items="${albumList}">
+						<br />
+						<br />
 						<div class="jumbotron" id="pom">
 							<div id="upload_main">
 								<div class="col-md-2 col-md-offset-1" id="chp">
@@ -136,14 +138,15 @@
 										<label for="album" class="col-lg-4 control-label">앨범명</label>
 										<div class="col-md-7">
 											<input type="text" class="form-control" id="albumName"
-										name="albumName" value="${list.albumName}">										
+												name="albumName" value="${list.albumName}">
 										</div>
 									</div>
 									<div class="form-group">
 										<!-- 앨범 종류 입력 -->
 										<label for="kind" class="col-lg-4 control-label">앨범 종류</label>
 										<div class="col-md-7">
-											<select class="form-control" id="albumType" name="albumType" ${list.albumType}>
+											<select class="form-control" id="albumType" name="albumType"
+												${list.albumType}>
 												<option>싱글</option>
 												<option>미니</option>
 												<option>정규</option>
@@ -154,7 +157,8 @@
 										<!-- 장르 입력 -->
 										<label for="genre" class="col-lg-4 control-label">장르</label>
 										<div class="col-md-7">
-											<select class="form-control" id="albumGenre" name="albumGenre"  ${list.albumGenre}>
+											<select class="form-control" id="albumGenre"
+												name="albumGenre" ${list.albumGenre}>
 												<option>발라드/댄스/팝</option>
 												<option>일렉트로닉</option>
 												<option>알앤비</option>
@@ -170,17 +174,16 @@
 										<label for="genre" class="col-lg-4 control-label">날짜</label>
 										<div class="col-md-7">
 											<input type="date" class="form-control" name="albumDate"
-								id="albumDate"	value="${list.albumDate}"><br />
+												id="albumDate" value="${list.albumDate}"><br />
 										</div>
 										<!-- 19세 여부 체크 -->
 										<label for="ageLimit" class="col-lg-4 control-label">이용
 											연령</label>
 										<div class="col-md-7">
 											&nbsp;모든 연령&nbsp;&nbsp;<input type="radio" id="ageLimit"
-												name="ageLimit" value="0" readonly="readonly" /><br/>
-											19세 이상
-											<input type="radio" id="ageLimit"
-												name="ageLimit" value="1" readonly="readonly" />
+												name="ageLimit" value="0" readonly="readonly" /><br /> 19세
+											이상 <input type="radio" id="ageLimit" name="ageLimit"
+												value="1" readonly="readonly" />
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										</div>
 									</div>
@@ -191,8 +194,7 @@
 										<label for="description" class="col-lg-2 control-label">설명</label>
 										<div class="col-lg-8">
 											<textarea class="form-control" rows="10" cols="100"
-												 name="albumContent" id="albumContent"
-										>${list.albumContent}
+												name="albumContent" id="albumContent">${list.albumContent}
 											</textarea>
 										</div>
 									</div>
@@ -201,11 +203,16 @@
 							<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 							<br /> <br />
 						</div>
-						<br />
+					</c:forEach>
+				</form>
+				<br />
+				<form class="form-horizontal" id="music" method="post"
+					enctype="multipart/form-data">
+					<c:forEach var="list" items="${musicList}">
 						<table class="table">
 							<tr>
-								<th width="3%"><a href="">
-								<input type="hidden" id="del" name="del" value="${list.musicNumber}"/></a></th>
+								<th width="3%"><a href=""> <input type="hidden"
+										id="del" name="del" value="${list.musicNumber}" /></a></th>
 								<th width="6%">트랙</th>
 								<th width="12%">음원 파일</th>
 								<th width="8%">타이틀</th>
@@ -216,31 +223,34 @@
 								<th width="35%">가사</th>
 							</tr>
 							<!-- 음원파일, 곡, 타이틀, 뮤비 -->
-								<tbody>
-									<tr>
-										<td><input type="checkbox" name="check" id="check${i}"></td>
-										<td><strong>${i}</strong></td>
-										<td><input type="file" name="musicFile${i}"
-											id="musicFile${i}" accept="audio/*" /><br/>${list.musicFile}</td>
-										<td><input type="checkbox" name="musicTitle${i}"
-											id="musicTitle${i}" value="1" ></td>
-										<td><input type="text" name="musicSubject${i}"
-											id="musicSubject${i}" class="form-control" width="20%"
-											value="${list.musicSubject}" /></td>
-										<td></td>
-										<td><input type="text" name="musicVideo${i}"
-											id="musicVideo${i}" class="form-control" value="${list.musicVideo}" /></td>
-										<td></td>
-										<td><textarea class="form-control" rows="4" cols="70"
-												id="musicLyrics${i}" name="musicLyrics${i}" >
+							<tbody>
+								<tr>
+									<td><input type="checkbox" name="check" id="check${i}"></td>
+									<td><strong>${i}</strong></td>
+									<td><input type="file" name="musicFile${i}"
+										id="musicFile${i}" accept="audio/*" /><br />${list.musicFile}</td>
+									<td><input type="checkbox" name="musicTitle${i}"
+										id="musicTitle${i}" value="1"></td>
+									<td><input type="text" name="musicSubject${i}"
+										id="musicSubject${i}" class="form-control" width="20%"
+										value="${list.musicSubject}" /></td>
+									<td></td>
+									<td><input type="text" name="musicVideo${i}"
+										id="musicVideo${i}" class="form-control"
+										value="${list.musicVideo}" /></td>
+									<td></td>
+									<td><textarea class="form-control" rows="4" cols="70"
+											id="musicLyrics${i}" name="musicLyrics${i}">
 												${list.musicLyrics}
 										</textarea></td>
-									</tr>
-								</tbody>
+								</tr>
+							</tbody>
 						</table>
-					</div>
-				</c:forEach>
-			</form>
+					</c:forEach>
+				</form>
+			</div>
+
+
 			<!-- end -->
 
 			<!-- 버튼 start -->
@@ -250,8 +260,7 @@
 						<button type="submit" class="btn btn-primary" id="update">수정</button>
 						<button type="submit" class="btn btn-primary" id="delBtn">삭제</button>
 						<button type="reset" class="btn btn-primary" id="cencle"
-						onclick="location.href='mytrack'"
-						>취소</button>
+							onclick="location.href='mytrack'">취소</button>
 					</div>
 				</div>
 			</div>
