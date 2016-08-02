@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@page import="java.util.Enumeration"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,15 +21,26 @@
 	//비밀번호를 입력을 확인하는 jquery 
 	$(document).ready(function() {
 		$(".btn-primary").on("click", function() {
-			if (!$("#pw").val()) {
+			alert($("#userPassword").val());
+			alert($("#dbPassword").val());
+			if (!$("#userPassword").val()) {
 				alert("비밀번호를 입력해주세요.");
 				return false;
-			} else {
-				$("#f").submit();
+			} else if ($("#userPassword").val() != $("#dbPassword").val()) {
+				alert("비밀번호가 틀렸습니다. 다시 확인해서 입력해주세요.");
+				return false;
+			} else if ($("#userPassword").val() == $("#dbPassword").val()) {
+				alert("확인되었습니다.");
+				$("#pwcheck").submit();
 			}
 		});
 	});
 </script>
+<style>
+#main {
+	margin-bottom: 320px;
+}
+</style>
 </head>
 <body style="margin-top: 4%;">
 	<!-- header, sideber start -->
@@ -37,7 +49,7 @@
 	<!-- end -->
 
 	<!-- 상단 tab start-->
-	<div class="container">
+	<div class="container" id="main">
 		<br /> <br />
 		<div class="col-md-12">
 			<ul class="nav nav-tabs">
@@ -53,25 +65,28 @@
 				<strong>회원님의 개인정보보호를 위해 현재 사용중인 비밀번호를 입력해 주시기 바랍니다 </strong>
 			</h5>
 			<br /> <br />
-			<form class="form-horizontal well" action="modify" method="post"
-				id="f">
+			<form class="form-horizontal well" action="modify" method="post" accept-charset="UTF-8"
+				id="pwcheck">
+					<input type="hidden" id="dbPassword" name="dbPassword"
+						value="1111" />	
 				<div class="form-group">
 					<label for="id" class="col-lg-5 control-label">아이디</label>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="id" value="AAA">
+						<input type="text" class="form-control" name="userId" id="userId"
+							value="${userid}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="pw" class="col-lg-5 control-label">비밀번호</label>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="pw"
-							placeholder="비밀번호 입력">
+						<input type="password" class="form-control" id="userPassword"
+							name="userPassword" placeholder="비밀번호 입력">
 					</div>
 				</div>
 			</form>
 		</div>
 		<!-- end -->
-		
+
 		<!-- 버튼 start -->
 		<div class="col-md-12">
 			<div align="center" style="margin-top: 70px">
@@ -80,7 +95,7 @@
 					<button type="reset" class="btn btn-default">취소</button>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<!-- end -->
 	</div>
 	<br />

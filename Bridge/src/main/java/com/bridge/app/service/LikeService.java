@@ -15,6 +15,7 @@ import com.bridge.app.domain.LikeVO;
 public interface LikeService {
 	public void regist(LikeVO like) throws Exception;
 	public void remove(LikeVO like) throws Exception;
+	public void removeAll(int userNumber) throws Exception;
 	public List<Integer> searchAll(Integer userNumber) throws Exception;
 	public List<LikeVO> searchMusic(Integer userNumber, int limit) throws Exception;
 	public List<LikeVO> searchAlbum(Integer userNumber) throws Exception;

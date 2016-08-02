@@ -121,7 +121,7 @@
 			<div class="col-md-12">
 				<form class="form-horizontal" id="album" method="post"
 					enctype="multipart/form-data">
-					<c:forEach var="list" items="${albumList}">
+					<c:forEach var="list" items="${albumList}" begin="1" end="1">
 						<br />
 						<br />
 						<c:set var="j" value="1"></c:set>
@@ -203,44 +203,45 @@
 							</div>
 							<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 							<br /> <br />
-						<c:set var="j" value="${j+1}"></c:set>
+							<c:set var="j" value="${j+1}"></c:set>
 						</div>
 					</c:forEach>
 				</form>
 				<br />
 				<form class="form-horizontal" id="music" method="post"
 					enctype="multipart/form-data">
-					<c:forEach var="list" items="${musicList}">
-					<c:set var="j" value="1"></c:set>
-						<table class="table">
-							<tr>
-								<th width="3%"><a href=""> <input type="hidden"
-										id="del" name="del" value="${list.musicNumber}" /></a></th>
-								<th width="6%">트랙</th>
-								<th width="12%">음원 파일</th>
-								<th width="8%">타이틀</th>
-								<th width="23%">곡</th>
-								<th width="1%"></th>
-								<th width="19%">뮤비</th>
-								<th width="1%"></th>
-								<th width="35%">가사</th>
-							</tr>
-							<!-- 음원파일, 곡, 타이틀, 뮤비 -->
+
+					<table class="table">
+						<tr>
+							<th width="3%"><a href=""> <input type="hidden" id="del"
+									name="del" value="${list.musicNumber}" /></a></th>
+							<th width="6%">트랙</th>
+							<th width="12%">음원 파일</th>
+							<th width="8%">타이틀</th>
+							<th width="23%">곡</th>
+							<th width="1%"></th>
+							<th width="19%">뮤비</th>
+							<th width="1%"></th>
+							<th width="35%">가사</th>
+						</tr>
+						<!-- 음원파일, 곡, 타이틀, 뮤비 -->
+						<c:forEach var="list" items="${musicList}">
+							<c:set var="j" value="1"></c:set>
 							<tbody>
 								<tr>
-									<td><input type="checkbox" name="check" id="check" value="${list.musicNumber}"></td>
+									<td><input type="checkbox" name="check" id="check"
+										value="${list.musicNumber}"></td>
 									<td><strong>${j}</strong></td>
-									<td><input type="file" name="musicFile"
-										id="musicFile" accept="audio/*" /><br />${list.musicFile}</td>
+									<td><input type="file" name="musicFile" id="musicFile"
+										accept="audio/*" /><br />${list.musicFile}</td>
 									<td><input type="checkbox" name="musicTitle"
 										id="musicTitle" value="1"></td>
 									<td><input type="text" name="musicSubject"
 										id="musicSubject" class="form-control" width="20%"
 										value="${list.musicSubject}" /></td>
 									<td></td>
-									<td><input type="text" name="musicVideo"
-										id="musicVideo" class="form-control"
-										value="${list.musicVideo}" /></td>
+									<td><input type="text" name="musicVideo" id="musicVideo"
+										class="form-control" value="${list.musicVideo}" /></td>
 									<td></td>
 									<td><textarea class="form-control" rows="4" cols="70"
 											id="musicLyrics" name="musicLyrics">
@@ -248,9 +249,9 @@
 										</textarea></td>
 								</tr>
 							</tbody>
-						</table>
-						<c:set var="j" value="${j+1}"></c:set>
-					</c:forEach>
+							<c:set var="j" value="${j+1}"></c:set>
+						</c:forEach>
+					</table>
 				</form>
 			</div>
 

@@ -8,6 +8,8 @@
 
 package com.bridge.app.persistence;
 
+import java.util.List;
+
 import com.bridge.app.domain.UserVO;
 
 public interface UserDAO {
@@ -18,5 +20,6 @@ public interface UserDAO {
 	
 	public void insertUser (UserVO vo) throws Exception;
 	public UserVO readUser (String userId)throws Exception;
-	
+	public String passwordCheck(int usernumber) throws Exception;
+	public List<UserVO> selectAll(int usernumber)throws Exception;
 }

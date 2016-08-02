@@ -139,13 +139,13 @@
 									<c:forEach var="list" items="${artistList}">
 										<tr>
 											<td width="10%">${list.artistNumber}<input type="hidden"
-												id="artistNumber" value="${list.artistNumber}" /></td>
+												id="artistNumber" name="artistNumber" value="${list.artistNumber}" /></td>
 											<td width="25%"><input type="hidden"
-												src="/upload/artist/${list.artistImg}" id="artistImg" /> <input
+												src="/upload/artist/${list.artistImg}" id="artistImg" name="artistImg"  /> <input
 												type="hidden" id="artistName" value="${list.artistName}" />${list.artistName}</td>
-											<td width="18%"><input type="hidden" id="artistType"
+											<td width="18%"><input type="hidden" id="artistType"  name="artistType"
 												value="${list.artistType}" />${list.artistType}</td>
-											<td width="18%"><input type="hidden" id="artistGenre"
+											<td width="18%"><input type="hidden" id="artistGenre" name="artistGenre"
 												value="${list.artistGenre}" />${list.artistGenre}</td>
 											<td width="10%"><a
 												href="artistRegist?artistNumber=${list.artistNumber}"

@@ -7,13 +7,7 @@ public class ArtistVO {
 	private String artistGenre;
 	private String artistImg;
 	private int userNumber;
-	
-		
-	@Override
-	public String toString() {
-		return "ArtistVO [artistNumber=" + artistNumber + ", artistName=" + artistName + ", artistType=" + artistType
-				+ ", artistGenre=" + artistGenre + ", artistImg=" + artistImg + ", userNumber=" + userNumber + "]";
-	}
+
 	public int getArtistNumber() {
 		return artistNumber;
 	}

@@ -141,9 +141,9 @@ $(function(){
 									<span class="caret"></span>
 							</a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">결제내역</a></li>
+									<li><a href="payment">결제내역</a></li>
 									<li class="divider"></li>
-									<li><a href="#">정보관리</a></li>
+									<li><a href="modify">정보관리</a></li>
 									<li class="divider"></li>
 									<li><a href="logout">로그아웃</a></li>
 								</ul>

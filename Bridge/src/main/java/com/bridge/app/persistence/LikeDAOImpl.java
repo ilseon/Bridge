@@ -32,8 +32,7 @@ public class LikeDAOImpl implements LikeDAO {
 
 	@Override
 	public void remove(LikeVO like) throws Exception {
-		sqlSession.delete(NAMESPACE+".remove", like);
-		
+		sqlSession.delete(NAMESPACE+".remove", like);		
 	}
 
 	@Override
@@ -49,5 +48,10 @@ public class LikeDAOImpl implements LikeDAO {
 	@Override
 	public List<LikeVO> searchAlbum(Integer userNumber) throws Exception {
 		return sqlSession.selectList(NAMESPACE+".selectAlbum", userNumber);
+	}
+
+	@Override
+	public void removeAll(int userNumber) throws Exception {
+		sqlSession.delete(NAMESPACE+".removeAll", userNumber);				
 	}
 }

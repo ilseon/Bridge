@@ -109,10 +109,10 @@ public class AlbumDAOImpl implements AlbumDAO {
 
 	@Override
 	public List<AlbumVO> MytrackAlbum(int albumNumber) throws Exception {
+		
 		return sqlSession.selectList(NAMESPACE+".MytrackAlbum", albumNumber);
 	}
 	
-
 	// 일선 추가
 	@Override
 	public List<AlbumVO> getArtistAlbum(int artistNumber) throws Exception {

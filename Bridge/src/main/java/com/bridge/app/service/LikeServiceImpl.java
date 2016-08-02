@@ -49,4 +49,9 @@ public class LikeServiceImpl implements LikeService {
 		return likeDAO.searchAlbum(userNumber);
 	}
 
+	@Override
+	public void removeAll(int userNumber) throws Exception {
+		likeDAO.removeAll(userNumber);		
+	}
+
 }

@@ -27,7 +27,7 @@
    </select>
    
    <delete id="remove">
-
+	delete from playlist where musicnumber=#{musicNumber} and usernumber=#{userNumber}
    </delete>
    
    	<select id="selectAlbum"  parameterType="map" resultType="com.bridge.app.domain.PlaylistVO">

@@ -28,6 +28,7 @@ public class ArtistDAOImpl implements ArtistDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
 	private static final String NAMESPACE = "com.bridge.mappers.artistMapper";
+	private static final String NAMESPACE2 = "com.bridge.mappers.albumMapper";
 
 	@Override
 	public void regist(HttpServletRequest req) throws Exception {
@@ -90,15 +91,14 @@ public class ArtistDAOImpl implements ArtistDAO {
 	@Override
 	public void remove(int artistNumber) throws Exception {
 				
-		int artistNum = sqlSession.delete(NAMESPACE+".selectAlbum", artistNumber);
+		int artistNum = sqlSession.delete(NAMESPACE2+".selectAlbumChk", artistNumber);
 
 		if(artistNum == 0){
 			sqlSession.delete(NAMESPACE+".remove", artistNumber);
 		}
 	}
 	
-	public ArtistVO update(HttpServletRequest req) throws Exception {
-		
+	public ArtistVO update(HttpServletRequest req) throws Exception {		
 
 		int postMaxSize = 10 * 1024 * 1024;
 		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
@@ -113,7 +113,7 @@ public class ArtistDAOImpl implements ArtistDAO {
         String encoding = "UTF-8";
         Enumeration enumer = null;
         MultipartRequest multiReq = 
-        			new MultipartRequest(req, folder_p, postMaxSize, "UTF-8", new DefaultFileRenamePolicy());
+    			new MultipartRequest(req, folder_p, postMaxSize, "UTF-8", new DefaultFileRenamePolicy());
 
         enumer=multiReq.getFileNames();
         String artistImg = "";      
@@ -127,14 +127,11 @@ public class ArtistDAOImpl implements ArtistDAO {
      	logger.info(multiReq.getParameter("artistNumber")+multiReq.getParameter("artistName")+ 
      			multiReq.getParameter("artistType")+multiReq.getParameter("artistGenre")+artistImg);
          
-     	int artistNumber = Integer.parseInt(multiReq.getParameter("artistNumber"));
-     	
-		String artistName = multiReq.getParameter("artistName");
-		String artistType = multiReq.getParameter("artistType");
-		String artistGenre = multiReq.getParameter("artistGenre");    	
+     	int artistNumber = Integer.parseInt(multiReq.getParameter("artistNumber")); 	
      	
          ArtistVO artist = new ArtistVO();
          
+         artist.setArtistNumber(artistNumber);
          artist.setArtistName(multiReq.getParameter("artistName"));
          artist.setArtistGenre(multiReq.getParameter("artistGenre"));
          artist.setArtistType(multiReq.getParameter("artistType"));
@@ -142,13 +139,13 @@ public class ArtistDAOImpl implements ArtistDAO {
 						
 		sqlSession.update(NAMESPACE+".update", artistNumber);
 		
-		return artist;
-		
+		return artist;		
 	}
 
 	@Override
-	public List<ArtistVO> selectArtistOne(int artistNumber) throws Exception {
-		return sqlSession.selectList(NAMESPACE+".selectArtistOne", artistNumber);
-	}
+	public ArtistVO selectArtistOne(int artistNumber) throws Exception {
+		
+		return (ArtistVO) sqlSession.selectOne(NAMESPACE+".selectArtistOne", artistNumber);
+	}                                             
 
 }

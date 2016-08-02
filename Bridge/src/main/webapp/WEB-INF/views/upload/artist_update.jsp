@@ -20,32 +20,17 @@
 <script>
 	$(document).ready(
 			function() {
-				/*var type = $("#TypeValue").val();
-				
-				var genre = $("#GenreValue").val();
-				if ($("artistType").val() == type) {
-					$("#artistType option").prop("selected", "selected");
-				}
-				if ($("artistGenre").val() == "선택") {
-					$("#artistType option").prop("selected", false);
-				}
-				 */
 				// 정보 수정 jquery 
 				$("#update").click(
 						function() {
-							var file = artist.artistImg.value;
-							var fileExt = file
-									.substring(file.lastIndexOf('.') + 1); //파일확장자
+							//var file = artist.artistImg.value;
+							//alert(file);
+							//var fileExt = file.substring(file.lastIndexOf('.') + 1); //파일확장자
 							if ($("#artistType").val() == "선택") {
 								alert("아티스트 타입을 선택해주세요.");
 								return false;
 							} else if ($("#artistGenre").val() == "선택") {
 								alert("아티스트 장르를 선택해주세요.");
-								return false;
-							} else if (fileExt.toUpperCase() == "MP3"
-									|| fileExt.toUpperCase() == "AVI"
-									|| fileExt.toUpperCase() == "JSP") {
-								alert("이미지 파일만 업로드할 수 있습니다. 다시 확인해주세요.");
 								return false;
 							} else {
 								alert("수정되었습니다.");
@@ -112,25 +97,24 @@
 				<div id="upload_main">
 					<form id="artist" accept-charset="UTF-8" method="post"
 						enctype="multipart/form-data" action="artistUpdateCom">
-						<c:forEach var="list" items="${artistList}">
 							<div class="col-md-2 col-md-offset-1">
 								<input type="hidden" name="userNumber" id="userNumber"
 									value="${userNumber}" /> <input type="hidden"
-									name="artistNumber" id="artistNumber" value="${list.artistNumber}" />
-								<br /> <img src="/upload/artist/${list.artistImg}" width="120%"><br />
-								<br /> <input type="file" name="artistImg" id="artistImg"
-									accept="image/*" />
+									name="artistNumber" id="artistNumber" value="${artistVO.artistNumber}" />
+								<br /> <img src="/upload/artist/${artistVO.artistImg}" width="120%"><br />
+								<br /><input type="file"
+									name="artistImg" id="artistImg" accept="image/*" />
 							</div>
 							<div class="col-md-5 col-md-offset-1">
 								<br /> <label for="artistName" class="col-xs-4 control-label">아티스트</label>
 								<div class="col-xs-8">
-									<input type="text" id="artistName" name="artistName"  value="${list.artistName}"
+									<input type="text" id="artistName" name="artistName" value="${artistVO.artistName}"
 										class="form-control" /><br />
 								</div>
 								<!-- 아티스트 타입 등록 -->
 								<label for="artistType" class="col-xs-4 control-label">타입</label>
 								<div class="col-xs-8">
-									<input type="hidden" id="TypeValue" value="${list.artistType}" />
+									<input type="text" id="artistType" name="artistType" value="${artistVO.artistType}" />
 									<select class="form-control" id="artistType" name="artistType">
 										<option>선택</option>
 										<option>솔로</option>
@@ -141,8 +125,8 @@
 								<label for="artistGenre" class="col-xs-4 control-label">장르</label>
 								<div class="col-xs-8">
 									<!-- 아티스트 장르 등록 -->
-									<input type="hidden" id="GenreValue"
-										value="${list.artistGenre}" /> <select class="form-control"
+									<input type="text" id="artistGenre" name="artistGenre"
+										 value="${artistVO.artistGenre}" /> <select class="form-control"
 										id="artistGenre" name="artistGenre">
 										<option>선택</option>
 										<option>발라드/댄스/팝</option>
@@ -155,7 +139,6 @@
 									</select><br />
 								</div>
 							</div>
-						</c:forEach>
 					</form>
 					<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 					<br />

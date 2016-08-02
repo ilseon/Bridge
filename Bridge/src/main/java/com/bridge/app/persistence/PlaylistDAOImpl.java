@@ -36,8 +36,8 @@ public class PlaylistDAOImpl implements PlaylistDAO {
 	}
 
 	@Override
-	public void remove(List<PlaylistVO> playlists) throws Exception {
-
+	public void remove(PlaylistVO playlist) throws Exception {
+		
 	}
 
 	@Override

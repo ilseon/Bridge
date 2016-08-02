@@ -123,9 +123,10 @@
 					<th width="7%">다운</th>
 					<th width="7%">뮤비</th>
 				</tr>
-				<c:set var="j" value="1"></c:set>
-				<c:forEach var="list" items="${DownloadList}">
-					<tr>
+				<tr>
+					<c:set var="j" value="0"></c:set>
+					<c:forEach var="list" items="${DownloadList}">
+						<c:set var="j" value="${j+1}"></c:set>
 						<td><input type="checkbox" name="check" id="check${j}"></td>
 						<td>${j}</td>
 						<td><a href="album_detail"><img
@@ -148,9 +149,8 @@
 						<td width="7%"><button class="btn btn-default btn-xs">
 								<span class="glyphicon glyphicon-play-circle"></span>
 							</button></td>
-					</tr>
-				</c:forEach>
-				<c:set var="j" value="${j+1}"></c:set>
+					</c:forEach>
+				</tr>
 			</table>
 		</div>
 	</div>

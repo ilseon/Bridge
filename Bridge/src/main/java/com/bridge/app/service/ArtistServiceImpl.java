@@ -39,7 +39,7 @@ public class ArtistServiceImpl implements ArtistService{
 		return dao.update(req);
 	}
 	@Override
-	public List<ArtistVO> selectArtistOne(int artistNumber) throws Exception {
+	public  ArtistVO selectArtistOne(int artistNumber) throws Exception {
 		return dao.selectArtistOne(artistNumber);
 	}
 }

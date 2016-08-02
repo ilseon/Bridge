@@ -10,13 +10,18 @@
 package com.bridge.app.persistence;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.bridge.app.controller.HomeController;
+import com.bridge.app.controller.MyPageController;
 import com.bridge.app.domain.UserVO;
 
 @Repository
@@ -28,8 +33,8 @@ public class UserDAOImpl implements UserDAO {
 
 	private static final String namespace = "com.brige.mappers.loginMapper";
 	private static final String NAMESPACE="com.bridge.mappers.UserMapper";
-	
 
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	// 아이디와 비밀번호로 로그인 하는 메서드
 	@Override
 	public UserVO readLogin(String userid, String userpw) throws Exception {
@@ -77,4 +82,19 @@ public class UserDAOImpl implements UserDAO {
 		return (UserVO)sqlSession.selectOne(NAMESPACE + ".readUser");
 	}
 
+	@Override
+	public String passwordCheck(int usernumber) throws Exception {
+		
+		String userPassword = sqlSession.selectOne(namespace + ".PasswordCheck", usernumber);
+		UserVO user = new UserVO();		
+		user.setUserPassword(userPassword);
+		
+		return userPassword;
+	}
+
+	@Override
+	public List<UserVO> selectAll(int usernumber) throws Exception {	
+		
+		 return sqlSession.selectList(namespace+".selectAll", usernumber);
+	}		
 }
