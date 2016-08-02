@@ -2,8 +2,8 @@
 작성자 - 김민정
 내용 - 메인페이지
 시작날짜 - 2016/07/19
-수정날짜 - 2016/07/20
-변경내용 - 최신앨범 썸네일 형식으로변경
+수정날짜 - 2016/08/02
+변경내용 - 인기차트 툴 변경
  --%>
 
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
@@ -25,6 +25,49 @@ $(document).ready(function() {
   $(".quick").animate( { "top": $(document).scrollTop() + 20 + "px" }, 1000 );
  });
 });
+
+
+function player(num){
+	   
+	   var tmp=false;
+	    if (tmp==false){       //최초 클릭이면 팝업을 띄운다
+	        
+	       $.ajax({
+	           type: 'get',
+	           data: {"value":num},
+	         });
+	    
+	        tmp = true;
+	       // alert(tmp);
+	       Clip =   window.open("player?val="+num,"new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;")
+	         //Clip.close();                         
+	            Clip.focus();
+	            
+	       }
+	       else{           //최초 클릭이 아니면
+	        if(tmp){
+	           $.ajax({
+	              type: "post",
+	              url: 'player',
+	              data: {"val":num} ,
+	           success:alert("POST")
+	            });   
+	         Clip.close();                         
+	        }
+	        else{
+	           $.ajax({
+	              type: 'get',
+	              data: {"val":num},
+	              success:alert("POST아님")
+	            });
+	           tmp = true;
+	          }//없으면 팝업을 다시 띄울 수 있게 한다
+	          Clip =   window.open("player?val="+num,"new","width=500, height=900, resizable=no, scrollbars=no, status=no, location=no, directories=no;")
+	         tmp = true;
+	        
+	       }
+	 
+	};  
 </script>
 
 
@@ -65,16 +108,13 @@ $(document).ready(function() {
 				<table class="table">
 					<c:forEach begin="0" end="9" var="music" items="${musicList}" step="1">
 						<tr style="height: 70px;">
-							<td width="7%">${music.musicNumber}</td>
-							<td width="20%">-</td>
-							<td width="20%">${music.musicSubject}</td>
-							<td width="7%">${music.artistName}</td>
-							<td width="10%"><button class="btn btn-default btn-xs">
-									<span class="glyphicon glyphicon-play" style="color: red"></span>
-								</button></td>
-							<td width="10%"><button class="btn btn-default btn-xs">
-									<span class="glyphicon glyphicon-plus" style="color: green"></span>
-								</button></td>
+						<td width="7%">${music.musicNumber}</td>
+							<td width="7%">${rank} &nbsp;<a href="/test"><img src="<%=request.getAttribute("realpath")%><c:out value="${music.albumImg}"/>" style="height:60px; width:60px;"/></a></td>
+                         <td width="23%">${music.musicSubject}</td>
+                         <td width="20%"><a href="/artist_detail?artistNumber=${music.artistNumber}">${music.artistName}</a></td>
+                         <td width="7%"><a href="/album_detail?albumNumber=${music.albumNumber}">${music.albumName}</a></td>
+                         <td width="7%"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play" style="color:red" onclick="player(${music.musicNumber})"></span></button></td>
+                         <td width="7%"><button class="btn btn-default btn-xs" id="playlist"><span class="glyphicon glyphicon-plus" style="color:green"></span></button></td>
 						</tr>
 					</c:forEach>
 				</table>

@@ -68,20 +68,10 @@
 						</c:otherwise>
 
 					</c:choose>
-
-
-
-
-
-
-
 				</form>
-
-
-
-
 			</div>
 			<!-- 아이디 찾기 부분 끝 -->
+
 
 			<!-- 비밀번호 찾기 부분 -->
 			<div class="col-sm-5"
