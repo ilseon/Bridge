@@ -34,7 +34,7 @@ public class AlbumController {
 	@RequestMapping(value="album_detail")
 	public String albumDetail(Model model, @RequestParam int albumNumber) throws Exception{
 		model.addAttribute(service.getAlbumOne(albumNumber));
-		model.addAttribute("musicList", musicService.getArtistMusic(albumNumber));		
+		model.addAttribute("musicList", musicService.getAlbumMusic(albumNumber));		
 		model.addAttribute("videoList", musicService.getAlbumMusicVideo(albumNumber));		
 		model.addAttribute("replyCnt", replyService.countAlbum(albumNumber));
 		model.addAttribute("page", "album");

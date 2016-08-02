@@ -63,10 +63,10 @@
 	
 	<!-- 일선 추가 -->
    <select id="getArtistMusic" parameterType="int" resultType="com.bridge.app.domain.MusicVO"> 
-      select * from music where artistnumber=#{artistNumber}; 
+      select m.*, al.albumname from music m, album al where m.artistnumber=#{artistNumber} and al.albumnumber=m.albumnumber
    </select>
    <select id="getAlbumMusic" parameterType="int" resultType="com.bridge.app.domain.MusicVO"> 
-      select * from music where albumnumber=#{albumNumber};
+      select m.*, a.artistname from music m, artist a where m.albumnumber=#{albumNumber} and a.artistnumber=m.artistnumber
    </select>
    <select id="getArtistMusicVideo" parameterType="int" resultType="VideoVO">
       select m.musicsubject,a.artistname,a.albumdate,m.musicvideo 

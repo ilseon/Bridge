@@ -11,7 +11,7 @@
 	</insert>	
 	
 	<select id="getAlbumOne" parameterType="int" resultType="AlbumVO">
-		select * from album where albumnumber=#{albumNumber}
+		select al.*, ar.artistname from album al, artist ar where al.albumnumber=#{albumNumber} and al.artist_artistnumber=ar.artistnumber
 	</select>	
 	<select id="searchAll" parameterType="int" resultType="com.bridge.app.domain.AlbumVO">
 		select a.albumname as albumname, ar.artistname as artistname, a.albumdate as albumdate 
@@ -22,6 +22,6 @@
 	
 	<!-- 일선 추가 -->
 	<select id="getArtistAlbum" parameterType="int" resultType="AlbumVO">
-		select * from album where artist_artistnumber=#{artistNumber}
+		select al.*, ar.artistname from album al, artist ar where al.artist_artistnumber=#{artistNumber} and al.artist_artistnumber=ar.artistnumber
 	</select>
 </mapper>

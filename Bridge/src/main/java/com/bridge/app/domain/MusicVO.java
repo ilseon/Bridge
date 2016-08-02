@@ -17,7 +17,7 @@ public class MusicVO {
 	
 	private int musicPlay;
 	private int musicLike;
-	private int musicCheck;
+	private int musicTitle;
 	
 	private int musicRank;
 
@@ -125,12 +125,12 @@ public class MusicVO {
 		this.musicLike = musicLike;
 	}
 
-	public int getMusicCheck() {
-		return musicCheck;
+	public int getMusicTitle() {
+		return musicTitle;
 	}
 
-	public void setMusicCheck(int musicCheck) {
-		this.musicCheck = musicCheck;
+	public void setMusicTitle(int musicTitle) {
+		this.musicTitle = musicTitle;
 	}
 
 	public int getMusicRank() {

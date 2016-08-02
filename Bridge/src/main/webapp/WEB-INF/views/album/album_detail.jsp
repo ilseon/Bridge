@@ -177,15 +177,15 @@
 
 	<h2>${albumVO.albumName}</h2>
 	<hr>
-	<div class="container"> <!-- 첫 번째 블럭(사진, 앨범 소개) start -->
+	<div class="container"> <!-- 첫 번째 블럭(사진, 앨범 소개) start -->	
 		<div class="col-md-5">
-			<img src="/resources/image/album.PNG" width="60%">
+			<img src="<%=request.getContextPath()%>/upload/album/${albumVO.albumImg}" width="60%">
 		</div>
 		<div class="col-md-7" style="vertical-align: middle;">
 			<table class="table" style="vertical-align: middle;">
 				<tr>
 					<td>아티스트</td>
-					<td>${albumVO.artistNumber}</td>
+					<td>${albumVO.artistName}</td>
 				</tr>
 				<tr>
 					<td>앨범 종류</td>
@@ -219,7 +219,7 @@
 		<table class="table">
 			<tr>
 				<th width="3%"></th><!-- 체크박스열 -->
-				<th width="4%">번호</th>
+				<th width="5%">번호</th>
 				<th width="30%">곡</th>
 				<th width="20%">아티스트명</th>
 				<th width="7%">듣기</th>
@@ -235,8 +235,8 @@
 				<tr>
 					<td><input type="checkbox" id="check${musicVO.musicNumber}"></td>
 					<td>${cnt}</td>
-					<td>${musicVO.musicSubject}</td>
-					<td>가수명</td>
+					<td>${musicVO.musicSubject} &nbsp; <c:if test="${musicVO.musicTitle == 1}"><img src="/resources/images/musicTitle.png" width="15%"/></c:if></td>
+					<td>${musicVO.artistName}</td>
 					<td>듣기</td>
 					<td>재생목록</td>
 					<td>내앨범</td>

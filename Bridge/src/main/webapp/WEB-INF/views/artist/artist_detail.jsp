@@ -175,7 +175,7 @@
 	<div class="container"> 
 		<!-- 첫 번째 블럭(사진, 가수 소개) start -->
 		<div class="col-md-5">
-			<img src="/resources/image/ty.png" width="50%">
+			<img src="<%=request.getContextPath()%>/upload/artist/${artistVO.artistImg}" width="60%">
 		</div>
 		<div class="col-md-7">
 			<table class="table">
@@ -211,7 +211,7 @@
 				<th width="3%"></th><!-- 체크박스열 -->
 				<th width="4%">번호</th>
 				<th width="30%">곡</th>
-				<th width="20%">아티스트명</th>
+				<th width="20%">앨범명</th>
 				<th width="7%">듣기</th>
 				<th width="8%">재생목록</th>
 				<th width="7%">내앨범</th>
@@ -226,7 +226,7 @@
 					<td><input type="checkbox" id="check${musicVO.musicNumber}"></td>
 					<td>${cnt}</td>
 					<td>${musicVO.musicSubject}</td>
-					<td>${artistVO.artistName}	</td>
+					<td><a href="album_detail?albumNumber=${musicVO.albumNumber}">${musicVO.albumName}</a></td>
 					<td>듣기</td>
 					<td>재생목록</td>
 					<td>내앨범</td>
