@@ -20,8 +20,7 @@
   <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
     <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<%@include file="../include/header.jsp" %>
-<%@include file="../include/sidebar.jsp" %>
+
 <body style="margin-top: 4%;">
 <script>
 	var replyCnt = 10; // 더보기를 위한

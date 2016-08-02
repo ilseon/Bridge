@@ -21,8 +21,7 @@
 
 
 </head>
-<%@include file="../include/header.jsp" %>
-<%@include file="../include/sidebar.jsp" %>
+
 <body style="margin-top: 4%;">
 <script>
 	var replyCnt = 10; // 더보기를 위한

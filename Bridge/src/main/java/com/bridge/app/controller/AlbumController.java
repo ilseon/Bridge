@@ -37,6 +37,7 @@ public class AlbumController {
 		model.addAttribute("musicList", musicService.getArtistMusic(albumNumber));		
 		model.addAttribute("videoList", musicService.getAlbumMusicVideo(albumNumber));		
 		model.addAttribute("replyCnt", replyService.countAlbum(albumNumber));
-		return "/album/album_detail";
-	}	
+		model.addAttribute("page", "album");
+		return "/chart/chart_main";
+		}	
 }

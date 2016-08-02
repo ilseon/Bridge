@@ -40,7 +40,8 @@ public class ArtistController {
 		model.addAttribute("videoList", musicService.getArtistMusicVideo(artistNumber));	
 		model.addAttribute("replyCnt", artistService.countArtist(artistNumber));		
 		model.addAttribute("albumList", albumService.getArtistAlbum(artistNumber));		
-		return "/artist/artist_detail";
+		model.addAttribute("page", "artist");
+		return "/chart/chart_main";
 	}
 	
 
