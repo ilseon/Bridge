@@ -97,19 +97,53 @@ public class ArtistDAOImpl implements ArtistDAO {
 		}
 	}
 	
-	public void update(HttpServletRequest req) throws Exception {
+	public ArtistVO update(HttpServletRequest req) throws Exception {
 		
-		String artistName = req.getParameter("artistName");
-		String artistType =req.getParameter("artistType");
-		String artistGenre =req.getParameter("artistGenre");
+
+		int postMaxSize = 10 * 1024 * 1024;
+		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
+        String folder_p=folderPath+"upload"+File.separator+"artist"+File.separator;
+           
+        File file = null;
+        file = new File(folder_p);
+        if(!file.exists()) {
+           file.mkdirs();
+        }
+       		
+        String encoding = "UTF-8";
+        Enumeration enumer = null;
+        MultipartRequest multiReq = 
+        			new MultipartRequest(req, folder_p, postMaxSize, "UTF-8", new DefaultFileRenamePolicy());
+
+        enumer=multiReq.getFileNames();
+        String artistImg = "";      
+         while(enumer.hasMoreElements()){
+        	enumer=(Enumeration) multiReq.getFileNames();
+        	
+            String name = (String)enumer.nextElement();
+            artistImg = multiReq.getFilesystemName(name);
+         }
+         
+     	logger.info(multiReq.getParameter("artistNumber")+multiReq.getParameter("artistName")+ 
+     			multiReq.getParameter("artistType")+multiReq.getParameter("artistGenre")+artistImg);
+         
+     	int artistNumber = Integer.parseInt(multiReq.getParameter("artistNumber"));
+     	
+		String artistName = multiReq.getParameter("artistName");
+		String artistType = multiReq.getParameter("artistType");
+		String artistGenre = multiReq.getParameter("artistGenre");    	
+     	
+         ArtistVO artist = new ArtistVO();
+         
+         artist.setArtistName(multiReq.getParameter("artistName"));
+         artist.setArtistGenre(multiReq.getParameter("artistGenre"));
+         artist.setArtistType(multiReq.getParameter("artistType"));
+         artist.setArtistImg(artistImg);
+						
+		sqlSession.update(NAMESPACE+".update", artistNumber);
 		
-		ArtistVO artist = new ArtistVO();
+		return artist;
 		
-		artist.setArtistName(artistName);
-		artist.setArtistType(artistType);
-		artist.setArtistGenre(artistGenre);
-			
-		sqlSession.update(NAMESPACE+".update", artist);
 	}
 
 	@Override

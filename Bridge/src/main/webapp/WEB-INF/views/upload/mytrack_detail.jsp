@@ -124,6 +124,7 @@
 					<c:forEach var="list" items="${albumList}">
 						<br />
 						<br />
+						<c:set var="j" value="1"></c:set>
 						<div class="jumbotron" id="pom">
 							<div id="upload_main">
 								<div class="col-md-2 col-md-offset-1" id="chp">
@@ -202,6 +203,7 @@
 							</div>
 							<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 							<br /> <br />
+						<c:set var="j" value="${j+1}"></c:set>
 						</div>
 					</c:forEach>
 				</form>
@@ -209,6 +211,7 @@
 				<form class="form-horizontal" id="music" method="post"
 					enctype="multipart/form-data">
 					<c:forEach var="list" items="${musicList}">
+					<c:set var="j" value="1"></c:set>
 						<table class="table">
 							<tr>
 								<th width="3%"><a href=""> <input type="hidden"
@@ -225,27 +228,28 @@
 							<!-- 음원파일, 곡, 타이틀, 뮤비 -->
 							<tbody>
 								<tr>
-									<td><input type="checkbox" name="check" id="check${i}"></td>
-									<td><strong>${i}</strong></td>
-									<td><input type="file" name="musicFile${i}"
-										id="musicFile${i}" accept="audio/*" /><br />${list.musicFile}</td>
-									<td><input type="checkbox" name="musicTitle${i}"
-										id="musicTitle${i}" value="1"></td>
-									<td><input type="text" name="musicSubject${i}"
-										id="musicSubject${i}" class="form-control" width="20%"
+									<td><input type="checkbox" name="check" id="check" value="${list.musicNumber}"></td>
+									<td><strong>${j}</strong></td>
+									<td><input type="file" name="musicFile"
+										id="musicFile" accept="audio/*" /><br />${list.musicFile}</td>
+									<td><input type="checkbox" name="musicTitle"
+										id="musicTitle" value="1"></td>
+									<td><input type="text" name="musicSubject"
+										id="musicSubject" class="form-control" width="20%"
 										value="${list.musicSubject}" /></td>
 									<td></td>
-									<td><input type="text" name="musicVideo${i}"
-										id="musicVideo${i}" class="form-control"
+									<td><input type="text" name="musicVideo"
+										id="musicVideo" class="form-control"
 										value="${list.musicVideo}" /></td>
 									<td></td>
 									<td><textarea class="form-control" rows="4" cols="70"
-											id="musicLyrics${i}" name="musicLyrics${i}">
+											id="musicLyrics" name="musicLyrics">
 												${list.musicLyrics}
 										</textarea></td>
 								</tr>
 							</tbody>
 						</table>
+						<c:set var="j" value="${j+1}"></c:set>
 					</c:forEach>
 				</form>
 			</div>

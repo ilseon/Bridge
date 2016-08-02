@@ -115,7 +115,7 @@
 						<c:forEach var="list" items="${artistList}">
 							<div class="col-md-2 col-md-offset-1">
 								<input type="hidden" name="userNumber" id="userNumber"
-									value="${userNumber}" /> <input type="text"
+									value="${userNumber}" /> <input type="hidden"
 									name="artistNumber" id="artistNumber" value="${list.artistNumber}" />
 								<br /> <img src="/upload/artist/${list.artistImg}" width="120%"><br />
 								<br /> <input type="file" name="artistImg" id="artistImg"
@@ -124,7 +124,7 @@
 							<div class="col-md-5 col-md-offset-1">
 								<br /> <label for="artistName" class="col-xs-4 control-label">아티스트</label>
 								<div class="col-xs-8">
-									<input type="text" id="artistName" value="${list.artistName}"
+									<input type="text" id="artistName" name="artistName"  value="${list.artistName}"
 										class="form-control" /><br />
 								</div>
 								<!-- 아티스트 타입 등록 -->

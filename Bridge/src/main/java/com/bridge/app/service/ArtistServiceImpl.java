@@ -35,8 +35,8 @@ public class ArtistServiceImpl implements ArtistService{
 		
 	}
 	@Override
-	public void update(HttpServletRequest req) throws Exception {
-		dao.update(req);
+	public ArtistVO update(HttpServletRequest req) throws Exception {
+		return dao.update(req);
 	}
 	@Override
 	public List<ArtistVO> selectArtistOne(int artistNumber) throws Exception {

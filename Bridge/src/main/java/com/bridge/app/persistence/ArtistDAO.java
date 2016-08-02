@@ -11,6 +11,6 @@ public interface ArtistDAO {
 	public ArtistVO getArtistOne(int artistNumber) throws Exception;
 	public List<ArtistVO> selectArtistOne(int artistNumber) throws Exception;
 	public List<ArtistVO> selectArtist(int userNumber) throws Exception;
-	public void update(HttpServletRequest req) throws Exception;
+	public ArtistVO update(HttpServletRequest req) throws Exception;
 	public void remove(int artistNumber) throws Exception;
 }

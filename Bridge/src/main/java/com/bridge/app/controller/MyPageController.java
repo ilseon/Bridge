@@ -7,12 +7,6 @@
  */
 
 package com.bridge.app.controller;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,20 +14,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.util.WebUtils;
 
-import com.bridge.app.domain.AlbumVO;
-import com.bridge.app.domain.ArtistVO;
-import com.bridge.app.domain.DownloadVO;
-import com.bridge.app.domain.LikeVO;
-import com.bridge.app.domain.MusicVO;
-import com.bridge.app.domain.PlaylistVO;
 import com.bridge.app.service.AlbumService;
 import com.bridge.app.service.ArtistService;
 import com.bridge.app.service.DownloadService;
@@ -95,15 +81,14 @@ public class MyPageController {
 	}
 	
 	/**Upload_아티스트_수정완료 */
-	@RequestMapping(value = "artistUpdateCom", method = RequestMethod.GET)
+	@RequestMapping(value = "artistUpdateCom", method = RequestMethod.POST)
 	public ModelAndView AristUpdateCom(HttpServletRequest req, Model view) throws Exception {
 		logger.info("아티스트 수정완료");
 		artistservice.update(req);
 		ModelAndView mav = new ModelAndView("redirect:/upload");	
-		artistservice.update(req);		
+		view.addAttribute("artistList", artistservice.update(req));		
 		return mav;
 	}
-	
 	
 	/**Upload_아티스트_삭제 */
 	@RequestMapping(value = "artistDel", method = RequestMethod.GET)
