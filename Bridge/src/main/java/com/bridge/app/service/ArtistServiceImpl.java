@@ -30,13 +30,13 @@ public class ArtistServiceImpl implements ArtistService{
 		return dao.selectArtist(userNumber);
 	}
 	@Override
-	public void remove(int artistNumber) throws Exception {
-		dao.remove(artistNumber);
+	public void remove(ArtistVO artist) throws Exception {
+		dao.remove(artist);
 		
 	}
 	@Override
-	public ArtistVO update(HttpServletRequest req) throws Exception {
-		return dao.update(req);
+	public void update(ArtistVO artist, HttpServletRequest req) throws Exception {
+		dao.update(artist, req);
 	}
 	@Override
 	public  ArtistVO selectArtistOne(int artistNumber) throws Exception {

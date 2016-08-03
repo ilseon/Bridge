@@ -11,7 +11,7 @@
 	
 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/bridgedb"></property>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/bridgedb"></property>		
 		<property name="username" value="bridge"></property>
 		<property name="password" value="1111"></property>
 	</bean>		

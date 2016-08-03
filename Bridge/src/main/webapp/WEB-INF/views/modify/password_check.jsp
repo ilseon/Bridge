@@ -20,7 +20,6 @@
 <script>
 	//비밀번호를 입력을 확인하는 jquery 
 	$(document).ready(function() {
-		alert( $("#dbPassword").val());
 		$(".btn-primary").on("click", function() {
 			if (!$("#userPassword").val()) {
 				alert("비밀번호를 입력해주세요.");

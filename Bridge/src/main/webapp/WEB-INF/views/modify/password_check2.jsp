@@ -33,6 +33,11 @@
 		});
 	});
 </script>
+<style>
+#main {
+	margin-bottom: 320px;
+}
+</style>
 </head>
 <body style="margin-top: 4%;">
 	<!-- header, sideber start -->
@@ -41,7 +46,7 @@
 	<!-- end -->
 
 	<!-- 상단 tab start-->
-	<div class="container">
+	<div class="container" id="main">
 		<br /> <br />
 		<div class="col-md-12">
 			<ul class="nav nav-tabs">

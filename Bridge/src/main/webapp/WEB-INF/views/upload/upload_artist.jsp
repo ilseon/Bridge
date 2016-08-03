@@ -16,6 +16,7 @@
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 </head>
+</head>
 <title>Upload1_Artist</title>
 <script>
 	$(document).ready(
@@ -23,9 +24,19 @@
 				//등록된 아티스트 등록, 수정, 삭제하는 jquery
 				var name = $("#artistName").val();
 				$("#artistRegist").click(function() {
-					alert(name + " 아티스트로 등록합니다.");
+					alert(name + " 선택되었습니다.");
 					$("#artistList").submit();
 				});
+
+				function readURL(input) {
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							$('#UploadedImg').attr('src', e.target.result);
+						}
+						reader.readAsDataURL(input.files[0]);
+					}
+				}
 
 				// 아티스트 정보에 대한 항목 입력을 확인하는 jquery 
 				$("#regist").click(
@@ -73,7 +84,7 @@
 
 #pom {
 	border-radius: 17px;
-	background-color: #E0E0E0;
+	background-color: white;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 }
 
@@ -81,6 +92,10 @@
 	border-radius: 17px;
 	background-color: #EDE6E6;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
+}
+
+#null {
+	margin-left: 385px;
 }
 
 #regist {
@@ -96,10 +111,11 @@
 
 .table th {
 	text-align: center;
+	background-color: #EDE6E6;
 }
 
 .table td {
-	background-color: white;
+	background-color: #E0E0E0;
 	text-align: center;
 }
 </style>
@@ -122,52 +138,61 @@
 					<form id="artistList" accept-charset="UTF-8" method="get">
 						<table class="table">
 							<tr>
-								<th width="10%">번호</th>
-								<th width="25%">아티스트</th>
-								<th width="18%">타입</th>
-								<th width="18%">장르</th>
-								<th width="10%">등록</th>
-								<th width="10%">수정</th>
-								<th width="10%">삭제</th>
+								<th width="8%">번호</th>
+								<th width="20%">이미지</th>
+								<th width="20%">아티스트</th>
+								<th width="13%">타입</th>
+								<th width="13%">장르</th>
+								<th width="8%">등록</th>
+								<th width="8%">수정</th>
+								<th width="8%">삭제</th>
 							</tr>
 							<tbody>
-								<c:if test="${null ne artistList }">
-									<c:forEach var="list" items="${artistList}">
-										<tr>
-											<td width="10%">${list.artistNumber}<input type="hidden"
-												id="artistNumber" name="artistNumber" value="${list.artistNumber}" /></td>
-											<td width="25%"><input type="hidden"
-												src="/upload/artist/${list.artistImg}" id="artistImg" name="artistImg"  /> <input
-												type="hidden" id="artistName" value="${list.artistName}" />${list.artistName}</td>
-											<td width="18%"><input type="hidden" id="artistType"  name="artistType"
-												value="${list.artistType}" />${list.artistType}</td>
-											<td width="18%"><input type="hidden" id="artistGenre" name="artistGenre"
-												value="${list.artistGenre}" />${list.artistGenre}</td>
-											<td width="10%"><a
+								<tr>
+									<c:if test="${null ne artistList }">
+										<c:set var="j" value="0"></c:set>
+										<c:forEach var="list" items="${artistList}">
+											<c:set var="j" value="${j+1}"></c:set>
+											<td width="8%">${j}<input type="hidden"
+												id="artistNumber" name="artistNumber"
+												value="${list.artistNumber}" /></td>
+											<td width="20%"><input type="hidden"
+												src="/upload/artist/${list.artistImg}" id="artistImg"
+												name="artistImg" /></td>
+											<td width="20%"><input type="hidden" id="artistName"
+												value="${list.artistName}" />${list.artistName}</td>
+											<td width="13%"><input type="hidden" id="artistType"
+												name="artistType" value="${list.artistType}" />${list.artistType}</td>
+											<td width="13%"><input type="hidden" id="artistGenre"
+												name="artistGenre" value="${list.artistGenre}" />${list.artistGenre}</td>
+											<td width="8%"><a
 												href="artistRegist?artistNumber=${list.artistNumber}"
 												class="btn btn-xs"> <span
 													class="glyphicon glyphicon-save" id="artistRegist"></span>
 											</a></td>
-											<td width="10%"><a
+											<td width="8%"><a
 												href="artistUpdate?artistNumber=${list.artistNumber}"
 												class="btn btn-xs"> <span
 													class="glyphicon glyphicon-pencil" id="artistUpdate"></span>
 											</a></td>
-											<td width="10%"><a
+											<td width="8%"><a
 												href="artistDel?artistNumber=${list.artistNumber}"
 												class="btn btn-xs"><span
 													class="glyphicon glyphicon-trash" id="artistDelete"></span>
 											</a></td>
-										</tr>
-									</c:forEach>
-								</c:if>
-								<tr>
-									<c:if test="${ empty artistList }">
-										<h5>
-											<strong>현재 등록된 아티스트가 없습니다.</strong>
-										</h5>
+										</c:forEach>
 									</c:if>
+								</tr>
 							</tbody>
+						</table>
+						<table>
+							<tr>
+								<td><c:if test="${ empty artistList }">
+										<h5 id="null">
+											<br /> <strong>현재 등록된 아티스트가 없습니다.</strong> <br />
+										</h5>
+									</c:if></td>
+							</tr>
 						</table>
 					</form>
 				</div>
@@ -182,11 +207,12 @@
 									value="${userNumber}" /> <input type="hidden"
 									name="artistNumber" id="artistNumber" value="${artistNumber}" />
 								<br /> <img src="resources/image/upload/album/album_image.PNG"
-									width="120%"><br /> <br /> <input type="file"
-									name="artistImg" id="artistImg" accept="image/*" />
+									width="120%" id="UploadedImg" /><br /> <br /> <input
+									type="file" name="artistImg" id="artistImg" accept="image/*"
+									onchange="readURL(this);" />
 							</div>
 							<div class="col-md-5 col-md-offset-1">
-								<label for="artistName" class="col-xs-4 control-label">아티스트</label>
+								<br /> <label for="artistName" class="col-xs-4 control-label">아티스트</label>
 								<div class="col-xs-8">
 									<input type="text" class="form-control" id="artistName"
 										name="artistName"><br />

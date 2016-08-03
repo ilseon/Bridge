@@ -1,8 +1,8 @@
 /**
 작성자 - 이주연
-내용 - MyPageController
+내용 - 업로드, 마이페이지, 정보변경 및 회원탈퇴
 시작날짜 - 2016/07/17
-수정날짜 - 2016/07/30
+수정날짜 - 2016/08/03
 변경내용 - 
  */
 
@@ -67,14 +67,11 @@ public class MyPageController {
 	}
 
 	/** Upload_아티스트_등록 */
-	@RequestMapping(value = "artistRegist", method = RequestMethod.GET)
-	public ModelAndView AristRegist(HttpServletRequest req, @RequestParam int artistNumber, Model model)
-			throws Exception {
-		logger.info("등록된 아티스트 선택");
-		ModelAndView mav = new ModelAndView("/upload/upload_album");
-		model.addAttribute("artistList", artistservice.selectArtistOne(artistNumber));
-		logger.info("값" + artistservice.selectArtistOne(artistNumber) + "");
-		return mav;
+	@RequestMapping(value = "upload", method = RequestMethod.POST)
+	public String Upload_Artist(HttpServletRequest req, Model model) throws Exception {
+		logger.info("아티스트 등록  페이지");
+		artistservice.regist(req);
+		return "redirect:/upload";
 	}
 
 	/** Upload_아티스트_수정 */
@@ -83,36 +80,39 @@ public class MyPageController {
 			throws Exception {
 		logger.info("아티스트 수정");
 		logger.info(artistNumber + "");
-		view.addAttribute("artistList", artistservice.selectArtistOne(artistNumber));
+		ArtistVO artist = artistservice.selectArtistOne(artistNumber);
+		view.addAttribute("artist", artist);
 		ModelAndView mav = new ModelAndView("/upload/artist_update");
 		return mav;
 	}
 
 	/** Upload_아티스트_수정완료 */
 	@RequestMapping(value = "artistUpdateCom", method = RequestMethod.POST)
-	public ModelAndView AristUpdateCom(HttpServletRequest req, Model view) throws Exception {
+	public ModelAndView AristUpdateCom(ArtistVO artist, HttpServletRequest req, Model view) throws Exception {
 		logger.info("아티스트 수정완료");
-		artistservice.update(req);
+		artistservice.update(artist, req);
 		ModelAndView mav = new ModelAndView("redirect:/upload");
 		return mav;
 	}
 
 	/** Upload_아티스트_삭제 */
 	@RequestMapping(value = "artistDel", method = RequestMethod.GET)
-	public String AristDelete(HttpServletRequest req, @RequestParam int artistNumber) throws Exception {
+	public String AristDelete(ArtistVO artist) throws Exception {
 		logger.info("아티스트 삭제");
-		logger.info(artistNumber + "");
-		artistservice.remove(artistNumber);
-		return "redirect:/upload";
+		artistservice.remove(artist);
+		return "/upload/upload_artist2";
 
 	}
 
-	/** Upload_아티스트_등록 */
-	@RequestMapping(value = "upload", method = RequestMethod.POST)
-	public String Upload_Artist(HttpServletRequest req, Model model) throws Exception {
-		logger.info("아티스트 등록  페이지");
-		artistservice.regist(req);
-		return "redirect:/upload";
+	/** Upload_아티스트_선택 */
+	@RequestMapping(value = "artistRegist", method = RequestMethod.GET)
+	public ModelAndView AristRegist(HttpServletRequest req, @RequestParam int artistNumber, Model model)
+			throws Exception {
+		logger.info("등록된 아티스트 선택");
+		ModelAndView mav = new ModelAndView("/upload/upload_album");
+		model.addAttribute("artistList", artistservice.selectArtistOne(artistNumber));
+		logger.info("값" + artistservice.selectArtistOne(artistNumber) + "");
+		return mav;
 	}
 
 	/** Upload_앨범_등록 */
@@ -136,7 +136,7 @@ public class MyPageController {
 	}
 
 	/**
-	 * Upload 후 내 트랙 확인
+	 * Upload 이후 내 트랙 확인
 	 * 
 	 * @throws Exception
 	 */
@@ -149,8 +149,7 @@ public class MyPageController {
 	}
 
 	/**
-	 * 내 트랙 확인 상세 페이지
-	 * 
+	 * 내 트랙 확인 상세 페이지 / 현재 곡들이 중복되어 출력됨.
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "mytrack_detail", method = RequestMethod.GET)
@@ -176,7 +175,6 @@ public class MyPageController {
 	public String PassWordConfirm(HttpServletRequest req, Model view) throws Exception {
 		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 		view.addAttribute("userPassword", userservice.passwordCheck(userNumber));
-		logger.info(userservice.passwordCheck(userNumber)+"");		
 		logger.info("It is password_check");
 		return "/modify/password_check";
 	}
@@ -185,62 +183,66 @@ public class MyPageController {
 	@RequestMapping(value = "modify", method = RequestMethod.POST)
 	public String Modify(HttpServletRequest req, Model view) throws Exception {
 		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
-				
+
 		List<UserVO> userList = new ArrayList();
 		userList = userservice.selectAll(userNumber);
 		UserVO user = userList.get(0);
-		
+
 		String[] birth = user.getUserBirthday().split("-");
 		user.setYear(birth[0]);
 		user.setMonth(birth[1]);
 		user.setDay(birth[2]);
-		
+
 		String[] phone = user.getUserPhone().split("-");
 		user.setTel1(phone[0]);
 		user.setTel2(phone[1]);
 		user.setTel3(phone[2]);
-		
+
 		String[] email = user.getUserEmail().split("@");
 		user.setUseremail1(email[0]);
-		user.setUseremail2("@"+email[1]);
-		
-		
+		user.setUseremail2("@" + email[1]);
+
 		view.addAttribute("user", user);
 		logger.info("It is modify");
 		return "/modify/modify";
 	}
-	
+
 	/** 정보 수정 완료 */
 	@RequestMapping(value = "modifyComfirm", method = RequestMethod.POST)
 	public String ModifyComfirm(UserVO user, HttpServletRequest req, Model view) throws Exception {
 		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
-		userservice.update(user, userNumber);	
+		userservice.update(user, userNumber);
 		logger.info("home");
 		return "home";
 	}
-	
 
 	/** 탈퇴 전 비밀번호 확인 */
 	@RequestMapping(value = "withdrawal", method = RequestMethod.GET)
 	public String PassWordConfirm2(HttpServletRequest req, Model view) throws Exception {
 		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 		view.addAttribute("userPassword", userservice.passwordCheck(userNumber));
-		logger.info(userservice.passwordCheck(userNumber)+"");		
 		logger.info("It is password_check2");
 		return "/modify/password_check2";
 	}
-
-	/** 회원 탈퇴 
+	
+	/**
+	 * 회원 탈퇴
 	 * @throws Exception */
 	@RequestMapping(value = "withdrawal", method = RequestMethod.POST)
 	public String Withdrawal(UserVO user, HttpServletRequest req) throws Exception {
 		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+		userservice.remove(user);
 		logger.info("It is withdrawal");
-		userservice.remove(user);		
 		return "/modify/withdrawal";
 	}
 
-
+	/** 탈퇴 동의 */
+	@RequestMapping(value = "confirm")
+	public String Confirm() {
+		logger.info("It is confirm");
+		return "/modify/confirm";
+	}
+	
 	/** 좋아하는 곡 */
 	@RequestMapping(value = "like_song")
 	public String LikeSong(HttpServletRequest req, Model view) throws Exception {
@@ -289,4 +291,27 @@ public class MyPageController {
 		logger.info("It is payment");
 		return "/payment/payment";
 	}
+
+	/*
+	 * 게시판 리스트 보기, 페이징 기능은 구현 O
+	 * 
+	 * @RequestMapping("/list") public ModelAndView list(String pageNumber)
+	 * throws Exception { ModelAndView mav = new ModelAndView(); List<BoardDTO>
+	 * list = null; // 현재 클릭 페이지 int pageNum = 1; if (pageNumber != null)
+	 * pageNum = Integer.parseInt(pageNumber); // 게시글 전체수 변수 초기화 int totalCount
+	 * = boardService.boardCount(); // 페이지 갯수 int totalPageCount = totalCount /
+	 * PAGESIZE; // 0으로 나눠 떨어지지 않을경우 페이지 갯수를 +1한다. if (totalCount % PAGESIZE !=
+	 * 0) { totalPageCount++; } // startPage or endPage int startPage = (pageNum
+	 * - 1) / PAGEGROUP * PAGEGROUP + 1; int endPage = startPage + (PAGEGROUP -
+	 * 1); if (endPage > totalPageCount) { endPage = totalPageCount; } // 마지막,
+	 * 처음 rowNumber 선언 및 초기화 int endRow = PAGESIZE * pageNum; int startRow =
+	 * endRow - PAGESIZE + 1;
+	 * 
+	 * RowNumDTO rowNumDTO = new RowNumDTO(); rowNumDTO.setStartRow(startRow);
+	 * rowNumDTO.setEndRow(endRow); list = boardService.boardList(rowNumDTO);
+	 * mav.addObject("boardCount", list.size()); mav.addObject("totalPageCount",
+	 * totalPageCount); mav.addObject("startPage", startPage);
+	 * mav.addObject("endPage", endPage); mav.addObject("list", list);
+	 * mav.setViewName("list"); return mav; }
+	 */
 }

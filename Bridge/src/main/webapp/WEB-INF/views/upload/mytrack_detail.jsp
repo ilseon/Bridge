@@ -18,19 +18,39 @@
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 <script>
 	$(document).ready(function() {
-		//업로드시 빠지는 항목을 체크하는 jquery 
-		$(".btn btn-xs").click(function() {
-			var cnt = $("#cnt").val();
-			for (var i = 0; i < cnt; i++) {
-				$("#title" + i).click(function() {
-					alert("타이틀로 지정하였습니다.");
-				});
+			
+		//타입
+		var type = $("#type").val();
+		var typeArr = $("#albumType option");
+		for (var i = 0; i < typeArr.length; i++) {
+			if (typeArr.eq(i).text() == type) {
+				$("#albumType option:eq(" + i + ")").prop("selected", true);
+				break;
 			}
-			alert("업로드되었습니다.");
-			$("f").submit();
-		});
+		}	
+		
+		//장르
+		var genre = $("#genre").val();
+		var genreArr = $("#albumGenre option");
+		for (var i = 0; i < genreArr.length; i++) {
+			if (genreArr.eq(i).text() == genre) {
+				$("#albumGenre option:eq(" + i + ")").prop(
+						"selected", true);
+				break;
+			}
+		}		
+		
+		var age  = $("#age").val();
+		if(age == 1){
+			$("#album input:radio[name=ageLimit]:radio[value='1']").prop("checked","checked");
+		}else if(age = 0){
+			//$("input:radio[name='ageLimit']:radio[value=0]").prop("checked", true);
+			$("input:radio[name='ageLimit']:radio[value='0']").prop("checked","checked");
+			//$("input:radio[name='satisfaction_score']:radio[value='5']").prop("checked",true);
+		}
+		
 		// 삭제를 위한 jquery	
-		$("#delete").click(function() {
+		$("#delBtn").click(function() {
 			if ($("input:checked").length == 0) {
 				alert("곡을 선택해주세요.");
 			} else {
@@ -124,7 +144,6 @@
 					<c:forEach var="list" items="${albumList}" begin="1" end="1">
 						<br />
 						<br />
-						<c:set var="j" value="1"></c:set>
 						<div class="jumbotron" id="pom">
 							<div id="upload_main">
 								<div class="col-md-2 col-md-offset-1" id="chp">
@@ -146,8 +165,8 @@
 										<!-- 앨범 종류 입력 -->
 										<label for="kind" class="col-lg-4 control-label">앨범 종류</label>
 										<div class="col-md-7">
-											<select class="form-control" id="albumType" name="albumType"
-												${list.albumType}>
+									<input type="hidden" id="type" name="type" value="${list.albumType}" />	
+											<select class="form-control" id="albumType" name="albumType">
 												<option>싱글</option>
 												<option>미니</option>
 												<option>정규</option>
@@ -158,8 +177,9 @@
 										<!-- 장르 입력 -->
 										<label for="genre" class="col-lg-4 control-label">장르</label>
 										<div class="col-md-7">
+										<input type="hidden" id="genre" name="genre" value="${list.albumGenre}" />	
 											<select class="form-control" id="albumGenre"
-												name="albumGenre" ${list.albumGenre}>
+												name="albumGenre">
 												<option>발라드/댄스/팝</option>
 												<option>일렉트로닉</option>
 												<option>알앤비</option>
@@ -177,14 +197,15 @@
 											<input type="date" class="form-control" name="albumDate"
 												id="albumDate" value="${list.albumDate}"><br />
 										</div>
+										<input type="hidden"  name="age"
+											id="age" value="${list.ageLimit}"><br />
 										<!-- 19세 여부 체크 -->
 										<label for="ageLimit" class="col-lg-4 control-label">이용
 											연령</label>
-										<div class="col-md-7">
+										<div class="col-md-8">
 											&nbsp;모든 연령&nbsp;&nbsp;<input type="radio" id="ageLimit"
-												name="ageLimit" value="0" readonly="readonly" /><br /> 19세
-											이상 <input type="radio" id="ageLimit" name="ageLimit"
-												value="1" readonly="readonly" />
+												name="ageLimit" value="0"/>&nbsp;&nbsp;<br />
+											19세 이상 <input type="radio" id="ageLimit" name="ageLimit" value="1"/>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										</div>
 									</div>
@@ -195,7 +216,8 @@
 										<label for="description" class="col-lg-2 control-label">설명</label>
 										<div class="col-lg-8">
 											<textarea class="form-control" rows="10" cols="100"
-												name="albumContent" id="albumContent">${list.albumContent}
+												name="albumContent" id="albumContent">
+												${list.albumContent}
 											</textarea>
 										</div>
 									</div>
@@ -203,7 +225,6 @@
 							</div>
 							<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 							<br /> <br />
-							<c:set var="j" value="${j+1}"></c:set>
 						</div>
 					</c:forEach>
 				</form>
@@ -225,8 +246,9 @@
 							<th width="35%">가사</th>
 						</tr>
 						<!-- 음원파일, 곡, 타이틀, 뮤비 -->
-						<c:forEach var="list" items="${musicList}">
-							<c:set var="j" value="1"></c:set>
+							<c:set var="j" value="0"></c:set>
+							<c:forEach var="list" items="${musicList}" >
+							<c:set var="j" value="${j+1}"></c:set>
 							<tbody>
 								<tr>
 									<td><input type="checkbox" name="check" id="check"
@@ -248,8 +270,7 @@
 												${list.musicLyrics}
 										</textarea></td>
 								</tr>
-							</tbody>
-							<c:set var="j" value="${j+1}"></c:set>
+							</tbody>							
 						</c:forEach>
 					</table>
 				</form>
@@ -271,32 +292,6 @@
 			</div>
 		</div>
 		<!-- end -->
-	</div>
-	<!-- end -->
-
-	<!-- 앨범 삭제 모달 start -->
-	<div class="modal fade" id="album_del" tabindex="-1" role="dialog"
-		aria-labelledby="edit" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>
-					<h4 class="modal-title custom_align" id="Heading">삭제</h4>
-				</div>
-				<div class="modal-body">삭제하시겠습니까?</div>
-				<div class="modal-footer ">
-					<button type="button" class="btn btn-success">
-						<span class="glyphicon glyphicon-ok-sign"></span> Yes
-					</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove"></span> No
-					</button>
-				</div>
-			</div>
-		</div>
 	</div>
 	<!-- end -->
 </body>

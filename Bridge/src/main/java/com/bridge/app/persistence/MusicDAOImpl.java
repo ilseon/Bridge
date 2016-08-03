@@ -169,6 +169,10 @@ public class MusicDAOImpl implements MusicDAO {
 		sqlSession.update(NAMESPACE+".like_remove", musicNumber);
 	}
 	
+	@Override
+	public List<MusicVO> MytrackMusic(int albumNumber) throws Exception {		
+		return sqlSession.selectList(NAMESPACE + ".MytrackMusic", albumNumber);
+	}
 	
 	  // 일선 추가
     @Override
@@ -202,9 +206,6 @@ public class MusicDAOImpl implements MusicDAO {
        return sqlSession.selectOne(NAMESPACE + ".searchCount", paging);
     }
 
-	@Override
-	public List<MusicVO> MytrackMusic(int albumNumber) throws Exception {		
-		return sqlSession.selectList(NAMESPACE + ".MytrackMusic", albumNumber);
-	}
+
 
 }

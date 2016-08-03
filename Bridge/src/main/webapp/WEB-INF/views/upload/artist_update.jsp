@@ -18,41 +18,55 @@
 </head>
 <title>Upload1_Artist</title>
 <script>
-	$(document).ready(function() {
-		
-		var dbartistType = $("#dbartistType").val();
-		var TypeArr = $("#artistType").find("option").val();
-		
-		//TypeArr.each(function(i) {
-			//var TypeValue = $(this).val();
-		//});
-		
-		for(var i=0; TypeArr.length;  i++){
-			var TypeValue = $("#artistType").val();		
-		}
-		
-		if (TypeValue == dbartistType) {
-			$("#artistType").prop("selected", "selected");
-		}
+	$(document)
+			.ready(
+					function() {
+						//타입
+						var type = $("#Type").val();
+						var TypeArr = $("#artistType option");
+						for (var i = 0; i < TypeArr.length; i++) {
+							if (TypeArr.eq(i).text() == type) {
+								$("#artistType option:eq(" + i + ")").prop(
+										"selected", true);
+								break;
+							}
+						}
+						//장르
+						var genre = $("#Genre").val();
+						var GenreArr = $("#artistGenre option");
+						for (var i = 0; i < GenreArr.length; i++) {
+							if (GenreArr.eq(i).text() == genre) {
+								$("#artistGenre option:eq(" + i + ")").prop(
+										"selected", true);
+								break;
+							}
+						}
 
-		// 정보 수정 jquery 
-		$("#update").click(function() {
-
-			//var file = artist.artistImg.value;
-			//alert(file);
-			//var fileExt = file.substring(file.lastIndexOf('.') + 1); //파일확장자
-			if ($("#artistType").val() == "선택") {
-				alert("아티스트 타입을 선택해주세요.");
-				return false;
-			} else if ($("#artistGenre").val() == "선택") {
-				alert("아티스트 장르를 선택해주세요.");
-				return false;
-			} else {
-				alert("수정되었습니다.");
-				$("#artist").submit();
-			}
-		});
-	});
+						// 정보 수정 jquery 
+						$("#update")
+								.click(
+										function() {
+											var file = $("#artistImg").val();
+											alert(file);
+											var fileExt = file.substring(file
+													.lastIndexOf('.') + 1); //파일확장자
+											if ($("#artistType").val() == "선택") {
+												alert("아티스트 타입을 선택해주세요.");
+												return false;
+											} else if ($("#artistGenre").val() == "선택") {
+												alert("아티스트 장르를 선택해주세요.");
+												return false;
+											} else if (fileExt.toUpperCase() == "MP3"
+													|| fileExt.toUpperCase() == "AVI"
+													|| fileExt.toUpperCase() == "JSP") {
+												alert("이미지 파일만 업로드할 수 있습니다. 다시 확인해주세요.");
+												return false;
+											} else {
+												alert("수정되었습니다.");
+												$("#artist").submit();
+											}
+										});
+					});
 </script>
 <style>
 #tab {
@@ -113,27 +127,25 @@
 					<form id="artist" accept-charset="UTF-8" method="post"
 						enctype="multipart/form-data" action="artistUpdateCom">
 						<div class="col-md-2 col-md-offset-1">
-							<input type="hidden" name="userNumber" id="userNumber"
-								value="${userNumber}" /> <input type="hidden"
-								name="artistNumber" id="artistNumber"
-								value="${artistList.artistNumber}" /> <br /> <img
-								src="/upload/artist/${artistList.artistImg}" width="120%"><br />
-							<br />
-							<input type="file" name="artistImg" id="artistImg"
+							<input type="hidden" name="artistNumber" id="artistNumber"
+								value="${artist.artistNumber}" /> <br /> <img
+								src="/upload/artist/${artist.artistImg}" width="120%"><br />
+							<br /> <input type="file" name="artistImg" id="artistImg"
 								accept="image/*" />
 						</div>
 						<div class="col-md-5 col-md-offset-1">
 							<br /> <label for="artistName" class="col-xs-4 control-label">아티스트</label>
 							<div class="col-xs-8">
-								<input type="text" id="dbartistName" name="dbartistName"
-									value="${artistList.artistName}" class="form-control" /><br />
+								<input type="text" id="artistName" name="artistName"
+									value="${artist.artistName}" class="form-control"
+									readonly="readonly" /><br />
 							</div>
 							<!-- 아티스트 타입 등록 -->
 							<label for="artistType" class="col-xs-4 control-label">타입</label>
 							<div class="col-xs-8">
-								<input type="text" id="dbartistType" name="dbartistType"
-									value="${artistList.artistType}" /> <select
-									class="form-control" id="artistType" name="artistType">
+								<input type="hidden" id="Type" name="Type"
+									value="${artist.artistType}" /> <select class="form-control"
+									id="artistType" name="artistType">
 									<option>선택</option>
 									<option>솔로</option>
 									<option>그룹</option>
@@ -143,9 +155,9 @@
 							<label for="artistGenre" class="col-xs-4 control-label">장르</label>
 							<div class="col-xs-8">
 								<!-- 아티스트 장르 등록 -->
-								<input type="text" id="dbartistGenre" name="dbartistGenre"
-									value="${artistList.artistGenre}" /> <select
-									class="form-control" id="artistGenre" name="artistGenre">
+								<input type="hidden" id="Genre" name="Genre"
+									value="${artist.artistGenre}" /> <select class="form-control"
+									id="artistGenre" name="artistGenre">
 									<option>선택</option>
 									<option>발라드/댄스/팝</option>
 									<option>일렉트로닉</option>

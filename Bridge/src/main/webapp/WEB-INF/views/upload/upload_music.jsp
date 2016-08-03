@@ -140,22 +140,12 @@
 						type="hidden" class="form-control" id="albumImg" name="albumImg"
 						value="/upload/album/${albumList.albumImg}"> <input
 						type="hidden" name="counter" id="counter" value="${counter}" />
-
 					<div class="btn btn-primary" id="sub">
-						<strong>앨범</strong>
+						<strong>${albumList.albumName}</strong>
 					</div>
 					&nbsp;&nbsp;
 					<div class="btn btn-primary" id="val">
-						<strong>${albumList.albumName}</strong>
-					</div>
-					<div id="align">
-						<div class="btn btn-primary" id="sub">
-							<strong>아티스트</strong>
-						</div>
-						&nbsp;&nbsp;
-						<div class="btn btn-primary" id="val">
-							<strong>${artistList.artistName}</strong>
-						</div>
+						<strong>${artistList.artistName}</strong>
 					</div>
 					<br /> <br />
 					<table class="table">

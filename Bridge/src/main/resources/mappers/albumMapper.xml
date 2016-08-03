@@ -40,7 +40,7 @@
 		inner join album as a on m.albumnumber=a.albumnumber
 		inner join artist
 		as ar on m.artistnumber=ar.artistnumber where
-		a.albumnumber=#{albumNumber}
+		a.albumnumber=#{albumNumber} order by a.albumdate asc
 	</select>
 	<select id="selectAlbumChk" resultType="int" >
 		select artist_artistnumber

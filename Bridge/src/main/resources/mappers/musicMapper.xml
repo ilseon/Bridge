@@ -173,7 +173,4 @@
 		musicfile, musiclyrics, musictitle
 		from music where albumnumber=#{albumNumber}
 	</select>
-
-
-
 </mapper>

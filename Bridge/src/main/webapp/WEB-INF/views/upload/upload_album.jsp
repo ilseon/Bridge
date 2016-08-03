@@ -156,12 +156,10 @@
 								name="albumImg" id="albumImg" accept="image/*" /><br />
 							<input type="date" class="form-control" name="albumDate"
 								id="albumDate" style="width: 148%;"><br />
-					<c:forEach var="list" items="${artistList}">	
-						<input type="hidden" id="artistNumber" name="artistNumber" value="${list.artistNumber}"/>
+						<input type="hidden" id="artistNumber" name="artistNumber" value="${artistList.artistNumber}"/>
 												<div class="btn btn-primary" id="artistsub"> 아티스트 </div><br/>
 						<br/><input type="text" class="form-control" id="artistName"
-						name="artistName" value="${list.artistName}" style="width: 148%;" readonly="readonly"> <br />
-					</c:forEach>	
+						name="artistName" value="${artistList.artistName}" style="width: 148%;" readonly="readonly"> <br />
 						</div>
 						<!-- end -->
 						<!-- 앨범(앨범명, 앨범종류, 장르, 설명, 곡 수 ) 입력 start  -->
@@ -213,8 +211,7 @@
 								<div class="col-lg-8">
 									<textarea class="form-control" rows="6" cols="70"
 										id="albumContent" name="albumContent"
-										placeholder="앨범에 대한 설명을 적어주세요.">
-								</textarea>
+										placeholder="앨범에 대한 설명을 적어주세요."></textarea>
 									<br />
 								</div>
 								<!-- 등록할 음원의 수 입력 -->

@@ -22,7 +22,7 @@
 		//년도
 		var year = $("#useryear").val();
 		var yearArr = $("#year option");
-		for (var i = 0; yearArr.length; i++) {
+		for (var i = 0; i < yearArr.length; i++) {
 			if (yearArr.eq(i).text() == year) {
 				$("#year option:eq(" + i + ")").prop("selected", true);
 				break;
@@ -33,14 +33,14 @@
 		var monthArr = $("#month option");
 		var month = $("#usermonth").val();
 		if (month < 10) {
-			for (var i = 0; monthArr.length; i++) {
+			for (var i = 0; i < monthArr.length; i++) {
 				if (0 + monthArr.eq(i).text() == month) {
 					$("#month option:eq(" + i + ")").prop("selected", true);
 					break;
 				}
 			}
 		} else if (month >= 10) {
-			for (var i = 0; monthArr.length; i++) {
+			for (var i = 0; i < monthArr.length; i++) {
 				if (monthArr.eq(i).text() == month) {
 					$("#month option:eq(" + i + ")").prop("selected", true);
 					break;
@@ -52,14 +52,14 @@
 		var dayArr = $("#day option");
 		var day = $("#userday").val();
 		if (day < 10) {
-			for (var i = 0; dayArr.length; i++) {
+			for (var i = 0; i <dayArr.length; i++) {
 				if (0 + dayArr.eq(i).text() == day) {
 					$("#day option:eq(" + i + ")").prop("selected", true);
 					break;
 				}
 			}
 		} else if (day >= 10) {
-			for (var i = 0; dayArr.length; i++) {
+			for (var i = 0; i <dayArr.length; i++) {
 				if (dayArr.eq(i).text() == day) {
 					$("#day option:eq(" + i + ")").prop("selected", true);
 					break;
@@ -70,7 +70,7 @@
 		//번호 앞자리
 		var tel1 = $("#userPhone").val();
 		var telArr = $("#tel1 option");
-		for (var i = 0; telArr.length; i++) {
+		for (var i = 0; i < telArr.length; i++) {
 			if (telArr.eq(i).text() == tel1) {
 				$("#tel1 option:eq(" + i + ")").prop("selected", true);
 				break;
@@ -79,7 +79,7 @@
 		//이메일
 		var email = $("#userEmail").val();
 		var emailArr = $("#useremail2 option");
-		for (var i = 0; emailArr.length; i++) {
+		for (var i = 0; i < emailArr.length; i++) {
 			if (emailArr.eq(i).text() == email) {
 				$("#useremail2 option:eq(" + i + ")").prop("selected", true);
 				break;

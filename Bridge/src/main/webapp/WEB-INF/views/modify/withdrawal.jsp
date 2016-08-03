@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@page import="java.util.Enumeration"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,12 +18,26 @@
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 <script>
-	//탈퇴 동의 페이지 
+	$(document).ready(function() {
+	});
+
+	//탈퇴 동의 페이지
 	function fnConfirm() {
+
+		var num = $("#userNumber").val();
+		url = "confirm?userNumber=" + num;
 		window.open("confirm", "", "width=400, height=400, scrollbars=yes");
+
+		if (winObject.document.all.text2.value != null) {
+			$("#f").submit();
+		}
 	}
-	//self.location = "/app/";
 </script>
+<style>
+#main {
+	margin-bottom: 100px;
+}
+</style>
 </head>
 <body style="margin-top: 4%;">
 	<!-- header, sideber start -->
@@ -32,7 +47,7 @@
 
 
 	<!-- 상단 tab start -->
-	<div class="container">
+	<div class="container" id="main">
 		<br /> <br />
 		<div class="col-md-12">
 			<ul class="nav nav-tabs">
@@ -48,11 +63,10 @@
 			<h5>
 				<strong>회원탈퇴에 앞서 아래의 사항들을 꼭 확인하시기 바랍니다.</strong>
 			</h5>
-			<br />
-			<br />
-			<form class="form-horizontal well" id="f" method="post">
+			<br /> <br />
+			<form class="form-horizontal well" id="user" method="post">
+				<input type="text" name="userNumber" id="userNumber" value="${usernumber}" />
 				<div class="form-group">
-
 					<h4>
 						<strong>&nbsp;&nbsp;&nbsp;회원님의 모든 개인정보 및 이용정보가 삭제되며 복구가
 							불가능합니다. </strong>

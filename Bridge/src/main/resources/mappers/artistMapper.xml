@@ -15,19 +15,20 @@
 		select artistnumber from artist where artistname=#{artistName}
 	</select>	
 	<select id="selectArtistOne" resultType="ArtistVO" parameterType="int">
-		select artistnumber, artistname, artisttype, artistgenre, artistimg from artist where artistnumber=#{artistNumber}
+		select artistnumber, artistname, artisttype, artistgenre, artistimg 
+		from artist where artistnumber=#{artistNumber}
 	</select>	
 	<select id="selectArist" resultType="ArtistVO">
 		select artistnumber, artistname, artisttype, artistgenre, artistimg 
 		from artist where userNumber=#{userNumber}
 	</select>
-	<update id="update"> 
-		update artist set artistname = #{artistName},
-				               artisttype = #{artistType},
-				               artistgenre = #{artistGenre}
+	<update id="update" parameterType="ArtistVO"> 
+		update artist set artisttype = #{artistType},
+				          artistgenre = #{artistGenre},
+				          artistimg = #{artistImg}
 	    where artistnumber=#{artistNumber}
 	</update>	
-	<delete id="remove" parameterType="int">
+	<delete id="remove" >
 		delete from artist where artistnumber=#{artistNumber}
 	</delete>
 		
