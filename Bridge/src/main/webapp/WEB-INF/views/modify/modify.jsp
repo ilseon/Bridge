@@ -19,63 +19,95 @@
 <script>
 	//정보수정에 대한 항목 입력을 확인하는 jquery 
 	$(document).ready(function() {
-		$(".btn-primary").on("click", function() {
+		//년도
+		var year = $("#useryear").val();
+		var yearArr = $("#year option");
+		for (var i = 0; yearArr.length; i++) {
+			if (yearArr.eq(i).text() == year) {
+				$("#year option:eq(" + i + ")").prop("selected", true);
+				break;
+			}
+		}
 
-			var birth = f.userBirthday.value;
-			var birthday = birth.spilt("-");
-			var year = birthday[0];
-			var month = birthday[1];
-			var day = birthday[2];
-		
-			document.f.year.value = year;
-			document.f.month.value = month;
-			$("#day").val() = day;
-		
-			
-			var phone = f.userPhone.value;
-			var userPhone = phone.spilt("-");
-			var tel1 = userPhone[0];
-			var tel2 = userPhone[1];
-			var tel3 = userPhone[2];
-			
-			document.f.tel1.value = tel1;
-			document.f.tel2.value = tel2;
-			document.f.tel13.value = tel3;
-			
-			var email = f.userEmail.value;
-			var userEmail = email.spilt("-");
-			var useremail1 = userEmail[0];
-			var useremail2 = userEmail[1];
-			
-			document.f.useremail1.value = useremail1;
-			document.f.useremail2.value = useremail2;
-			
-			if (!$("#pw").val()) {
+		//월
+		var monthArr = $("#month option");
+		var month = $("#usermonth").val();
+		if (month < 10) {
+			for (var i = 0; monthArr.length; i++) {
+				if (0 + monthArr.eq(i).text() == month) {
+					$("#month option:eq(" + i + ")").prop("selected", true);
+					break;
+				}
+			}
+		} else if (month >= 10) {
+			for (var i = 0; monthArr.length; i++) {
+				if (monthArr.eq(i).text() == month) {
+					$("#month option:eq(" + i + ")").prop("selected", true);
+					break;
+				}
+			}
+		}
+
+		//일
+		var dayArr = $("#day option");
+		var day = $("#userday").val();
+		if (day < 10) {
+			for (var i = 0; dayArr.length; i++) {
+				if (0 + dayArr.eq(i).text() == day) {
+					$("#day option:eq(" + i + ")").prop("selected", true);
+					break;
+				}
+			}
+		} else if (day >= 10) {
+			for (var i = 0; dayArr.length; i++) {
+				if (dayArr.eq(i).text() == day) {
+					$("#day option:eq(" + i + ")").prop("selected", true);
+					break;
+				}
+			}
+		}
+
+		//번호 앞자리
+		var tel1 = $("#userPhone").val();
+		var telArr = $("#tel1 option");
+		for (var i = 0; telArr.length; i++) {
+			if (telArr.eq(i).text() == tel1) {
+				$("#tel1 option:eq(" + i + ")").prop("selected", true);
+				break;
+			}
+		}
+		//이메일
+		var email = $("#userEmail").val();
+		var emailArr = $("#useremail2 option");
+		for (var i = 0; emailArr.length; i++) {
+			if (emailArr.eq(i).text() == email) {
+				$("#useremail2 option:eq(" + i + ")").prop("selected", true);
+				break;
+			}
+		}
+
+		$(".btn-primary").on("click", function() {
+			if (!$("#userPassword").val()) {
 				alert("비밀번호를 입력해주세요.");
 				return false;
-			} else if (!$("#pw2").val()) {
+			} else if (!$("#PwCheck").val()) {
 				alert("다시 한번 비밀번호를 입력해주세요.");
 				return false;
-			} else if ($("#pw").val() != $("#pw2").val()) {
+			} else if ($("#userPassword").val() != $("#PwCheck").val()) {
 				alert("비밀번호가 일치하지 않습니다.");
 				return false;
-			} else if ($("#pw").val() != $("#pw2").val()) {
-				alert("비밀번호가 일치하지 않습니다.");
-				return false;
-			} else if (!$("#tel").val()) {
+			} else if (!$("#tel2").val() || !$("#tel3").val()) {
 				alert("전화번호를 입력해주세요.");
 				return false;
-			} else if (!$("#email").val()) {
+			} else if (!$("#useremail1").val()) {
 				alert("이메일을 입력해주세요.");
 				return false;
 			} else {
 				alert("수정되었습니다.");
 				$("#f").submit();
-				self.location = "/app/";
 			}
 		});
-	});		
-		
+	});
 </script>
 <style>
 #main {
@@ -107,123 +139,127 @@
 				<strong>가입시 등록한 정보입니다.</strong>
 			</h5>
 			<br /> <br />
-			<form class="form-horizontal" id="f" method="post">
+			<form class="form-horizontal" id="f" method="post" action="modifyComfirm">
 				<table class="table" id="content_table">
-					<c:forEach var="list" items="${userList}">
-						<tr>
-							<th>아이디</th>
-							<td>
-								<div class="col-md-3">
-									<input type="text" class="form-control" name="userId"
-										id="userId" value="${list.userId}">
-								</div>
+					<tr>
+						<th>아이디</th>
+						<td>
+							<div class="col-md-3">
+								<input type="text" class="form-control" name="userId"
+									id="userId" value="${user.userId}" readonly="readonly">
+							</div>
 
-							</td>
-						</tr>
-						<tr>
-							<th>비밀번호</th>
-							<td>
+						</td>
+					</tr>
+					<tr>
+						<th>비밀번호</th>
+						<td>
+							<div class="col-md-3"> <input type="password"
+									name="userPassword" id="userPassword" class="form-control">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>비밀번호 확인</th>
+						<td>
+							<div class="col-md-3">
+								<input type="password" name="PwCheck" id="PwCheck"
+									class="form-control">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>이름</th>
+						<td>
+							<div class="form-group">
 								<div class="col-md-3">
-									<input type="password" name="userPassword" id="userPassword"
-										class="form-control">
+									<input type="text" class="form-control" id="userName"
+										name="userName" value="${user.userName}" readonly="readonly">
 								</div>
-							</td>
-						</tr>
-						<tr>
-							<th>비밀번호 확인</th>
-							<td>
-								<div class="col-md-3">
-									<input type="password" name="userpasswordcheck"
-										class="form-control">
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<th>이름</th>
-							<td>
-								<div class="form-group">
-									<div class="col-md-3">
-										<input type="text" class="form-control" id="userName"
-											name="userName" value="${list.userName}">
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<th>생년월일</th>
-							<td>
-								<div class="form-group">
-									<input type="text" id="userBirthday" name="userBirthday"
-										value="${list.userBirthday}" />
-									<div class="col-md-2">
-										<select class="form-control" name="year" id="year">
-											<c:forEach begin="1900" end="2016" step="1" var="i">
-												<option></option>
-											</c:forEach>
-										</select>
-									</div>
-									<div class="col-md-2">
-										<select class="form-control" name="month" id="month">
-											<c:forEach begin="1" end="12" step="1" var="i">
-												<option></option>
-											</c:forEach>
-										</select>
-									</div>
-									<div class="col-md-2">
-										<select class="form-control" name="day" id="day">
-											<c:forEach begin="1" end="31" step="1" var="i">
-												<option></option>
-											</c:forEach>
-										</select>
-									</div>
-								</div>
-							</td>
-						</tr>
-
-
-						<tr>
-							<th>휴대폰 번호</th>
-							<td>
-								<div class="form-group">
-									<input type="text" id="userPhone" name="userPhone"
-										value="${list.userPhone}" />
-									<div class="col-md-2">
-										<select class="form-control " id="tell" name="tel1">
-											<option>010</option>
-											<option>070</option>
-											<option>02</option>
-											<option>080</option>
-											<option>060</option>
-										</select>
-									</div>
-									<div class="col-md-2">
-										<input type="text" class="form-control " id="tel2" name="tel2">
-									</div>
-									<div class="col-md-2">
-										<input type="text" class="form-control" id="tel2" name="tel3">
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<th>이메일 주소</th>
-							<td><input type="text" id="userEmail" name="userEmail"
-								value="${list.userEmail}" />
-								<div class="col-md-3">
-									<input type="text" class="form-control " id="useremail1"
-										name="useremail1">
-								</div>
-								<div class="col-md-3">
-									<select class="form-control" id="useremail2" name="useremail2">
-										<option>@naver</option>
-										<option>@duam.net</option>
-										<option>@gmail.com</option>
-										<option>@dreamwiz.com</option>
-
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>생년월일</th>
+						<td>
+							<div class="form-group">
+								<div class="col-md-2">
+									<input type="hidden" id="useryear" name="useryear"
+										value="${user.year}" /> <select class="form-control"
+										name="year" id="year" disabled="disabled">
+										<c:forEach begin="1900" end="2016" step="1" var="i">
+											<option>${i}</option>
+										</c:forEach>
 									</select>
-								</div></td>
-						</tr>
-					</c:forEach>
+								</div>
+								<div class="col-md-2">
+									<input type="hidden" id="usermonth" name="usermonth"
+										value="${user.month}" /> <select class="form-control"
+										name="month" id="month" disabled="disabled">
+										<c:forEach begin="1" end="12" step="1" var="i">
+											<option>${i}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div class="col-md-2">
+									<input type="hidden" id="userday" name="userday"
+										value="${user.day}" /> <select class="form-control"
+										name="day" id="day" disabled="disabled">
+										<c:forEach begin="1" end="31" step="1" var="i">
+											<option>${i}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+						</td>
+					</tr>
+
+
+					<tr>
+						<th>휴대폰 번호</th>
+						<td>
+							<div class="form-group">
+								<input type="hidden" id="userPhone" name="userPhone"
+									value="${user.tel1}" />
+								<div class="col-md-2">
+									<select class="form-control " id="tel1" name="tel1">
+										<option>070</option>
+										<option>010</option>
+										<option>02</option>
+										<option>080</option>
+										<option>060</option>
+									</select>
+								</div>
+								<div class="col-md-2">
+									<input type="text" class="form-control " id="tel2" name="tel2"
+										value="${user.tel2}">
+								</div>
+								<div class="col-md-2">
+									<input type="text" class="form-control" id="tel3" name="tel3"
+										value="${user.tel3}">
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>이메일 주소</th>
+						<td>
+							<div class="col-md-3">
+								<input type="text" class="form-control " id="useremail1"
+									name="useremail1" value="${user.useremail1}">
+							</div>
+							<div class="col-md-3">
+								<input type="hidden" id="userEmail" name="userEmail"
+									value="${user.useremail2}" /> <select class="form-control"
+									id="useremail2" name="useremail2">
+									<option>@duam.net</option>
+									<option>@naver.com</option>
+									<option>@gmail.com</option>
+									<option>@dreamwiz.com</option>
+								</select>
+							</div>
+						</td>
+					</tr>
 				</table>
 			</form>
 		</div>
@@ -232,7 +268,7 @@
 		<div class="col-md-12">
 			<div align="center" style="margin-top: 80px">
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary" >확인</button>
+					<button type="submit" class="btn btn-primary">확인</button>
 					<button type="reset" class="btn btn-default">취소</button>
 				</div>
 			</div>

@@ -26,10 +26,6 @@
 					alert(name + " 아티스트로 등록합니다.");
 					$("#artistList").submit();
 				});
-				$("#artistDelete").click(function() {
-					alert(name + " 아티스트를 삭제합니다.");
-					$("#artistList").submit();
-				});
 
 				// 아티스트 정보에 대한 항목 입력을 확인하는 jquery 
 				$("#regist").click(
@@ -159,7 +155,7 @@
 											</a></td>
 											<td width="10%"><a
 												href="artistDel?artistNumber=${list.artistNumber}"
-												class="btn btn-xs"> <span
+												class="btn btn-xs"><span
 													class="glyphicon glyphicon-trash" id="artistDelete"></span>
 											</a></td>
 										</tr>

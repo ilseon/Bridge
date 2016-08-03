@@ -20,9 +20,8 @@
 <script>
 	//비밀번호를 입력을 확인하는 jquery 
 	$(document).ready(function() {
+		alert( $("#dbPassword").val());
 		$(".btn-primary").on("click", function() {
-			alert($("#userPassword").val());
-			alert($("#dbPassword").val());
 			if (!$("#userPassword").val()) {
 				alert("비밀번호를 입력해주세요.");
 				return false;
@@ -53,8 +52,8 @@
 		<br /> <br />
 		<div class="col-md-12">
 			<ul class="nav nav-tabs">
-				<li class="active"><a href="modify" data-toggle="tab">개인정보변경</a></li>
-				<li><a href="withdrawal" data-toggle="tab">회원탈퇴</a></li>
+				<li class="active"><a href="modify">개인정보변경</a></li>
+				<li><a href="withdrawal" >회원탈퇴</a></li>
 			</ul>
 		</div>
 
@@ -65,10 +64,10 @@
 				<strong>회원님의 개인정보보호를 위해 현재 사용중인 비밀번호를 입력해 주시기 바랍니다 </strong>
 			</h5>
 			<br /> <br />
-			<form class="form-horizontal well" action="modify" method="post" accept-charset="UTF-8"
-				id="pwcheck">
-					<input type="hidden" id="dbPassword" name="dbPassword"
-						value="1111" />	
+			<form class="form-horizontal well" action="modify" method="post"
+				accept-charset="UTF-8" id="pwcheck">
+				<input type="hidden" id="dbPassword" name="dbPassword"
+					value="${userPassword}" />
 				<div class="form-group">
 					<label for="id" class="col-lg-5 control-label">아이디</label>
 					<div class="col-md-3">

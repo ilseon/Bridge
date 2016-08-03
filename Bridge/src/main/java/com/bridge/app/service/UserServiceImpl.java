@@ -10,6 +10,8 @@ package com.bridge.app.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,7 +62,7 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public String passwordCheck(int usernumber) throws Exception {		
+	public  String passwordCheck(int usernumber) throws Exception {		
 		return dao.passwordCheck(usernumber);
 	}
 
@@ -68,5 +70,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserVO> selectAll(int usernumber) throws Exception {
 		return dao.selectAll(usernumber);
+	}
+
+	@Override
+	public void update(UserVO user, int usernumber) throws Exception {
+		dao.update(user, usernumber);
+	}
+
+
+	@Override
+	public void remove(UserVO user) throws Exception {
+		dao.remove(user);
 	}
 }

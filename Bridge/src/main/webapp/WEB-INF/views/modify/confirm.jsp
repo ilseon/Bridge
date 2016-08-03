@@ -43,7 +43,7 @@
 				</div>
 			</div>
 			<div class="form-group" align="center" style="margin-top: 40px">
-				<button type="submit" class="btn btn-danger">확인</button>
+				<button type="submit" class="btn btn-danger" >확인</button>
 				<button type="reset" class="btn btn-default"
 					onclick="window.close();">취소</button>
 			</div>

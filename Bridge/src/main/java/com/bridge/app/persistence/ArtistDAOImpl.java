@@ -85,6 +85,7 @@ public class ArtistDAOImpl implements ArtistDAO {
 	
 	@Override
 	public List<ArtistVO> selectArtist(int userNumber) throws Exception {
+	
 		return sqlSession.selectList(NAMESPACE+".selectArist", userNumber);
 	}
 
@@ -95,6 +96,8 @@ public class ArtistDAOImpl implements ArtistDAO {
 
 		if(artistNum == 0){
 			sqlSession.delete(NAMESPACE+".remove", artistNumber);
+		}else {		
+			
 		}
 	}
 	
@@ -137,7 +140,7 @@ public class ArtistDAOImpl implements ArtistDAO {
          artist.setArtistType(multiReq.getParameter("artistType"));
          artist.setArtistImg(artistImg);
 						
-		sqlSession.update(NAMESPACE+".update", artistNumber);
+		sqlSession.update(NAMESPACE+".update", artist);
 		
 		return artist;		
 	}

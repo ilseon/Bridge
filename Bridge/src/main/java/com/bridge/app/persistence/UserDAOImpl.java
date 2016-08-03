@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -31,8 +32,8 @@ public class UserDAOImpl implements UserDAO {
 	@Inject
 	private SqlSession sqlSession;
 
-	private static final String namespace = "com.brige.mappers.loginMapper";
-	private static final String NAMESPACE="com.bridge.mappers.UserMapper";
+	private static final String namespace ="com.bridge.mappers.loginMapper";
+	private static final String NAMESPACE ="com.bridge.mappers.UserMapper";
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	// 아이디와 비밀번호로 로그인 하는 메서드
@@ -96,5 +97,24 @@ public class UserDAOImpl implements UserDAO {
 	public List<UserVO> selectAll(int usernumber) throws Exception {	
 		
 		 return sqlSession.selectList(namespace+".selectAll", usernumber);
+	}
+
+	@Override
+	public void update(UserVO user, int usernumber) throws Exception {
+		
+		user.setUserNumber(usernumber);
+		user.setUserPhone(user.getTel1()+"-"+user.getTel2()+"-"+user.getTel3());
+		user.setUserEmail(user.getUseremail1()+user.getUseremail2());
+	
+		logger.info(user.getUserPhone());
+		
+		sqlSession.update(namespace+".update", user);
+		
+	}
+
+	@Override
+	public void remove(UserVO user) throws Exception {
+		
+		sqlSession.delete(namespace+".remove", user);
 	}		
 }

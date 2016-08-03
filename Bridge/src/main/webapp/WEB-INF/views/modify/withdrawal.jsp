@@ -19,7 +19,7 @@
 <script>
 	//탈퇴 동의 페이지 
 	function fnConfirm() {
-		window.open("confirm", "", "width=400, height=300, scrollbars=yes");
+		window.open("confirm", "", "width=400, height=400, scrollbars=yes");
 	}
 	//self.location = "/app/";
 </script>

@@ -30,5 +30,5 @@
 	<delete id="remove" parameterType="int">
 		delete from artist where artistnumber=#{artistNumber}
 	</delete>
-	
+		
 </mapper>

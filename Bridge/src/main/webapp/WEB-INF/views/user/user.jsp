@@ -141,7 +141,7 @@ $(document).ready(function(){
 							</div>
 							<div class="col-sm-2">
 									<select class="form-control " name="useremail2" >
-										<option>@naver</option>
+										<option>@naver.com</option>
 										<option>@duam.net</option>
 										<option>@gmail.com</option>
 										<option>@dreamwiz.com</option>

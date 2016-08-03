@@ -41,13 +41,10 @@
       </foreach>
    </select>
 
-
-	
 	<select id="selectList"  parameterType="map" resultType="com.bridge.app.domain.DownloadVO">
-		select m.musicnumber as musicnumber, m.musicsubject as musicsubject, a.albumimg as albumimg, t.artistname as artistname, a.albumname as albumname 
+		select m.musicnumber as musicnumber, m.musicsubject as musicsubject, a.albumimg as albumimg, t.artistname as artistname, a.albumname as albumname, a.albumnumber as albumnumber
 		from music as m inner join download d inner join album as a inner join artist as t
 		where m.musicnumber = d.musicnumber and a.albumnumber = m.albumnumber and t.artistnumber = m.artistnumber and d.usernumber=#{userNumber} Limit #{limit} 
 	</select>
-	
 	
 </mapper>

@@ -68,4 +68,5 @@
 	<select id="getArtistAlbum" parameterType="int" resultType="AlbumVO">
 		select * from album where artist_artistnumber=#{artistNumber}
 	</select>
+	
 </mapper>

@@ -10,6 +10,8 @@ package com.bridge.app.persistence;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.bridge.app.domain.UserVO;
 
 public interface UserDAO {
@@ -22,4 +24,8 @@ public interface UserDAO {
 	public UserVO readUser (String userId)throws Exception;
 	public String passwordCheck(int usernumber) throws Exception;
 	public List<UserVO> selectAll(int usernumber)throws Exception;
+	
+	//추가
+	public void update(UserVO user, int usernumber) throws Exception;	
+	public void remove(UserVO user) throws Exception;
 }

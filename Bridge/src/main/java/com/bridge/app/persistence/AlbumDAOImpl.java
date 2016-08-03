@@ -118,6 +118,11 @@ public class AlbumDAOImpl implements AlbumDAO {
 	public List<AlbumVO> getArtistAlbum(int artistNumber) throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".getArtistAlbum", artistNumber);
 	}
+
+	@Override
+	public List<AlbumVO> selectArtistnum(int artistNumber) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".selectArtistnum", artistNumber);
+	}
 	
 	
 }
