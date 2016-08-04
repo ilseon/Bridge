@@ -31,8 +31,8 @@ public class DownloadServiceImpl implements DownloadService {
 	}
 
 	@Override
-	public void remove(Integer downloadNumber) throws Exception {
-
+	public void remove(Map dlist) throws Exception {
+		downloadDAO.remove(dlist);
 	}
 
 	@Override
@@ -59,6 +59,15 @@ public class DownloadServiceImpl implements DownloadService {
 	@Override
 	public List<Integer> music_already(Map download_check) throws Exception {
 		return downloadDAO.music_already(download_check);
+	}
+	@Override
+	public List<DownloadVO> searchList(Integer userNumber, int limit) throws Exception {
+		return downloadDAO.searchList(userNumber, limit);
+	}
+
+	@Override
+	public List<DownloadVO> searchMyDownload(int userNumber) throws Exception {
+		return downloadDAO.searchMyDownload(userNumber);
 	}
 
 }

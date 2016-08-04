@@ -34,4 +34,9 @@ public class ArtistReplyServiceImpl implements ArtistReplyService{
 		
 	}
 
+	@Override
+	public int countArtist(int artistNumber) throws Exception {
+		return dao.countArtist(artistNumber);
+	}
+
 }

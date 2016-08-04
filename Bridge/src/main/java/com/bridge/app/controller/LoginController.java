@@ -2,8 +2,8 @@
 작성자 - 김민정
 내용 - 로그인/로그아웃
 시작날짜 - 2016/07/17
-수정날짜 - 2016/07/25
-변경내용 - 아이디 및 비밀번호 찾기 예외처리 완성
+수정날짜 - 2016/08/02
+변경내용 - 주석 수정
 */
 
 package com.bridge.app.controller;
@@ -44,12 +44,11 @@ public class LoginController {
 	// 로그인 메서드
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(@Valid UserVO uservo, BindingResult result, Model model) {
-		logger.info("It is login : " + uservo.getUserId());
-		logger.info("It is login : " + uservo.getUserPassword());
+		logger.info("It is login : " + uservo.getUserId()+ uservo.getUserPassword());
 
 		if (result.hasErrors()) {
 			logger.info("login error ");
-			return "home";
+			return "redirect:/";
 		}
 
 		try {
@@ -59,13 +58,15 @@ public class LoginController {
 
 			model.addAttribute("userid", vo.getUserId());
 			model.addAttribute("usernumber", vo.getUserNumber());
-			logger.info("login se :  ");
+			model.addAttribute("loginmsg",2);
+			logger.info("login success  ");
 
 		} catch (Exception e) { // 로그인실패시
 			logger.info("login fail ");
-			return "home";
+			model.addAttribute("loginmsg",1);
+			return "/login/loginfail";
 		}
-		return "home";
+		return "redirect:/";
 	}
 
 	// 아이디 및 비밀번호 찾기 페이지로 이동
@@ -74,6 +75,14 @@ public class LoginController {
 		logger.info("It is loginsearch");
 		return "/login/loginsearch";
 	}
+	
+	// 로그인 실패시 이동 페이지
+	@RequestMapping(value = "loginfail")
+	public String loginfail() {
+		logger.info("It is loginfail");
+		return "/login/loginfail";
+	}
+	
 
 	// 로그아웃 메서드
 	@RequestMapping("logout")
@@ -87,8 +96,7 @@ public class LoginController {
 	// 아이디 찾기 메서드
 	@RequestMapping(value = "searchid", method = RequestMethod.POST)
 	public String Searchid(@Valid UserVO uservo, BindingResult result, Model model) {
-		logger.info("It is searchid : " + uservo.getUserName());
-		logger.info("It is searchid : " + uservo.getUserBirthday());
+		logger.info("It is searchid : " + uservo.getUserName()+ uservo.getUserBirthday());
 
 		if (result.hasErrors()) {
 			logger.info("search error ");
@@ -99,7 +107,7 @@ public class LoginController {
 			model.addAttribute("idmsg", 2);
 			model.addAttribute("usersearchid", vo.getUserId());
 
-			logger.info("search se :  ");
+			logger.info("search success  ");
 
 		} catch (Exception e) {
 			logger.info("search fail ");
@@ -112,8 +120,7 @@ public class LoginController {
 	// 비밀번호 찾기 메서드
 	@RequestMapping(value = "usersearchpassword", method = RequestMethod.POST)
 	public String Searchpassword(@Valid UserVO uservo, BindingResult result, Model model) {
-		logger.info("It is searchpassword : " + uservo.getUserId());
-		logger.info("It is searchemail : " + uservo.getUserEmail());
+		logger.info("It is searchpassword : " + uservo.getUserId() + uservo.getUserEmail());
 
 		if (result.hasErrors()) {
 			logger.info("search error ");
@@ -124,7 +131,7 @@ public class LoginController {
 			
 			model.addAttribute("passwordmsg",2);
 			model.addAttribute("usersearchpassword", vo.getUserPassword());
-			logger.info("pw search se :  ");
+			logger.info("pw search success  ");
 		} catch (Exception e) {
 			model.addAttribute("passwordmsg",1);
 			logger.info("search fail ");

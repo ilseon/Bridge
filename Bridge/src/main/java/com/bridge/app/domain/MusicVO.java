@@ -17,9 +17,18 @@ public class MusicVO {
 	
 	private int musicPlay;
 	private int musicLike;
-	private int musicCheck;
+	private int musicTitle;
 	
-	private int musicRank;
+	private int musicRank;	
+
+	@Override
+	public String toString() {
+		return "MusicVO [musicNumber=" + musicNumber + ", musicSubject=" + musicSubject + ", artistNumber="
+				+ artistNumber + ", artistName=" + artistName + ", musicLyrics=" + musicLyrics + ", musicFile="
+				+ musicFile + ", musicVideo=" + musicVideo + ", albumNumber=" + albumNumber + ", albumName=" + albumName
+				+ ", albumImg=" + albumImg + ", musicDownload=" + musicDownload + ", musicPlay=" + musicPlay
+				+ ", musicLike=" + musicLike + ", musicTitle=" + musicTitle + ", musicRank=" + musicRank + "]";
+	}
 
 	public int getMusicNumber() {
 		return musicNumber;
@@ -125,12 +134,12 @@ public class MusicVO {
 		this.musicLike = musicLike;
 	}
 
-	public int getMusicCheck() {
-		return musicCheck;
+	public int getMusicTitle() {
+		return musicTitle;
 	}
 
-	public void setMusicCheck(int musicCheck) {
-		this.musicCheck = musicCheck;
+	public void setMusicTitle(int musicTitle) {
+		this.musicTitle = musicTitle;
 	}
 
 	public int getMusicRank() {

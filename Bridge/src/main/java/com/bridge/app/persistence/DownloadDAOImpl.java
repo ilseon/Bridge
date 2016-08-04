@@ -38,9 +38,8 @@ public class DownloadDAOImpl implements DownloadDAO {
 	}
 
 	@Override
-	public void remove(Integer downloadNumber) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void remove(Map dlist) throws Exception {
+		sqlSession.delete(NAMESPACE+".remove", dlist);
 	}
 
 	@Override
@@ -62,6 +61,15 @@ public class DownloadDAOImpl implements DownloadDAO {
 	@Override
 	public List<Integer> music_already(Map download_check) throws Exception {
 		return sqlSession.selectList(NAMESPACE+".music_already", download_check);
+	}
+	@Override
+	public List<DownloadVO> searchList(Integer userNumber, int limit) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".selectList", userNumber);
+	}
+
+	@Override
+	public List<DownloadVO> searchMyDownload(int userNumber) throws Exception {
+		return  sqlSession.selectList(NAMESPACE+".searchMyDownload", userNumber);
 	}
 	
 }

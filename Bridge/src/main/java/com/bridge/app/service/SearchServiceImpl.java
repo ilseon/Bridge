@@ -31,8 +31,20 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	@Override
+	public List<VideoVO> getVideoTotal(Paging pg) throws SQLException {
+		return dao.getVideoTotal(pg);
+	}
+
+	@Override
 	public List<VideoVO> getVideoTotal() throws SQLException {
+		// TODO Auto-generated method stub
 		return dao.getVideoTotal();
+	}
+
+	@Override
+	public List<VideoVO> getChartVideoTotal() throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.getChartVideoTotal();
 	}
 
 	

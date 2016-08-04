@@ -39,4 +39,9 @@ public class ArtistReplyDAOImpl implements ArtistReplyDAO {
 		
 	}
 
+	@Override
+	public int countArtist(int artistNumber) throws Exception {
+		return sqlsession.selectOne(NAMESPACE + ".countArtist", artistNumber);
+	}
+
 }

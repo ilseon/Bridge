@@ -9,6 +9,7 @@
 package com.bridge.app.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -32,12 +33,26 @@ public class LikeServiceImpl implements LikeService {
 	@Override
 	public void remove(LikeVO like) throws Exception {
 		likeDAO.remove(like);
-
 	}
 
 	@Override
 	public List<Integer> searchAll(Integer userNumber) throws Exception {
 		return likeDAO.searchAll(userNumber);
+	}
+
+	@Override
+	public List<LikeVO> searchMusic(Integer userNumber, int limit) throws Exception {
+		return likeDAO.searchMusic(userNumber, limit);
+	}
+
+	@Override
+	public List<LikeVO> searchAlbum(Integer userNumber) throws Exception {
+		return likeDAO.searchAlbum(userNumber);
+	}
+
+	@Override
+	public void removeAll(Map dlist) throws Exception {
+		likeDAO.removeAll(dlist);		
 	}
 
 }

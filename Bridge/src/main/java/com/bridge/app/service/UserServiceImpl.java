@@ -1,16 +1,19 @@
 /*
-작성자 - 김민정
+작성자 - 김민정, 김우준
 내용 - 로그인관련 서비스
 시작날짜 - 2016/07/18
 수정날짜 - 2016/07/25
+	  -2016/08/04
 변경내용 - id 및 password 찾기
+	  - 회원가입 validation 추가
 */
 
 package com.bridge.app.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
 
 import com.bridge.app.domain.UserVO;
 import com.bridge.app.persistence.UserDAO;
@@ -53,13 +56,31 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public UserVO readUser(String userId, BindingResult result) throws Exception {
-		return dao.readUser(userId,null);
+	public UserVO readUser(String userId) throws Exception {
+		return dao.readUser(userId);
 	}
 
 
+	@Override
+	public String passwordCheck(int usernumber) throws Exception {		
+		return dao.passwordCheck(usernumber);
+	}
 
 
+	@Override
+	public List<UserVO> selectAll(int usernumber) throws Exception {
+		return dao.selectAll(usernumber);
+	}
 
 
+	@Override
+	public void update(UserVO user, int usernumber) throws Exception {
+		dao.update(user, usernumber);
+	}
+
+
+	@Override
+	public void remove(int usernumber) throws Exception {
+		dao.remove(usernumber);
+	}
 }

@@ -10,8 +10,8 @@
 		values(#{userName}, #{userBirthday}, #{userId}, #{userPassword}, #{userPhone}, #{userType}, #{userEmail})
 	</insert>
 	
-	<select id="readUser" resultType="com.bridge.app.domain.UserVO" parameterType="map">
-		select * from bridgedb.user where userid = #{userId}
+	<select id="selectUser" resultType="UserVO">
+		select * from tbl_member
+		where userId = #{userId}
 	</select>
-	
 	</mapper>

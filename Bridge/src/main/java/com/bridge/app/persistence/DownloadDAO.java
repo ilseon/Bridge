@@ -17,10 +17,13 @@ import com.bridge.app.domain.MusicVO;
 public interface DownloadDAO {
 	public void registOne(DownloadVO download) throws Exception;
 	public void registSeveral(Map playListAll) throws Exception;
-	public void remove(Integer downloadNumber) throws Exception;
+	public void remove(Map dlist) throws Exception;
 	public List<DownloadVO> searchDownload(Map playlistAll) throws Exception;
 	
 	public List<DownloadVO> searchAll(Integer userNumber) throws Exception;
 	public List<MusicVO> search_sev(Map playlistAll) throws Exception;
 	public List<Integer> music_already(Map download_check)throws Exception;
+	public List<DownloadVO> searchList(Integer userNumber, int limit) throws Exception;
+	//추가
+	public List<DownloadVO> searchMyDownload(int userNumber) throws Exception;
 }

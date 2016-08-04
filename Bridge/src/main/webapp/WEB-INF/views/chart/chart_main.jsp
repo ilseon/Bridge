@@ -11,17 +11,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-<script>
-
-function PopupWindow()
-  {
-     window.open("/player","popup", "width=500, height=700, left=30, top=30, scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
-  }
-
-
-</script>
+<link href="/Bridge/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+ <script src="/Bridge/resources/bootstrap/js/jquery-2.2.3.min.js"></script> 
+ <script src="/Bridge/resources/chart.js"></script>
 <title>chart</title>
 </head>
 <style>
@@ -137,7 +129,7 @@ border: none;
 	                    	<c:set var="active2" value="active"/>
 	                    </c:if>
 	                    <li class="${active1}"><a href="chart" class="">곡 차트</a></li>
-	                    <li class="${active2}"><a href="chart.video">뮤직비디오 차트</a></li>
+	                    <li class="${active2}"><a href="chart_video">뮤직비디오 차트</a></li>
 	                </ul>
 	            </div>
 	    </nav>
@@ -153,11 +145,35 @@ border: none;
 				<%@include file="/WEB-INF/views/artist/artist_detail.jsp"%>
 			</c:if>
 			<c:if test="${page=='video'}">
-				<%@include file="/WEB-INF/views/video/video.jsp"%>
+				<%@include file="/WEB-INF/views/video/chart_video.jsp"%>
 			</c:if>
 
 	</div>
 </div>
+
+<!-- 다운로드 모달창 시작 -->
+<div class="modal fade" id="Download" role="dialog" aria-labelledby="edit" aria-hidden="true">
+     <div class="modal-dialog">
+          <div class="modal-content">
+         </div>
+    <!-- /.modal-content --> 
+     </div>
+      <!-- /.modal-dialog --> 
+    </div>
+<!-- 다운로드 모달창  끝 -->    
+    
+    
+    
+<!-- 내 앨범 추가 모달 시작 -->
+    <div class="modal fade" id="MyAlbum" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+         </div>
+    <!-- /.modal-content --> 
+     </div>
+      <!-- /.modal-dialog --> 
+   </div>
+<!-- 내 앨범 추가 모달 끝 -->
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>

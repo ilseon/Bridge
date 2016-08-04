@@ -7,6 +7,7 @@ public class ArtistVO {
 	private String artistGenre;
 	private String artistImg;
 	private int userNumber;
+
 	public int getArtistNumber() {
 		return artistNumber;
 	}
@@ -43,6 +44,4 @@ public class ArtistVO {
 	public void setUserNumber(int userNumber) {
 		this.userNumber = userNumber;
 	}
-	
-	
 }

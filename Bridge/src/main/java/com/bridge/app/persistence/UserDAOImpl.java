@@ -1,28 +1,30 @@
 /*
-작성자 - 김민정
+작성자 - 김민정, 김우준
 내용 - 로그인관련 서비스
 시작날짜 - 2016/07/18
 수정날짜 - 2016/07/25
+	  -2016/08/04
 변경내용 - id 및 password 찾기
+	  - 회원가입 validation 추가
 */
 
 
 package com.bridge.app.persistence;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 
+import com.bridge.app.controller.HomeController;
+import com.bridge.app.controller.MyPageController;
 import com.bridge.app.domain.UserVO;
-import com.bridge.app.utill.UserValidation;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -31,10 +33,10 @@ public class UserDAOImpl implements UserDAO {
 	@Inject
 	private SqlSession sqlSession;
 
-	private static final String namespace = "com.bridge.mappers.loginMapper";
+	private static final String namespace = "com.brige.mappers.loginMapper";
 	private static final String NAMESPACE="com.bridge.mappers.UserMapper";
-	
 
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	// 아이디와 비밀번호로 로그인 하는 메서드
 	@Override
 	public UserVO readLogin(String userid, String userpw) throws Exception {
@@ -71,35 +73,60 @@ public class UserDAOImpl implements UserDAO {
 		
 		return sqlSession.selectOne(namespace+".searchPassword", passwordsearchMap);
 	}
-	//아이디를 추가하는 메서드
+
 	@Override
 	public void insertUser(UserVO vo) throws Exception {
-		sqlSession.insert(NAMESPACE + ".insertUser", vo);
+		sqlSession.insert(NAMESPACE + ".insertUser", vo);	
+	}
 
+	@Override
+	public UserVO readUser(String userId) throws Exception {
+		UserVO vo =null;
+		
+			vo = (UserVO)sqlSession.selectOne(NAMESPACE + ".readUser", userId);
+			if(vo.getUserId()!=null){
+				logger.info(vo.getUserId()+"exception이전");
+				throw new Exception();
+			}
+			try{
+				logger.info(vo.getUserId());
+			}catch(NullPointerException e){
+				logger.info("null예외");
+			}
+		return vo;
+	}
+
+	@Override
+	public String passwordCheck(int usernumber) throws Exception {
+		
+		String userPassword = sqlSession.selectOne(namespace + ".PasswordCheck", usernumber);
+	/*	UserVO user = new UserVO();
+		user.setUserPassword(userPassword);*/
+		
+		return userPassword;
+	}
+
+	@Override
+	public List<UserVO> selectAll(int usernumber) throws Exception {	
+		
+		 return sqlSession.selectList(namespace+".selectAll", usernumber);
+	}
+
+	@Override
+	public void update(UserVO user, int usernumber) throws Exception {
+		
+		user.setUserNumber(usernumber);
+		user.setUserPhone(user.getTel1()+"-"+user.getTel2()+"-"+user.getTel3());
+		user.setUserEmail(user.getUseremail1()+user.getUseremail2());
+	
+		logger.info(user.getUserPhone());
+		
+		sqlSession.update(namespace+".update", user);
 		
 	}
-	//아이디를 읽어오는 메서드
-	@Override
-	public UserVO readUser(@Validated String userId, BindingResult result) throws Exception {
-		System.out.println("dao");
-		Map<String, String> loginMap = new HashMap<String, String>();
-		loginMap.put("userId", userId);
-		try{
-			UserVO vo1=sqlSession.selectOne(NAMESPACE + ".readUser", loginMap);
-			System.out.println(vo1.getUserId()+"1111");
-			/*if(vo1.getUserId()!=null){
-				result.rejectValue("userId", "regist");
-			}*/
-		}catch(Exception e){
-			System.out.println(""+e);
-			
-		}
-		return sqlSession.selectOne(NAMESPACE + ".readUser", loginMap);
-	}
-	
-	@InitBinder
-	private void initBinder(WebDataBinder binder){
-		binder.setValidator(new UserValidation());
-	}
 
+	@Override
+	public void remove(int usernumber) throws Exception {	
+		sqlSession.delete(namespace+".remove", usernumber);
+	}		
 }

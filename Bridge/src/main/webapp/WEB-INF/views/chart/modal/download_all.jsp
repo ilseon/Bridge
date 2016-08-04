@@ -50,10 +50,13 @@
 				   response.reset();
 				   response.setContentType("application/octet-stream");
 				   
-				   String Encoding = new String(fileName.get(0).getBytes("UTF-8"), "8859_1");
+				   String Encoding = new String(fileName.get(0).getBytes("UTF-8"), "ISO-8859_1");
 				   // 파일 이름 저장
 				   response.setHeader("Content-Disposition", "attachment; filename = " + Encoding);
-				  
+				   response.setHeader("Content-Transfer-Encoding", "binary");
+				   response.setContentLength((int)file.length());
+				   response.setHeader("Connection", "close");
+				   
 				   in = new FileInputStream(filePath);
 				   out.clear();
 				   out=pageContext.pushBody();

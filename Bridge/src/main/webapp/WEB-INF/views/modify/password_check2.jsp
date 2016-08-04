@@ -11,43 +11,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
-	type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
+<script src="/Bridge/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
+<script src="/Bridge/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="/Bridge/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 <script>
-	//비밀번호를 입력을 확인하는 jquery 
-	$(document).ready(function() {
-		$(".btn-primary").on("click", function() {
-			if (!$("#pw").val()) {
+
+$(document).ready(function(){
+	  $(".btn-primary").click(function(){
+		  if (!$("#userPassword").val()) {
 				alert("비밀번호를 입력해주세요.");
 				return false;
-			} else {
-				$("#f").submit();
+			}
+	 	 });
+	  
+	/* //비밀번호를 입력을 확인하는 jquery 
+	$(document).ready(function() {
+		$(".btn-primary").on("click", function() {
+			if (!$("#userPassword").val()) {
+				alert("비밀번호를 입력해주세요.");
+				return false;
+			} else if ($("#userPassword").val() != $("#dbPassword").val()) {
+				alert("비밀번호가 틀렸습니다. 다시 확인해서 입력해주세요.");
+				return false;
+			} else if ($("#userPassword").val() == $("#dbPassword").val()) {
+				alert("확인되었습니다.");
+				$("#pwcheck").submit();
 			}
 		});
-	});
+	}); */
 </script>
+<style>
+#main {
+	margin-bottom: 320px;
+}
+</style>
 </head>
-<body>
+<body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
 	<!-- end -->
 
 	<!-- 상단 tab start-->
-	<div class="container">
+	<div class="container" id="main">
 		<br /> <br />
 		<div class="col-md-12">
 			<ul class="nav nav-tabs">
-				<li><a href="modify" data-toggle="tab">개인정보변경</a></li>
-				<li class="active"><a href="withdrawal" data-toggle="tab">회원탈퇴</a></li>
+				<li><a href="modify">개인정보변경</a></li>
+				<li class="active"><a href="withdrawal">회원탈퇴</a></li>
 			</ul>
 		</div>
 
 
-		<!-- 비밀번호를 확인 start-->
+<!-- 비밀번호를 확인 start-->
 		<div class="col-md-10 col-md-offset-1">
 			<br /> <br />
 			<h5>
@@ -55,19 +71,26 @@
 			</h5>
 			<br /> <br />
 			<form class="form-horizontal well" action="withdrawal" method="post"
-				id="f">
+				accept-charset="UTF-8" id="pwcheck">
+				<input type="hidden" id="dbPassword" name="dbPassword"
+					value="${userPassword}" />
 				<div class="form-group">
 					<label for="id" class="col-lg-5 control-label">아이디</label>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="id" value="AAA">
+						<input type="text" class="form-control" name="userId" id="userId"
+							value="${userid}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="pw" class="col-lg-5 control-label">비밀번호</label>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="pw"
-							placeholder="비밀번호 입력">
+						<input type="password" class="form-control" id="userPassword"
+							name="userPassword" placeholder="비밀번호 입력">
 					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">확인</button>
+					<button type="reset" class="btn btn-default">취소</button>
 				</div>
 			</form>
 		</div>
@@ -76,10 +99,7 @@
 		<!-- 버튼 start -->
 		<div class="col-md-12">
 			<div align="center" style="margin-top: 70px">
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary">확인</button>
-					<button type="reset" class="btn btn-default">취소</button>
-				</div>
+				
 			</div>
 		</div>	
 		<!-- end -->

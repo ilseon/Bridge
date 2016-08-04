@@ -11,4 +11,6 @@ public interface AlbumReplyService {
 	public void writeReply(AlbumReplyVO vo) throws Exception;
 	public void updateReplyGroupNumber() throws Exception;
 	public void deleteReply(int replyNumber) throws Exception;
+	public int countAlbum(int albumNumber) throws Exception;
+
 }

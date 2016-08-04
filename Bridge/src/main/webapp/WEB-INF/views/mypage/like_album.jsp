@@ -1,9 +1,9 @@
 <%--
-작성자 - 이주연
+작성자 - 정효진
 내용 - 좋아하는 앨범 페이지
 시작날짜 - 2016/07/17
-수정날짜 - 
-변경내용 - 
+수정날짜 - 2016/08/04
+변경내용 - 삭제기능추가
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -11,11 +11,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
-	type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
+<script src="/Bridge/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
+<script src="/Bridge/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="/Bridge/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 </head>
 <script>
 	$(document).ready(function() {

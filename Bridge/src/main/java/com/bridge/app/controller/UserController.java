@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -25,14 +26,21 @@ public class UserController {
 
 	@Inject
 	private UserService Service;
+	
+/*	@Autowired
+	private BCryptPasswordEncoder bcrypt;*/
 
 	@RequestMapping(value="/user.add", method=RequestMethod.GET)
-	public String user_add_get() {
-		
+	public String user_add_get(String check, HttpServletRequest req) {
+		req.setAttribute("check_id", check);
+		System.out.println("ㅇ????");
+		logger.info(check);
 		return "/user/user";
 	}
 	@RequestMapping(value="/user.add", method=RequestMethod.POST)
-	public ModelAndView user_add_post(UserVO vo)throws Exception{
+	public ModelAndView user_add_post(UserVO vo, String id_c, String userpassword)throws Exception{
+		vo.setUserPassword(userpassword);
+		vo.setUserId(id_c);
 		vo.setUserBirthday(vo.getYear() + "-" + vo.getMonth() + "-" + vo.getDay());
 		vo.setUserPhone(vo.getTel1() + "-" + vo.getTel2() + "-" + vo.getTel3());
 		vo.setUserEmail(vo.getUseremail1() + vo.getUseremail2());
@@ -44,25 +52,39 @@ public class UserController {
 		mav.addObject("username", vo.getUserName());
 		
 		return mav;
-	};
+	}
 	
-	
-	
-	@RequestMapping(value="id_check", method=RequestMethod.GET)
-	public String user_id_check(UserVO vo, BindingResult result, HttpServletRequest req) throws Exception{
+	@RequestMapping(value="/id_check", method=RequestMethod.GET)
+	public String user_id_check(@Validated UserVO vo, BindingResult result, HttpServletRequest req) throws Exception{
+		/*logger.info("id_check");
+		UserVO vo = new UserVO();
+		vo.setUserId(userId);*/
 		logger.info("id : " + vo.getUserId());
-		
 		if(result.hasErrors()){
+			logger.info("result.hasError");
 			return "user/user";
 		}
-	
-		/*if(){
-			Service.readUser(vo.getUserId());
-		}*/
-	
-			
+		UserVO vo1=null;
+		try{
+			vo1 =Service.readUser(vo.getUserId());	
+		}catch(Exception e){
+			try{
+			logger.info(vo1.getUserId());
+			logger.info("여기");
+			result.reject("regist");
+			return "user/user";
+			}catch(NullPointerException err){
+				logger.info("null예외잡음");
+			}
+		}
+		
+		req.setAttribute("check_id", vo.getUserId());
 		
 		return "user/user";
 		}
+	
+	@InitBinder
+	private void initBinder(WebDataBinder binder){
+		binder.setValidator(new UserValidation());
+	}
 }
-

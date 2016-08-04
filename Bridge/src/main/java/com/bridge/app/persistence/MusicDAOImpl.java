@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bridge.app.domain.MusicVO;
+import com.bridge.app.domain.Paging;
+import com.bridge.app.domain.VideoVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -38,48 +41,78 @@ public class MusicDAOImpl implements MusicDAO {
 	private static final Logger logger = LoggerFactory.getLogger(MusicDAOImpl.class);
 
 	@Override
-	public void regist(HttpServletRequest req) throws Exception {
-		// TODO Auto-generated method stub
-			
-			 int postMaxSize = 10 * 1024 * 1024;
-	         String folderPath = req.getSession().getServletContext().getRealPath("/"); //realPath
-	         String folder_p=folderPath+"upload"+File.separator+"estimate"+File.separator;
-	        
-	         File file = null;
-	         file = new File(folder_p);
-	         if(!file.exists()) {
-	            file.mkdirs();
-	         }
-	         
-	         String encoding = "UTF-8";
-	         ArrayList filePath = new ArrayList();
-	         Enumeration enumer=null;
-	          MultipartRequest multiReq = new MultipartRequest(req, folder_p,
-	               postMaxSize, encoding, new DefaultFileRenamePolicy());
-	          
-	          enumer=multiReq.getFileNames();
-	          
-	          ArrayList fileNameList = new ArrayList();//파일 이름 저장
-	          
-	          int i=0;
-	          while(enumer.hasMoreElements()){
-	             String name = (String)enumer.nextElement();
-	             fileNameList.add(multiReq.getFilesystemName(name));
-	          }
+	public List<MusicVO> regist(HttpServletRequest req) throws Exception {
+
 		
-	          MusicVO music = new  MusicVO();
-	          music.setMusicSubject(multiReq.getParameter("musicSubject"));
-	          music.setMusicFile(multiReq.getParameter("musicFile"));
-	          music.setMusicVideo(multiReq.getParameter("musicVideo"));
-	          
-	          logger.info(music.toString());	          
-	          
-			sqlSession.insert(NAMESPACE + ".regist", req);
+		int postMaxSize = 1024 * 1024 * 1024;
+		String folderPath = req.getSession().getServletContext().getRealPath("/"); // realPath
+		String folder_p = folderPath + "upload" + File.separator + "music" + File.separator;
+
+		File file = null;
+		file = new File(folder_p);
+		if (!file.exists()) {
+			file.mkdirs();
 		}
 
+		String encoding = "UTF-8";
+		List<String> fileNameList = new ArrayList();	
+		Enumeration enumer = null;
+		MultipartRequest multiReq = new MultipartRequest(req, folder_p, postMaxSize, encoding,
+				new DefaultFileRenamePolicy());
+
+		enumer = multiReq.getFileNames();
+
+		logger.info(multiReq.getParameter("counter"));
+		logger.info(multiReq.getParameter("albumNumber"));
+		logger.info(multiReq.getParameter("artistNumber"));
+		
+		int counter = Integer.parseInt(multiReq.getParameter("counter"));
+		int albumNumber = Integer.parseInt(multiReq.getParameter("albumNumber"));
+	    int artistNumber = Integer.parseInt(multiReq.getParameter("artistNumber"));
+				
+		String musicFile = "";
+		while (enumer.hasMoreElements()) {
+			String name = (String) enumer.nextElement();	
+	            fileNameList.add(multiReq.getFilesystemName(name));
+	          }			
+		
+		List<MusicVO> list = new ArrayList<MusicVO>();
+	    
+		for (int i = 1; i <= counter; i++) {
+			
+			MusicVO music = new MusicVO();
+			music.setAlbumNumber(albumNumber);
+			music.setArtistNumber(artistNumber);
+			music.setMusicSubject(multiReq.getParameter("musicSubject"+i));
+			music.setMusicFile(fileNameList.get(i-1));
+			
+			if(multiReq.getParameter("musicTitle" + i) != null){
+				music.setMusicTitle(Integer.parseInt(multiReq.getParameter("musicTitle" + i)));
+			}
+		
+			music.setMusicVideo(multiReq.getParameter("musicVideo" + i));
+			music.setMusicLyrics(multiReq.getParameter("musicLyrics" + i));
+			
+			logger.info("multiReq :"+ multiReq.getParameter("albumNumber")+multiReq.getParameter("artistNumber")+
+					multiReq.getParameter("musicSubject" + i) + multiReq.getParameter("musicFile" + i)
+					+ multiReq.getParameter("musicVideo" + i)+multiReq.getParameter("musicTitle" + i)+multiReq.getParameter("musicLyrics" + i));
+			
+			list.add(music);
+			
+			logger.info(music+"");
+		}		 
+		
+		HashMap map = new HashMap();
+		map.put("list",list);		
+		
+		sqlSession.insert(NAMESPACE + ".registSeveral", list);
+		
+		return list;
+	}
+
 	@Override
-	public void remove(Integer musicNumber) throws Exception {
-		// TODO Auto-generated method stub
+	public void remove(int musicNumber) throws Exception {
+		sqlSession.delete(NAMESPACE + ".removeMusic", musicNumber);
 
 	}
 
@@ -122,8 +155,8 @@ public class MusicDAOImpl implements MusicDAO {
 	}
 
 	@Override
-	public void play_update(Map musicnumbers) throws Exception {
-		sqlSession.update(NAMESPACE+".play_update", musicnumbers);	
+	public void play_update(int musicNumber) throws Exception {
+		sqlSession.update(NAMESPACE+".play_update", musicNumber);	
 	}
 
 	@Override
@@ -134,6 +167,44 @@ public class MusicDAOImpl implements MusicDAO {
 	@Override
 	public void like_remove(int musicNumber) throws Exception {
 		sqlSession.update(NAMESPACE+".like_remove", musicNumber);
+	}
+	
+	
+	  // 일선 추가
+    @Override
+    public List<MusicVO> getArtistMusic(int artistNumber) throws Exception {         
+       return sqlSession.selectList(NAMESPACE + ".getArtistMusic", artistNumber);
+    }
+ 
+    @Override
+    public List<MusicVO> getAlbumMusic(int albumNumber) throws Exception {
+       return sqlSession.selectList(NAMESPACE + ".getAlbumMusic", albumNumber);
+
+    }
+
+    @Override
+    public List<VideoVO> getArtistMusicVideo(int artistNumber) throws Exception {
+       return sqlSession.selectList(NAMESPACE + ".getArtistMusicVideo", artistNumber);
+    }
+
+    @Override
+    public List<VideoVO> getAlbumMusicVideo(int albumNumber) throws Exception {
+       return sqlSession.selectList(NAMESPACE + ".getAlbumMusicVideo", albumNumber);
+    }
+
+    @Override
+    public List<MusicVO> searchHeader(Paging paging) throws Exception {
+       return sqlSession.selectList(NAMESPACE + ".searchHeader", paging);
+    }
+
+    @Override
+    public int searchCount(Paging paging) throws Exception {
+       return sqlSession.selectOne(NAMESPACE + ".searchCount", paging);
+    }
+
+	@Override
+	public List<MusicVO> MytrackMusic(int albumNumber) throws Exception {		
+		return sqlSession.selectList(NAMESPACE + ".MytrackMusic", albumNumber);
 	}
 
 }

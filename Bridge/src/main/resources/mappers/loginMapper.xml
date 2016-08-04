@@ -3,16 +3,44 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bridge.mappers.loginMapper">   
+<mapper namespace="com.brige.mappers.loginMapper">	
 
-   <select id="readLogin" parameterType="UserVO" resultType="UserVO">
-      select * from user 
-      where userid=#{userid} and userpassword=#{userpw}
-   </select>
-   
-   <select id="searchId" parameterType="UserVO" resultType="UserVO">
-      select * from user 
-      where username=#{username} and userbirthday=#{userbirthday}
-   </select>
-   
+	<select id="readLogin" parameterType="UserVO" resultType="UserVO">
+		select * from user 
+		where userid=#{userid} and userpassword=#{userpw}
+	</select>
+	
+	<select id="searchId" parameterType="UserVO" resultType="UserVO">
+		select * from user 
+		where username=#{username} and userbirthday=#{userbirthday}
+	</select>
+	
+		<select id="searchPassword" parameterType="UserVO" resultType="UserVO">
+		select * from user 
+		where userid=#{userid} and useremail=#{useremail}
+	</select>
+	
+	<select id="PasswordCheck" parameterType="int" resultType="String">
+		select userpassword from user where usernumber=#{userNumber} 
+	</select>
+	
+		<select id="selectAll" parameterType="int" resultType="UserVO">
+		select * from user where usernumber=#{userNumber} 
+	</select>
+	
+	
+	<!-- 주연 추가 -->
+	<update id="update" parameterType="UserVO">
+		update user set useremail =
+		#{userEmail},
+		userpassword = #{userPassword},
+		userphone = #{userPhone}
+		where usernumber=#{userNumber}
+	</update>
+
+	<delete id="remove">
+		delete from user where
+		usernumber=#{userNumber}
+	</delete>
+	
 </mapper>

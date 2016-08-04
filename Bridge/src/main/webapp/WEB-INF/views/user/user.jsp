@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-
 <head>
 <title>회원가입</title>
 </head>
@@ -15,26 +13,71 @@
 <jsp:include page="../include/header.jsp" />
 <jsp:include page="../include/sidebar.jsp" />
 <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-
 <body style="margin-top: 4%;">
-
 <spring:hasBindErrors name="userVO"/>
 <form:errors name="userVO"/>
 
 <script>
- function fnPassRight(){
-	
-	if($( "#userpassword" ).val() != $( "#userpasswordcheck" ).val()){	
-	
-		$("#checkpassspan").text("일치하지않는 비빌번호입니다");			
-	}else{
-		$("#checkpassspan").text("비밀번호가일치합니다");			
+<%
+	pageContext.setAttribute("check_id", request.getAttribute("check_id"));
+%>
+$(document).ready(function(){
+	$( "input[name='userpasswordcheck']" ).focusout(function(){
+		if($( "input[name='userpassword']" ).val() != $( "input[name='userpasswordcheck']" ).val()){			
+			$("#checkpassspan").text("불일치"+$( "input[name='userId']" ).val()).css("color","red");			
+		}else{
+			$("#checkpassspan").text("일치"+$( "input[name='userId']" ).val()).css("color","blue");			
+		}
+	});	
+});
+
+ $(document).ready(function(){
+	$( "input[type=password]" ).focusin(function(){
+		if( $("#id_c").val()==""){			
+			alert("아이디를 입력해 주세요!");
+			 $('#id_c').focus();
+		}
+	});	
+});
+
+
+	function fnSubmit(form){
+		if($("input[type=text]").val()=="" || $("#checkpassspan").attr('style')=="color:red"){
+			alert("모든 값을 바르게 입력해 주세요!");
+			return false;
+		}else{
+			document.top.submit();
+		}
 	}
-} 
- 
- function fnId_check(){
-	 $.get("/id_check?userId="+$('#userId').val());
- }
+	
+	function submitForm(form1){//모든 사항을 기입하지 않을 경우 경고창 띄우기
+		var elements = form1.getElementsByTagName("input");
+		var spans = form1.getElementsByTagName("span");
+		for(var i=0;i<elements.length;i++){
+			if(elements[i].value==""){
+				alert("모든 사항을 기입해 주세요!");
+				return false;
+			}
+		}
+		
+		for(var i = 0 ; i<spans.length;i++){
+			var att = spans[i].getAttribute("style");
+			if(att=="color: red;"){
+				alert("적합하지 않은 값이 있습니다.");//모든 값들이 기준에 부합하는지 확인
+				return false;
+			}
+		}
+		form1.submit();
+	}
+	
+
+
+function fnId_check(){
+	var id_c = $( "input[name='id_c']" ).val();
+	document.form_c.check.value=id_c;
+	document.form_c.submit();
+}
+	
 	</script>
 	
 <div class="container" align="center">
@@ -47,29 +90,29 @@
       </div>
   <!--  </div>
    <div class="row" > -->
-	<form method="post" action="user.add"  id="top" accept-charset="utf-8">
+   <form action="user.add" method="get" name="form_c" id="form_c"><input type="hidden" id="check" name="check" value=""/></form>
+	<form method="post" action="user.add"  id="top">
 		<input type="hidden" value="register" name="cmd"  />
 		<table class="table" id="content_table">
 			<tr>
 						<th>아이디</th>
 						<td>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="userId" id="userId" placeholder="id">
+								<input type="text" class="form-control" name="id_c" id="id_c" value="${check_id}" placeholder="id" onchange="fnId_check()"/>
 							</div>	
 							<div class="col-sm-3">
-								<input type="button" id="dupliBtn" onclick="fnId_check()"value="중복 검사">
+								<a href="id_check?userId=${check_id}"><input type="button" class="btn btn-default" id="dupliBtn" name="dupliBtn" value="중복검사"/></a>
 							</div>
-							<div style="color:red" class="col-sm-3" id="checkspan">
-								<form:errors path="userVO.userId"/>
-							</div>
+							<div style="color:red" id="idcheckdiv" name="idcheckdiv"><form:errors path="userVO"/><form:errors path="userVO.userId"/></div>
+							<div style="color:blue"><form:errors path="userVO.userIdCheck"/></div>
+
 						</td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
 						<td>
 							<div class="col-sm-3">
-								<input type="password" name="userPassword" id="userpassword" class="form-control" placeholder="Password" >
-								
+								<input type="password" name="userpassword" id="userpassword" class="form-control" placeholder="Password"/>
 							</div>
 						</td>
 					</tr>
@@ -77,11 +120,11 @@
 						<th>비밀번호 확인</th>
 						<td>
 							<div class="col-sm-3">
-								<input type="password" name="userpasswordcheck" id="userpasswordcheck" onchange="fnPassRight()" class="form-control" placeholder="Password">
+								<input type="password" name="userpasswordcheck" id="userpasswordcheck" class="form-control" placeholder="Password"/>
 							</div>
-							<div class="col-sm-3" id="checkpassspan">
+							<span class="col-sm-3" id="checkpassspan">
 								
-							</div>
+							</span>
 						</td>
 					</tr>
 					<tr>
@@ -89,7 +132,7 @@
 						<td>
 							<div class="form-group">
 								<div class="col-sm-3">
-									<input type="text" class="form-control" name="userName" id="userName" placeholder="이름">
+									<input type="text" class="form-control" name="userName" placeholder="이름">
 								</div>								
 							</div>
 						</td>
@@ -150,11 +193,11 @@
 						<th>이메일 주소</th>
 						<td>
 							<div class="col-sm-3">
-								<input type="text" class="form-control " name="useremail1" id="useremail1">
+								<input type="text" class="form-control " name="useremail1">
 							</div>
 							<div class="col-sm-2">
 									<select class="form-control " name="useremail2" >
-										<option>@naver</option>
+										<option>@naver.com</option>
 										<option>@duam.net</option>
 										<option>@gmail.com</option>
 										<option>@dreamwiz.com</option>
@@ -170,7 +213,7 @@
 						<td colspan="2">
 							<div class="form-group">
 								<div class="col-sm-3 col-md-offset-3">
-									<input type="submit" class="form-control" value="가입하기" id="submitBtn">
+									<input type="button" class="form-control" value="가입하기" id="submitBtn" name="submitBtn" onclick="submitForm(this.form)">
 								</div>
 								<div class="col-sm-3">
 									<input type="reset" class="form-control" value="취소" onclick="location.href=history.back()">

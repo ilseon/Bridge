@@ -36,19 +36,29 @@ public class PlaylistDAOImpl implements PlaylistDAO {
 	}
 
 	@Override
-	public void remove(List<PlaylistVO> playlists) throws Exception {
-
+	public void removeAll(Map dlist)throws Exception {
+		sqlSession.delete(NAMESPACE+".removeAll", dlist);
 	}
 
 	@Override
 	public List<PlaylistVO> searchAll(Integer userNumber) throws Exception {
-
-		return null;
+		return sqlSession.selectList(NAMESPACE+".searchAll", userNumber);
 	}
 
+	@Override
+	public List<PlaylistVO> searchAlbum(Integer userNumber, int limit) throws Exception {
+		return  sqlSession.selectList(NAMESPACE+".selectAlbum", userNumber);
+	}
+	
+	
 	@Override
 	public List<PlaylistVO> search_myalbum(Map playListAll) throws Exception {
 		return sqlSession.selectList(NAMESPACE+".search_myalbum",playListAll);
 	}
 
+	@Override
+	public void remove(PlaylistVO playlist) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }

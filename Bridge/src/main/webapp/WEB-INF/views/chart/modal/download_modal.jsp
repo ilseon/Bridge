@@ -41,7 +41,7 @@ function paycheck(){
   <div class="modal-content">
      <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">다운로드</h4>
+        <h4 class="modal-title custom_align" id="Heading">결제</h4>
       </div>
       <div class="modal-body">
           	<c:set var="i" value="0"/>
@@ -52,7 +52,7 @@ function paycheck(){
 					<br/>${playlist.musicSubject}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;${playlist.artistName}<br/><br/><hr/><br/>					
 					<c:set var="playlistall" value="${playlistall},${playlist.musicNumber}"/>
 				</c:forEach>
-				<c:set var="href" value="/download_music_sev?musicnumbers=${playlistall}&playlist_all=${requestScope.playlist_all}"/>
+				<c:set var="href" value="/Bridge/download_music_sev?musicnumbers=${playlistall}&playlist_all=${requestScope.playlist_all}"/>
 				다운 곡 수 : ${i}곡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1곡 당 금액 : 2$<br/><br/>
 			</c:if>			
           	<c:if test="${music!=null}">
@@ -61,7 +61,7 @@ function paycheck(){
 			다운 곡 수 : 1곡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1곡 당 금액 : 2$<br/><br/>
 			
 			<c:set var="i" value="1"/>
-			<c:set var="href" value="/download_music?musicnumber=${music.musicNumber}"/>
+			<c:set var="href" value="/Bridge/download_music?musicnumber=${music.musicNumber}"/>
 			</c:if>
 			총 금액 : ${i*2}$
 		<span id="order_container">
@@ -71,8 +71,8 @@ function paycheck(){
 			            <input type="hidden" name="amount" value="${i*2}" size="50" /><br />
 			            <input type="hidden" name="item_name" value="music" size="50" /><br />
 			            <input type="hidden" name="return" value="http://localhost:8080${href}" size="50" /><br />
-			            <input type="hidden" name="notify_url" value="http://localhost:8080/chart/modal/pay_modal_fail" size="50" /><br />
-			            <input type="hidden" name="cancel_return" value="http://localhost:8080/chart/modal/pay_modal_cancel" size="50" /><br />
+			            <input type="hidden" name="notify_url" value="http://localhost:8080/Bridge/chart/modal/pay_modal_fail" size="50" /><br />
+			            <input type="hidden" name="cancel_return" value="http://localhost:8080/Bridge/chart/modal/pay_modal_cancel" size="50" /><br />
 			            <input type="hidden" name="charset" value="UTF-8" size="50" /><br />
 	           			<input type="hidden" name="currency_type" value="USD" size="50" /><br />
             <!-- <input type="submit" value="pay" size="50" /> -->
@@ -80,7 +80,7 @@ function paycheck(){
 		</span>
 	</div>
 	<div class="modal-footer">
-        <a type="button" class="btn btn-success" id="pay_now" onclick="paycheck()" data-dismiss="modal"><span class="glyphicon glyphicon-ok-sign"></span>다운로드</a>
+        <a type="button" class="btn btn-success" id="pay_now" onclick="paycheck()" data-dismiss="modal"><span class="glyphicon glyphicon-ok-sign"></span>결제</a>
         <a type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
     </div>
         </div>

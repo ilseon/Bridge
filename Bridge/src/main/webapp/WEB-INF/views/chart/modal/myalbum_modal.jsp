@@ -13,14 +13,14 @@
   <div class="modal-content">
           <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">다운로드</h4>
+        <h4 class="modal-title custom_align" id="Heading">내 앨범 담기</h4>
       </div>
           <div class="modal-body">
           	<c:if test="${music!=null}">
 	          	<br/>
 	          	${music.musicSubject}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;${music.artistName}<br/><br/><br/>
 				 해당 곡을 내 앨범에 추가하시겠습니까?
-				 <c:set var="href" value="/myalbum?musicnumber=${music.musicNumber}"/>
+				 <c:set var="href" value="myalbum?musicnumber=${music.musicNumber}"/>
 			</c:if>
 			<c:set var="i" value="0"/>
 			<c:set var="playlistall" value=""/>
@@ -30,7 +30,7 @@
 					<br/>${playlist.musicSubject}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;${playlist.artistName}<br/><br/><hr/><br/>
 					<c:set var="playlistall" value="${playlistall},${playlist.musicNumber}"/>
 				</c:forEach>
-				<c:set var="href" value="/myalbum_sev?playlistall=${playlistall}"/>
+				<c:set var="href" value="myalbum_sev?playlistall=${playlistall}"/>
 				 해당 곡들을 내 앨범에 추가하시겠습니까?<br/><br/>
 			</c:if>			
 		</div><div class="modal-footer">

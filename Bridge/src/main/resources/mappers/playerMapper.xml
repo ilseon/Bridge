@@ -6,6 +6,8 @@
 	
 <mapper namespace="com.bridge.mappers.musicMapper">	
 	<select id="music" resultType="MusicVO">
-		select * from music where musicnumber=#{musicNumber}
+	select * from music as m,
+	(select * from album as a,artist as t where a.artist_artistnumber=t.artistnumber) as b
+	where m.artistnumber=b.artistnumber and m.albumnumber=b.albumnumber and m.artistnumber=#{musicNumber}
 	</select>
 </mapper>

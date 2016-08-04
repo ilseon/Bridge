@@ -1,8 +1,8 @@
 <%--
 작성자 - 이주연
-내용 - 좋아하는 앨범 페이지
+내용 - 업로드한 내 트랙 페이지
 시작날짜 - 2016/07/17
-수정날짜 - 
+수정날짜 - 2016/07/26
 변경내용 - 
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -29,59 +29,71 @@
 				alert("앨범을 선택해주세요.");
 			}
 		});
-
 	});
 </script>
-<body>
+<style>
+#tab {
+	border: none;
+	background-color: #DF6E76;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+	color: white;
+	margin-top: 30px
+}
+</style>
+<body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
 	<!-- end -->
 	<!-- 상단 tab start -->
 	<div class="container">
-		<br /> <br />
-		<div class="col-md-12">
-			<ul class="nav nav-tabs">
-				<li><a href="upload">업로드하기</a></li>
-				<li class="active"><a href="mytrack">내 트랙</a></li>
-			</ul>
+		<!-- 상단 tab start -->
+		<div class="container" style="margin-bottom: 150px">
+			<div class="panel-heading col-md-2" id="tab">
+				<h3 class="panel-title">내 트랙</h3>
+			</div>
+
 			<!-- end -->
-			<br> <br>
-			<!-- 앨범 정보 start -->
-			<c:forEach begin="1" end="4" step="1">
-				<div class="col-sm-3">
-					<div class="form-group">
-						<c:forEach begin="1" end="1" var="j">
-							<a href="mytrack_detail"><img
-								src="resources/image/upload/album/album_art.jpg" width="65%"></a>
-						</c:forEach>
-					</div>
-				</div>
+			<div class="col-md-12">
+				<br />
+				<br />
+				<!-- 앨범 정보 start -->
 				<form class="form-horizontal">
-					<div class="col-sm-3">
-						<div class="form-group">
-							<table class="table">
-								<tr>
-									<th>아티스트</th>
-									<td>원더걸스</td>
-								</tr>
-								<tr>
-									<th>앨범 종류</th>
-									<td></td>
-								</tr>
-								<tr>
-									<th>발매일</th>
-									<td>2016.06.27</td>
-								</tr>
-								<tr>
-									<th>장르</th>
-									<td>발라드</td>
-								</tr>
-							</table>
+					<c:forEach var="list" items="${albumList}">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<a href="mytrack_detail?albumNumber=${list.albumNumber}"><img
+									src="/Bridge/resources/image/upload/album/${list.albumImg}" width="65%"></a>
+							</div>
 						</div>
-					</div>
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="form-group">
+									<table class="table">
+										<tr>
+											<th>아티스트</th>
+											<td>${list.artistName}</td>
+										</tr>
+										<tr>
+											<th>앨범 종류</th>
+											<td>${list.albumType}</td>
+										</tr>
+										<tr>
+											<th>발매일</th>
+											<td>${list.albumDate}</td>
+										</tr>
+										<tr>
+											<th>장르</th>
+											<td>${list.albumGenre}</td>
+										</tr>
+									</table>
+								</div>
+								<br />
+							</div>
+						</div>
+					</c:forEach>
 				</form>
-			</c:forEach>
+			</div>
 		</div>
 	</div>
 	<!-- end -->

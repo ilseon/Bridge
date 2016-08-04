@@ -19,8 +19,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
+<link href="/Bridge/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<script src="/Bridge/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
 <%
 	List<String> musicfiles= (List)request.getAttribute("musicfiles");
 	String realpath = (String)request.getAttribute("realpath");
@@ -46,6 +46,6 @@
 				<c:set var="i" value="1"/>
 			</c:if>
 			<hr/>
-			<a type="button" class="btn btn-success" id="download_now" href="/download_all?musicfiles=<%=request.getAttribute("musicfiles")%>&realpath=<%=request.getAttribute("realpath")%>">다운로드</a>
+			<a type="button" class="btn btn-success" id="download_now" href="download_all?musicfiles=<%=request.getAttribute("musicfiles")%>&realpath=<%=request.getAttribute("realpath")%>">다운로드</a>
 </body>
 </html>
