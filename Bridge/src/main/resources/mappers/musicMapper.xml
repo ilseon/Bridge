@@ -3,53 +3,174 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bridge.mappers.musicMapper">	
-	<select id="searchAll" parameterType="int" resultType="com.bridge.app.domain.MusicVO">
-		select m.musicrank as musicrank, m.musicsubject as musicsubject, m.musicvideo as musicvideo, a.albumimg as albumimg, ar.artistname as artistname, a.albumname as albumname, m.musicnumber as musicnumber
-		from music as m inner join album as a on m.albumnumber=a.albumnumber inner join artist as ar on m.artistnumber=ar.artistnumber AND musicrank<![CDATA[<=]]>#{limit} ORDER BY musicdownload+musicplay desc
+<mapper namespace="com.bridge.mappers.musicMapper">
+	<select id="searchAll" parameterType="int"
+		resultType="com.bridge.app.domain.MusicVO">
+		select m.musicrank as musicrank, m.musicsubject as musicsubject,
+		m.musicvideo as musicvideo, ar.artistnumber as artistnumber,
+		a.albumimg as albumimg, a.albumnumber as albumnumber, ar.artistname as
+		artistname, a.albumname as albumname, m.musicnumber as musicnumber
+		from music as m inner join album as a on m.albumnumber=a.albumnumber
+		inner join artist as ar on m.artistnumber=ar.artistnumber AND
+		musicrank<![CDATA[<=]]>#{limit}
+		ORDER BY musicdownload+musicplay desc
 	</select>
-	
+
 	<select id="searchPlaylist" resultType="int">
-		select plyalistNumber from music where usernumber=#{userNumber}
+		select plyalistNumber
+		from music where usernumber=#{userNumber}
 	</select>
-	
-	<select id="searchMusic" parameterType="int" resultType="com.bridge.app.domain.MusicVO">
-		select m.musicrank as musicrank, m.musicsubject as musicsubject, m.musicvideo as musicvideo, a.albumimg as albumimg, ar.artistname as artistname, a.albumname as albumname, m.musicnumber as musicnumber, m.musicfile as musicfile
-		from music as m inner join album as a on m.albumnumber=a.albumnumber inner join artist as ar on m.artistnumber=ar.artistnumber
+
+	<select id="searchMusic" parameterType="int"
+		resultType="com.bridge.app.domain.MusicVO">
+		select m.musicrank as musicrank, m.musicsubject as
+		musicsubject, m.musicvideo as musicvideo, a.albumimg as albumimg,
+		ar.artistname as artistname, a.albumname as albumname, m.musicnumber
+		as musicnumber, m.musicfile as musicfile
+		from music as m inner join
+		album as a on m.albumnumber=a.albumnumber inner join artist as ar on
+		m.artistnumber=ar.artistnumber
 		AND musicnumber=#{musicnumber}
 	</select>
-	
-	<select id="searchGenre" parameterType="map" resultType="com.bridge.app.domain.MusicVO">
-		select m.musicrank as musicrank, m.musicsubject as musicsubject, m.musicvideo as musicvideo, a.albumimg as albumimg, ar.artistname as artistname, a.albumname as albumname, m.musicnumber as musicnumber
-		from music as m inner join album as a on m.albumnumber=a.albumnumber inner join artist as ar on m.artistnumber=ar.artistnumber AND albumgenre=#{genre} AND musicrank<![CDATA[<=]]>#{limit} ORDER BY musicrank asc
+
+	<select id="searchGenre" parameterType="map"
+		resultType="com.bridge.app.domain.MusicVO">
+		select m.musicrank as musicrank, m.musicsubject as musicsubject,
+		m.musicvideo as musicvideo, a.albumimg as albumimg, ar.artistname as
+		artistname, a.albumname as albumname, m.musicnumber as musicnumber
+		from music as m inner join album as a on m.albumnumber=a.albumnumber
+		inner join artist as ar on m.artistnumber=ar.artistnumber AND
+		albumgenre=#{genre} AND musicrank<![CDATA[<=]]>#{limit}
+		ORDER BY musicrank asc
 	</select>
-	
-	<insert id="regist">
-		insert into music (musicsubject, musicfile, musicvideo, musictitle)
-		 <foreach collection="list" item="item" separator=" , ">
-		values(#{musicsubject}, #{musicfile}, #{musicvideo}, #{musictitle})
-		  </foreach>
-	</insert>
-	
+
 	<delete id="remove">
 		delete from playlist where musicnumber=#{musicNumber}
 	</delete>
-	
+
 	<insert id="like">
-		insert into bridgedb.like(usernumber, musicnumber) values(#{userNumber}, #{musicNumber})	
+		insert into bridgedb.like(usernumber, musicnumber)
+		values(#{userNumber}, #{musicNumber})
 	</insert>
-	
+
+
+	<update id="like_update">
+		update music set musiclike=musiclike+1 where
+		musicnumber=#{musicNumber}
+	</update>
+
+	<update id="like_remove">
+		update music set musiclike=musiclike-1 where
+		musicnumber=#{musicNumber}
+	</update>
+
 	<update id="download_update" parameterType="map">
-		update music set musicdownload=musicdownload+1 where 
-		<foreach collection="musicnumbers" item="musicnumber" separator="AND">
+		update music set musicdownload=musicdownload+1 where
+		<foreach collection="musicnumbers" item="musicnumber"
+			separator="AND">
 			musicnumber=#{musicnumber.value}
 		</foreach>
 	</update>
-	
-	<update id="play_update" parameterType="map">
-		update music set musicplay=musicplay+1 where 
-		<foreach collection="musicnumbers" item="musicnumber" separator="AND">
-			musicnumber=#{musicnumber.value}
-		</foreach>
+
+	<update id="play_update">
+		update music set musicplay=musicplay+1 where musicnumber=#{musicNumber}
+		
 	</update>
+
+	<!-- 일선 추가 -->
+	<select id="getArtistMusic" parameterType="int"
+		resultType="com.bridge.app.domain.MusicVO">
+		select * from music where artistnumber=#{artistNumber};
+	</select>
+	<select id="getAlbumMusic" parameterType="int"
+		resultType="com.bridge.app.domain.MusicVO">
+		select * from music where albumnumber=#{albumNumber};
+	</select>
+	<select id="getArtistMusicVideo" parameterType="int" resultType="VideoVO">
+		select m.musicsubject,a.artistname,a.albumdate,m.musicvideo
+		from music as m,(select * from album as a,artist as t where
+		a.artist_artistnumber=t.artistnumber) as a
+		where m.artistnumber=#{artistNumber} and m.albumnumber=a.albumnumber
+	</select>
+	<select id="getAlbumMusicVideo" parameterType="int" resultType="VideoVO">
+		select m.musicsubject,a.artistname,a.albumdate,m.musicvideo
+		from music as m,(select * from album as a,artist as t where
+		a.artist_artistnumber=t.artistnumber) as a
+		where m.albumnumber=#{albumNumber} and m.albumnumber=a.albumnumber
+	</select>
+	<select id="searchHeader" parameterType="Paging" resultType="MusicVO">
+		<!-- select m.musicsubject as musicsubject, m.musicvideo as musicvideo, 
+			a.albumimg as albumimg, ar.artistname as artistname, a.albumname as albumname, 
+			m.musicnumber as musicnumber from music as m inner join album as a on m.albumnumber=a.albumnumber 
+			inner join artist as ar on m.artistnumber=ar.artistnumber where m.musicsubject 
+			like CONCAT('%', #{search}, '%') or ar.artistname like CONCAT('%', #{search}, 
+			'%') or a.albumname like CONCAT('%', #{search}, '%') -->
+
+		SELECT
+		tableC.*
+		FROM
+		(SELECT
+		@RNUM:=@RNUM + 1 AS rnum,
+		m.musicsubject AS musicsubject,
+		m.musicvideo AS musicvideo,
+		a.albumimg AS albumimg,
+		ar.artistname AS artistname,
+		a.albumname AS albumname,
+		m.musicnumber AS musicnumber
+		FROM
+		music AS m
+		INNER JOIN album AS a ON m.albumnumber = a.albumnumber
+		INNER JOIN artist AS ar ON m.artistnumber = ar.artistnumber, (SELECT
+		@RNUM:=0) b
+		WHERE
+		m.musicsubject LIKE CONCAT('%', #{search}, '%')
+		OR ar.artistname LIKE CONCAT('%', #{search}, '%')
+		OR a.albumname LIKE CONCAT('%', #{search}, '%')) tableC
+		WHERE
+		tableC.rnum <![CDATA[>=]]>
+		#{start} and tableC.rnum <![CDATA[<=]]>
+		#{end}
+	</select>
+	<select id="searchCount" parameterType="Paging" resultType="int">
+		select count(*)
+		from music as m inner join album as a on m.albumnumber=a.albumnumber inner
+		join artist as ar on m.artistnumber=ar.artistnumber
+		where m.musicsubject like CONCAT('%', #{search}, '%') or ar.artistname like
+		CONCAT('%', #{search}, '%') or a.albumname like CONCAT('%', #{search},
+		'%')
+	</select>
+
+	<!-- 주연추가 -->
+	<select id="searchMylike" parameterType="int"
+		resultType="com.bridge.app.domain.MusicVO">
+		select a.albumimg as albumimg, m.musicsubject as
+		musicsubject, ar.artistname as artistname,
+		m.musicvideo as musicvideo,
+		m.musicnumber as musicnumber
+		from music as m as m inner join album as a
+		on m.albumnumber=a.albumnumber
+		inner join artist as ar on ar.artistnumber=m.artistnumber
+		inner join bridgedb.like as l on m.musicnumber=l.musicnumber
+		where l.usernumber=#{userNumber} Limit #{limit}
+	</select>
+
+	<insert id="registSeveral" parameterType="map">
+		Insert INTO music (musicsubject, artistnumber, musicfile, musicvideo,
+		albumnumber, musictitle, musiclyrics) VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.musicSubject}, #{item.artistNumber}, #{item.musicFile},
+			#{item.musicVideo}, #{item.albumNumber}, #{item.musicTitle},
+			#{item.musicLyrics} )
+		</foreach>
+	</insert>
+
+	<select id="MytrackMusic" parameterType="int"
+		resultType="com.bridge.app.domain.MusicVO">
+		select albumnumber, musicsubject, musicvideo,
+		musicfile, musiclyrics, musictitle
+		from music where albumnumber=#{albumNumber}
+	</select>
+
+
+
 </mapper>

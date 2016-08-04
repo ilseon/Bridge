@@ -23,12 +23,12 @@
 <script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 
 
-<!-- 게시물  -->
+<!-- 뮤직비디오 게시물 출력  -->
 <div class="col-sm-11">
    <c:forEach items="${list }" var="VideoVO">
-        <div class="col-sm-11 col-sm-3">   
-   			 <a href="https://www.youtube.com/watch?v=${VideoVO.musicVideo}">
-   			 <div class="thumbnail" style="width: 80%">
+        <div class="col-sm-3">   
+               <a href="#" onClick="window.open('iframe?video=${VideoVO.musicVideo}','MusicVideo','width=596,height=345,top=100,left=700');return false">
+   			 <div class="thumbnail" style="width: 80%;height: 250px">
      			 <img src="https://img.youtube.com/vi/${VideoVO.musicVideo}/0.jpg">
      				 <div class="caption">
        					<p>${VideoVO.musicSubject}</p>

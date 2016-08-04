@@ -10,5 +10,6 @@ public interface ArtistReplyDAO {
 	public void writeReply(ArtistReplyVO vo) throws Exception;
 	public void updateReplyGroupNumber() throws Exception;
 	public void deleteReply(int replyNumber) throws Exception;
+	public int countArtist(int artistNumber) throws Exception;
 
 }

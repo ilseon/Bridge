@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import com.bridge.app.controller.MyPageController;
 import com.bridge.app.domain.AlbumVO;
@@ -22,11 +23,13 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Repository
 public class AlbumDAOImpl implements AlbumDAO {
+
 	@Inject
 	private SqlSession sqlSession;
 
 	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
 	private static final String NAMESPACE = "com.bridge.mappers.albumMapper";
+	private static final String NAMESPACE2 = "com.bridge.mappers.artistMapper";
 
 	@Override
 	public AlbumVO test() {
@@ -36,20 +39,18 @@ public class AlbumDAOImpl implements AlbumDAO {
 	}
 
 	@Override
-	public void AlbumInsert(HttpServletRequest req) throws Exception {
-		System.out.println("awdadasdasasd경로");
-		int postMaxSize = 10 * 1024 * 1024;
+	public void regist(HttpServletRequest req, Model view) throws Exception {
+	
+		
+		int postMaxSize = 1024 * 1024 * 1024;
 		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
         String folder_p=folderPath+"upload"+File.separator+"album"+File.separator;
                  
-        
-        System.out.println(folder_p+"경로");
         File file = null;
         file = new File(folder_p);
         if(!file.exists()) {
            file.mkdirs();
-        }
-       		
+        }    		
         
         String encoding = "UTF-8";
         Enumeration enumer = null;
@@ -64,34 +65,59 @@ public class AlbumDAOImpl implements AlbumDAO {
             String name = (String)enumer.nextElement();
             albumImg = multiReq.getFilesystemName(name);
          }
+        
+         logger.info(multiReq.getParameter("artistNumber"));
          
-        AlbumVO album = new  AlbumVO();
+         AlbumVO album = new AlbumVO();
          
-        album.setAlbumName(multiReq.getParameter("albumName"));
-        album.setAlbumType(multiReq.getParameter("albumType"));
-        album.setAlbumDate(multiReq.getParameter("albumDate"));
-        album.setAlbumGenre(multiReq.getParameter("albumGenre"));
-        album.setArtistNumber(9);
-        album.setAlbumImg(albumImg);
-        
-        logger.info(multiReq.getParameter("albumName")+multiReq.getParameter("albumType")+multiReq.getParameter("albumDate")
-        +multiReq.getParameter("albumGenre")+albumImg+"카운터 : "+multiReq.getParameter("counter"));
-        
-        
-        album.setAgeLimit(1);
-        album.setAlbumContent(multiReq.getParameter("albumContent"));
-           
-        logger.info(multiReq.getParameter("ageLimit")+multiReq.getParameter("albumContent"));
-        logger.info(album.toString());
-		
-		sqlSession.insert(NAMESPACE + ".regist", album);
+         album.setArtistNumber(Integer.parseInt(multiReq.getParameter("artistNumber")));
+         album.setAlbumName(multiReq.getParameter("albumName"));
+         album.setAlbumType(multiReq.getParameter("albumType"));
+         album.setAlbumDate(multiReq.getParameter("albumDate"));
+         album.setAlbumGenre(multiReq.getParameter("albumGenre")); 
+         album.setAlbumImg(albumImg);
+         album.setAgeLimit(Integer.parseInt(multiReq.getParameter("ageLimit")));
+         album.setAlbumContent(multiReq.getParameter("albumContent"));      
+         
+         int counter = Integer.parseInt(multiReq.getParameter("counter"));
+         req.setAttribute("counter", counter);
+         album.setCounter(counter);  
+
+         logger.info(album.toString());         
+         sqlSession.insert(NAMESPACE + ".regist", album); 
+         
+         String albumName = multiReq.getParameter("albumName");          
+         view.addAttribute("albumList", sqlSession.selectOne(NAMESPACE+".selectAlbum", albumName));        
+         
+         int artistNumber = Integer.parseInt(multiReq.getParameter("artistNumber"));
+         view.addAttribute("artistList", sqlSession.selectOne(NAMESPACE2+".selectArtistOne", artistNumber));
+         
 	}
 	@Override
-	public AlbumVO getAlbumOne() throws Exception {
-		return sqlSession.selectOne(NAMESPACE + ".getAlbumOne");
+	public AlbumVO getAlbumOne(int albumNumber) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getAlbumOne", albumNumber);
 	}
 	@Override
 	public List<AlbumVO> searchAll(int limit) throws Exception {
 		return sqlSession.selectList(NAMESPACE+".searchAll", limit);
 	}
+
+	@Override
+	public List<AlbumVO> searchMytrack(int usernumber, int limit) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".searchMytrack", usernumber);
+	}
+
+	@Override
+	public List<AlbumVO> MytrackAlbum(int albumNumber) throws Exception {
+		
+		return sqlSession.selectList(NAMESPACE+".MytrackAlbum", albumNumber);
+	}
+	
+	// 일선 추가
+	@Override
+	public List<AlbumVO> getArtistAlbum(int artistNumber) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getArtistAlbum", artistNumber);
+	}
+	
+	
 }

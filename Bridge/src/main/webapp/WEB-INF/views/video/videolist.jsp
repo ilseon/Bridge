@@ -33,6 +33,11 @@
 
 </style>
 
+<script>
+$(function(){
+	$("div")
+})
+</script>
 <!-- 게시물  -->
 <c:if test="${list.size() gt 1}">
 <div class="row" style="padding-left: 20%">
@@ -40,12 +45,13 @@
      
         <div class="col-xs-6 col-md-2">   
         	
-   			 <a href="iframe?video=${VideoVO.musicVideo}" data-toggle="modal" data-target="#iframe${Video.VO.musicNumber}">
+   			 <%-- <a href="iframe?video=${VideoVO.musicVideo}" data-toggle="modal" data-target="#iframe${Video.VO.musicNumber}">
    			  <div class="modal fade" id="iframe${Video.VO.musicNumber}">
                   <div class="modal-dialog">
                      <div class="modal-content"></div>
                   </div>
-               </div> 
+               </div>  --%>
+               <a href="#" onClick="window.open('iframe?video=${VideoVO.musicVideo}','MusicVideo','width=596,height=345,top=100,left=700');return false">
    			 <div class="thumbnail box" style="width: 80%; height: 250px">
      			 <img src="https://img.youtube.com/vi/${VideoVO.musicVideo}/0.jpg">
      				 <div class="caption">
@@ -71,12 +77,12 @@
                </ul>
  </c:if>
  <!-- 페이징 -->
- <div class="row" style="padding-left: 180px">
- <div class="col-xs-4 col-xs-offset-5"">
+ <div class="row" style="padding-right: 400px">
+ <div class="col-xs-6 col-xs-offset-6"">
  <nav>
 <ul class="pagination">
-    <li><a href="video?bno=${paging.firstPageNo}&searchType=&search=" class="first">처음 페이지</a></li>
-   <li> <a href="video?bno=${paging.prevPageNo}&searchType=&search=" class="prev">이전 페이지</a></li>
+    <li><a href="video?bno=${paging.firstPageNo}&searchType=&search=" class="first">&lt;&lt;</a></li>
+   <li> <a href="video?bno=${paging.prevPageNo}&searchType=&search=" class="prev">&lt;</a></li>
     <li>
         <c:forEach var="i" begin="${paging.startPageNo}" end="${paging.endPageNo}" step="1">
             <c:choose>
@@ -85,12 +91,12 @@
             </c:choose>
         </c:forEach>
     <li>
-   <li> <a href="video?bno=${paging.nextPageNo}&searchType=&search=" class="next">다음 페이지</a></li>
-    <li><a href="video?bno=${paging.finalPageNo}&searchType=&search=" class="last">마지막 페이지</a></li>
+   <li> <a href="video?bno=${paging.nextPageNo}&searchType=&search=" class="next">&gt;</a></li>
+    <li><a href="video?bno=${paging.finalPageNo}&searchType=&search=" class="last">&gt;&gt;</a></li>
 </ul>
 </nav>
 <form method="get" action="video?bno=1">
-<div style="padding-left: 30px" >
+<div style="padding-right: 10px" >
 <input type="hidden" name="bno" value="1"/>
 		<select  name="searchType" id="searchType">
   			<option>제목</option>

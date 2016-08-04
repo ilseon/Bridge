@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bridge.app.domain.MusicVO;
+import com.bridge.app.service.MusicService;
 import com.bridge.app.service.PlayerService;
 
 @Controller
@@ -31,6 +32,8 @@ public class PlayerController {
 
 	@Autowired
 	private PlayerService service;
+	@Autowired
+	private MusicService player;
 	ArrayList<MusicVO> list=new ArrayList<>();
 	
 	int cnt=0;
@@ -41,38 +44,53 @@ public class PlayerController {
 		MusicVO vo = new MusicVO();
 		vo.setMusicNumber(Integer.parseInt(val));
 		MusicVO music = service.getMusic(vo);
+		System.out.println(val+"값");
+		player.play_update(vo.getMusicNumber());
 		list.add(music);
 		System.out.println(list.size()+"호출횟수");
 		model.addAttribute("val", val);
-		String tag = "<li>여기여기" + val + "," + music.getMusicVideo() + "</li>";
 		ModelAndView mav = new ModelAndView("/player/playertest");
-		mav.addObject("val", tag);
 		mav.addObject("music", music);
 		mav.addObject("list",list);
 		return mav;
 	}
 	
+	@RequestMapping(value = "playerAll", method = RequestMethod.GET)
+	public ModelAndView showMuliPlayer(@RequestParam(required = false) List<Integer> playlistAll) throws Exception{
 
-	
-	@RequestMapping(value = "player", method = RequestMethod.POST)
-	public ModelAndView showPlayerTag(@RequestParam(required = false) String val,Model model) throws Exception {
-		logger.info("It is playertest");
-		System.out.println(val + "호출POST");
-		
 		MusicVO vo = new MusicVO();
-		vo.setMusicNumber(Integer.parseInt(val));
-		MusicVO music = service.getMusic(vo);
-		String tag = "<li>여기여기" + val + "," + music.getMusicVideo() + "</li>";
-		model.addAttribute("id", "admin");
+		System.out.println(playlistAll.size()+"크기");
 		ModelAndView mav = new ModelAndView("/player/playertest");
-		mav.addObject("val", tag);
-		mav.addObject("music", music);
-		return mav;
+		for(int i=0;i<playlistAll.size();i++){
+		vo.setMusicNumber(playlistAll.get(i).intValue());
+		list.add(service.getMusic(vo));
+		player.play_update(playlistAll.get(i).intValue());
+
+		System.out.println(list.get(i).getMusicVideo());
+		System.out.println(list.size()+"크기");
+		}	
+		mav.addObject("list",list);
+		return mav;	
+	}	
+
+	@RequestMapping("delplayer" )
+	public void delPlayer(){
+		list.removeAll(list);
 	}
 	
-	@RequestMapping("delplayer")
-	public void delPlayer(){
-		System.out.println("awdawwdaadad");
-		list.removeAll(list);
+	@RequestMapping(value = "delplayermulti",method = RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView delPlayerMulti(@RequestParam(required = false) List<Integer> playAll){
+		MusicVO vo = new MusicVO();
+		//System.out.println(playAll.size()+"삭제크디");
+		//System.out.println(playAll.get(0).intValue()+"삭제넘버");
+		ModelAndView mav = new ModelAndView("/player/playertest");
+		for(int i=0;i<playAll.size();i++){
+			
+		list.remove(playAll.get(i).intValue());
+
+		}	
+		mav.addObject("list",list);
+		return mav;	
 	}
 }

@@ -39,7 +39,6 @@
 						alert("추가되었습니다.");
 					}
 				});
-
 				//삭제를 위한 jquery				
 				$("#del").click(function() {
 					if ($("input:checked").length == 0) {
@@ -63,7 +62,7 @@
 					} else {
 					}
 				});
-				
+
 				// 전체 듣기를 위한 jquery	
 				$("#all_listen").click(function() {
 					if ($("input:checked").length == 0) {
@@ -72,9 +71,7 @@
 						alert("전체 플레이어됩니다.");
 					}
 				});
-
 			});
-
 	//한 곡에 대한 선택 사항 처리
 	function PopupWindow() {
 		window
@@ -84,6 +81,15 @@
 						"width=500, height=700, left=30, top=30, scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
 	}
 </script>
+<style>
+#tab {
+	border: none;
+	background-color: #DF6E76;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+	color: white;
+	margin-top: 30px
+}
+</style>
 <body style="margin-top: 4%;">
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
@@ -91,14 +97,18 @@
 	<!-- end -->
 
 	<!-- 상단 tab start -->
-	<div class="container">
-		<br /> <br />
+	<div class="container" style="margin-bottom: 150px">
+		<div class="panel-heading col-md-2" id="tab">
+			<h3 class="panel-title">내 앨범</h3>
+		</div>
+		<!-- end -->
 		<div class="col-md-12">
 			<!-- end -->
 			<br> <br>
+
 			<!-- 내 앨범에 추가된 곡 정보 start -->
-			 &nbsp;&nbsp;<input type="checkbox" id="allCheck">
-			 &nbsp;<button class="btn btn-default btn-md" id="listen">
+			&nbsp;&nbsp;<input type="checkbox" id="allCheck"> &nbsp;
+			<button class="btn btn-default btn-md" id="listen">
 				<span class="glyphicon glyphicon-play" style="color: red"></span>듣기
 			</button>
 			<button class="btn btn-default btn-md" id="add">
@@ -115,8 +125,7 @@
 				<span class="glyphicon glyphicon-play" style="color: red"></span>전체
 				듣기
 			</button>
-			&nbsp;
-			<br> <br>
+			&nbsp; <br> <br>
 			<table class="table">
 				<tr>
 				<tr>
@@ -131,16 +140,19 @@
 					<th width="7%">다운</th>
 					<th width="7%">뮤비</th>
 				</tr>
-
-				<c:forEach begin="1" end="1" var="j">
+				<c:set var="j" value="0"></c:set>
+				<c:forEach var="list" items="${MyalbumList}">
+					<c:set var="j" value="${j+1}"></c:set>
+						<input type="hidden" id="musicNumber" name="musicNumber"
+							value="${list.musicNumber}" />
 					<tr>
 						<td><input type="checkbox" name="check" id="check${j}"></td>
 						<td>${j}</td>
-						<td><a href="test"><img
-								src="resources/image/like/like_album.jpg" width="70px" /></a></td>
-						<td>Why</td>
-						<td><a href="test2">태연</a></td>
-						<td><a href="test">Why</a></td>
+						<td><a href="album_detail"><img
+								src="/upload/album/${list.albumImg}" width="70px" /></a></td>
+						<td>${list.musicSubject}</td>
+						<td><a href="artist_detail">${list.artistName}</a></td>
+						<td><a href="album_detail">${list.albumName}</a></td>
 						<td width="7%"><button class="btn btn-default btn-xs">
 								<span class="glyphicon glyphicon-play" style="color: red"
 									onclick="PopupWindow()"></span>
@@ -167,7 +179,7 @@
 	<!--  footer start -->
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<!--  end -->
-	<!-- 다운로드 모달창 시작 -->
+	<!-- 다운로드 모달창 시작 
 	<div class="modal fade" id="Download" tabindex="-1" role="dialog"
 		aria-labelledby="edit" aria-hidden="true">
 		<div class="modal-dialog">
@@ -182,16 +194,16 @@
 				<div class="modal-body">다운받으시겠습니까?</div>
 				<div class="modal-footer ">
 					<button type="button" class="btn btn-success">
-						<span class="glyphicon glyphicon-ok-sign"></span> Yes
+						<span class="glyphicon glyphicon-ok-sign"></span> Yes
 					</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove"></span> No
+						<span class="glyphicon glyphicon-remove"></span> No
 					</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal-dialog -->
 	</div>
 	<!-- 다운로드 모달창  끝 -->
 </body>

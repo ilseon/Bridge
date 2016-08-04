@@ -8,7 +8,7 @@ public class ArtistReplyVO {
 	private int replyGroup;
 	private int replyDept;
 	private String replyDate;
-	
+	private String userId;
 	
 	public int getReplyNumber() {
 		return replyNumber;
@@ -51,6 +51,12 @@ public class ArtistReplyVO {
 	}
 	public void setReplyDate(String replyDate) {
 		this.replyDate = replyDate;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 }

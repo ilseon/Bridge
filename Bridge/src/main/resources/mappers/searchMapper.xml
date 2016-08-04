@@ -14,7 +14,7 @@
 				AND a.artistname like '%${search}%'
 			</if>
 		</if>
-		ORDER BY m.musicnumber desc limit #{start},#{end};
+		ORDER BY m.musicnumber desc limit #{start},18;
 
 
 
@@ -24,7 +24,7 @@
 	<select id="totalvideo" resultType="VideoVO" parameterType="Paging"><!-- music게시물 총갯수 -->
 		
 		select m.musicsubject,a.artistname,a.albumdate,m.musicvideo from music as m,(select * from album as a,artist as t where a.artist_artistnumber=t.artistnumber) as a where m.albumnumber=a.albumnumber
-		ORDER BY m.musicnumber desc limit #{start},#{end};
+		ORDER BY m.musicnumber desc limit #{start},18;
 	</select>
 	
 	<select id="totalvideo1" resultType="VideoVO">
@@ -34,7 +34,7 @@
 	<select id="chartvideo" resultType="VideoVO"><!-- music게시물 총갯수 -->
 		
 		select m.musicsubject,a.artistname,a.albumdate,m.musicvideo,a.albumtype from music as m,(select * from album as a,artist as t where a.artist_artistnumber=t.artistnumber) as a where m.albumnumber=a.albumnumber
-		ORDER BY m.musicnumber desc limit 1,100;
+		ORDER BY musicdownload+musicplay desc limit 1,100;
 	</select>
 </mapper>
 

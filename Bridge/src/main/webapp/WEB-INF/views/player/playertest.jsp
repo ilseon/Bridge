@@ -43,10 +43,96 @@
 		});
 	 
 }
+ 
+  function multiDelete(){
+	      if($("#playlist input[type=checkbox]").is(":checked")){
+	         var playAll = new Array();
+	         
+	         var list=$("#playlist input[type=checkbox]");
+	         for(var i = 0 ; i<list.length; i++){
+	            if(list[i].checked==true){
+	               playAll.push(list[i].value);
+	            }
+	         }
+	         alert(list.length);
+			location.href="delplayermulti?playAll="+playAll;
+			 
+			 
+	      }else if($("#playlist input[type=checkbox]:not(checked)")){
+	          alert("곡을 선택해 주세요!");
+	          return false;
+	       }
+	   } 
+  var chk=0;
+  $(document).ready(function(){
+	 /*  $(document).keydown(function(){
+			 if(event.keyCode==39){
+				    audio.pause();
+				    var next = $('#playlist li.active').next();
+				    if (next.length == 0) {
+				        next = $('#playlist li:first-child');
+				    }
+				    initAudio(next);
+					audio.play();
+					showDuration();
+					
+			 }else if(event.keyCode==37){
+				    audio.pause();
+				    var prev = $('#playlist li.active').prev();
+				    if (prev.length == 0) {
+				        prev = $('#playlist li:last-child');
+				    }
+				    initAudio(prev);
+					audio.play();
+					showDuration();
+			 }
+		 }) */
+	 $(document).keyup(function(event){
+		 if(event.keyCode==39){
+			    audio.pause();
+			    var next = $('#playlist li.active').next();
+			    if (next.length == 0) {
+			        next = $('#playlist li:first-child');
+			    }
+			    initAudio(next);
+				audio.play();
+				showDuration();
+		 }else if(event.keyCode==37){
+			    audio.pause();
+			    var prev = $('#playlist li.active').prev();
+			    if (prev.length == 0) {
+			        prev = $('#playlist li:last-child');
+			    }
+			    initAudio(prev);
+				audio.play();
+				showDuration();
+		 }else if(event.keyCode==32){
+			 
+			 if(chk==0){
+					audio.play();
+					$('#play').hide();
+					$('#pause').show();
+					$('#duration').fadeIn(400);
+					showDuration();
+					chk=1;
+			 }else if(chk==1){
+				 audio.pause();
+					$('#pause').hide();
+					$('#play').show();
+				chk=0;
+			 }
+		 }else if(event.keyCode==38||event.keyCode==40){
+			 $('#volume').change(function(){
+					audio.volume = parseFloat(this.value / 10);
+				});
+		 }
+	 })
+	 
+  });
 
  </script>
 </head>
-<body>
+<body >
 <div id="container">
 	<div id="audio-image">
 		<img class="cover" />
@@ -85,21 +171,18 @@
   		 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="home">
      <div class="clearfix"></div>
+     <div  style="overflow:scroll;height: 500px">
 		 <ul id="playlist">
-<%-- 			<li song="로꼬, GRAY (그레이) - GOOD (Feat. ELO).mp3" cover="MOuzcBERbsc/0.jpg" artist="로꼬, GRAY (그레이)">GOOD(Feat. ELO)</li>
-			<li song="비프리 (B-Free) - NEW WAVE (Feat. Double K, Paloalto).mp3" cover="uPLpgROuB0c/0.jpg" artist="비프리 (B-Free)">NEW WAVE (Feat. Double K, Paloalto)</li>
-			<li song="헤이즈 (Heize) - And July (Feat. DEAN, DJ Friz).mp3" cover="aLSefFxpW-Y/0.jpg" artist="헤이즈 (Heize)">And July (Feat. DEAN, DJ Friz)</li>
-			<li song="Don Mills (던밀스) - 미래 (MEERAE).mp3" cover="cover1.jpg" artist="Don Mills (던밀스)">미래 (MEERAE).mp3</li>
-			<li song="Sik-K (식케이) - 랑데뷰.mp3" cover="cover1.jpg" artist="Sik-K (식케이)">랑데뷰</li>
-			<li song="Linkin Park - Pushing Me Away.mp3" cover="${music.musicVideo }/0.jpg" artist="${music.artistName }" id="val">${music.musicSubject }</li> --%>
-		<%-- 	${val }
-			${music.musicVideo }입니다  --%>
+		 <c:set var="value" value="0"/>
 			   <c:forEach items="${list}" var="MusicVO">
-     				<li song="로꼬, GRAY (그레이) - GOOD (Feat. ELO).mp3" musicLyrics="${MusicVO.musicLyrics}" cover="${MusicVO.musicVideo }/0.jpg" artist="${MusicVO.artistName }" id="val"><input type="checkbox">${MusicVO.artistName } - ${MusicVO.musicSubject } </li>
+     				
+     				<li song="로꼬, GRAY (그레이) - GOOD (Feat. ELO).mp3" musicLyrics="${MusicVO.musicLyrics}" cover="${MusicVO.musicVideo }/0.jpg" artist="${MusicVO.artistName }" id="val"><input type="checkbox"value="${value }">${MusicVO.artistName } - ${MusicVO.musicSubject } </li>
+   					<c:set var="value" value="${value+1 }"/>
    				</c:forEach>
 		</ul>
-		
+		</div>
 		<button onclick="deleteAll()" type="button" class="btn btn-default">목록삭제</button>
+		<button type="button" class="btn btn-default" onclick="multiDelete()">선택삭제</button>
     </div>
     <div role="tabpanel" class="tab-pane" id="Lyrics"></div>
     <div role="tabpanel" class="tab-pane" id="messages">...</div>

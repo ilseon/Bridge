@@ -24,47 +24,26 @@
 			function() {
 				//업로드시 빠지는 항목을 체크하는 jquery 
 				$("#regist").click(
-						function() {
-							var cnt = $("#counter").val();
-							for (var i = 0; i < cnt; i++) {
+						function() {							
+							var cnt = $("#counter").val();					
+							for (var i = 1; i <= cnt; i++) {
 								if (!$("#musicFile" + i).val()) {
-									alert((i + 1) + "번째 음원이 업로드되지 않았습니다.");
+									alert(i + " 트랙 음원이 업로드되지 않았습니다.");
 									return false;
 								} else if (!$("#musicSubject" + i).val()) {
-									alert((i + 1) + "번째 곡 명이 입력되지 않았습니다.");
+									alert(i + " 트랙 곡 명이 입력되지 않았습니다.");
+									return false;
+								} else if ($("input:checked").length == 0) {
+									alert("타이틀을 체크해주세요.");
 									return false;
 								} else if ($("#musicFile" + i).val()
 										&& $("#musicSubject" + i).val()) {
-								}
+								}								
 							}
 							alert("업로드되었습니다.");
 							$("#music").submit();
 						});
-
-				//클릭시 색 변화로 체크된 것을 확인하는 jquery 
-				$(function() {
-					var cnt = $("#counter").val();
-					for (var i = 0; i < cnt; i++) {
-						$("#musicTitle" + i).mousedown(function(event) { //클릭하고 있으면 
-							$(event.target).css('Color', 'blue');
-						});
-						$("#musicTitle" + i).mouseup(function(event) { //클릭을 떼는 순간
-							$(event.target).css('Color', 'white');
-						});
-					}
-				});
-			});
-
-	$(function() {
-		var cnt = $("#counter").val();
-		for (var i = 0; i < cnt; i++) {
-			$("[id^=text]").hide();
-
-			$(".button").click(function() {
-				$("#text" + $(this).data("rel")).toggle();
-			});
-		}
-	});
+			});	
 </script>
 <style>
 #tab {
@@ -72,21 +51,28 @@
 	background-color: #DF6E76;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: white;
-	margin-top:30px;
+	margin-top: 35px;
 }
 
-#album{
+#sub {
+
 	border: none;
 	background-color: white;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: #DF6E76;
 }
 
-#albumsub{
+#val {
+
 	border: none;
 	background-color: #DF6E76;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: white;
+}
+
+#align {
+	margin-left: 825px;
+	margin-top: -33px;
 }
 
 #pom {
@@ -96,7 +82,7 @@
 }
 
 #before {
-	border-color:orange;
+	border-color: orange;
 	background-color: orange;
 }
 
@@ -105,7 +91,7 @@
 }
 
 #cencle {
-	border-color:gray;
+	border-color: gray;
 	background-color: gray;
 }
 
@@ -130,81 +116,89 @@
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
 	<!-- end -->
 	<div class="container">
-			<div class="panel-heading col-md-2" id="tab">
-				<h3 class="panel-title">
-					<img src='resources/image/upload/album/three.png'>&nbsp;음원 정보
-					입력
-				</h3>
+		<div class="panel-heading col-md-2" id="tab">
+			<h3 class="panel-title">
+				<img src='resources/image/upload/album/three.png'>&nbsp;음원 정보
+				입력
+			</h3>
 		</div>
 
 		<!-- 음원  업로드 -->
 		<div class="col-md-12">
-			<br /><br />
+			<br /> <br />
 			<div class="jumbotron" id="pom">
-				<form class="form-horizontal" id="music" action="upload3"
+				<form class="form-horizontal" id="music" name="music" action="upload3"
 					method="post" enctype="multipart/form-data">
-					<!-- 앨범 정보 start -->
-					<!-- <input type="hidden" name="albumName" id="albumName"
-						value="${albumVO.albumName}" /> <input
-						type="hidden" name="albumNumber" id="albumNumber"
-						value="${albumVO.albumNumber}" /> <input
-						type="hidden" name="artistNumber" id="artistNumber"
-						value="${albumVO.artistNumber}" /> 
-					-->
-					<input type="hidden"
-						id="counter" name="counter" value="3"/>
-					<!-- end -->
-					<div>
-						<div class="btn btn-primary" id="album">
-								<strong>앨범</strong>
-						</div>&nbsp;&nbsp;
-							<div class="btn btn-primary" id="albumsub">
-								<strong>앨범명${albumVO.albumName}</strong>	
-						</div>									
+					<input type="hidden" id="title" name="title"
+						value="" />		
+					<input type="hidden" id="artistNumber" name="artistNumber"
+						value="${artistList.artistNumber}" />
+					<input type="hidden" id="artistName" name="artistName"
+						value="${artistList.artistName}" />
+					<input type="hidden" class="form-control" id="albumNumber"
+										name="albumNumber" value="${albumList.albumNumber}"> <input
+						type="hidden" class="form-control" id="albumImg" name="albumImg"
+						value="/upload/album/${albumList.albumImg}"> <input
+						type="hidden" name="counter" id="counter" value="${counter}" />
+
+					<div class="btn btn-primary" id="sub">
+						<strong>앨범</strong>
 					</div>
-					<br />	
+					&nbsp;&nbsp;
+					<div class="btn btn-primary" id="val">
+						<strong>${albumList.albumName}</strong>
+					</div>
+					<div id="align">
+						<div class="btn btn-primary" id="sub">
+							<strong>아티스트</strong>
+						</div>
+						&nbsp;&nbsp;
+						<div class="btn btn-primary" id="val">
+							<strong>${artistList.artistName}</strong>
+						</div>
+					</div>
+					<br /> <br />
 					<table class="table">
 						<tr>
-							<th width="8%">트랙</th>
-							<th width="20%">음원 파일</th>
-							<th width="8%">타이틀</th>
-							<th width="30%">곡</th>
-							<th width="20%">뮤비</th>
+							<th width="6%">트랙</th>
+							<th width="1%">음원 파일</th>
+							<th width="8%">타이틀</th> 
+							<th width="28%">곡</th>
+							<th width="1%"></th>
+							<th width="19%">뮤비</th>
+							<th width="1%"></th>
+							<th width="35%">가사</th>
 						</tr>
-						<%
-							//임의로 값을 부여함.
-							int cnt = 3;
-							for (int i = 0; i < cnt; i++) {
-						%>
 						<!-- 음원파일, 곡, 타이틀, 뮤비 등록 -->
-						<tbody>
-							<tr>
-								<td><strong><%=i + 1%></strong></td>
-								<td><input type="file" name="musicFile<%=i%>"
-									id="musicFile<%=i%>" /></td>
-								<td><input type="radio" name="musicTitle<%=i%>" id="musicTitle<%=i%>">
-								</td>
-								<td><input type="text" name="musicSubject<%=i%>"
-									id="musicSubject<%=i%>" class="form-control" width="20%" /></td>
-								<td><button type="submit" class="btn btn-md"
-										name="musicVideo<%=i%>" id="musicVideo<%=i%>"
-										onclick="check()">클릭</button> <!-- <input type="text" name="musicvideo"
-										id="musicvideo" class="form-control" width="15%" /> --></td>
-
-							</tr>
-							<%
-								}
-							%>
-						</tbody>
+						<c:forEach begin="1" var="i" end="${counter}">
+							<tbody>
+								<tr>
+									<td><strong>${i}</strong></td>
+									<td><input type="file" name="musicFile${i}"
+										id="musicFile${i}" accept="audio/*"/></td>						
+									<td><input type="checkbox" name="musicTitle${i}"
+										id="musicTitle${i}" value="1"></td>
+									<td><input type="text" name="musicSubject${i}" 
+										id="musicSubject${i}" class="form-control" width="20%" /></td>
+									<td></td>
+									<td><input type="text" name="musicVideo${i}"
+										id="musicVideo${i}" class="form-control" /></td>
+									<td></td>	
+									<td><textarea class="form-control" rows="4" cols="70"
+										id="musicLyrics${i}" name="musicLyrics${i}"
+										placeholder="가사를 입력해주세요.">
+										</textarea></td>
+								</tr>
+							</tbody>
+						</c:forEach>
 					</table>
 				</form>
 			</div>
 			<!-- end -->
 			<!-- 버튼 start -->
-			<div align="center" style="margin-top: 140px">
+			<div align="center" style="margin-top: 90px">
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary" id="before">뒤로</button>
-					<button type="submit" class="btn btn-primary" id="regist">업로드</button>
+					<button type="submit" class="btn btn-primary" id="regist" >업로드</button>
 					<button type="reset" class="btn btn-primary" id="cencle">취소</button>
 				</div>
 			</div>

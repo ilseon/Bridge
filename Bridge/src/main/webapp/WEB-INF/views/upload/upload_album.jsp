@@ -18,56 +18,73 @@
 </head>
 <title>Upload1_Album</title>
 <script>
-	$(document).ready(function() {
-		//숫자만 입력하는 jquery 
-		$(function() {
-			$("#counter").keyup(function() {
-				$(this).val($(this).val().replace(/[^0-9]/g, ""));
+	$(document).ready(
+			function() {
+
+				//음원 개수 입력_숫자만 입력하는 jquery 
+				$(function() {
+					$("#counter").keyup(function() {
+						$(this).val($(this).val().replace(/[^0-9]/g, ""));
+					});
+
+				});
+				//앨범 등록 정보을 확인하는 jquery 
+				$("#add").click(
+						function() {
+							var file = album.albumImg.value;
+							var fileExt = file
+									.substring(file.lastIndexOf('.') + 1); //파일확장자 
+							var age = $("input:radio[name=ageLimit]:checked")
+									.val();
+							if (!$("#albumName").val()) {
+								alert("앨범명을 입력해주세요.");
+								return false;
+							} else if (!$("#albumImg").val()) {
+								alert("앨범이미지를 업로드해주세요.");
+								return false;
+							} else if (fileExt.toUpperCase() == "MP3"
+									|| fileExt.toUpperCase() == "AVI"
+									|| fileExt.toUpperCase() == "JSP") {
+								alert("이미지파일만 업로드할 수 있습니다. 다시 확인해주세요.");
+								return false;
+							} else if (!$("#albumDate").val()) {
+								alert("날짜를 입력해주세요.");
+								return false;
+							} else if ($("#albumType").val() == "선택") {
+								alert("앨범 종류를 선택해주세요.");
+								return false;
+							} else if ($("#albumGenre").val() == "선택") {
+								alert("앨범 장르를 선택해주세요.");
+								return false;
+							} else if (!age) {
+								alert("앨범 이용 가능 연령을 체크해주세요.");
+								return false;
+							} else if (!$("#albumContent").val()) {
+								alert("앨범에 대한 설명을 입력해주세요.");
+								return false;
+							} else if (!$("#counter").val()) {
+								alert("등록할 음원의 수를 입력해주세요.");
+								return false;
+							} else if ($("#counter").val() <= 0) {
+								alert("최소 0개 이상은 등록해야합니다.");
+								return false;
+							} else if ($("#counter").val() >= 8) {
+								alert("최대 7개까지 등록할 수 있습니다.");
+								return false;
+							} else {
+								if (age == 0) {
+									alert("모든 연령이 이 앨범을 이용하도록 설정합니다.");
+									alert("추가되었습니다.");
+									$("#album").submit();
+								} else if (age == 1) {
+									alert("19세 이상만 이 앨범을 이용하도록 설정합니다.");
+									alert("추가되었습니다.");
+									$("#album").submit();
+								}
+
+							}
+						});
 			});
-			
-		});
-		//음원의 수를 확인하는 jquery 
-		$("#add").click(function() {
-			if (!$("#albumName").val()) {
-				alert("앨범명을 입력해주세요.");
-				return false;
-			} else if (!$("#albumImg").val()) {
-				alert("앨범이미지를 업로드해주세요.");
-				return false;
-			} else if (!$("#albumDate").val()) {
-				alert("날짜를 입력해주세요.");
-				return false;
-			} else if (!$("#albumContent").val()) {
-				alert("앨범에 대한 설명을 입력해주세요.");
-				return false;
-			} else if (!$("#counter").val()) {
-				alert("등록할 음원의 수를 입력해주세요.");
-				return false;
-			} else if ($("#counter").val() <= 0) {
-				alert("최소 0개 이상은 등록해야합니다.");
-				return false;
-			} else if ($("#counter").val() >= 8) {
-				alert("최대 7개까지 등록할 수 있습니다.");
-				return false;
-			} else {
-				alert("추가되었습니다.");
-				$("#album").submit();
-			}
-		});
-		
-		//19세 제한에 대한 값을 전달하는 jquery
-		$("#ageLimit").click(function() {		
-			if($("#ageLimit").checked == true) {
-				document.album.check.value = 1;
-				alert("19세 이상 회원들만 이용할 수 있도록 설정합니다.");
-				return false;
-			} else{		
-				document.album.check.value = 0;
-			}
-			alert("체크 값 : "+$("#ageLimit").val());
-			alert("체크 값 : "+document.album.check.value);
-		});		
-	});
 </script>
 <style>
 #tab {
@@ -75,26 +92,38 @@
 	background-color: #DF6E76;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	color: white;
-	margin-top:30px
+	margin-top: 30px
 }
+
 #upload_main {
-	margin-left: 100px;
+	margin-left: 90px;
 }
+
 #pom {
 	border-radius: 17px;
 	background-color: #EDE6E6;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 }
+
+#artistsub {
+	border: none;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+	background-color: gray;
+	color: white;
+}
+
 #song_table {
 	border-radius: 17px;
 	background-color: white;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 }
+
 #artist_regist {
 	border: none;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
 	background-color: #F6C4BC;
 }
+
 #add {
 	border: none;
 	box-shadow: 2px 2px 2px 2px #E0E0E0;
@@ -107,42 +136,37 @@
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
 	<!-- end -->
 	<div class="container">
-			<div class="panel-heading col-md-2" id="tab">
-				<h3 class="panel-title">
-					<img src='resources/image/upload/album/two.png'>&nbsp;앨범 등록
-				</h3>
+		<div class="panel-heading col-md-2" id="tab">
+			<h3 class="panel-title">
+				<img src='resources/image/upload/album/two.png'>&nbsp;앨범 등록
+			</h3>
 
 		</div>
 		<div class="col-md-12">
 			<br /> <br />
 			<div class="jumbotron" id="pom">
-				<form id="album" name="album" action="upload2" method="post" enctype="multipart/form-data"
-					accept-charset="UTF-8">
+				<form id="album" name="album" action="upload2" method="post"
+					enctype="multipart/form-data" accept-charset="UTF-8">
 					<!-- 아티스트 항목 값 -->
-					<input type="hidden" name="artistName" id="artistName"
-						value="${artistVO.artistName}" /> <input type="hidden"
-						name="artistImg" id="artistImg" value="${artistVO.artistImg}" />
-					<input type="hidden" name="artistType" id="artistType"
-						value="${artistVO.artistType}" /> <input type="hidden"
-						name="artistGenre" id="artistGenre"
-						value="${artistVO.artistGenre}" /> <input type="hidden"
-						name="artistNumber" id="artistNumber"
-						value="${artistVO.artistNumber}" /> <input type="hidden"
-						name="userNumber" id="userNumber" value="${artistVO.userNumber}" />
-
 					<div id="upload_main">
 						<!-- 앨범(이미지, 날짜, 아티스트 정보) 입력 start -->
 						<div class="col-md-2 col-md-offset-1">
 							<img src='resources/image/upload/album/album_image.PNG'
 								width="150%"><br /> <br /> <input type="file"
-								name="albumImg" id="albumImg" /><br /> <input type="date"
-								class="form-control" name="albumDate" id="albumDate"
-								style="width: 148%;"><br /> <br />
+								name="albumImg" id="albumImg" accept="image/*" /><br />
+							<input type="date" class="form-control" name="albumDate"
+								id="albumDate" style="width: 148%;"><br />
+					<c:forEach var="list" items="${artistList}">	
+						<input type="hidden" id="artistNumber" name="artistNumber" value="${list.artistNumber}"/>
+												<div class="btn btn-primary" id="artistsub"> 아티스트 </div><br/>
+						<br/><input type="text" class="form-control" id="artistName"
+						name="artistName" value="${list.artistName}" style="width: 148%;" readonly="readonly"> <br />
+					</c:forEach>	
 						</div>
 						<!-- end -->
 						<!-- 앨범(앨범명, 앨범종류, 장르, 설명, 곡 수 ) 입력 start  -->
 						<div class="row">
-							<div class="col-md-5 col-md-offset-1">
+							<div class="col-md-5 col-md-offset-2">
 								<!-- 앨범명 입력  -->
 								<label for="albumName" class="col-lg-4 control-label">앨범명</label>
 								<div class="col-md-8">
@@ -154,6 +178,7 @@
 									종류</label>
 								<div class="col-md-8">
 									<select class="form-control" id="albumType" name="albumType">
+										<option>선택</option>
 										<option>싱글</option>
 										<option>미니</option>
 										<option>정규</option>
@@ -163,6 +188,7 @@
 								<label for="albumGenre" class="col-lg-4 control-label">장르</label>
 								<div class="col-md-8">
 									<select class="form-control" id="albumGenre" name="albumGenre">
+										<option>선택</option>
 										<option>발라드/댄스/팝</option>
 										<option>일렉트로닉</option>
 										<option>알앤비</option>
@@ -173,15 +199,13 @@
 									</select> <br />
 								</div>
 								<!-- 19세 여부 체크 -->
-								<label for="albumContent" class="col-lg-4 control-label">
-								<span style="text-decoration: underline;color:red">19세</span>&nbsp;제한
-								</label>
+								<label for="ageLimit" class="col-lg-4 control-label">이용
+									연령</label>
 								<div class="col-md-8">
-									  <input type="checkbox" name="ageLimit" id="ageLimit"/>
-									    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;모든 연령&nbsp;&nbsp;<input type="radio" id="ageLimit"
+										name="ageLimit" value="0" />&nbsp;&nbsp; 19세 이상&nbsp;&nbsp;<input
+										type="radio" id="ageLimit" name="ageLimit" value="1" / />
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								</div>
 								<br />
 								<!-- 앨범에 대한 설명 입력 -->

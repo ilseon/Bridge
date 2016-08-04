@@ -71,7 +71,7 @@ public class VideoController {
 			}else{
 				List<VideoVO> list=service.getVideoList(paging);
 			mav.addObject("list",list);
-			System.out.println(list.get(0).getMusicSubject()+"뮤지비디오");
+			System.out.println(list.size()+"뮤지비디오");
 			}
 			return mav;
 	    } catch (Exception e) {

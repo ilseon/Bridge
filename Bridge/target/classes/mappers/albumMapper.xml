@@ -3,22 +3,69 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bridge.mappers.albumMapper">	
-	<select id="test" resultType="com.bridge.app.domain.UserVO">
-		select * from user
-	</select>	
+<mapper namespace="com.bridge.mappers.albumMapper">
+
+	<!-- 주연 추가 -->
 	<insert id="regist">
-		insert into album(albumname, albumtype, albumdate, albumgenre, artist_artistnumber, albumimg, 19check, albumcontent)
-		values(#{albumName}, #{albumType}, #{albumDate}, #{albumGenre}, #{artistNumber},  #{albumImg}, #{ageLimit}, #{albumContent})
-	</insert>	
-	
-	<select id="getAlbumOne" resultType="AlbumVO">
-		select * from album where albumnumber=1
-	</select>	
-	<select id="searchAll" parameterType="int" resultType="com.bridge.app.domain.AlbumVO">
-		select a.albumname as albumname, ar.artistname as artistname, a.albumdate as albumdate 
-		from album as a inner join artist as ar on a.artist_artistnumber=ar.artistnumber 
+		insert into album(albumname, albumtype, albumdate,
+		albumgenre, artist_artistnumber, albumimg, 19check, albumcontent)
+		values(#{albumName}, #{albumType}, #{albumDate}, #{albumGenre},
+		#{artistNumber}, #{albumImg}, #{ageLimit}, #{albumContent})
+	</insert>
+	<select id="selectAlbum" resultType="AlbumVO">
+		select albumnumber,
+		albumname, albumimg from album where albumname=#{albumName}
+	</select>
+
+	<select id="searchMytrack" parameterType="int"
+		resultType="com.bridge.app.domain.AlbumVO">
+		select a.albumNumber as albumNumber, a.albumImg as
+		albumImg, ar.artistname as artistname, a.albumtype as albumtype,
+		a.albumdate as albumdate,
+		a.albumgenre as albumgenre from album as a inner join artist as ar on
+		a.artist_artistnumber=ar.artistnumber
+		where ar.usernumber=#{usernumber}
+		order by a.albumdate asc
+		Limit #{limit}
+	</select>
+	<select id="MytrackAlbum" parameterType="int"
+		resultType="com.bridge.app.domain.AlbumVO">
+		select a.albumimg as albumimg, ar.artistname as artistname,
+		ar.artistnumber as
+		artistnumber,
+		a.albumname as albumname, a.albumtype
+		as albumtype, a.albumdate as albumdate, a.albumgenre as albumgenre,
+		a.19check as 19check, a.albumcontent as albumcontent
+		from music as m
+		inner join album as a on m.albumnumber=a.albumnumber
+		inner join artist
+		as ar on m.artistnumber=ar.artistnumber where
+		a.albumnumber=#{albumNumber}
+	</select>
+	<select id="selectAlbumChk" resultType="int" >
+		select artist_artistnumber
+		from album
+		where artist_artistnumber=#{artistNumber}
+	</select>
+	<!-- -->
+
+	<select id="getAlbumOne" parameterType="int" resultType="AlbumVO">
+		select *
+		from album where albumnumber=#{albumNumber}
+	</select>
+
+	<select id="searchAll" parameterType="int"
+		resultType="com.bridge.app.domain.AlbumVO">
+		select a.albumname as albumname, ar.artistname as
+		artistname, a.albumdate as albumdate , a.albumnumber as albumnumber
+		from album as a inner join artist as ar on
+		a.artist_artistnumber=ar.artistnumber
 		order by albumdate asc
 		Limit #{limit}
+	</select>
+
+	<!-- 일선 추가 -->
+	<select id="getArtistAlbum" parameterType="int" resultType="AlbumVO">
+		select * from album where artist_artistnumber=#{artistNumber}
 	</select>
 </mapper>

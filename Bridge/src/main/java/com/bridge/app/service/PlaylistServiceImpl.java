@@ -1,7 +1,12 @@
-
+/*
+ �ۼ��� - ��ȿ��
+���� - ���ٹ� Service ���� Ŭ����
+���۳�¥ - 2016-07-20
+������¥ - 2016-07-21
+���泻�� - �⺻ �޼��� �ۼ�
+ */
 package com.bridge.app.service;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -9,9 +14,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Repository;
 
-import com.bridge.app.domain.MusicVO;
 import com.bridge.app.domain.PlaylistVO;
-import com.bridge.app.persistence.PlayerDAO;
 import com.bridge.app.persistence.PlaylistDAO;
 
 @Repository
@@ -31,9 +34,8 @@ public class PlaylistServiceImpl implements PlaylistService {
 	}
 
 	@Override
-	public List<PlaylistVO> searchAll(Integer userNumber) throws Exception {
-
-		return null;
+	public List<PlaylistVO> searchAll(Integer userNumber) throws Exception {		
+		return playlistdao.searchAll(userNumber);
 	}
 
 	@Override
@@ -41,5 +43,14 @@ public class PlaylistServiceImpl implements PlaylistService {
 		
 	}
 
+	@Override
+	public List<PlaylistVO> searchAlbum(Integer userNumber, int limit) throws Exception {
+		return playlistdao.searchAlbum(userNumber, limit);
+	}
+	
+	@Override
+	public List<PlaylistVO> search_myalbum(Map playListAll) throws Exception {
+		return playlistdao.search_myalbum(playListAll);
+	}
 
 }
