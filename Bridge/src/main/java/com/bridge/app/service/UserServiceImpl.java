@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public void remove(UserVO user) throws Exception {
-		dao.remove(user);
+	public void remove(int usernumber) throws Exception {
+		dao.remove(usernumber);
 	}
 }

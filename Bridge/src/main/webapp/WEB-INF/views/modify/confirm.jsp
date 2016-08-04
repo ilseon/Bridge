@@ -10,29 +10,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
-	type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
+<script src="/Bridge/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
+<script src="/Bridge/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="/Bridge/resources/bootstrap/css/bootstrap.css"
+	type="text/css"></script>
 
 <script>
-	//탈퇴 동의 jquery 
-	$(document).ready(function() {
-		
-		alert(opener.document.user.userNumber.value);
-		
-		$(".btn-danger").on("click", function() {
-			alert("탈퇴되었습니다.");
-			window.close();
-			$("#f").submit();
-		});
+	//탈퇴 동의 	
 
-		function submit() {			
-			opener.document.f.userNumber.value = document.f.userNumber.value;
-			
-		}
-	});
+	var usernumber = opener.user.usernumber.value;
+	alert(usernumber);
+	function fnSubmit(num) {
+		alert("탈퇴되었습니다.");
+		window.close();
+	}
 </script>
 <style>
 #head {
@@ -55,21 +46,22 @@
 					<h4 class="text-center">회원 탈퇴</h4>
 				</div>
 				<div class="panel-body text-center" id="body">
-					<form id="f">  
+					<form id="f">
+						<input type="hidden" id="number" name="num" value="${usernumber}" />
 						<p class="leave">
-							<br /> <strong>정말로 탈퇴하시겠습니까?</strong>
+							<br />
+							<strong>정말로 탈퇴하시겠습니까?</strong>
 						</p>
 					</form>
 				</div>
 			</div>
 			<div class="form-group" align="center" style="margin-top: 40px">
-				<button type="submit" class="btn btn-danger" onClick="submit()">확인</button>
+				<button type="submit" class="btn btn-danger" onclick="fnSubmit()">확인</button>
 				<button type="reset" class="btn btn-default"
 					onclick="window.close();">취소</button>
 			</div>
 		</div>
 	</div>
-
 	<!-- end -->
 </body>
 </html>

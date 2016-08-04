@@ -8,64 +8,73 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@page import="java.util.Enumeration"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
-	type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
+<script src="/Bridge/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
+<script src="/Bridge/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="/Bridge/resources/bootstrap/css/bootstrap.css"
+	type="text/css"></script>
 <script>
-	$(document).ready(function() {
-			
-		//타입
-		var type = $("#type").val();
-		var typeArr = $("#albumType option");
-		for (var i = 0; i < typeArr.length; i++) {
-			if (typeArr.eq(i).text() == type) {
-				$("#albumType option:eq(" + i + ")").prop("selected", true);
-				break;
-			}
-		}	
-		
-		//장르
-		var genre = $("#genre").val();
-		var genreArr = $("#albumGenre option");
-		for (var i = 0; i < genreArr.length; i++) {
-			if (genreArr.eq(i).text() == genre) {
-				$("#albumGenre option:eq(" + i + ")").prop(
-						"selected", true);
-				break;
-			}
-		}		
-		
-		var age  = $("#age").val();
-		if(age == 1){
-			$("#album input:radio[name=ageLimit]:radio[value='1']").prop("checked","checked");
-		}else if(age = 0){
-			//$("input:radio[name='ageLimit']:radio[value=0]").prop("checked", true);
-			$("input:radio[name='ageLimit']:radio[value='0']").prop("checked","checked");
-			//$("input:radio[name='satisfaction_score']:radio[value='5']").prop("checked",true);
-		}
-		
-		// 삭제를 위한 jquery	
-		$("#delBtn").click(function() {
-			if ($("input:checked").length == 0) {
-				alert("곡을 선택해주세요.");
-			} else {
-				alert("삭제되었습니다.");
-			}
-		});
-		// 수정를 위한 jquery	
-		$("#update").click(function() {
-			if ($("input:checked").length == 0) {
-				alert("곡을 선택해주세요.");
-			} else {
-				alert("수정되었습니다.");
-			}
-		});
-	});
+	$(document).ready(
+			function() {
+
+				//타입
+				var type = $("#type").val();
+				var typeArr = $("#albumType option");
+				for (var i = 0; i < typeArr.length; i++) {
+					if (typeArr.eq(i).text() == type) {
+						$("#albumType option:eq(" + i + ")").prop("selected",
+								true);
+						break;
+					}
+				}
+
+				//장르
+				var genre = $("#genre").val();
+				var genreArr = $("#albumGenre option");
+				for (var i = 0; i < genreArr.length; i++) {
+					if (genreArr.eq(i).text() == genre) {
+						$("#albumGenre option:eq(" + i + ")").prop("selected",
+								true);
+						break;
+					}
+				}
+
+				//이용 연령에 따른 radio 버튼 클릭
+				var age = $("#age").val();
+				if (age == 1) {
+					$("input:radio[name='ageLimit']:radio[value='1']").prop(
+							"checked", "checked");
+				} else if (age == 0) {
+					$("input:radio[name='ageLimit']:radio[value='0']").prop(
+							"checked", "checked");
+				}
+
+				// 삭제를 위한 jquery	
+				$("#delBtn").click(function() {
+					if ($("input:checked").length == 0) {
+						alert("곡을 선택해주세요.");
+					} else {
+						alert("삭제되었습니다.");
+					}
+				});
+				// 수정를 위한 jquery	
+				$("#update").click(function() {
+					if ($("input:checked").length == 0) {
+						alert("곡을 선택해주세요.");
+
+					} else if (!$("#albumContent").val()) {
+						alert("앨범에 대한 설명을 입력해주세요.");
+						return false;
+					} else {
+						alert("수정되었습니다.");
+						$("#album").submit();
+					}
+				});
+			});
 </script>
 <style>
 #tab {
@@ -140,33 +149,37 @@
 			<!-- end -->
 			<div class="col-md-12">
 				<form class="form-horizontal" id="album" method="post"
-					enctype="multipart/form-data">
-					<c:forEach var="list" items="${albumList}" begin="1" end="1">
+					action="updateAlbum" enctype="multipart/form-data">
+					<c:forEach var="list" items="${album}" begin="1" end="1">
 						<br />
 						<br />
 						<div class="jumbotron" id="pom">
 							<div id="upload_main">
 								<div class="col-md-2 col-md-offset-1" id="chp">
 									<a href="#album_del" data-toggle="modal"> <img
-										src="upload/album/${list.albumImg}" width="160px"
+										src="/Bridge/upload/album/${list.albumImg}" width="160px"
 										id="album_check"></a> <br /> <br /> <input type="file"
 										name="albumImg" id="albumImg" /> <br />
 								</div>
 								<div class="col-md-4">
+									<input type="text" id="albumNumber" name="albumNumber"
+										value="${albumNumber}">
 									<div class="form-group">
 										<!-- 앨범명 입력  -->
 										<label for="album" class="col-lg-4 control-label">앨범명</label>
 										<div class="col-md-7">
 											<input type="text" class="form-control" id="albumName"
-												name="albumName" value="${list.albumName}">
+												name="albumName" value="${list.albumName}"
+												readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
 										<!-- 앨범 종류 입력 -->
 										<label for="kind" class="col-lg-4 control-label">앨범 종류</label>
 										<div class="col-md-7">
-									<input type="hidden" id="type" name="type" value="${list.albumType}" />	
-											<select class="form-control" id="albumType" name="albumType">
+											<input type="hidden" id="type" name="type"
+												value="${list.albumType}" /> <select class="form-control"
+												id="albumType" name="albumType">
 												<option>싱글</option>
 												<option>미니</option>
 												<option>정규</option>
@@ -177,9 +190,9 @@
 										<!-- 장르 입력 -->
 										<label for="genre" class="col-lg-4 control-label">장르</label>
 										<div class="col-md-7">
-										<input type="hidden" id="genre" name="genre" value="${list.albumGenre}" />	
-											<select class="form-control" id="albumGenre"
-												name="albumGenre">
+											<input type="hidden" id="genre" name="genre"
+												value="${list.albumGenre}" /> <select class="form-control"
+												id="albumGenre" name="albumGenre">
 												<option>발라드/댄스/팝</option>
 												<option>일렉트로닉</option>
 												<option>알앤비</option>
@@ -195,18 +208,18 @@
 										<label for="genre" class="col-lg-4 control-label">날짜</label>
 										<div class="col-md-7">
 											<input type="date" class="form-control" name="albumDate"
-												id="albumDate" value="${list.albumDate}"><br />
+												id="albumDate" value="${list.albumDate}" readonly="readonly"><br />
 										</div>
-										<input type="hidden"  name="age"
-											id="age" value="${list.ageLimit}"><br />
+										<input type="hidden" name="age" id="age"
+											value="${list.ageLimit}"><br />
 										<!-- 19세 여부 체크 -->
 										<label for="ageLimit" class="col-lg-4 control-label">이용
 											연령</label>
 										<div class="col-md-8">
-											&nbsp;모든 연령&nbsp;&nbsp;<input type="radio" id="ageLimit"
-												name="ageLimit" value="0"/>&nbsp;&nbsp;<br />
-											19세 이상 <input type="radio" id="ageLimit" name="ageLimit" value="1"/>
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											모든 연령&nbsp;&nbsp;<input type="radio" id="ageLimit"
+												name="ageLimit" value="0" disabled="disabled" />&nbsp;&nbsp;
+											19세 이상&nbsp;&nbsp;<input type="radio" id="ageLimit"
+												name="ageLimit" value="1" disabled="disabled" />
 										</div>
 									</div>
 								</div>
@@ -246,8 +259,8 @@
 							<th width="35%">가사</th>
 						</tr>
 						<!-- 음원파일, 곡, 타이틀, 뮤비 -->
-							<c:set var="j" value="0"></c:set>
-							<c:forEach var="list" items="${musicList}" >
+						<c:set var="j" value="0"></c:set>
+						<c:forEach var="list" items="${music}">
 							<c:set var="j" value="${j+1}"></c:set>
 							<tbody>
 								<tr>
@@ -255,7 +268,7 @@
 										value="${list.musicNumber}"></td>
 									<td><strong>${j}</strong></td>
 									<td><input type="file" name="musicFile" id="musicFile"
-										accept="audio/*" /><br />${list.musicFile}</td>
+										accept="audio/*" />${list.musicFile}<br /></td>
 									<td><input type="checkbox" name="musicTitle"
 										id="musicTitle" value="1"></td>
 									<td><input type="text" name="musicSubject"
@@ -269,14 +282,15 @@
 											id="musicLyrics" name="musicLyrics">
 												${list.musicLyrics}
 										</textarea></td>
+
 								</tr>
-							</tbody>							
+							</tbody>
 						</c:forEach>
 					</table>
 				</form>
 			</div>
 
-
+			<input type="hidden" id="num" value="${j}" />
 			<!-- end -->
 
 			<!-- 버튼 start -->

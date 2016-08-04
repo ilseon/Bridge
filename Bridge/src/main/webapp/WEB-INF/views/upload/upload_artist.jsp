@@ -10,11 +10,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
-	type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
+<script src="/Bridge/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
+<script src="/Bridge/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="/Bridge/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 </head>
 </head>
 <title>Upload1_Artist</title>
@@ -127,7 +125,7 @@
 	<div class="container">
 		<div class="panel-heading col-md-3" id="tab">
 			<h3 class="panel-title">
-				<img src='resources/image/upload/album/one.png'>&nbsp;&nbsp;아티스트
+				<img src='/Bridge/resources/image/upload/album/one.png'>&nbsp;&nbsp;아티스트
 				정보 및 등록
 			</h3>
 		</div>
@@ -148,15 +146,15 @@
 								<th width="8%">삭제</th>
 							</tr>
 							<tbody>
-								<tr>
 									<c:if test="${null ne artistList }">
 										<c:set var="j" value="0"></c:set>
 										<c:forEach var="list" items="${artistList}">
 											<c:set var="j" value="${j+1}"></c:set>
+										<tr>	
 											<td width="8%">${j}<input type="hidden"
 												id="artistNumber" name="artistNumber"
 												value="${list.artistNumber}" /></td>
-											<td width="20%"><input type="hidden"
+											<td width="20%"><img
 												src="/upload/artist/${list.artistImg}" id="artistImg"
 												name="artistImg" /></td>
 											<td width="20%"><input type="hidden" id="artistName"
@@ -180,9 +178,9 @@
 												class="btn btn-xs"><span
 													class="glyphicon glyphicon-trash" id="artistDelete"></span>
 											</a></td>
+										</tr>	
 										</c:forEach>
 									</c:if>
-								</tr>
 							</tbody>
 						</table>
 						<table>
@@ -206,10 +204,10 @@
 								<input type="hidden" name="userNumber" id="userNumber"
 									value="${userNumber}" /> <input type="hidden"
 									name="artistNumber" id="artistNumber" value="${artistNumber}" />
-								<br /> <img src="resources/image/upload/album/album_image.PNG"
+								<br /> <img src="/Bridge/resources/image/upload/album/album_image.PNG"
 									width="120%" id="UploadedImg" /><br /> <br /> <input
 									type="file" name="artistImg" id="artistImg" accept="image/*"
-									onchange="readURL(this);" />
+									" />
 							</div>
 							<div class="col-md-5 col-md-offset-1">
 								<br /> <label for="artistName" class="col-xs-4 control-label">아티스트</label>

@@ -66,6 +66,10 @@ public class DownloadDAOImpl implements DownloadDAO {
 	@Override
 	public List<DownloadVO> searchList(Integer userNumber, int limit) throws Exception {
 		return sqlSession.selectList(NAMESPACE+".selectList", userNumber);
-	}	
-	
+	}
+
+	@Override
+	public List<DownloadVO> searchMyDownload(int userNumber) throws Exception {
+		return  sqlSession.selectList(NAMESPACE+".searchMyDownload", userNumber);
+	}		
 }

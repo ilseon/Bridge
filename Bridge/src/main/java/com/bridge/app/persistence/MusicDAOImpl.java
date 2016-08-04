@@ -45,8 +45,8 @@ public class MusicDAOImpl implements MusicDAO {
 
 		
 		int postMaxSize = 1024 * 1024 * 1024;
-		String folderPath = req.getSession().getServletContext().getRealPath("/"); // realPath
-		String folder_p = folderPath + "upload" + File.separator + "music" + File.separator;
+		String folderPath = req.getSession().getServletContext().getRealPath("/resources/image"); //realPath
+		String folder_p = folderPath + File.separator + "upload" + File.separator + "music" + File.separator;
 
 		File file = null;
 		file = new File(folder_p);
@@ -205,7 +205,4 @@ public class MusicDAOImpl implements MusicDAO {
     public int searchCount(Paging paging) throws Exception {
        return sqlSession.selectOne(NAMESPACE + ".searchCount", paging);
     }
-
-
-
 }

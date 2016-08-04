@@ -21,9 +21,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
+import com.bridge.app.domain.AlbumVO;
 import com.bridge.app.domain.ArtistVO;
 import com.bridge.app.domain.LikeVO;
 import com.bridge.app.domain.UserVO;
@@ -53,6 +55,8 @@ public class MyPageController {
 	@Inject
 	private UserService userservice;
 
+	
+	
 	private static final Logger logger = LoggerFactory.getLogger(MyPageController.class);
 
 	/** Upload_첫페이지 */
@@ -137,7 +141,6 @@ public class MyPageController {
 
 	/**
 	 * Upload 이후 내 트랙 확인
-	 * 
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "mytrack", method = RequestMethod.GET)
@@ -154,13 +157,27 @@ public class MyPageController {
 	 */
 	@RequestMapping(value = "mytrack_detail", method = RequestMethod.GET)
 	public ModelAndView MyTrack_Detail(@RequestParam int albumNumber, Model view) throws Exception {
-		view.addAttribute("albumList", albumservice.MytrackAlbum(albumNumber));
-		view.addAttribute("musicList", musicservice.MytrackMusic(albumNumber));
+		view.addAttribute("album", albumservice.MytrackAlbum(albumNumber));
+		view.addAttribute("music", musicservice.MytrackMusic(albumNumber));
 		logger.info("It is mytrack_datail");
+		view.addAttribute("albumNumber", albumNumber);
 		ModelAndView mav = new ModelAndView("/upload/mytrack_detail");
+		
 		return mav;
 	}
 
+	/** 내 트랙_앨범_수정 */
+	@RequestMapping(value = "updateAlbum", method = RequestMethod.POST)
+	public String updateAlbum(AlbumVO album, HttpServletRequest req, Model view) throws Exception {
+		logger.info("앨범 수정");	
+		albumservice.update(album, req);
+		logger.info("앨범 등록 완료");
+		view.addAttribute("albumNumber", album.getAlbumNumber());
+		return "redirect:/mytrack_detail";		
+	}
+	
+	
+	
 	/** 내 트랙_뮤직_삭제 */
 	@RequestMapping(value = "mytrackDel", method = RequestMethod.GET)
 	public String MyTrackDelete(HttpServletRequest req, @RequestParam int musicNumber) throws Exception {
@@ -175,6 +192,7 @@ public class MyPageController {
 	public String PassWordConfirm(HttpServletRequest req, Model view) throws Exception {
 		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 		view.addAttribute("userPassword", userservice.passwordCheck(userNumber));
+		
 		logger.info("It is password_check");
 		return "/modify/password_check";
 	}
@@ -216,7 +234,7 @@ public class MyPageController {
 		return "home";
 	}
 
-	/** 탈퇴 전 비밀번호 확인 */
+	/** 탈퇴 전 비밀번호 확인 이동*/
 	@RequestMapping(value = "withdrawal", method = RequestMethod.GET)
 	public String PassWordConfirm2(HttpServletRequest req, Model view) throws Exception {
 		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
@@ -226,23 +244,34 @@ public class MyPageController {
 	}
 	
 	/**
-	 * 회원 탈퇴
+	 * 확인 이후 회원 탈퇴 이동
 	 * @throws Exception */
 	@RequestMapping(value = "withdrawal", method = RequestMethod.POST)
 	public String Withdrawal(UserVO user, HttpServletRequest req) throws Exception {
-		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
-		userservice.remove(user);
+		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");		
 		logger.info("It is withdrawal");
 		return "/modify/withdrawal";
 	}
-
+	
 	/** 탈퇴 동의 */
-	@RequestMapping(value = "confirm")
+	@RequestMapping(value = "confirm", method = RequestMethod.GET)
 	public String Confirm() {
 		logger.info("It is confirm");
 		return "/modify/confirm";
 	}
 	
+	/** 탈퇴 완료
+	 * @throws Exception */
+	@RequestMapping(value = "confirm", method = RequestMethod.POST)
+	public String userConfirm(UserVO user, SessionStatus session, HttpServletRequest req) throws Exception {
+		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+		logger.info(usernumber+"");
+		userservice.remove(usernumber);
+		session.setComplete();
+		logger.info("It is confirmCom");
+		return "home";
+	}
+		
 	/** 좋아하는 곡 */
 	@RequestMapping(value = "like_song")
 	public String LikeSong(HttpServletRequest req, Model view) throws Exception {
@@ -284,10 +313,12 @@ public class MyPageController {
 		return "/mypage/download";
 	}
 
-	/** 결제내역 */
+	/** 결제내역 
+	 * @throws Exception */
 	@RequestMapping(value = "payment")
-	public String Payment() {
-
+	public String Payment(HttpServletRequest req, Model view) throws Exception {
+		int userNumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
+		view.addAttribute("pay",downservice.searchMyDownload(userNumber));
 		logger.info("It is payment");
 		return "/payment/payment";
 	}

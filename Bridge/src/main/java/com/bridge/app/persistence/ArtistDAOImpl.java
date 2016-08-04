@@ -35,9 +35,12 @@ public class ArtistDAOImpl implements ArtistDAO {
 		int usernumber = (int) WebUtils.getSessionAttribute(req, "usernumber");
 
 		int postMaxSize = 1024 * 1024 * 1024;
-		String folderPath = req.getSession().getServletContext().getRealPath("/"); // realPath
-		String folder_p = folderPath + "upload" + File.separator + "artist" + File.separator;
+		String folderPath = req.getSession().getServletContext().getRealPath("/resources/image"); // realPath
+		
+		String folder_p = folderPath + File.separator + "upload" + File.separator + "artist" + File.separator;
 
+		logger.info(folder_p);
+		
 		File file = null;
 		file = new File(folder_p);
 		if (!file.exists()) {
@@ -98,7 +101,7 @@ public class ArtistDAOImpl implements ArtistDAO {
 	public void update(ArtistVO artist, HttpServletRequest req) throws Exception {
 
 		int postMaxSize = 10 * 1024 * 1024;
-		String folderPath = req.getSession().getServletContext().getRealPath("/"); // realPath
+		String folderPath = req.getSession().getServletContext().getRealPath("/resources/image"); // realPath
 		String folder_p = folderPath + "upload" + File.separator + "artist" + File.separator;
 
 		File file = null;

@@ -53,6 +53,9 @@ public class AlbumServiceImpl implements AlbumService {
 	@Override
 	public List<AlbumVO> selectArtistnum(int artistNumber) throws Exception {
 		return dao.selectArtistnum(artistNumber);
+	}
+	@Override
+	public void update(AlbumVO album, HttpServletRequest req) throws Exception {
+		dao.update(album, req);
 	};
-
 }

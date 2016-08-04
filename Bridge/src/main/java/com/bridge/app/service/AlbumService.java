@@ -21,4 +21,5 @@ public interface AlbumService {
 	
 	// 추가
 	public List<AlbumVO> selectArtistnum(int artistNumber) throws Exception;
+	public void update(AlbumVO album, HttpServletRequest req)  throws Exception;
 }

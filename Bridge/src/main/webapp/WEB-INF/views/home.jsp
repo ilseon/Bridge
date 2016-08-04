@@ -12,7 +12,7 @@
 
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/Bridge/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <title>Home</title>
 </head>
 

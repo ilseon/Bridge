@@ -30,6 +30,6 @@ public interface UserService {
 	
 	//추가
 	public void update(UserVO user, int usernumber) throws Exception;
-	public void remove(UserVO user) throws Exception;
+	public void remove(int usernumber) throws Exception;
 	
 }

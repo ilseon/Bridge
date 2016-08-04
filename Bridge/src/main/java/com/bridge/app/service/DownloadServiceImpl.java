@@ -65,4 +65,8 @@ public class DownloadServiceImpl implements DownloadService {
 		return downloadDAO.searchList(userNumber, limit);
 	}
 
+	@Override
+	public List<DownloadVO> searchMyDownload(int userNumber) throws Exception {
+		return downloadDAO.searchMyDownload(userNumber);
+	}
 }

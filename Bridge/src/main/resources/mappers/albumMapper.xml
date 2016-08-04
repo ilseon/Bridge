@@ -22,11 +22,12 @@
 		select a.albumNumber as albumNumber, a.albumImg as
 		albumImg, ar.artistname as artistname, a.albumtype as albumtype,
 		a.albumdate as albumdate,
-		a.albumgenre as albumgenre from album as a inner join artist as ar on
+		a.albumgenre as albumgenre from album as a
+		inner join artist as ar on
 		a.artist_artistnumber=ar.artistnumber
-		where ar.usernumber=#{usernumber}
+		where
+		ar.usernumber=#{usernumber}
 		order by a.albumdate asc
-		Limit #{limit}
 	</select>
 	<select id="MytrackAlbum" parameterType="int"
 		resultType="com.bridge.app.domain.AlbumVO">
@@ -42,8 +43,9 @@
 		as ar on m.artistnumber=ar.artistnumber where
 		a.albumnumber=#{albumNumber} order by a.albumdate asc
 	</select>
-	<select id="selectAlbumChk" resultType="int" >
-		select artist_artistnumber
+	<select id="selectAlbumChk" resultType="int">
+		select
+		artist_artistnumber
 		from album
 		where artist_artistnumber=#{artistNumber}
 	</select>
@@ -61,12 +63,19 @@
 		from album as a inner join artist as ar on
 		a.artist_artistnumber=ar.artistnumber
 		order by albumdate asc
-		Limit #{limit}
 	</select>
 
 	<!-- 일선 추가 -->
 	<select id="getArtistAlbum" parameterType="int" resultType="AlbumVO">
 		select * from album where artist_artistnumber=#{artistNumber}
 	</select>
-	
+
+	<!-- 추가 -->
+	<select id="update" resultType="AlbumVO">
+		update album set albumtype =#{albumType},
+		albumgenre =#{albumGenre},
+		albumimg =#{albumImg},
+		albumcontent =#{albumContent}
+		where albumnumber = #{albumNumber}
+	</select>
 </mapper>

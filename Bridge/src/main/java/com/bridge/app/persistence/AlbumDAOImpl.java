@@ -43,8 +43,8 @@ public class AlbumDAOImpl implements AlbumDAO {
 	
 		
 		int postMaxSize = 1024 * 1024 * 1024;
-		String folderPath  = req.getSession().getServletContext().getRealPath("/"); //realPath
-        String folder_p=folderPath+"upload"+File.separator+"album"+File.separator;
+		String folderPath  = req.getSession().getServletContext().getRealPath("/resources/image"); //realPath
+        String folder_p= folderPath + File.separator + "upload" +File.separator+"album"+File.separator;
                  
         File file = null;
         file = new File(folder_p);
@@ -123,6 +123,47 @@ public class AlbumDAOImpl implements AlbumDAO {
 	public List<AlbumVO> selectArtistnum(int artistNumber) throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".selectArtistnum", artistNumber);
 	}
-	
-	
+
+	@Override
+	public void update(AlbumVO album, HttpServletRequest req) throws Exception {
+		
+		int postMaxSize = 10 * 1024 * 1024;
+		String folderPath = req.getSession().getServletContext().getRealPath("/resources/image"); // realPath
+		String folder_p = folderPath + "upload" + File.separator + "album" + File.separator;
+
+		File file = null;
+		file = new File(folder_p);
+		if (!file.exists()) {
+			file.mkdirs();
+		}
+
+		String encoding = "UTF-8";
+		Enumeration enumer = null;
+		MultipartRequest multiReq = new MultipartRequest(req, folder_p, postMaxSize, "UTF-8",
+				new DefaultFileRenamePolicy());
+
+		enumer = multiReq.getFileNames();
+		String albumImg = "";
+		while (enumer.hasMoreElements()) {
+			enumer = (Enumeration) multiReq.getFileNames();
+
+			String name = (String) enumer.nextElement();
+			albumImg = multiReq.getFilesystemName(name);
+		}
+
+		int albumNumber = Integer.parseInt(multiReq.getParameter("albumNumber"));
+
+		logger.info(albumNumber+"");
+		
+		album.setAlbumNumber(albumNumber);
+		album.setAlbumGenre(multiReq.getParameter("albumGenre"));
+		album.setAlbumType(multiReq.getParameter("albumType"));
+		album.setAlbumContent(multiReq.getParameter("albumContent"));
+		album.setAlbumImg(albumImg);
+
+		logger.info(album.toString());
+
+		sqlSession.update(NAMESPACE + ".update", album);
+		
+	}
 }

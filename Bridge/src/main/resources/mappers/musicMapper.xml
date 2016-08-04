@@ -169,7 +169,7 @@
 
 	<select id="MytrackMusic" parameterType="int"
 		resultType="com.bridge.app.domain.MusicVO">
-		select albumnumber, musicsubject, musicvideo,
+		select musicnumber, albumnumber, musicsubject, musicvideo,
 		musicfile, musiclyrics, musictitle
 		from music where albumnumber=#{albumNumber}
 	</select>

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 import com.bridge.app.domain.AlbumVO;
+import com.bridge.app.domain.ArtistVO;
 
 public interface AlbumDAO {
 	
@@ -22,5 +23,6 @@ public interface AlbumDAO {
 
 	// 추가
 	public List<AlbumVO> selectArtistnum(int artistNumber) throws Exception;
+	public void update(AlbumVO album, HttpServletRequest req) throws Exception;
 	
 }

@@ -113,8 +113,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void remove(UserVO user) throws Exception {
-		
-		sqlSession.delete(namespace+".remove", user);
+	public void remove(int usernumber) throws Exception {	
+		sqlSession.delete(namespace+".remove", usernumber);
 	}		
 }
