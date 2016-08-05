@@ -93,6 +93,7 @@
 	}
 	
 	function ajaxWriteReply(replyNumber, replyContext, albumNumber){
+		alert('${empty usernumber}' == 'true');
 		if('${empty usernumber}' == true){ // 세션이 없으면 댓글 달 수 없음!
 			alert("회원만 댓글을 달 수 있습니다.");			
 		}else{

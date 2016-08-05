@@ -35,9 +35,7 @@ public class ArtistReplyController {
 	public String replyWrite(@ModelAttribute ArtistReplyVO vo, HttpSession session) throws Exception{	
 		ServletRequestAttributes attr = (ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
 		session = attr.getRequest().getSession();		
-		vo.setUserNumber((int)session.getAttribute("usernumber"));
-		
-		
+		vo.setUserNumber((int)session.getAttribute("usernumber"));	
 		service.writeReply(vo);
 		if(vo.getReplyNumber()==0)
 			service.updateReplyGroupNumber();

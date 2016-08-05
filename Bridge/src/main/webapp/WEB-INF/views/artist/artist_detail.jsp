@@ -39,8 +39,7 @@
 				success : function(data){
 					replyLast = false;
 					if(data.length != 10) // 가져온 댓글 갯수가 10이 아니면 마지막 페이지!
-						replyLast = true;		
-					
+						replyLast = true;							
 					var sessionUserNumber = '${usernumber}';					
 					for(var i=0; i<data.length; i++){
 						var artistReplyVO = data[i];				

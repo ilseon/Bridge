@@ -110,7 +110,7 @@
 						</c:when>
 
 						<c:when test="${(passwordmsg)==2}">
-							<div>당신의 아이디는 ${usersearchpassword } 입니다 !</div>
+							<div>당신의 비밀번호는 ${usersearchpassword } 입니다 !</div>
 						</c:when>
 
 						<c:otherwise>

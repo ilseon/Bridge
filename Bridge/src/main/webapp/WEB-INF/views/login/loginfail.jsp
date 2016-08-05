@@ -2,8 +2,8 @@
 작성자 - 김민정
 내용 - 로그인 실패 페이지
 시작날짜 - 2016/07/27
-수정날짜 - 
-변경내용 - 
+수정날짜 - 2016/08/03
+변경내용 - 빈칸 입력경우 팝업대신 메세지 출력
  --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -17,12 +17,19 @@
 
 <script>
 	function EmptyCheckTest() {
-		if ($("#userIdTest").val() == "" || $("#userPasswordTest").val() == "" ) {
-			alert("빈칸을 입력하세요.");		
+		 if ($("#userIdTest").val() == ""  ) {
+			$("#userIdTest1").text("아이디를 입력해주세요");
+			$("#userPasswordTest1").empty();
 			return false;
+		}		
+		else if($("#userPasswordTest").val() == ""){
+			$("#userPasswordTest1").text("비밀번호를 입력해주세요");
+			$("#userIdTest1").empty();
+			return false;		
 		}
 		return true;
 	}
+		
 </script>
 
 <body style="margin-top: 4%;">
@@ -44,7 +51,11 @@
 							<input type="text" class="form-control " placeholder="id"	name="userId" id="userIdTest">
 						</div>
 						</div>
-						<div style="margin-left: 18%; margin-bottom: 3%;">-</div>
+
+
+				<p style="margin-left: 18%; margin-bottom: 2%; color: red;" id="userIdTest1"></p>
+
+
 
 					<div class="form-group">
 						<label for="inputPassword3" class="col-sm-2 control-label">비밀번호</label>
@@ -52,7 +63,8 @@
 							<input type="password" class="form-control"	placeholder="password" name="userPassword" id="userPasswordTest">
 						</div>
 					</div>
-					<div style="margin-left: 18%; margin-bottom: 2%;">-</div>
+					
+					<p style="margin-left: 18%; margin-bottom: 2%; color: red;" id="userPasswordTest1"></p>
 
 
 					<c:choose>
