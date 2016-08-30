@@ -20,5 +20,31 @@
 		where userid=#{userid} and useremail=#{useremail}
 	</select>
 	
+	<select id="PasswordCheck" parameterType="int" resultType="String">
+		select userpassword from user where usernumber=#{userNumber} 
+	</select>
+	
+		<select id="selectAll" parameterType="int" resultType="UserVO">
+		select * from user where usernumber=#{userNumber} 
+	</select>
+	
+	
+	<!-- 주연 추가 -->
+	<update id="update" parameterType="UserVO">
+		update user set useremail =
+		#{userEmail},
+		userpassword = #{userPassword},
+		userphone = #{userPhone}
+		where usernumber=#{userNumber}
+	</update>
 
+	<delete id="remove">
+		delete from user where
+		usernumber=#{userNumber}
+	</delete>
+	
+	<update id="update_pw" parameterType="UserVO">
+		update user set userpassword = #{userPassword} where userid=#{userId}
+	</update>
+	
 </mapper>

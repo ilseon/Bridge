@@ -16,8 +16,6 @@ public class AlbumReplyServiceImpl implements AlbumReplyService {
 	
 	@Override
 	public List<AlbumReplyVO> getReplyList(HashMap<String, Integer> map) throws Exception {
-		// TODO Auto-generated method stub
-		System.out.println("서비스!!!!!!!!!!!");
 		return dao.getReplyList(map);
 	}
 
@@ -37,6 +35,11 @@ public class AlbumReplyServiceImpl implements AlbumReplyService {
 	public void deleteReply(int replyNumber) throws Exception {
 		dao.deleteReply(replyNumber);
 
+	}
+
+	@Override
+	public int countAlbum(int albumNumber) throws Exception {
+		return dao.countAlbum(albumNumber);
 	}
 
 }

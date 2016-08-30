@@ -34,14 +34,28 @@ public class PlaylistServiceImpl implements PlaylistService {
 	}
 
 	@Override
-	public List<PlaylistVO> searchAll(Integer userNumber) throws Exception {
-
-		return null;
+	public List<PlaylistVO> searchAll(Integer userNumber) throws Exception {		
+		return playlistdao.searchAll(userNumber);
 	}
 
 	@Override
 	public void remove(List<PlaylistVO> playlists) throws Exception {
 		
+	}
+
+	@Override
+	public List<PlaylistVO> searchAlbum(Integer userNumber, int limit) throws Exception {
+		return playlistdao.searchAlbum(userNumber, limit);
+	}
+	
+	@Override
+	public List<PlaylistVO> search_myalbum(Map playListAll) throws Exception {
+		return playlistdao.search_myalbum(playListAll);
+	}
+
+	@Override
+	public void removeAll(Map dlist) throws Exception {
+		playlistdao.removeAll(dlist);		
 	}
 
 }

@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +35,7 @@ public class VideoController {
 	
 //게시물조회과 페이징 담당하는 메소드
 	@RequestMapping(value="/video", method=RequestMethod.GET)
-	public ModelAndView list(@RequestParam String bno) throws Exception {
+	public ModelAndView list(@RequestParam String bno,@RequestParam String searchType,@RequestParam String search) throws Exception {
 		ModelAndView mav = new ModelAndView("/video/videolist");
 		System.out.println(bno+"번호");
 	    try {
@@ -48,19 +49,51 @@ public class VideoController {
 	        		);
 	        paging.setStart(( Integer.parseInt(bno)- 1) * paging.getPageSize());
 	        paging.setEnd( Integer.parseInt(bno)*paging.getPageSize());
+	        paging.setSearchType(searchType);
+	        paging.setSearch(search);
 	        
 	        System.out.println(paging.getStart()+"시작");
 	        System.out.println(paging.getEnd()+"끝");
+	        
+	        System.out.println(searchType+"타입");
+	        System.out.println(search+"검색");
 
-			List<VideoVO> list=service.getVideoList(paging);
-			List<VideoVO> listtotal=service.getVideoTotal();
-			paging.setTotalCount(listtotal.size());
+	        List<VideoVO> listtotal1=service.getVideoTotal();
+	        System.out.println(listtotal1.size()+"크기");
+	        
+			
+			paging.setTotalCount(listtotal1.size());
 			mav.addObject("paging",paging);
+			if(searchType.equals(null)&&search.equals(null)){
+				
+				List<VideoVO> listtotal=service.getVideoTotal(paging);
+				mav.addObject("list",listtotal);
+			}else{
+				List<VideoVO> list=service.getVideoList(paging);
 			mav.addObject("list",list);
+			System.out.println(list.size()+"뮤지비디오");
+			}
 			return mav;
 	    } catch (Exception e) {
 	    	System.out.println(e);
 	    	return mav;
 	    }
+	}
+	
+	@RequestMapping("chart_video")
+	public String showChartVideo(Model model) throws SQLException{
+		ModelAndView mav=new ModelAndView("/video/chart_video");
+		System.out.println("asdawdawd");
+		
+		model.addAttribute("list",service.getChartVideoTotal());
+		model.addAttribute("page","video");
+		return "/chart/chart_main";
+	}
+	
+	@RequestMapping("iframe")
+	public String showIframe(@RequestParam String video,Model model){
+		System.out.println(video);
+		model.addAttribute("video",video);
+		return "/video/iframe";
 	}
 }

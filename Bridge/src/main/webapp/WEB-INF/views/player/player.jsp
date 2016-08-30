@@ -21,7 +21,7 @@
                 autoPlay:false, 
                 description:description,
                 jPlayer:{
-                    swfPath:'/resources/plugin/jquery-jplayer' //You need to override the default swf path any time the directory structure changes
+                    swfPath:'/Bridge/resources/plugin/jquery-jplayer' //You need to override the default swf path any time the directory structure changes
                 }
             });
         });

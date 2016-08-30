@@ -1,9 +1,9 @@
 <%--
-작성자 - 이주연
+작성자 - 정효진
 내용 - 좋아하는 앨범 페이지
 시작날짜 - 2016/07/17
-수정날짜 - 
-변경내용 - 
+수정날짜 - 2016/08/04
+변경내용 - 삭제기능추가
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -11,11 +11,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
-	type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
+<script src="/Bridge/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
+<script src="/Bridge/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="/Bridge/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 </head>
 <script>
 	$(document).ready(function() {
@@ -29,16 +27,7 @@
 		});
 	});
 </script>
-<style>
-#tab {
-	border: none;
-	background-color: #DF6E76;
-	box-shadow: 2px 2px 2px 2px #E0E0E0;
-	color: white;
-	margin-top: 30px
-}
-</style>
-<body style="margin-top: 4%;">
+<body>
 	<!-- header, sideber start -->
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 	<%@include file="/WEB-INF/views/include/sidebar.jsp"%>
@@ -46,67 +35,69 @@
 
 	<!-- 상단 tab start -->
 	<div class="container" style="margin-bottom: 150px">
-		<div class="panel-heading col-md-2" >
-			<h3 class="panel-title">좋아하는 앨범</h3>
+		<br /> <br />
+		<div class="col-md-12">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="like_song">좋아하는 곡</a></li>
+				<li><a href="myalbum">내 앨범</a></li>
+				<li><a href="download">다운로드함</a></li>
+			</ul>
 		</div>
 		<!-- end -->
 		<!-- 좋아하는 곡 or 앨범인지 표시 start -->
-		<div class="col-md-12">
-		<br/><br/>
-			<ul class="nav nav-tabs">
+		<div class="col-xs-2">
+			<br /> <br />
+			<ul class="breadcrumb">
 				<li><a href="like_song">곡</a></li>
-				<li class="active"><a href="like_album">앨범</a></li>
+				<li class="active">앨범</li>
 			</ul>
-			<br/><br/>	
 		</div>
-
-		<div class="col-md-12">	
-			<div class="col-md-12" style="margin-top: -90px" align="right">
-				<button class="btn btn-default btn-md" id="del">
-					<span class="glyphicon glyphicon-trash"></span>&nbsp;삭제
-				</button>
-				<br />
-			</div>
-			<!-- end -->
+		<div class="col-md-12" style="margin-top: -40px" align="right">
+			<button class="btn btn-default btn-md" id="del">
+				<span class="glyphicon glyphicon-trash"></span>&nbsp;삭제
+			</button>
+			<hr />
 			<br />
-			<!-- 앨범 정보 start -->
-			<c:forEach begin="1" end="4" step="1">
+		</div>
+		<!-- end -->
+		<br />
+		<!-- 앨범 정보 start -->
+		<c:forEach begin="1" end="4" step="1">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<c:forEach begin="1" end="1">
+						<input type="checkbox" name="check" id="check${j}" />&nbsp;&nbsp;
+					&nbsp;&nbsp;<a href="album_detail?albumNumber=${music.albumNumber}"><img
+							src="/Bridge/resources/image/like/${music.albumImg}" width="65%"></a>
+					</c:forEach>
+				</div>
+			</div>
+			<form class="form-horizontal">
 				<div class="col-sm-3">
 					<div class="form-group">
-						<c:forEach begin="1" end="1">
-							<input type="checkbox" name="check" id="check${j}" />&nbsp;&nbsp;
-					&nbsp;&nbsp;<a href="test2"><img
-								src="resources/image/like/like_album.jpg" width="65%"></a>
-						</c:forEach>
+						<br />
+						<table class="table">
+							<tr>
+								<td>아티스트</td>
+								<td>태연</td>
+							</tr>
+							<tr>
+								<td>앨범 종류</td>
+								<td>미니</td>
+							</tr>
+							<tr>
+								<td>발매일</td>
+								<td>2016.06.27</td>
+							</tr>
+							<tr>
+								<td>장르</td>
+								<td>발라드</td>
+							</tr>
+						</table>
 					</div>
 				</div>
-				<form class="form-horizontal">
-					<div class="col-sm-3">
-						<div class="form-group">
-							<br />
-							<table class="table">
-								<tr>
-									<td>아티스트</td>
-									<td>태연</td>
-								</tr>
-								<tr>
-									<td>앨범 종류</td>
-									<td>미니</td>
-								</tr>
-								<tr>
-									<td>발매일</td>
-									<td>2016.06.27</td>
-								</tr>
-								<tr>
-									<td>장르</td>
-									<td>발라드</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</form>
-			</c:forEach>
-		</div>
+			</form>
+		</c:forEach>
 	</div>
 	<!-- end -->
 	<!--  footer start -->

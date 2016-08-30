@@ -27,7 +27,7 @@
 					<h3>${username}님의 회원가입을 축하드립니다</h3>
 				</div>
 				<h3>앞으로 저희 bridge에서 많은 활동과 좋은 음악 들으시길 바라겠습니다</h3></br></br>
-				<a href="/">
+				<a href="/Bridge">
 				<button class="btn btn-default">메인페이지로</button>
 				</a>
 		

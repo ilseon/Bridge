@@ -17,65 +17,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
+
+<script src="/Bridge/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
 <%@include file="/WEB-INF/views/include/header.jsp" %>
 <%@include file="/WEB-INF/views/include/sidebar.jsp" %>
 <style>
 	.col-md-2{
-		width: 10%;
+		width:7%;
 	}
+	
+	.sub{
+		color: #8C8C8C
+	}
+	.box {width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 
 </style>
+
+<script>
+$(function(){
+	$("div")
+})
+</script>
 <!-- 게시물  -->
-<div class="row">
+<c:if test="${list.size() gt 1}">
+<div class="row" style="padding-left: 20%">
    <c:forEach items="${list }" var="VideoVO">
      
         <div class="col-xs-6 col-md-2">   
-   			 <a href="https://www.youtube.com/?gl=KR&hl=ko">
-   			 <div class="thumbnail" style="width: 60%">
-     			 <img src="/resources/image/album.PNG">
+        	
+   			 <%-- <a href="iframe?video=${VideoVO.musicVideo}" data-toggle="modal" data-target="#iframe${Video.VO.musicNumber}">
+   			  <div class="modal fade" id="iframe${Video.VO.musicNumber}">
+                  <div class="modal-dialog">
+                     <div class="modal-content"></div>
+                  </div>
+               </div>  --%>
+               <a href="#" onClick="window.open('iframe?video=${VideoVO.musicVideo}','MusicVideo','width=596,height=345,top=100,left=700');return false">
+   			 <div class="thumbnail box" style=" height: 250px">
+     			 <img src="https://img.youtube.com/vi/${VideoVO.musicVideo}/0.jpg">
      				 <div class="caption">
-       					 <p>제목 : ${VideoVO.musicSubject}</p>
-       					 <p>가수 : ${VideoVO.artistName}</p>
-       					 <p>발매일 : ${VideoVO.albumDate}</p>
+ 		      
+       					 <p>${VideoVO.musicSubject}</p>
+       					 <p class="sub">${VideoVO.artistName}</p>
+       					 <p class="sub">${VideoVO.albumDate} | ${VideoVO.albumType}</p>
       				</div>
        		</a>
     		</div>
- 		 </div>       
+ 		 </div>
+ 		 
    </c:forEach>
    
  </div>
+ </c:if>
  
+ <c:if test="${list.size() eq 0}">
+               <ul>
+                  <li>모든 단어의 철자가 정확한지 확인해 보세요.</li>
+                  <li>두 단어 이상일 경우 띄어쓰기를 확인하거나 단어 수를 줄여보세요.</li>
+                  <li>아직 발매되지 않은 곡/앨범을 검색했을 수 있습니다.</li>
+               </ul>
+ </c:if>
  <!-- 페이징 -->
- <div class="row">
- <div class="col-xs-4 col-xs-offset-6">
+ <div class="row" style="padding-right: 400px">
+ <div class="col-xs-6 col-xs-offset-6"">
  <nav>
 <ul class="pagination">
-    <li><a href="video?bno=${paging.firstPageNo}" class="first">처음 페이지</a></li>
-   <li> <a href="video?bno=${paging.prevPageNo}" class="prev">이전 페이지</a></li>
+    <li><a href="video?bno=${paging.firstPageNo}&searchType=&search=" class="first">&lt;&lt;</a></li>
+   <li> <a href="video?bno=${paging.prevPageNo}&searchType=&search=" class="prev">&lt;</a></li>
     <li>
         <c:forEach var="i" begin="${paging.startPageNo}" end="${paging.endPageNo}" step="1">
             <c:choose>
-                <c:when test="${i eq paging.pageNo}"><a href="video?bno=${i}" class="choice">${i}</a></c:when>
-                <c:otherwise><a href="video?bno=${i}">${i}</a></c:otherwise>
+                <c:when test="${i eq paging.pageNo}"><a href="video?bno=${i}&searchType=&search=" class="choice">${i}</a></c:when>
+                <c:otherwise><a href="video?bno=${i}&searchType=&search=">${i}</a></c:otherwise>
             </c:choose>
         </c:forEach>
     <li>
-   <li> <a href="video?bno=${paging.nextPageNo}" class="next">다음 페이지</a></li>
-    <li><a href="video?bno=${paging.finalPageNo}" class="last">마지막 페이지</a></li>
+   <li> <a href="video?bno=${paging.nextPageNo}&searchType=&search=" class="next">&gt;</a></li>
+    <li><a href="video?bno=${paging.finalPageNo}&searchType=&search=" class="last">&gt;&gt;</a></li>
 </ul>
 </nav>
-<form method="post" action="video?bno=1">
-<div style="pa">
+<form method="get" action="video?bno=1">
+<div style="padding-right: 10px" >
+<input type="hidden" name="bno" value="1"/>
 		<select  name="searchType" id="searchType">
   			<option>제목</option>
   			<option>가수</option>
 		</select>
-			<input type="text" class="btn search" style="border: 3px solid red; border-radius:50px;"/>
-			<input type="image" src="/resources/image/search.PNG"  style="vertical-align: middle; " />
+			<input type="text" class="btn search" name="search" style="border: 3px solid red; border-radius:50px;" size="30"/>
+			<input type="image" src="/Bridge/resources/image/search.PNG"  style="vertical-align: middle; " />
 </div>
 </form>			
 </div>

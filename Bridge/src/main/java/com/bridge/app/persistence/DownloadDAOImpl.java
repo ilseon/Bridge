@@ -1,9 +1,9 @@
 /*
- �ۼ��� - ��ȿ��
-���� - �ٹ� dao impelements ���� Ŭ����
-���۳�¥ - 2016-07-20
-������¥ - 2016-07-22
-���泻�� - �ٹ� dao impl
+	최초 작성일 : 2016-07-20
+	작성자 : 정효진
+	수정일 : 2016-07-30
+	수정 내용 : 이미 다운받은 음원인지 검색
+	내용 : 다운로드 관련 DAOImpl
  */
 package com.bridge.app.persistence;
 
@@ -38,9 +38,8 @@ public class DownloadDAOImpl implements DownloadDAO {
 	}
 
 	@Override
-	public void remove(Integer downloadNumber) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void remove(Map dlist) throws Exception {
+		sqlSession.delete(NAMESPACE+".remove", dlist);
 	}
 
 	@Override
@@ -52,6 +51,25 @@ public class DownloadDAOImpl implements DownloadDAO {
 	@Override
 	public List<MusicVO> search_sev(Map playlistAll) throws Exception {
 		return sqlSession.selectList(NAMESPACE+".search_sev", playlistAll);
+	}
+
+	@Override
+	public List<DownloadVO> searchDownload(Map playlistAll) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".searchDownload", playlistAll);
+	}
+
+	@Override
+	public List<Integer> music_already(Map download_check) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".music_already", download_check);
+	}
+	@Override
+	public List<DownloadVO> searchList(Integer userNumber, int limit) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".selectList", userNumber);
+	}
+
+	@Override
+	public List<DownloadVO> searchMyDownload(int userNumber) throws Exception {
+		return  sqlSession.selectList(NAMESPACE+".searchMyDownload", userNumber);
 	}
 	
 }

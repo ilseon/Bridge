@@ -1,19 +1,23 @@
 /*
- ÀÛ¼ºÀÚ - Á¤È¿Áø
-³»¿ë - ÁÁ¾Æ¿ä Service ÀÎÅÍÆäÀÌ½º
-½ÃÀÛ³¯Â¥ - 2016-07-20
-¼öÁ¤³¯Â¥ - 2016-07-20
-º¯°æ³»¿ë - ±âº» ¸Ş¼­µå ÀÛ¼º
+ ì‘ì„±ì - ì •íš¨ì§„
+ë‚´ìš© - ì¢‹ì•„ìš” Service ì¸í„°í˜ì´ìŠ¤
+ì‹œì‘ë‚ ì§œ - 2016-07-20
+ìˆ˜ì •ë‚ ì§œ - 2016-07-20
+ë³€ê²½ë‚´ìš© - ê¸°ë³¸ ë©”ì„œë“œ ì‘ì„±
  */
 
 package com.bridge.app.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.bridge.app.domain.LikeVO;
 
 public interface LikeService {
 	public void regist(LikeVO like) throws Exception;
 	public void remove(LikeVO like) throws Exception;
+	public void removeAll(Map dlist) throws Exception;
 	public List<Integer> searchAll(Integer userNumber) throws Exception;
+	public List<LikeVO> searchMusic(Integer userNumber, int limit) throws Exception;
+	public List<LikeVO> searchAlbum(Integer userNumber) throws Exception;
 }

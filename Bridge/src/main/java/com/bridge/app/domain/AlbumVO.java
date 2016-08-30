@@ -13,19 +13,54 @@ public class AlbumVO {
 	private int counter;
 	private String artistName;
 
-		
+	private int musicTitle;
+	private String musicLyrics;
+	private String musicFile;
+	private String musicVideo;
+	private String musicSubject;
+	private int musicNumber;
+	
+	public int getMusicTitle() {
+		return musicTitle;
+	}
+	public void setMusicTitle(int musicTitle) {
+		this.musicTitle = musicTitle;
+	}
+	public String getMusicLyrics() {
+		return musicLyrics;
+	}
+	public void setMusicLyrics(String musicLyrics) {
+		this.musicLyrics = musicLyrics;
+	}
+	public String getMusicFile() {
+		return musicFile;
+	}
+	public void setMusicFile(String musicFile) {
+		this.musicFile = musicFile;
+	}
+	public String getMusicVideo() {
+		return musicVideo;
+	}
+	public void setMusicVideo(String musicVideo) {
+		this.musicVideo = musicVideo;
+	}
+	public String getMusicSubject() {
+		return musicSubject;
+	}
+	public void setMusicSubject(String musicSubject) {
+		this.musicSubject = musicSubject;
+	}
+	public int getMusicNumber() {
+		return musicNumber;
+	}
+	public void setMusicNumber(int musicNumber) {
+		this.musicNumber = musicNumber;
+	}
 	public String getArtistName() {
 		return artistName;
 	}
 	public void setArtistName(String artistName) {
 		this.artistName = artistName;
-	}
-	@Override
-	public String toString() {
-		return "AlbumVO [albumNumber=" + albumNumber + ", albumName=" + albumName + ", albumType=" + albumType
-				+ ", albumDate=" + albumDate + ", albumGenre=" + albumGenre + ", artistNumber=" + artistNumber
-				+ ", albumImg=" + albumImg + ", albumContent=" + albumContent + ", ageLimit=" + ageLimit + ", counter="
-				+ counter + "]";
 	}
 	public int getAlbumNumber() {
 		return albumNumber;
@@ -87,6 +122,4 @@ public class AlbumVO {
 	public void setCounter(int counter) {
 		this.counter = counter;
 	}
-	
-	
 }

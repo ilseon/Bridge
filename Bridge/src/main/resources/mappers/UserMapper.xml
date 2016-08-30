@@ -5,14 +5,17 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bridge.mappers.UserMapper">
-	<insert id="insertUser"><!-- 파라미터 생략하고 작성 -->
-		insert into bridgedb.user(username, userbirthday, userid, userpassword, userphone, usertype, useremail)
-		values(#{userName}, #{userBirthday}, #{userId}, #{userPassword}, #{userPhone}, #{userType}, #{userEmail})
-	</insert>
-	
-	<select id="selectUser" resultType="UserVO">
-		select * from tbl_member
-		where userId = #{userId}
-	</select>
-	
-	</mapper>
+   <insert id="insertUser"><!-- 파라미터 생략하고 작성 -->
+      insert into bridgedb.user(username, userbirthday, userid, userpassword, userphone, usertype, useremail)
+      values(#{userName}, #{userBirthday}, #{userId}, #{userPassword}, #{userPhone}, #{userType}, #{userEmail})
+   </insert>
+   
+   <select id="selectUser" resultType="UserVO">
+      select * from tbl_member
+      where userId = #{userId}
+   </select>
+   
+   <select id="readUser" resultType="UserVO">
+      SELECT * from user where userid=#{userId}
+   </select>
+   </mapper>

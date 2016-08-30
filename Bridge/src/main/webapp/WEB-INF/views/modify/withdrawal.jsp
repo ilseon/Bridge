@@ -8,21 +8,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@page import="java.util.Enumeration"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet"
-	type="text/css" />
-<script src="/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/bootstrap/css/bootstrap.css" type="text/css"></script>
+<script src="/Bridge/resources/bootstrap/js/jquery-2.2.3.min.js"></script>
+<script src="/Bridge/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="/Bridge/resources/bootstrap/css/bootstrap.css"
+	type="text/css"></script>
 <script>
-	//탈퇴 동의 페이지 
-	function fnConfirm() {
-		window.open("confirm", "", "width=400, height=300, scrollbars=yes");
+	//탈퇴 동의 페이지
+	var usernum = $("#userNumber").val();
+	function fnPopUp() {
+		url = "confirm?userNumber=" + usernum;
+		window.open("confirm", "", "width=400, height=400, scrollbars=yes");
+		if (usernum = num) {
+			document.user.submit();
+		}
 	}
-	//self.location = "/app/";
+
 </script>
+<style>
+#main {
+	
+}
+</style>
 </head>
 <body style="margin-top: 4%;">
 	<!-- header, sideber start -->
@@ -32,7 +42,7 @@
 
 
 	<!-- 상단 tab start -->
-	<div class="container">
+	<div class="container" id="main">
 		<br /> <br />
 		<div class="col-md-12">
 			<ul class="nav nav-tabs">
@@ -44,15 +54,15 @@
 
 		<!-- 회원탈퇴 start -->
 		<div class="col-md-10 col-md-offset-1">
-			<br /> <br />
-			<h5>
-				<strong>회원탈퇴에 앞서 아래의 사항들을 꼭 확인하시기 바랍니다.</strong>
-			</h5>
 			<br />
-			<br />
-			<form class="form-horizontal well" id="f" method="post">
+			<form class="form-horizontal well" id="user" method="post"
+				action="confirm">
+				<h5>
+					<strong>회원탈퇴에 앞서 아래의 사항들을 꼭 확인하시기 바랍니다.</strong>
+				</h5>
+				<br /> <br /> <input type="text" name="usernumber" id="usernumber"
+					value="${usernumber}" />
 				<div class="form-group">
-
 					<h4>
 						<strong>&nbsp;&nbsp;&nbsp;회원님의 모든 개인정보 및 이용정보가 삭제되며 복구가
 							불가능합니다. </strong>
@@ -64,21 +74,19 @@
 					</h4>
 					<br />
 				</div>
+				<!-- end -->
+
+				<!-- 버튼 start -->
+				<div align="center" style="margin-top: 80px">
+					<div class="form-group">
+						<button type="submit" class="btn btn-warning" onclick="fnPopUp()">위
+							내용을 확인하였고, 모든 정보 삭제에 동의합니다.</button>
+					</div>
+				</div>
 			</form>
 		</div>
-		<!-- end -->
-
-		<!-- 버튼 start -->
-		<div class="col-md-12">
-			<div align="center" style="margin-top: 80px">
-				<div class="form-group">
-					<button type="submit" class="btn btn-warning" onclick="fnConfirm()">위
-						내용을 확인하였고, 모든 정보 삭제에 동의합니다.</button>
-				</div>
-			</div>
-		</div>
-		<!--  end -->
 	</div>
+	<!--  end -->
 	<br />
 	<br />
 	<!--  footer start -->
